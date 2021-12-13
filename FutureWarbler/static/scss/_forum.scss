@@ -1,0 +1,55 @@
+.forum{
+    .topnav{
+        background: $primary_color;
+        li a{
+            color: $text_color;
+            transition: 0.3s all;
+            &:hover{
+                color: $primary_color;
+                background-color: $text_color;
+            }
+        }
+        button{
+            color: $text_color;
+            &:hover{
+                background-color: $primary_color;
+            }
+        }
+    }
+    .content{
+        h3{
+            font-size: 16px;
+            color: $text_color;
+            transition: 0.3s all;
+            &:hover{
+                color: $primary_color;
+            }
+        }
+        p{
+            font-size: 14px;
+        }
+    }
+    ul li img{
+        width: 80px;
+        height: 80px;
+    }
+    .border-bottom{
+        border-bottom: 1px solid darkgray;
+    }
+    .pagination a{  
+        color: $text_color;
+        transition: 0.3s all;
+        &:hover{
+            color: $primary_color;
+        }
+    }
+    .write{
+        position: fixed;
+        right: 50px;
+        bottom: 50px;
+        img{
+            width: 50px;
+            height: 50px;
+        }
+    }
+}

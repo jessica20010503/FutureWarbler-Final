@@ -1,0 +1,9 @@
+.register_form{
+    background: linear-gradient(180deg, rgba(37, 62, 67, 0.72) 0%, #041B1F 100%);
+    .register_btn{
+        &:hover{
+            background: #fffb00;
+            color: #1C383E;
+        }
+    }
+}

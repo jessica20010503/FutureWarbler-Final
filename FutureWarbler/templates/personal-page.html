@@ -1,0 +1,145 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+<div class="wrap d-flex m0-a">
+    <div class="side">
+        <h1 class="fz-xl fwb">F<span class="bright">u</span>ture <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
+        <ul class="menu">
+            <li><a href="index.html"><i class="fas fa-home mr-2"></i>首頁</a></li>
+            <li><a href="#"><i class="fas fa-university mr-2"></i>模擬交易所</a></li>
+            <li><a href="class.html"><i class="fas fa-chalkboard-teacher mr-2"></i>期貨小教室</a></li>
+            <li><a href="#"><i class="fas fa-robot mr-2"></i>智能機器人顧問</a></li>
+            <li><a href="news.html"><i class="fas fa-newspaper mr-2"></i>新聞</a></li>
+            <li><a href="forum.html"><i class="fas fa-comment-alt mr-2"></i>討論版</a></li>
+            <li class="chosed"><a href="#"><i class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <ul class="header--button d-flex jcfe aic">
+            <li class="fz-s mr-2 fwbr d-flex loginned_title aic">
+                <div class="loginned_photo mr-2">
+                    <img src="{% static 'img/會員大頭貼.jpg' %}" alt="會員大頭貼">
+                </div>
+                <p>Hi&nbsp;&nbsp;蔡西西</p>   
+            </li>
+            <li><a href="#" class="header__logout--button dark-gray  mr-2 tac br-s">登出</a></li>
+        </ul>
+        <ul class="personal--page__content mt-4 w-100">
+            <li class="fl second-white-bg w-65 br-m mr-3pct drop-shadow pt-4 pb-6 pl-8 pr-8">
+                <h2 class="mb-8"><i class="fas fa-user mr-3"></i>個人資訊</h2>
+                <div class="personal--information__content d-flex">
+                    <div class="Avatars">
+                        <img src="{% static 'img/會員大頭貼.jpg' %}" alt="會員大頭貼">
+                    </div>
+                    <ul class="ml-16">
+                        <li class="mb-1">Terisa Tsai</li>
+                        <li class="mb-1">蔡西西</li>
+                        <li class="fz-s mb-1">女</li>
+                        <li class="fz-s mb-1">1998/11/26</li>
+                    </ul>
+                    <ul class="ml-28 fz-s">
+                        <li class="mb-1">手機&nbsp;&nbsp;&nbsp;0912-345678</li>
+                        <li class="mb-1">信箱&nbsp;&nbsp;&nbsp;shishi1126@gmail.com</li>
+                        <li class="mb-1">密碼&nbsp;&nbsp;&nbsp;**********</li>
+                    </ul>
+                </div>
+                <a href="" class="fr mt-7"><input type="button" value="modify" class="personal__btn dark-gray b-n"></a>
+                <div class="clearfix"></div>
+            </li>
+           <li class="bank--area w-30 fl">
+               <div class="piggy--bank  w-100 br-m drop-shadow second-white p-6 pl-8 pr-8">
+                    <div class="d-flex jcsb mb-5">
+                        <p>申請金額</p>
+                        <p>1,000,000</p>
+                    </div>
+                    <div class="d-flex jcsb mb-5">
+                        <p>可用餘額</p>
+                        <p>800,000</p>
+                    </div>
+                    <div class="d-flex jcsb aic">
+                    <i class="fas fa-piggy-bank fz-xxl"></i>
+                    <h2 class="fz-l fwb">F<span class="second-yellow">u</span>ture <br> &nbsp;&nbsp;Warbl<span class="second-yellow">e</span>r</h2>
+                    </div>
+               </div>
+               <div class="second-white-bg fl w-100 br-m drop-shadow pt-10 pl-8 pr-6 pb-5 d-flex jcsb add--money">
+                <p class="fwbr mr-3 dark-gray">若餘額已全數使用完畢，<br>則可前往進行補倉設定</p>
+                <a href="" class="fr "><input type="button" value="go" class="go__btn dark-gray b-n"></a>
+               </div>
+           </li>
+           <li class="fl second-white-bg w-100 br-m mr-3pct drop-shadow p-6 pl-8 mt-6 ">
+            <div class="d-flex jcsb aic">
+                <h2><i class="fas fa-exchange-alt mr-3"></i>持倉</h2>
+                <a href="" class="fr"><input type="button" value="modify" class="personal__btn dark-gray b-n"></a>
+            </div>
+            <table class="w-100 tac mt-5 trade--table">
+                <tr class="fwb">
+                    <th>序號</th>
+                    <th>商品代號</th>
+                    <th>商品名稱</th>
+                    <th>狀態</th>
+                    <th>持倉價格</th>
+                    <th>持倉時間</th>
+                    <th>持倉數量(口)</th>
+                    <th>平倉價格</th>
+                    <th>平倉時間</th>
+                    <th>平倉數量(口)</th>
+                    <th>投資報酬率</th>
+                </tr>
+                <tr class="trade--table__item">
+                    <td>1</td>
+                    <td>MNQ</td>
+                    <td>小那斯達克</td>
+                    <td>未平倉</td>
+                    <td>30,000</td>
+                    <td>2021/12/11 07:12</td>
+                    <td>5</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr class="trade--table__item br-m">
+                    <td>2</td>
+                    <td>TX</td>
+                    <td>大台指期</td>
+                    <td>平倉</td>
+                    <td>30,000</td>
+                    <td>2021/12/01 07:12</td>
+                    <td>3</td>
+                    <td>32,000</td>
+                    <td>2021/12/08 10:22</td>
+                    <td>2</td>
+                    <td class="light-green fwb">+ 1.98</td>
+                </tr>
+                <tr class="trade--table__item  br-m">
+                    <td>3</td>
+                    <td>MNQ</td>
+                    <td>小那斯達克</td>
+                    <td>平倉</td>
+                    <td>130,000</td>
+                    <td>2021//12/01 11:15</td>
+                    <td>6</td>
+                    <td>80,000</td>
+                    <td>2021//09/28 17:26</td>
+                    <td>6</td>
+                    <td class="dark-red fwb">- 2.55</td>
+                </tr>
+                <tr class="trade--table__item br-m">
+                    <td>4</td>
+                    <td>MX</td>
+                    <td>小台指期</td>
+                    <td>未平倉</td>
+                    <td>120,000</td>
+                    <td>2021/09/10 08:34</td>
+                    <td>4</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+           </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

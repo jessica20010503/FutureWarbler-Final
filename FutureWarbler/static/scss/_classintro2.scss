@@ -1,0 +1,39 @@
+.classintro-2{
+    .main{
+        margin: 60px 0px 30px;
+        button{
+            color: $text_color;
+            &:hover{
+                background-color: $primary_color;
+            }
+        }
+        ul{
+            border-radius: 20px;
+        }
+        li{
+            border-bottom: #E3E2DD 1px solid;
+        }
+        a{
+            color: $text_color;
+            transition: 0.3s all;
+            &:hover{
+                color: $primary_color;
+            }
+        }
+        p{
+            line-height: 1.2;
+        }
+    }
+    img{
+        width: 100px;
+        height: 80px;
+    }
+    .pagination a{  
+        color: $text_color;
+        transition: 0.3s all;
+        &:hover{
+            color: $primary_color;
+        }
+        
+    }
+}

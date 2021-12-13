@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Warbler</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'img/robot.jpg' %}" type="image/x-icon">
+    <meta name='description' content="Future Warbler" />
+    <meta name="keywords" content="期貨, 期貨模擬交易, 智能機器人, Future Warbler">
+    <meta property="og:title" content="Future Warbler" />
+    <meta property="og:description" content="期貨模擬交易平台">
+    <meta property="og:type" content="website" /> 
+    <meta property="og:url" content="FB上的網址" />
+    <meta property="og:image" content="{% static 'img/robot.jpg' %}"/>
+
+    <link rel="stylesheet" href=" {% static 'C:\Users\user\專題網站Django\FutureWarbler\static\css\all.css' %}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+<body>
+    {% block content %}{% endblock %}
+</body>
+</html>

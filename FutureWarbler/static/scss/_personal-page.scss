@@ -1,0 +1,81 @@
+.personal--page__content{
+    .personal--information__content{
+        .Avatars{
+            position: relative;
+            width: 20%; /* 固定寬度 */
+            &::after {
+                content: "";
+                display: block;
+                padding-bottom: 100%; /*padding取決於寬度，這裡設定padding-bottom: 100%就可以得到正方形*/
+            }
+            img{
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0; /*將圖片大小固定為父類div的大小*/
+                width: 100%; 
+                height: 100%;
+                object-fit: cover; /* 相當於 background-size: cover; of a background-image */
+                object-position: center;
+            }
+        }
+    }
+    .personal__btn{
+        background: $primary_color;
+        text-align: center;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 6px;
+        padding: 10px 12px;
+        font-size: 16px;
+        &:hover{
+            color: $second_color;
+            background: #1C383E;
+           transition: 0.1s;
+        }
+    }
+    .go__btn{
+        background: $primary_color;
+        text-align: center;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 6px;
+        padding: 10px 30px;
+        font-size: 16px;
+        &:hover{
+            color: $second_color;
+            background: #1C383E;
+           transition: 0.1s;
+        }
+    }
+    .piggy--bank{
+        position: absolute;
+        background: linear-gradient(180deg, #072036 0.01%, #1A568D 100%);
+        z-index: 99;
+        .fa-piggy-bank{
+            color: linear-gradient(180deg, #DCDCDC 100%, #C0C0C0 100%);
+        }
+    }
+    .bank--area{
+        position: relative;
+        height: 321px;
+    }
+    .add--money{
+        position: absolute;
+        bottom: -5px;
+        left: 20px;
+        z-index: 3;
+    }
+    .trade--table{
+        th,td{
+            padding: 15px 10px;
+        }
+        .trade--table__item{
+            &:hover{
+                background: #f8f190;
+            }
+        }
+    }
+}
+
+
+

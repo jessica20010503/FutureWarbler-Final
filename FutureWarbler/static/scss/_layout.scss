@@ -1,0 +1,90 @@
+*,*::before,*::after{
+    box-sizing: border-box;
+}
+body{
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: Arial, Helvetica, sans-serif;
+    color: $text_color;
+}
+html{
+    background: #EFEFEF;
+}
+a{
+    text-decoration: none;
+}
+img{
+    display: block;
+}
+.wrap{
+    max-width: 1536px;
+    color: $text_color;
+    z-index: 10;
+}
+.side{
+    position: fixed;
+    width: 15%;
+    background: linear-gradient(179.82deg, rgba(9, 44, 81, 0.88) 0.15%, rgba(5, 22, 39, 0.78) 91.58%);
+    height: 800px;
+    h1{
+        padding: 17px 0px 54px 38px;
+        color: $second_color;
+        .bright{
+            color: $primary_color;
+        }
+    }
+    .menu li{
+        a{
+            color: $second_color;
+            display: block;
+            padding: 10px 15px;
+            cursor: pointer;
+            margin: 0px 10px 25px 36px;
+            
+        }
+        &:hover{
+            background: #0F2E4F;
+            color: $second_color;
+            
+        }
+    }
+}
+.container{
+    width: 85%;
+    padding: 15px 51px 20px 61px;
+    margin-left: 15%;
+}
+.header__login--button,.header__register--button,.header__logout--button{
+    background: $second_color;
+    padding: 6px 13px;
+    &:hover{
+        color: $second_color;
+        background: #1C383E;
+    }
+}
+.loginned_title{
+    width: 150px;
+}
+.loginned_photo{
+    position: relative;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px; /* 固定寬度 */
+    &::after {
+        content: "";
+        display: block;
+        padding-bottom: 100%; /*padding取決於寬度，這裡設定padding-bottom: 100%就可以得到正方形*/
+    }
+    img{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0; /*將圖片大小固定為父類div的大小*/
+        width: 100%; 
+        height: 100%;
+        object-fit: cover; /* 相當於 background-size: cover; of a background-image */
+        object-position: center;
+        border-radius: 50%;
+    }
+}
