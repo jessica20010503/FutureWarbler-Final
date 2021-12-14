@@ -5,13 +5,13 @@
     <div class="side">
         <h1 class="fz-xl fwb">F<span class="bright">u</span>ture <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
         <ul class="menu">
-            <li><a href="index.html"><i class="fas fa-home mr-2"></i>首頁</a></li>
+            <li class="chosed"><a href="index.html"><i class="fas fa-home mr-2"></i>首頁</a></li>
             <li><a href=""><i class="fas fa-university mr-2"></i>模擬交易所</a></li>
             <li><a href="class.html"><i class="fas fa-chalkboard-teacher mr-2"></i>期貨小教室</a></li>
             <li><a href=""><i class="fas fa-robot mr-2"></i>智能機器人顧問</a></li>
             <li><a href="news.html"><i class="fas fa-newspaper mr-2"></i>新聞</a></li>
             <li><a href="forum.html"><i class="fas fa-comment-alt mr-2"></i>討論版</a></li>
-            <li><a href=""><i class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
+            <li ><a href=""><i class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
         </ul>
     </div>
     <div class="container bg-img">
@@ -69,7 +69,7 @@
                     <a class="more dark-gray" href="">more...</a>
                 </div>
                 <!--到時候抓照片可能會條寬度-->
-                <img src="img/假圖-大盤走勢圖.png" alt="走勢圖" class="m0-a w-80 h-60">
+                <img src="{% static 'img/假圖-大盤走勢圖.png' %}" alt="走勢圖" class="m0-a w-80 h-60">
             </li>
             <li class="fl second-white-bg w-60 br-m mr-4pct pb-4 mt-6 ">
                 <div class="news--title p-4 mb-4 white-bg d-flex jcsb aic">
@@ -78,28 +78,28 @@
                 </div>
                 <ul class="news--content">
                     <li><a href="" class="d-flex jcsb p-5">
-                        <img src="img/假圖-新聞圖片.jpg" alt="新聞圖片" class="w-20 mr-4">
+                        <img src="{% static 'img/假圖-新聞圖片.jpg' %}" alt="新聞圖片" class="w-20 mr-4">
                         <div class="news--text">
                             <h3 class="fz-s green fwb">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
                             <p class="fz-s dark-gray">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra ultricies dui massa ultricies neque. Quam nec tempus tellus nulla congue aliquet ...</p>
                         </div>
                     </a></li>
                     <li><a href="" class="d-flex jcsb p-5">
-                        <img src="img/假圖-新聞圖片.jpg" alt="新聞圖片" class="w-20 mr-4">
+                        <img src="{% static 'img/假圖-新聞圖片.jpg' %}" alt="新聞圖片" class="w-20 mr-4">
                         <div class="news--text">
                             <h3 class="fz-s green fwb">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
                             <p class="fz-s dark-gray">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra ultricies dui massa ultricies neque. Quam nec tempus tellus nulla congue aliquet ...</p>
                         </div>
                     </a></li>
                     <li><a href="" class="d-flex jcsb p-5">
-                        <img src="img/假圖-新聞圖片.jpg" alt="新聞圖片" class="w-20 mr-4">
+                        <img src="{% static 'img/假圖-新聞圖片.jpg' %}" alt="新聞圖片" class="w-20 mr-4">
                         <div class="news--text">
                             <h3 class="fz-s green fwb">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
                             <p class="fz-s dark-gray">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra ultricies dui massa ultricies neque. Quam nec tempus tellus nulla congue aliquet ...</p>
                         </div>
                     </a></li>
                     <li><a href="" class="d-flex jcsb p-5">
-                        <img src="img/假圖-新聞圖片.jpg" alt="新聞圖片" class="w-20 mr-4">
+                        <img src="{% static 'img/假圖-新聞圖片.jpg' %}" alt="新聞圖片" class="w-20 mr-4">
                         <div class="news--text">
                             <h3 class="fz-s green fwb">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
                             <p class="fz-s dark-gray">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra ultricies dui massa ultricies neque. Quam nec tempus tellus nulla congue aliquet ...</p>
@@ -115,7 +115,7 @@
                 <ul class="discussing--content">
                     <li><a href="" class="d-flex jcsb p-5 pb-11">
                         <div class="Avatars">
-                            <img src="img/大頭貼1.jpg" alt="大頭貼1">
+                            <img src="{% static 'img/大頭貼1.jpg' %}" alt="大頭貼1">
                         </div>
                         <div class="discussing--text">
                             <h3 class="green fz-s fwb">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
@@ -124,7 +124,7 @@
                     </a></li>
                     <li><a href="" class="d-flex jcsb p-5 pb-11">
                         <div class="Avatars">
-                            <img src="img/大頭貼2.jpg" alt="大頭貼2">
+                            <img src="{% static 'img/大頭貼2.jpg' %}" alt="大頭貼2">
                         </div>
                         <div class="discussing--text">
                             <h3 class="green fz-s fwb">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
@@ -133,7 +133,7 @@
                     </a></li>
                     <li><a href="" class="d-flex jcsb p-5 pb-11">
                         <div class="Avatars">
-                            <img src="img/大頭貼3.jpg" alt="大頭貼3">
+                            <img src="{% static 'img/大頭貼3.jpg' %}" alt="大頭貼3">
                         </div>
                         <div class="discussing--text">
                             <h3 class="green fz-s fwb">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
@@ -142,7 +142,7 @@
                     </a></li>
                     <li><a href="" class="d-flex jcsb p-5 pb-11">
                         <div class="Avatars">
-                            <img src="img/大頭貼4.jpg" alt="大頭貼4">
+                            <img src="{% static 'img/大頭貼4.jpg' %}" alt="大頭貼4">
                         </div>
                         <div class="discussing--text">
                             <h3 class="green fz-s fwb">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
