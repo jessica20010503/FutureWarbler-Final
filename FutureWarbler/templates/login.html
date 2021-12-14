@@ -10,18 +10,20 @@
     <div class="login_form p-6 w-40 pt-33 pb-33">
         <div class="w-80 m0-a pl-5">
             <h2 class="fz-xxl fwb mb-8 ">Login</h2>
-            <form action="." class="w-80">
+            <form action="." class="w-80" method="post">
+                {% csrf_token %} 
                 <label for="account" class="fwbr">帳戶</label>
-                <input type="text" name="account" id="account" class="d-block w-100 br-s mt-2 mb-4 p-1 b-n">
+                <input type="text" name="username" id="username" class="d-block w-100 br-s mt-2 mb-4 p-1 b-n">
                 <label for="password" class="fwbr">密碼</label>
-                <input type="text" name="password" id="password" class="d-block w-100 br-s mt-2 mb-5 p-1 b-n">
+                <input type="password" name="password" id="password" class="d-block w-100 br-s mt-2 mb-5 p-1 b-n">
                 <div class="login--btn d-flex jcsb ">
                     <input type="button" value="Back" class="w-48 d-block b-n br-s p-2 fz-m text-shadow back_btn dark-gray second-white-bg">
-                    <input type="button" value="Login" id="login_success" class="w-48 d-block b-n br-s p-2 fz-m second-yellow-bg text-shadow login_btn dark-gray">
+                    <input type="submit" value="Login" id="login_success" class="w-48 d-block b-n br-s p-2 fz-m second-yellow-bg text-shadow login_btn dark-gray">
                 </div>
                 <p class="fr mt-2">尚未成為會員?<a href="/register/" class="dark-gray go_register">前往註冊</a></p>
                 <div class="clearfix"></div>
                 
+                <span style="color:red">{{message}}</span>
             </form>
         </div>
     </div>
