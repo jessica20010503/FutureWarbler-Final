@@ -3,29 +3,69 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from django.contrib import auth
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+import pymysql
+
+
+#連線至資料庫
+db_settings = {
+"host": "localhost",
+"port": 3306,
+"user": "root",
+"password": "12345678",
+"db": "futurewarbler",
+"charset": "utf8"
+}
+conn = pymysql.connect(**db_settings)
 
 # Create your views here.
 def index(request):
     return render(request,"index.html",locals())
+
 def login(request):
+    if request.method == 'POST':
+        account = request.POST['account']
+        password = request.POST['password']
+        with conn.cursor() as cursor:
+            sql = "SELECT `member_password` FROM `member` WHERE member_id='%s'"%(account)
+            cursor.execute(sql)
+            data = cursor.fetchone()
+            if password == data[0]:
+                request.session['username'] = account
+                return redirect('/index')
+            else:
+                message = '登入失敗!'
+        conn.close()
     return render(request,"login.html",locals())
+
 def register(request):
+    if request.method == 'POST':
+        account = request.POST['account']
+        password = request.POST['password']
+        name = request.POST['name']
+        photo = request.POST['photo']
+        gender = request.POST['gender']
+        birth = request.POST['birth']
+        phone = request.POST['phone']
+        mail = request.POST['mail']
+        
+        if gender == 0:
+            sex = 'M'
+        else:
+            sex = 'F'
+        with conn.cursor() as cursor:
+            sql = "INSERT INTO `member`(`member_id`, `member_password`, `member_name`, `member_photo`, `member_gender`, `member_birth`, `member_phone`, `member_email`) VALUES ('%s', '%s', '%s','%s', '%s', '%s', '%s', '%s')"%(account, password, name, photo, sex, birth, phone, mail)
+            cursor.execute(sql)
+            conn.commit()
+        conn.close()
     return render(request,"register.html",locals())
+
 def personal(request):
     return render(request,"personal-page.html",locals())
 
-#登入
-def login(request):
-    if request.method == 'POST':
-        account = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=account, password=password)
-        if user is not None:
-            if user.is_active:
-                auth.login(request, user)
-                return redirect('/index')
-            else:
-                message = '帳號未啟用!'
-        else:
-            message = '登入失敗!'
-    return render(request, "login.html", locals())
+def logout(request):
+    request.session.clear()
+    return redirect('login/')
+
+
+
