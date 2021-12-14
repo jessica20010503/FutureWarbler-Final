@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'layout.html'%}
 {% load static %}
 {% block content %}
 <div class="wrap d-flex m0-a">
@@ -22,7 +22,7 @@
                 </div>
                 <p>Hi&nbsp;&nbsp;蔡西西</p>   
             </li>
-            <li><a href="#" class="header__logout--button dark-gray  mr-2 tac br-s">登出</a></li>
+            <li><a href="#" class="header__logout--button dark-gray  mr-2 tac br-s fwb">登出</a></li>
         </ul>
         <ul class="personal--page__content mt-4 w-100">
             <li class="fl second-white-bg w-65 br-m mr-3pct drop-shadow pt-4 pb-6 pl-8 pr-8">
@@ -43,7 +43,85 @@
                         <li class="mb-1">密碼&nbsp;&nbsp;&nbsp;**********</li>
                     </ul>
                 </div>
-                <a href="" class="fr mt-7"><input type="button" value="modify" class="personal__btn dark-gray b-n"></a>
+                <!-- Button trigger modal -->
+                <a href="" class="fr personal__btn dark-gray b-n mt-7 fwb" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">修改</a>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header p-3">
+                            <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-user-edit mr-3  ml-5"></i>個人資料修改</h5>
+                            <button type="button" class="b-n close__btn" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times fz-s"></i></button>
+                            </div>
+                            <form action="">
+                                <div class="modal-body  p-4  gray-bg">
+                                    <div class=" w-80 m0-a">
+                                            <!-- 1.輸入帳號密碼-->
+                                            <div class="tac">
+                                            <i class="fas fa-lock fz-l "></i>
+                                            <p class="fwb ">請先輸入帳號密碼!!</p>
+                                            </div>
+                                            <label for="account" class="dark-gray fz-s fwbr">帳號</label>
+                                            <input type="text" name="account" id="account" class="br-s p-1 d-block w-100 mb-2 b-n">
+                                            <label for="password" class="dark-gray fz-s fwbr">密碼</label>
+                                            <input type="text" name="password" id="password" class="br-s  p-1 d-block w-100 b-n"> 
+                                            <!-- 2.帳號密碼輸入錯誤 -->
+                                            <!--
+                                                <div class="tac">
+                                                    <i class="fas fa-lock fz-l "></i>
+                                                    <p class="fwb  dark-red">帳號密碼輸入錯誤!!</p>
+                                                </div>
+                                                <label for="account" class="dark-gray fz-s fwbr">帳號</label>
+                                                <input type="text" name="account" id="account" class="br-s p-1 d-block w-100 mb-2 b-n">
+                                                <label for="password" class="dark-gray fz-s fwbr">密碼</label>
+                                                <input type="text" name="password" id="password" class="br-s  p-1 d-block w-100 b-n"> 
+                                            --> 
+                                            <!-- 3.修改資料 -->
+                                            <!--
+                                                <label for="account" class="dark-gray fz-s fwbr">帳號</label>
+                                                <input type="text" name="account" id="account" class="br-s p-1 d-block w-100 mb-2 b-n" value="Terisa Tsai">
+                                                <div class="w-48 fl">
+                                                    <label for="name" class=" fwbr">姓名</label>
+                                                    <input type="text" name="name" id="name" class="d-block w-100 br-s mt-1 mb-5 p-1 b-n" value="蔡西西">
+                                                </div>
+                                                <div class="w-48 fr">
+                                                    <label for="photo" class=" fwbr">頭像</label>
+                                                    <input type="file" name="photo" id="photo" class="d-block w-100 br-s mt-1 mb-4 p-1 b-n">
+                                                </div>
+                                                <div class="w-35 mr-2 fl">
+                                                    <label for="gender" class=" fwbr mb-2 d-inline-block">性別</label><br>
+                                                    <input type="radio" name="gender" id="gender" value="0"><font class=" fwbr">男</font>
+                                                    <input type="radio" name="gender" id="gender" value="1" checked><font class=" fwbr">女</font>
+                                                </div>
+                                                <div class="mb-5 w-48 fr">
+                                                    <label for="birth" class=" fwbr">生日</label>
+                                                    <input type="date" name="birth" id="birth" class="br-s p-1 b-n  d-block w-100 mt-1">
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <label for="phone" class="dark-gray fz-s fwbr">手機</label>
+                                                <input type="tel" name="phone" id="phone" class="br-s p-1 d-block w-100 mb-2 b-n" value="0912-345678">
+                                                <label for="mail" class="dark-gray fz-s fwbr">信箱</label>
+                                                <input type="email" name="mail" id="mail" class="br-s p-1 d-block w-100 mb-2 b-n" value="shishi1126@gmail.com">
+                                                <label for="password" class="dark-gray fz-s fwbr">密碼</label>
+                                                <input type="password" name="password" id="password" class="br-s p-1 d-block w-100 mb-2 b-n" value="shishi1126">
+                                            -->
+                                            <!-- 4.資料更新成功 -->
+                                            <!--
+                                                <div class="tac">
+                                                    <i class="fas fa-check fz-xxl light-green"></i>
+                                                    <p class="fwb  fz-m mt-2">資料更新成功!</p>
+                                                </div>
+                                            --> 
+                                    </div>
+                                </div>
+                                <div class="modal-footer ">
+                                    <button type="button" class="close__btn dark-gray b-n " data-bs-dismiss="modal">取消</button>
+                                    <button type="button" class="personal__btn dark-gray b-n">確認</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <div class="clearfix"></div>
             </li>
            <li class="bank--area w-30 fl">
@@ -63,13 +141,13 @@
                </div>
                <div class="second-white-bg fl w-100 br-m drop-shadow pt-10 pl-8 pr-6 pb-5 d-flex jcsb add--money">
                 <p class="fwbr mr-3 dark-gray">若餘額已全數使用完畢，<br>則可前往進行補倉設定</p>
-                <a href="" class="fr "><input type="button" value="go" class="go__btn dark-gray b-n"></a>
+                <a href="" class="fr personal__btn dark-gray b-n tac fwb">前往加值</a>
                </div>
            </li>
            <li class="fl second-white-bg w-100 br-m mr-3pct drop-shadow p-6 pl-8 mt-6 ">
             <div class="d-flex jcsb aic">
-                <h2><i class="fas fa-exchange-alt mr-3"></i>持倉</h2>
-                <a href="" class="fr"><input type="button" value="modify" class="personal__btn dark-gray b-n"></a>
+                <h2><i class="fas fa-exchange-alt mr-3"></i>交易紀錄</h2>
+                <a href=""  class="fr personal__btn dark-gray b-n fwb">查看更多</a>
             </div>
             <table class="w-100 tac mt-5 trade--table">
                 <tr class="fwb">
