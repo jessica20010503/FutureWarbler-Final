@@ -11,11 +11,13 @@
     <div class="register_form pt-10 p-6 w-50 ">
         <div class="w-80 m0-a pl-5">
             <h2 class="fz-xxl fwb mb-8 second-white">Register</h2>
-            <form action="." class="w-80">
+
+            <form action="." class="w-80" method="post">
+                {% csrf_token %}
                 <label for="account" class="second-white fwbr">帳戶</label>
                 <input type="text" name="account" id="account" class="d-block w-100 br-s mt-1 mb-4 p-1 b-n">
                 <label for="password" class="second-white fwbr">密碼</label>
-                <input type="text" name="password" id="password" class="d-block w-100 br-s mt-1 mb-5 p-1 b-n">
+                <input type="password" name="password" id="password" class="d-block w-100 br-s mt-1 mb-5 p-1 b-n">
                 <div class="w-48 fl">
                     <label for="name" class="second-white fwbr">姓名</label>
                     <input type="text" name="name" id="name" class="d-block w-100 br-s mt-1 mb-5 p-1 b-n">
@@ -26,8 +28,9 @@
                 </div>
                 <div class="w-35 mr-2 fl">
                     <label for="gender" class="second-white fwbr mb-2 d-inline-block">性別</label><br>
-                    <input type="radio" name="gender" id="gender" value="0"><font class="second-white fwbr">男</font>
-                    <input type="radio" name="gender" id="gender" value="1" checked><font class="second-white fwbr">女</font>
+
+                    <input type="radio" name="gender" id="gender" value="0" checked><font class="second-white fwbr">男</font>
+                    <input type="radio" name="gender" id="gender" value="1"><font class="second-white fwbr">女</font>
                 </div>
                 <div class="mb-5 w-48 fr">
                     <label for="birth" class="second-white fwbr">生日</label>
@@ -38,11 +41,12 @@
                 <input type="tel" name="phone" id="phone" class="d-block w-100 br-s mt-1 mb-5 p-1 b-n">
                 <label for="mail" class="second-white fwbr">信箱</label>
                 <input type="email" name="mail" id="mail" class="d-block w-100 br-s mt-1 mb-5 p-1 b-n">
-                <div class="d-flex jcsb ">
-                    <a href="/" class="w-48 d-block"><input type="submit" value="Back" class=" b-n br-s p-2 fz-m text-shadow  back_btn w-100 dark-gray second-white-bg"></a>
-                    <!--下面會放已登入的頁面-->
-                    <a href="/" class="w-48 d-block"><input type="submit" value="register" id="register_success" class=" b-n br-s p-2 fz-m second-yellow-bg w-100 text-shadow register_btn dark-gray"></a>
-                </div>
+                <input type="submit" value="register" id="register_success" class="d-block w-100 br-s b-n p-2 fz-m second-yellow-bg text-shadow register_btn dark-gray">
+                <span style="color:red">{{m}}</span>
+                <span style="color:red">{{f}}</span>
+
+              
+
             </form>
         </div>
     </div>

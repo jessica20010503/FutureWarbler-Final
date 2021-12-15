@@ -19,7 +19,8 @@ from myapp.views import index,login,register,personal
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',index),
+    path('', index),
+    path('index/',index),
     path('login/',login),
     path('register/',register),
     path('personal/',personal),
