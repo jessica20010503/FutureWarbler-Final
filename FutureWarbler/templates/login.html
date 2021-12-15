@@ -3,7 +3,7 @@
 {% block content %}
 <div class="login wrap d-flex jcc">
     <div class="login_title fz-xxl fwb pl-27 w-60 pt-33 pb-33">
-        <h2 class="mb-2 second-white">歡迎光臨 hello</h2>
+        <h2 class="mb-2 second-white">歡迎光臨</h2>
         <h1 class="ml-8 lh-s second-white">F<span class="second-yellow">u</span>ture <br> &nbsp;&nbsp;&nbsp;&nbsp;Warbl<span class="second-yellow">e</span>r </h1>
         <div class="clearfix"></div>
     </div>
@@ -17,8 +17,11 @@
                 <label for="password" class="fwbr">密碼</label>
                 <input type="password" name="password" id="password" class="d-block w-100 br-s mt-2 mb-5 p-1 b-n">
                 <div class="login--btn d-flex jcsb ">
-                    <input type="button" value="Back" class="w-48 d-block b-n br-s p-2 fz-m text-shadow back_btn dark-gray second-white-bg">
-                    <input type="submit" value="Login" id="login_success" class="w-48 d-block b-n br-s p-2 fz-m second-yellow-bg text-shadow login_btn dark-gray">
+
+                    <a href="/" class="w-48 d-block"><input type="submit" value="Back" class=" b-n br-s p-2 fz-m text-shadow  back_btn w-100 dark-gray second-white-bg"></a>
+                    <!--下面會放已登入的頁面-->
+                    <a href="/" class="w-48 d-block"><input type="submit" value="Login" id="login_success" class=" b-n br-s p-2 fz-m second-yellow-bg w-100 text-shadow login_btn dark-gray"></a>
+
                 </div>
                 <p class="fr mt-2">尚未成為會員?<a href="/register/" class="dark-gray go_register">前往註冊</a></p>
                 <div class="clearfix"></div>

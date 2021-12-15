@@ -11,6 +11,7 @@
     <div class="register_form pt-10 p-6 w-50 ">
         <div class="w-80 m0-a pl-5">
             <h2 class="fz-xxl fwb mb-8 second-white">Register</h2>
+
             <form action="." class="w-80" method="post">
                 {% csrf_token %}
                 <label for="account" class="second-white fwbr">帳戶</label>
@@ -27,6 +28,7 @@
                 </div>
                 <div class="w-35 mr-2 fl">
                     <label for="gender" class="second-white fwbr mb-2 d-inline-block">性別</label><br>
+
                     <input type="radio" name="gender" id="gender" value="0" checked><font class="second-white fwbr">男</font>
                     <input type="radio" name="gender" id="gender" value="1"><font class="second-white fwbr">女</font>
                 </div>
@@ -42,6 +44,9 @@
                 <input type="submit" value="register" id="register_success" class="d-block w-100 br-s b-n p-2 fz-m second-yellow-bg text-shadow register_btn dark-gray">
                 <span style="color:red">{{m}}</span>
                 <span style="color:red">{{f}}</span>
+
+              
+
             </form>
         </div>
     </div>
