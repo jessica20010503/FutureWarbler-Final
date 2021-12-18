@@ -50,14 +50,13 @@ def register(request):
     if request.method == 'POST':
         account = request.POST['account']
         password = request.POST['password']
+        photopath = request.FILES.get('photo',False)
         name = request.POST['name']
-        photo = request.POST['photo']   
         gender = request.POST['gender']
         birth = request.POST['birth']
         phone = request.POST['phone']
         mail = request.POST['mail']
-
-        if account== "" or password == ""  or name== "" or photo=="" or gender =="" or birth == "" or phone =="" or mail=="":
+        if account== "" or password == ""  or name== "" or photopath==False or gender =="" or birth == "" or phone =="" or mail=="":
             lostSomething ="lostSomething"
             checkLost= "您少填了部分資料請先再次檢查"
             return render(request,"register.html",locals())
@@ -75,7 +74,15 @@ def register(request):
                     message = '您輸入的帳戶有人使用，請重新輸入帳戶:'
                     return render(request,"register.html",locals())
                 else:
-                    sql = "INSERT INTO `member`(`member_id`, `member_password`, `member_name`, `member_photo`, `member_gender`, `member_birth`, `member_phone`, `member_email`) VALUES ('%s', '%s', '%s','%s', '%s', '%s', '%s', '%s')"%(account, password, name, photo, sex, birth, phone, mail)
+                    #照片上傳部分
+                    photo = request.FILES['photo']
+                    photoname = request.FILES['photo'].name
+                    uploadphoto  = account+'_'+photoname
+                    with open('static/userimg/'+uploadphoto, 'wb+') as destination:
+                        for chunk in photo.chunks():
+                            destination.write(chunk)
+                    #-----------
+                    sql = "INSERT INTO `member`(`member_id`, `member_password`, `member_name`, `member_photo`, `member_gender`, `member_birth`, `member_phone`, `member_email`) VALUES ('%s', '%s', '%s','%s', '%s', '%s', '%s', '%s')"%(account, password, name, uploadphoto, sex, birth, phone, mail)
                     cursor.execute(sql)
                     conn.commit()
                     conn.close()

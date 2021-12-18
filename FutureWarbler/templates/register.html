@@ -11,8 +11,9 @@
     <div class="register_form pt-10 p-6 w-50 ">
         <div class="w-80 m0-a pl-5">
             <h2 class="fz-xxl fwb mb-8 second-white">Register</h2>
-            
-            <form action="." class="w-80" method="post">
+
+
+            <form action="." class="w-80" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% if lostSomething == 'lostSomething' %}
                 <span style="color:red">{{checkLost}}</span><br>
@@ -29,7 +30,8 @@
                 </div>
                 <div class="w-48 fr">
                     <label for="photo" class="second-white fwbr">頭像</label>
-                    <input type="file" name="photo" id="photo" class="d-block w-100 br-s mt-1 mb-5 p-1 b-n">
+                   
+                    <input type="file" name="photo" id="photo" accept=".jpg,.png" class="d-block w-100 br-s mt-1 mb-5 p-1 b-n">
                 </div>
                 <div class="w-35 mr-2 fl">
                     <label for="gender" class="second-white fwbr mb-2 d-inline-block">性別</label><br>
