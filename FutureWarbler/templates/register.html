@@ -11,9 +11,14 @@
     <div class="register_form pt-10 p-6 w-50 ">
         <div class="w-80 m0-a pl-5">
             <h2 class="fz-xxl fwb mb-8 second-white">Register</h2>
-
+            
             <form action="." class="w-80" method="post">
                 {% csrf_token %}
+                {% if lostSomething == 'lostSomething' %}
+                <span style="color:red">{{checkLost}}</span><br>
+                {% elif check == 'no' %}
+                    <span style="color:red">{{message}}</span> <br>
+                {% endif %}
                 <label for="account" class="second-white fwbr">帳戶</label>
                 <input type="text" name="account" id="account" class="d-block w-100 br-s mt-1 mb-4 p-1 b-n">
                 <label for="password" class="second-white fwbr">密碼</label>
