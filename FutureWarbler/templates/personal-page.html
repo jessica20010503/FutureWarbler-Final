@@ -61,10 +61,14 @@
                                             <i class="fas fa-lock fz-l "></i>
                                             <p class="fwb ">請先輸入帳號密碼!!</p>
                                             </div>
-                                            <label for="account" class="dark-gray fz-s fwbr">帳號</label>
-                                            <input type="text" name="account" id="account" class="br-s p-1 d-block w-100 mb-2 b-n">
-                                            <label for="password" class="dark-gray fz-s fwbr">密碼</label>
-                                            <input type="text" name="password" id="password" class="br-s  p-1 d-block w-100 b-n"> 
+                                            <form method="post" action=".">
+                                                {% csrf_token %}
+                                                <label for="account" class="dark-gray fz-s fwbr">帳號</label>
+                                                <input type="text" name="account" id="account" class="br-s p-1 d-block w-100 mb-2 b-n">
+                                                <label for="password" class="dark-gray fz-s fwbr">密碼</label>
+                                                <input type="text" name="password" id="password" class="br-s  p-1 d-block w-100 b-n"> 
+                                                <label for="password" class="dark-gray fz-s fwbr">{{username}}</label>
+                                            <form >
                                             <!-- 2.帳號密碼輸入錯誤 -->
                                             <!--
                                                 <div class="tac">
