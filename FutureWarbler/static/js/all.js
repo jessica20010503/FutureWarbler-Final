@@ -37,4 +37,25 @@ $(document).ready(function () {
 		$("#total").html((parseInt(t.val())*3.95).toFixed(2));
 	}
 	setTotal();
+
+	$('.font-s').click(function (e) { 
+		$('.news-content .article p').css('font-size','14px');
+	  });
+	
+	  $('.font-m').click(function (e) { 
+		$('.news-content .article p').css('font-size','18px');
+	  });
+	
+	  $('.font-b').click(function (e) { 
+		$('.news-content .article p').css('font-size','20px');
+	  });
+	});
+	
+	$(function () {
+		$(".drop--menu>li>a").click(function (e) {
+			e.preventDefault();
+			$(this).toggleClass("active");
+			$(this).parent().find('.menu--drop').slideToggle();
+			$(this).parent().siblings().find('.menu--drop').slideUp();
+	});
 });
