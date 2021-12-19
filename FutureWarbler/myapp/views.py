@@ -22,11 +22,17 @@ conn = pymysql.connect(**db_settings)
 
 # Create your views here.
 def index(request):
+    ok = ''
+    if request.method == 'POST':
+        if request.POST['logout'] =="logout":
+            request.session.clear()
+
     return render(request,"index.html",locals())
 
 #--------------登入功能------------------
 
 def login(request):
+        
     if request.method == 'POST':
         account = request.POST['account']
         password = request.POST['password']
@@ -34,13 +40,20 @@ def login(request):
              message = '登入失敗!請確認帳號或者密碼是否正確'
         else:
             with conn.cursor() as cursor:
-                sql = "SELECT `member_password` FROM `member` WHERE member_id='%s'"%(account)
+                sql = "SELECT `member_password`, `member_photo`,`member_name` FROM `member` WHERE member_id='%s'"%(account)
                 cursor.execute(sql)
                 data = cursor.fetchone()
+
                 if password == data[0]:
-                    request.session['username'] = account
-                    return redirect('/index')
+
+                    request.session['username'] = data[2]
+                    request.session['photo']= data[1] #大頭照也用session接一下
+                    photo =request.session['photo']
+                    username = request.session['username']
+                    check = 'ok'
+                    return render(request,"index.html",locals())
                 else:
+
                     message = '登入失敗!請確認帳號或者密碼是否正確'
             conn.close()
     return render(request,"login.html",locals())
@@ -87,12 +100,17 @@ def register(request):
                     conn.commit()
                     conn.close()
                     request.session['username'] = account
+                    request.session['photo'] = uploadphoto
+                    photo = request.session['photo']
+                    username = request.session['username']
                     return render(request,'index.html',locals())
             
     return render(request,"register.html",locals())
 
 
 def personal(request):
+    username = request.session['username']
+    photo= request.session['photo']
     return render(request,"personal-page.html",locals())
 
 def logout(request):
