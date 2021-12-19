@@ -1,62 +1,61 @@
 .news-content{
     .topnav{
-        background: $primary_color;
-        li a{
+        background: #BFB595;
+        border-radius: 10px;
+        a{
             color: $text_color;
-            transition: 0.3s all;
             &:hover{
-                color: $primary_color;
                 background-color: $text_color;
+                color: #ebcf46;
+                border-radius: 10px;
             }
         }
+        input{
+            font-size: 16px;
+            width: 100%;
+            border-radius: 5px 0 0 5px;
+            border-style: none;
+        }
         button{
-            color: $text_color;
+            border-style: none;
+            border-radius: 0 5px 5px 0;
             &:hover{
-                background-color: $primary_color;
+                background-color: #ebcf46;
             }
         }
     }
-
     .content-left{
-        width: 700px;
+        width: 60%;
+        border-radius: 10px;
         img{
-            width: 700px;
-            height: 500px;
-        }
-        .content{
-            h3{
-                font-size: 16px;
-                color: $text_color;
-                transition: 0.3s all;
-                &:hover{
-                    color: $primary_color;
-                }
-            }
-            p{
-                font-size: 14px;
-            }
+            width: 600px;
+            height: 400px;
         }
     }
     .content-right{
-        width: 380px;
+        width: 35%;
+        >h3{
+            background-color: #ebcf46;
+            border-radius: 10px 10px 0 0;
+        }
+        li{
+            border-bottom: 2px dotted gray;
+            &:last-child{
+                border-radius: 0 0 10px 10px;
+                border-bottom: transparent;
+            }
+        }
         img{
             width: 100px;
             height: 80px;
         }
-        .title{
-            border-bottom: 2px solid $text_color;
-        }
         .content{
-            h3{
-                font-size: 16px;
+            a{  
                 color: $text_color;
                 transition: 0.3s all;
                 &:hover{
-                    color: $primary_color;
+                    color: #BFB595;
                 }
-            }
-            p{
-                font-size: 14px;
             }
         }
     }

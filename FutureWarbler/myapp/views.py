@@ -117,6 +117,11 @@ def logout(request):
     request.session.clear()
     return redirect('login/')
 
+def trade (request):
+    return render(request,"trade.html",locals())
+
+def transactionRecord (request):
+    return render(request,"personal-transactionRecord.html",locals())
 #change
 def classes(request): # 不能用 class 命名
     return render(request,"class.html",locals())

@@ -5,35 +5,44 @@
     <div class="side">
         <h1 class="fz-xl fwb">F<span class="bright">u</span>ture <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
         <ul class="menu">
-            <li><a href="index/"><i class="fas fa-home mr-2"></i>首頁</a></li>
-            <li><a href="trade/"><i class="fas fa-university mr-2"></i>模擬交易所</a></li>
-            <li><a href="class/"><i class="fas fa-chalkboard-teacher mr-2"></i>期貨小教室</a></li>
-            <li><a href="#"><i class="fas fa-robot mr-2"></i>智能機器人顧問</a></li>
-            <li><a href="news/"><i class="fas fa-newspaper mr-2"></i>新聞</a></li>
-            <li><a href="forum/"><i class="fas fa-comment-alt mr-2"></i>討論版</a></li>
-            <li><a href="personal/"><i class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
+            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href="index.html"><i class="fas fa-home mr-4"></i>首頁</a></li>
+            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href="trade.html"><i class="fas fa-university mr-4"></i>模擬交易所</a></li>
+            <li class="drop--menu">
+                <a href="" class="main--menu  pt-2 pb-2 pl-9 mb-3 chosed">
+                    <i class="fas fa-chalkboard-teacher mr-4 "></i>期貨小教室<i class="fas fa-chevron-down  ml-6 fz-s"></i>
+                </a>
+                <ul class=" d-none">
+                    <li class="sub--menu"><a href="class.html">期貨基本知識</a></li>
+                    <li class="sub--menu"><a href="">期貨基本指標</a></li>
+                </ul>
+            </li>
+            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href=""><i class="fas fa-robot mr-4"></i>智能機器人顧問</a></li>
+            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href="news.html"><i class="fas fa-newspaper mr-4"></i>新聞</a></li>
+            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href="forum.html"><i class="fas fa-comment-alt mr-4"></i>討論版</a></li>
+            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href="personal-page.html"><i class="fas fa-user-alt mr-4"></i>個人頁面</a></li>
         </ul>
     </div>
-    <div class="class-content container">
+    <div class="container">
         <ul class="header--button d-flex jcfe">
-            <li><a href="login/" class="header__login--button fz-s tac mr-3">登入</a></li>
-            <li><a href="register/" class="header__register--button fz-s tac">註冊</a></li>
+            <li><a href="#" class="header__login--button dark-gray  mr-2 tac br-s">登入</a></li>
+            <li><a href="#" class="header__register--button dark-gray  mr-2 tac br-s">註冊</a></li>
         </ul>
-        <div class="main d-flex jcsb pb-4">
-            <div class="content-left white-bg p-4 mt-10">
+        <ul class="class__content  w-100 ">
+            <li class="fl second-white-bg w-65 mr-4pct br-m p-5  card-shadow  mt-4">
                 <h3 class="title fz-l fwb mb-2">理財小學堂</h3>
                 <ul class="detail d-flex column fz-s mb-4">
                     <li class="d-flex mb-1">
                         <p class="mr-2">文章擷至：CMoney</p>
+                        <p>2021.01.01</p>
                     </li>
                     <li class="d-flex">
                         <div class="tag d-flex aic mr-2">
                             <i class="fas fa-tag mr-2" style="font-size: 10px;"></i>
                             <ul class="d-flex jcfs">
-                                <li><a href="#" class="d-inline-block fz-xs p-1">投資</a></li>
-                                <li><a href="#" class="d-inline-block fz-xs p-1">理財</a></li>
-                                <li><a href="#" class="d-inline-block fz-xs p-1">基礎課程</a></li>
-                                <li><a href="#" class="d-inline-block fz-xs p-1">金融商品</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">投資</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">理財</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">基礎課程</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">金融商品</a></li>
                             </ul>
                         </div>
                         <div class="view d-flex aic">
@@ -48,70 +57,61 @@
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis ea voluptate animi itaque laudantium, officia possimus consequatur ducimus porro eius corrupti ad, dolor incidunt! Laudantium suscipit nostrum eveniet dicta natus?</p>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate dolor eveniet laborum quaerat, excepturi quod aperiam earum non unde deleniti ipsum exercitationem necessitatibus cum consequuntur assumenda quae facere. Et, odio!</p>
                 <div class="border-bottom mt-4 mb-4"></div>
-                <ul class="bottom-nav d-flex jcsb">
+                <ul class="bottom-nav d-flex jcsb aic">
                     <li>
-                        <a href="#" class="d-block">
+                        <a href="#" class="d-block dark-gray">
                             <div class="fz-xs d-flex column">
-                                <h5 class="d-inline-block"><i class='fas fa-angle-double-left' style='font-size:14px;'></i>上一篇</h5>
+                                <h5 class="d-inline-block near--page__btn p-1 w-40"><i class='fas fa-angle-double-left fz-xs mr-3' ></i>prev</h5>
                                 <h5>Lorem ipsum dolor sit, amet consectetur.</h5>
                             </div>
                         </a>    
                     </li>
                     <li>
-                        <a href="#" class="d-block">
+                        <a href="#" class="d-block dark-gray">
                             <div class="fz-xs d-flex aife column">
-                                <h5 class="d-inline-block">下一篇<i class='fas fa-angle-double-right' style='font-size:14px;'></i></h5>
+                                <h5 class="d-inline-block near--page__btn p-1 w-40">next<i class='fas fa-angle-double-right fz-xs ml-3' ></i></h5>
                                 <h5>Lorem ipsum dolor sit, amet consectetur.</h5>
                             </div>
                         </a>
                     </li>
                 </ul>
-            </div>
-            <div class="content-right">
-                <form action="#" class="search topnav d-flex jcsb aic mt-10 mb-6">
-                    <input type="search" placeholder="請輸入關鍵字.." class="d-inline-block p-2" name="search">
-                    <button class="d-inline-block white-bg p-2" type="submit"><i class='fas fa-search' style="font-size: 16px;"></i></button>
-                </form>
-                <h3 class="title fz-m fwb p-3 pl-4 pr-4">相關文章</h3>
-                <ul>
-                    <li class="d-flex p-3 border-bottom white-bg">
-                        <h4 class="mr-2 fz-l">1</h4>
-                        <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
-                        <div class="content">
-                            <a href="#"><h3 class="fwb mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3></a>
-                        </div>
-                    </li>
-                    <li class="d-flex p-3 border-bottom white-bg">
-                        <h4 class="mr-2 fz-l">2</h4>
-                        <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
-                        <div class="content">
-                            <a href="#"><h3 class="fwb mb-2">Lorem ipsum dolor dipiscing elit.</h3></a>
-                        </div>
-                    </li>
-                    <li class="d-flex p-3 border-bottom white-bg">
-                        <h4 class="mr-2 fz-l">3</h4>
-                        <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
-                        <div class="content">
-                            <a href="#"><h3 class="fwb mb-2">Lorem ipsum dolor dipiscing elit.</h3></a>
-                        </div>
-                    </li>
-                    <li class="d-flex p-3 border-bottom white-bg">
-                        <h4 class="mr-2 fz-l">4</h4>
-                        <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
-                        <div class="content">
-                            <a href="#"><h3 class="fwb mb-2">Lorem ipsum dolor dipiscing elit.</h3></a>
-                        </div>
-                    </li>
-                    <li class="d-flex p-3 white-bg">
-                        <h4 class="mr-2 fz-l">5</h4>
-                        <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
-                        <div class="content">
-                            <a href="#"><h3 class="fwb mb-2">Lorem ipsum dolor dipiscing elit.</h3></a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+            </li>
+            <li  class="fl second-white-bg w-30 br-m pb-4 card-shadow  mt-4">
+                <h3 class=" fz-m fwb  ml-4 mr-4 mt-4 mb-4  d-inline-block">相關文章</h3>
+                    <ul class="realitive--article">
+                        <li class=" b-bottom b-top">
+                            <a href="" class="d-flex p-3 jcsb aic">
+                                <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
+                                <h3 class="fwb mb-2 dark-gray">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+                            </a>
+                        </li>
+                        <li class=" b-bottom">
+                            <a href="" class="d-flex p-3 jcsb aic">
+                                <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
+                                <h3 class="fwb mb-2 dark-gray">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+                            </a>
+                        </li>
+                        <li class=" b-bottom">
+                            <a href="" class="d-flex p-3 jcsb aic">
+                                <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
+                                <h3 class="fwb mb-2 dark-gray">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+                            </a>
+                        </li>
+                        <li class=" b-bottom">
+                            <a href="" class="d-flex p-3 jcsb aic">
+                                <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
+                                <h3 class="fwb mb-2 dark-gray">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+                            </a>
+                        </li>
+                        <li class=" b-bottom">
+                            <a href="" class="d-flex p-3 jcsb aic">
+                                <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
+                                <h3 class="fwb mb-2 dark-gray">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+                            </a>
+                        </li>
+                    </ul>
+            </li>
+        </ul>
     </div>
 </div>
 {% endblock %}

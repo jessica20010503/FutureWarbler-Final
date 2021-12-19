@@ -1,33 +1,71 @@
 .forum-content{
     .topnav{
-        background: $primary_color;
-        li a{
+        background: #BFB595;
+        border-radius: 10px;
+        a{
             color: $text_color;
-            transition: 0.3s all;
             &:hover{
-                color: $primary_color;
                 background-color: $text_color;
+                color: #ebcf46;
+                border-radius: 10px;
             }
+        }
+        input{
+            font-size: 16px;
+            width: 100%;
+            border-radius: 5px 0 0 5px;
+            border-style: unset;
         }
         button{
-            color: $text_color;
+            border-style: unset;
+            border-radius: 0 5px 5px 0;
             &:hover{
-                background-color: $primary_color;
+                background-color: #ebcf46;
             }
         }
+    }
+    .article{
+        border-radius: 10px 10px 0 0 ;
     }
     .user img{
         width: 50px;
         height: 50px;
     }
+    .code{
+        background-color: lightgray;
+        border-radius: 10px;
+        p{
+            border-radius: 5px;
+        }
+        a{
+            color: $text_color;
+            background-color: #ebcf46;
+            transition: 0.3s all;
+            border-radius: 10px;
+            &:hover{
+                color: #ebcf46;
+                background-color: $text_color;
+            }
+        }
+    }
+    .prise{
+        a{
+            color: $text_color;
+            transition: 0.3s all;
+            border-radius: 10px;
+            &:hover{
+                color: #BFB595;
+            }
+        }
+    }
     .filter{
         a{
             color: $text_color;
-            background-color: $primary_color;
-            border-radius: 20px;
+            background-color: #ebcf46;
+            border-radius: 10px;
             transition: 0.3s all;
             &:hover{
-                color: $primary_color;
+                color: #ebcf46;
                 background-color: $text_color;
             }
         }
@@ -35,18 +73,28 @@
     .border-bottom{
         border-bottom: 1px solid darkgray;
     }
+    .message{
+        border-radius: 0 0 10px 10px;
+    }
     .leave-message{
         img{
             width: 50px;
             height: 50px;
         }
-        .type{
-            width: 500px;
+        input{
+            font-size: 16px;
+            width: 100%;
+            border-radius: 5px 0 0 5px;
+            border-style: none;
+            border: 1px solid lightgray;
         }
-        .submit{
-            color: $text_color;
+        button{
+            width: 10%;
+            border-style: none;
+            border-radius: 0 5px 5px 0;
+            border: 1px solid lightgray;
             &:hover{
-                background-color: $primary_color;
+                background-color: #ebcf46;
             }
         }
     }

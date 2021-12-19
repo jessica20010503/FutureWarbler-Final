@@ -5,162 +5,181 @@
     <div class="side">
         <h1 class="fz-xl fwb">F<span class="bright">u</span>ture <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
         <ul class="menu">
-            <li><a href="index/"><i class="fas fa-home mr-2"></i>首頁</a></li>
-            <li><a href="trade/"><i class="fas fa-university mr-2"></i>模擬交易所</a></li>
-            <li><a href="class/"><i class="fas fa-chalkboard-teacher mr-2"></i>期貨小教室</a></li>
-            <li><a href="#"><i class="fas fa-robot mr-2"></i>智能機器人顧問</a></li>
-            <li><a href="news/"><i class="fas fa-newspaper mr-2"></i>新聞</a></li>
-            <li><a href="forum/"><i class="fas fa-comment-alt mr-2"></i>討論版</a></li>
-            <li><a href="personal/"><i class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
+            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href="index.html"><i class="fas fa-home mr-4"></i>首頁</a></li>
+            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href="trade.html"><i class="fas fa-university mr-4"></i>模擬交易所</a></li>
+            <li class="drop--menu">
+                <a href="" class="main--menu  pt-2 pb-2 pl-9 mb-3 chosed">
+                    <i class="fas fa-chalkboard-teacher mr-4 "></i>期貨小教室<i class="fas fa-chevron-down  ml-6 fz-s"></i>
+                </a>
+                <ul class=" d-none">
+                    <li class="sub--menu"><a href="class.html">期貨基本知識</a></li>
+                    <li class="sub--menu"><a href="">期貨基本指標</a></li>
+                </ul>
+            </li>
+            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href=""><i class="fas fa-robot mr-4"></i>智能機器人顧問</a></li>
+            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href="news.html"><i class="fas fa-newspaper mr-4"></i>新聞</a></li>
+            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href="forum.html"><i class="fas fa-comment-alt mr-4"></i>討論版</a></li>
+            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href="personal-page.html"><i class="fas fa-user-alt mr-4"></i>個人頁面</a></li>
         </ul>
     </div>
     <div class="class container">
         <ul class="header--button d-flex jcfe">
-            <li><a href="login/" class="header__login--button fz-s tac mr-3">登入</a></li>
-            <li><a href="register/" class="header__register--button fz-s tac">註冊</a></li>
+            <li><a href="#" class="header__login--button dark-gray  mr-2 tac br-s">登入</a></li>
+            <li><a href="#" class="header__register--button dark-gray  mr-2 tac br-s">註冊</a></li>
         </ul>
-        
-        <form action="#" class="search topnav d-flex jcfe aic mt-15 mb-6 pt-3 pb-3">
-            <input type="search" placeholder="請輸入關鍵字.." class="d-inline-block p-2" name="search">
-            <button class="d-inline-block white-bg p-2" type="submit"><i class='fas fa-search' style="font-size: 16px;"></i></button>
-        </form>
+        <form action="#" class="d-flex mt-5 jcfe ">
+            <input type="search" name="record" id="record" placeholder="search here..." class="search_input b-n pt-2 pb-2 pl-4 pr-3  box-shadow">
+            <button class="search_btn b-n pt-2 pb-2 pl-3 pr-3  box-shadow"><i class="fas fa-search fz-s"></i></button>
+        </form>  
         <div class="clearfix"></div>
-        <ul class="main d-flex jcsb">
-            <li>
-                <img src="https://fakeimg.pl/330x200/" alt="理財小學堂">
-                <div class="content white-bg p-6">
-                    <h3 class="fz-l fwb">理財小學堂</h3>
-                    <div class="tag d-flex aic mt-2">
-                        <i class="fas fa-tag mr-2" style="font-size: 16px;"></i>
-                        <ul class="d-flex jcfs">
-                            <li><a href="#" class="d-inline-block fz-xs p-1">投資</a></li>
-                            <li><a href="#" class="d-inline-block fz-xs p-1">理財</a></li>
-                            <li><a href="#" class="d-inline-block fz-xs p-1">基礎課程</a></li>
-                            <li><a href="#" class="d-inline-block fz-xs p-1">金融商品</a></li>
-                        </ul>
+        <ul class="main d-flex jcsb mt-5">
+            <li class="fl second-white-bg w-33 br-m  card-shadow  pb-2 class-card">
+                <a href="/class-content/">
+                    <img src="../img/課程假圖.jpg" alt="理財小學堂" class="w-100">
+                    <div class="content  p-5">
+                        <h3 class="fz-l fwb dark-gray">理財小學堂</h3>
+                        <div class="tag d-flex aic mt-2">
+                            <i class="fas fa-tag mr-2 dark-gray" class="fz-s"></i>
+                            <ul class="d-flex jcfs ">
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">投資</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">理財</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">基礎課程</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">金融商品</a></li>
+                            </ul>
+                        </div>
+                        <div class="view d-flex aic mt-1">
+                            <i class="fas fa-eye mr-2" class="fz-s"></i>
+                            <h4 class="fz-xs mt-1">2人</h4>
+                        </div>
+                        <p class="mt-2 fz-s">理財小學堂開課囉！全台灣最生動的理財教學，學習網為你打造一系列的基礎教學文！ 特色有三個： 1.內容活潑又輕鬆，沒有複雜的專有名詞！ 2.舉例豐富，精美插圖，圖文並茂加強記憶！...</p>
+                        
                     </div>
-                    <div class="view d-flex aic">
-                        <i class="fas fa-eye mr-2" style="font-size: 16px;"></i>
-                        <h4 class="fz-xs mt-1">2人</h4>
-                    </div>
-                    <p class="mt-2 fz-s">理財小學堂開課囉！全台灣最生動的理財教學，學習網為你打造一系列的基礎教學文！ 特色有三個： 1.內容活潑又輕鬆，沒有複雜的專有名詞！ 2.舉例豐富，精美插圖，圖文並茂加強記憶！...</p>
-                    <a href="" class="go-class d-block fz-s mt-3"><i class='fas fa-arrow-right' style='font-size:14px'></i>了解更多</a>
-                </div>
+                </a>
             </li>
-            <li>
-                <img src="https://fakeimg.pl/330x200/" alt="理財小學堂">
-                <div class="content white-bg p-6">
-                    <h3 class="fz-l fwb">理財小學堂</h3>
-                    <div class="tag d-flex aic mt-2">
-                        <i class="fas fa-tag mr-2" style="font-size: 16px;"></i>
-                        <ul class="d-flex jcfs">
-                            <li><a href="#" class="d-inline-block fz-xs p-1">投資</a></li>
-                            <li><a href="#" class="d-inline-block fz-xs p-1">理財</a></li>
-                            <li><a href="#" class="d-inline-block fz-xs p-1">基礎課程</a></li>
-                            <li><a href="#" class="d-inline-block fz-xs p-1">金融商品</a></li>
-                        </ul>
+            <li class="fl second-white-bg w-33 br-m  card-shadow  pb-2 class-card">
+                <a href="class-content.html">
+                    <img src="../img/課程假圖.jpg" alt="理財小學堂" class="w-100">
+                    <div class="content  p-5">
+                        <h3 class="fz-l fwb dark-gray">理財小學堂</h3>
+                        <div class="tag d-flex aic mt-2">
+                            <i class="fas fa-tag mr-2 dark-gray" class="fz-s"></i>
+                            <ul class="d-flex jcfs ">
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">投資</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">理財</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">基礎課程</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">金融商品</a></li>
+                            </ul>
+                        </div>
+                        <div class="view d-flex aic mt-1">
+                            <i class="fas fa-eye mr-2" class="fz-s"></i>
+                            <h4 class="fz-xs mt-1">2人</h4>
+                        </div>
+                        <p class="mt-2 fz-s">理財小學堂開課囉！全台灣最生動的理財教學，學習網為你打造一系列的基礎教學文！ 特色有三個： 1.內容活潑又輕鬆，沒有複雜的專有名詞！ 2.舉例豐富，精美插圖，圖文並茂加強記憶！...</p>
+                        
                     </div>
-                    <div class="view d-flex aic">
-                        <i class="fas fa-eye mr-2" style="font-size: 16px;"></i>
-                        <h4 class="fz-xs mt-1">2人</h4>
-                    </div>
-                    <p class="mt-2 fz-s">理財小學堂開課囉！全台灣最生動的理財教學，學習網為你打造一系列的基礎教學文！ 特色有三個： 1.內容活潑又輕鬆，沒有複雜的專有名詞！ 2.舉例豐富，精美插圖，圖文並茂加強記憶！...</p>
-                    <a href="" class="go-class d-block fz-s mt-3"><i class='fas fa-arrow-right' style='font-size:14px'></i>了解更多</a>
-                </div>
+                </a>
             </li>
-            <li>
-                <img src="https://fakeimg.pl/330x200/" alt="理財小學堂">
-                <div class="content white-bg p-6">
-                    <h3 class="fz-l fwb">理財小學堂</h3>
-                    <div class="tag d-flex aic mt-2">
-                        <i class="fas fa-tag mr-2" style="font-size: 16px;"></i>
-                        <ul class="d-flex jcfs">
-                            <li><a href="#" class="d-inline-block fz-xs p-1">投資</a></li>
-                            <li><a href="#" class="d-inline-block fz-xs p-1">理財</a></li>
-                            <li><a href="#" class="d-inline-block fz-xs p-1">基礎課程</a></li>
-                            <li><a href="#" class="d-inline-block fz-xs p-1">金融商品</a></li>
-                        </ul>
+            <li class="fl second-white-bg w-33 br-m  card-shadow  pb-2 class-card">
+                <a href="class-content.html">
+                    <img src="../img/課程假圖.jpg" alt="理財小學堂" class="w-100">
+                    <div class="content  p-5">
+                        <h3 class="fz-l fwb dark-gray">理財小學堂</h3>
+                        <div class="tag d-flex aic mt-2">
+                            <i class="fas fa-tag mr-2 dark-gray" class="fz-s"></i>
+                            <ul class="d-flex jcfs ">
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">投資</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">理財</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">基礎課程</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">金融商品</a></li>
+                            </ul>
+                        </div>
+                        <div class="view d-flex aic mt-1">
+                            <i class="fas fa-eye mr-2" class="fz-s"></i>
+                            <h4 class="fz-xs mt-1">2人</h4>
+                        </div>
+                        <p class="mt-2 fz-s">理財小學堂開課囉！全台灣最生動的理財教學，學習網為你打造一系列的基礎教學文！ 特色有三個： 1.內容活潑又輕鬆，沒有複雜的專有名詞！ 2.舉例豐富，精美插圖，圖文並茂加強記憶！...</p>
+                        
                     </div>
-                    <div class="view d-flex aic">
-                        <i class="fas fa-eye mr-2" style="font-size: 16px;"></i>
-                        <h4 class="fz-xs mt-1">2人</h4>
-                    </div>
-                    <p class="mt-2 fz-s">理財小學堂開課囉！全台灣最生動的理財教學，學習網為你打造一系列的基礎教學文！ 特色有三個： 1.內容活潑又輕鬆，沒有複雜的專有名詞！ 2.舉例豐富，精美插圖，圖文並茂加強記憶！...</p>
-                    <a href="" class="go-class d-block fz-s mt-3"><i class='fas fa-arrow-right' style='font-size:14px'></i>了解更多</a>
-                </div>
+                </a>
             </li>
-            <li>
-                <img src="https://fakeimg.pl/330x200/" alt="理財小學堂">
-                <div class="content white-bg p-6">
-                    <h3 class="fz-l fwb">理財小學堂</h3>
-                    <div class="tag d-flex aic mt-2">
-                        <i class="fas fa-tag mr-2" style="font-size: 16px;"></i>
-                        <ul class="d-flex jcfs">
-                            <li><a href="#" class="d-inline-block fz-xs p-1">投資</a></li>
-                            <li><a href="#" class="d-inline-block fz-xs p-1">理財</a></li>
-                            <li><a href="#" class="d-inline-block fz-xs p-1">基礎課程</a></li>
-                            <li><a href="#" class="d-inline-block fz-xs p-1">金融商品</a></li>
-                        </ul>
+            <li class="fl second-white-bg w-33 br-m  card-shadow  pb-2 class-card">
+                <a href="class-content.html">
+                    <img src="../img/課程假圖.jpg" alt="理財小學堂" class="w-100">
+                    <div class="content  p-5">
+                        <h3 class="fz-l fwb dark-gray">理財小學堂</h3>
+                        <div class="tag d-flex aic mt-2">
+                            <i class="fas fa-tag mr-2 dark-gray" class="fz-s"></i>
+                            <ul class="d-flex jcfs ">
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">投資</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">理財</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">基礎課程</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">金融商品</a></li>
+                            </ul>
+                        </div>
+                        <div class="view d-flex aic mt-1">
+                            <i class="fas fa-eye mr-2" class="fz-s"></i>
+                            <h4 class="fz-xs mt-1">2人</h4>
+                        </div>
+                        <p class="mt-2 fz-s">理財小學堂開課囉！全台灣最生動的理財教學，學習網為你打造一系列的基礎教學文！ 特色有三個： 1.內容活潑又輕鬆，沒有複雜的專有名詞！ 2.舉例豐富，精美插圖，圖文並茂加強記憶！...</p>
+                        
                     </div>
-                    <div class="view d-flex aic">
-                        <i class="fas fa-eye mr-2" style="font-size: 16px;"></i>
-                        <h4 class="fz-xs mt-1">2人</h4>
-                    </div>
-                    <p class="mt-2 fz-s">理財小學堂開課囉！全台灣最生動的理財教學，學習網為你打造一系列的基礎教學文！ 特色有三個： 1.內容活潑又輕鬆，沒有複雜的專有名詞！ 2.舉例豐富，精美插圖，圖文並茂加強記憶！...</p>
-                    <a href="" class="go-class d-block fz-s mt-3"><i class='fas fa-arrow-right' style='font-size:14px'></i>了解更多</a>
-                </div>
+                </a>
             </li>
-            <li>
-                <img src="https://fakeimg.pl/330x200/" alt="理財小學堂">
-                <div class="content white-bg p-6">
-                    <h3 class="fz-l fwb">理財小學堂</h3>
-                    <div class="tag d-flex aic mt-2">
-                        <i class="fas fa-tag mr-2" style="font-size: 16px;"></i>
-                        <ul class="d-flex jcfs">
-                            <li><a href="#" class="d-inline-block fz-xs p-1">投資</a></li>
-                            <li><a href="#" class="d-inline-block fz-xs p-1">理財</a></li>
-                            <li><a href="#" class="d-inline-block fz-xs p-1">基礎課程</a></li>
-                            <li><a href="#" class="d-inline-block fz-xs p-1">金融商品</a></li>
-                        </ul>
+            <li class="fl second-white-bg w-33 br-m  card-shadow  pb-2 class-card">
+                <a href="class-content.html">
+                    <img src="../img/課程假圖.jpg" alt="理財小學堂" class="w-100">
+                    <div class="content  p-5">
+                        <h3 class="fz-l fwb dark-gray">理財小學堂</h3>
+                        <div class="tag d-flex aic mt-2">
+                            <i class="fas fa-tag mr-2 dark-gray" class="fz-s"></i>
+                            <ul class="d-flex jcfs ">
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">投資</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">理財</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">基礎課程</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">金融商品</a></li>
+                            </ul>
+                        </div>
+                        <div class="view d-flex aic mt-1">
+                            <i class="fas fa-eye mr-2" class="fz-s"></i>
+                            <h4 class="fz-xs mt-1">2人</h4>
+                        </div>
+                        <p class="mt-2 fz-s">理財小學堂開課囉！全台灣最生動的理財教學，學習網為你打造一系列的基礎教學文！ 特色有三個： 1.內容活潑又輕鬆，沒有複雜的專有名詞！ 2.舉例豐富，精美插圖，圖文並茂加強記憶！...</p>
+                        
                     </div>
-                    <div class="view d-flex aic">
-                        <i class="fas fa-eye mr-2" style="font-size: 16px;"></i>
-                        <h4 class="fz-xs mt-1">2人</h4>
-                    </div>
-                    <p class="mt-2 fz-s">理財小學堂開課囉！全台灣最生動的理財教學，學習網為你打造一系列的基礎教學文！ 特色有三個： 1.內容活潑又輕鬆，沒有複雜的專有名詞！ 2.舉例豐富，精美插圖，圖文並茂加強記憶！...</p>
-                    <a href="" class="go-class d-block fz-s mt-3"><i class='fas fa-arrow-right' style='font-size:14px'></i>了解更多</a>
-                </div>
+                </a>
             </li>
-            <li>
-                <img src="https://fakeimg.pl/330x200/" alt="理財小學堂">
-                <div class="content white-bg p-6">
-                    <h3 class="fz-l fwb">理財小學堂</h3>
-                    <div class="tag d-flex aic mt-2">
-                        <i class="fas fa-tag mr-2" style="font-size: 16px;"></i>
-                        <ul class="d-flex jcfs">
-                            <li><a href="#" class="d-inline-block fz-xs p-1">投資</a></li>
-                            <li><a href="#" class="d-inline-block fz-xs p-1">理財</a></li>
-                            <li><a href="#" class="d-inline-block fz-xs p-1">基礎課程</a></li>
-                            <li><a href="#" class="d-inline-block fz-xs p-1">金融商品</a></li>
-                        </ul>
+            <li class="fl second-white-bg w-33 br-m  card-shadow  pb-2 class-card">
+                <a href="class-content.html">
+                    <img src="../img/課程假圖.jpg" alt="理財小學堂" class="w-100">
+                    <div class="content  p-5">
+                        <h3 class="fz-l fwb dark-gray">理財小學堂</h3>
+                        <div class="tag d-flex aic mt-2">
+                            <i class="fas fa-tag mr-2 dark-gray" class="fz-s"></i>
+                            <ul class="d-flex jcfs ">
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">投資</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">理財</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">基礎課程</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1 second-yellow-bg mr-2 br-s dark-gray">金融商品</a></li>
+                            </ul>
+                        </div>
+                        <div class="view d-flex aic mt-1">
+                            <i class="fas fa-eye mr-2" class="fz-s"></i>
+                            <h4 class="fz-xs mt-1">2人</h4>
+                        </div>
+                        <p class="mt-2 fz-s">理財小學堂開課囉！全台灣最生動的理財教學，學習網為你打造一系列的基礎教學文！ 特色有三個： 1.內容活潑又輕鬆，沒有複雜的專有名詞！ 2.舉例豐富，精美插圖，圖文並茂加強記憶！...</p>
+                        
                     </div>
-                    <div class="view d-flex aic">
-                        <i class="fas fa-eye mr-2" style="font-size: 16px;"></i>
-                        <h4 class="fz-xs mt-1">2人</h4>
-                    </div>
-                    <p class="mt-2 fz-s">理財小學堂開課囉！全台灣最生動的理財教學，學習網為你打造一系列的基礎教學文！ 特色有三個： 1.內容活潑又輕鬆，沒有複雜的專有名詞！ 2.舉例豐富，精美插圖，圖文並茂加強記憶！...</p>
-                    <a href="" class="go-class d-block fz-s mt-3"><i class='fas fa-arrow-right' style='font-size:14px'></i>了解更多</a>
-                </div>
+                </a>
             </li>
         </ul>
-        <ul class="pagination d-flex jcc mt-2 mb-4">
-            <li class="m-2"><a href="#"><i class='fas fa-angle-double-left' style='font-size:20px;'></i></a></li>
-            <li class="m-2"><a href="#">1</a></li>
-            <li class="m-2"><a href="#">2</a></li>
-            <li class="m-2"><a href="#">3</a></li>
-            <li class="m-2"><a href="#">4</a></li>
-            <li class="m-2"><a href="#">5</a></li>
-            <li class="m-2"><a href="#"><i class='fas fa-angle-double-right' style='font-size:20px'></i></a></li>
+        <ul class="pagination d-flex jcc tac m0-a">
+            <li><a href="#" class="prev--buttom mr-2"><i class='fas fa-angle-double-left'></i></a></li>
+            <li><a href="#" class="active mr-2">1</a></li>
+            <li><a href="#" class="mr-2">2</a></li>
+            <li><a href="#"  class="mr-2">3</a></li>
+            <li><a href="#"  class="mr-2">4</a></li>
+            <li><a href="#"  class="mr-2">5</a></li>
+            <li><a href="#" class="next--buttom mr-2"><i class='fas fa-angle-double-right'></i></a></li>
         </ul>
     </div>
 </div>

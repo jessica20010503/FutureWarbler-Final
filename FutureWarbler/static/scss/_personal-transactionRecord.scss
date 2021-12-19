@@ -1,0 +1,15 @@
+.personal--transactionRecord__content{
+    .trade--table{
+        th,td{
+            padding: 15px 10px;
+        }
+        .trade--table__item{
+            &:hover{
+                background: #faf6bd;
+            }
+        }
+    } 
+}
+
+
+

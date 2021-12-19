@@ -33,20 +33,36 @@ img{
             color: $primary_color;
         }
     }
-    .menu li{
+    .menu{
         a{
             color: $second_color;
             display: block;
-            padding: 10px 15px;
             cursor: pointer;
-            margin: 0px 10px 15px 30px;
+        }
+        .main--menu{
+            &:hover{
+                background: #0F2E4F;
+                color: $second_color;
+                
+            }
+        }
+        .drop--menu.active{
+            background: #051f3a;
             
         }
-        &:hover{
-            background: #0F2E4F;
-            color: $second_color;
-            
+        .fas .fa-chevron-down.active{
+            transform: rotate(90deg);
         }
+        .sub--menu{
+            padding: 10px 25px 10px 45px;
+            margin-bottom: 15px;
+            &:hover{
+                background: #0F2E4F;
+            }
+        }
+        
+        
+        
     }
 }
 .container{

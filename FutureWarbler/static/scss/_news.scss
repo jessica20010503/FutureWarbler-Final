@@ -1,61 +1,64 @@
 .news{
     .topnav{
-        background: $primary_color;
-        li a{
+        background: #BFB595;
+        border-radius: 10px;
+        a{
             color: $text_color;
-            transition: 0.3s all;
             &:hover{
-                color: $primary_color;
                 background-color: $text_color;
+                color: #ebcf46;
+                border-radius: 10px;
             }
         }
+        input{
+            font-size: 16px;
+            width: 100%;
+            border-radius: 5px 0 0 5px;
+            border-style: unset;
+        }
         button{
-            color: $text_color;
+            border-style: unset;
+            border-radius: 0 5px 5px 0;
             &:hover{
-                background-color: $primary_color;
+                background-color: #ebcf46;
             }
         }
     }
     img{
-        width: 100px;
+        width: 120px;
         height: 80px;
     }
-    .content-left{
-        width: 700px;
-        .title{
-            border-bottom: 2px solid $text_color;
-        }
+    .content-left, .content-right{
+        border-radius: 10px;
         .content{
             h3{
                 font-size: 16px;
                 color: $text_color;
                 transition: 0.3s all;
                 &:hover{
-                    color: $primary_color;
+                    color: #BFB595;
                 }
             }
             p{
                 font-size: 14px;
             }
+        }
+    }
+    .content-left{
+        width: 60%;
+        >h3{
+            background-color: #ebcf46;
+            border-radius: 10px 10px 0 0;
         }
     }
     .content-right{
-        width: 380px;
-        .title{
-            border-bottom: 2px solid $text_color;
+        width: 35%;
+        >h3{
+            background-color: #ebcf46;
+            border-radius: 10px 10px 0 0;
         }
-        .content{
-            h3{
-                font-size: 16px;
-                color: $text_color;
-                transition: 0.3s all;
-                &:hover{
-                    color: $primary_color;
-                }
-            }
-            p{
-                font-size: 14px;
-            }
+        li:last-child{
+            border-radius: 0 0 10px 10px;
         }
     }
     .border-bottom{
@@ -65,7 +68,7 @@
         color: $text_color;
         transition: 0.3s all;
         &:hover{
-            color: $primary_color;
+            color: #ebcf46;
         }
         
     }

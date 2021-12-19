@@ -3,15 +3,16 @@
 @import "modal";
 @import "layout";
 @import "index";
+@import "login";
+@import "register";
 @import "class";
-@import "classintro1";
-@import "classintro2";
+@import "class-content";
 @import "news";
 @import "news-content";
 @import "forum";
 @import "forum-content";
 @import "forum-write";
-@import "login";
-@import "register";
 @import "personal-page";
-@import "trade-order";
+@import "personal-transactionRecord";
+@import "trade";
+
