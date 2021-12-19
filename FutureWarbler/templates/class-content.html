@@ -1,0 +1,117 @@
+{% extends 'layout.html'%}
+{% load static %}
+{% block content %}
+<div class="wrap d-flex m0-a">
+    <div class="side">
+        <h1 class="fz-xl fwb">F<span class="bright">u</span>ture <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
+        <ul class="menu">
+            <li><a href="index/"><i class="fas fa-home mr-2"></i>首頁</a></li>
+            <li><a href="trade/"><i class="fas fa-university mr-2"></i>模擬交易所</a></li>
+            <li><a href="class/"><i class="fas fa-chalkboard-teacher mr-2"></i>期貨小教室</a></li>
+            <li><a href="#"><i class="fas fa-robot mr-2"></i>智能機器人顧問</a></li>
+            <li><a href="news/"><i class="fas fa-newspaper mr-2"></i>新聞</a></li>
+            <li><a href="forum/"><i class="fas fa-comment-alt mr-2"></i>討論版</a></li>
+            <li><a href="personal/"><i class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
+        </ul>
+    </div>
+    <div class="class-content container">
+        <ul class="header--button d-flex jcfe">
+            <li><a href="login/" class="header__login--button fz-s tac mr-3">登入</a></li>
+            <li><a href="register/" class="header__register--button fz-s tac">註冊</a></li>
+        </ul>
+        <div class="main d-flex jcsb pb-4">
+            <div class="content-left white-bg p-4 mt-10">
+                <h3 class="title fz-l fwb mb-2">理財小學堂</h3>
+                <ul class="detail d-flex column fz-s mb-4">
+                    <li class="d-flex mb-1">
+                        <p class="mr-2">文章擷至：CMoney</p>
+                    </li>
+                    <li class="d-flex">
+                        <div class="tag d-flex aic mr-2">
+                            <i class="fas fa-tag mr-2" style="font-size: 10px;"></i>
+                            <ul class="d-flex jcfs">
+                                <li><a href="#" class="d-inline-block fz-xs p-1">投資</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1">理財</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1">基礎課程</a></li>
+                                <li><a href="#" class="d-inline-block fz-xs p-1">金融商品</a></li>
+                            </ul>
+                        </div>
+                        <div class="view d-flex aic">
+                            <i class="fas fa-eye mr-2" style="font-size: 10px;"></i>
+                            <h4 class="fz-xs">2人</h4>
+                        </div>
+                    </li>
+                </ul>
+                <img src="https://fakeimg.pl/600x400/" alt="新聞圖片" class="mb-6">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste praesentium perspiciatis fugiat illum exercitationem! Officia inventore vitae quaerat temporibus, odit, eum eos voluptatum nemo consectetur voluptatem iste veritatis veniam necessitatibus.</p>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod ullam magnam pariatur reprehenderit veniam quibusdam dolorum? Non, unde? Laborum cupiditate quia aspernatur laboriosam unde necessitatibus suscipit possimus, nesciunt expedita commodi?</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis ea voluptate animi itaque laudantium, officia possimus consequatur ducimus porro eius corrupti ad, dolor incidunt! Laudantium suscipit nostrum eveniet dicta natus?</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate dolor eveniet laborum quaerat, excepturi quod aperiam earum non unde deleniti ipsum exercitationem necessitatibus cum consequuntur assumenda quae facere. Et, odio!</p>
+                <div class="border-bottom mt-4 mb-4"></div>
+                <ul class="bottom-nav d-flex jcsb">
+                    <li>
+                        <a href="#" class="d-block">
+                            <div class="fz-xs d-flex column">
+                                <h5 class="d-inline-block"><i class='fas fa-angle-double-left' style='font-size:14px;'></i>上一篇</h5>
+                                <h5>Lorem ipsum dolor sit, amet consectetur.</h5>
+                            </div>
+                        </a>    
+                    </li>
+                    <li>
+                        <a href="#" class="d-block">
+                            <div class="fz-xs d-flex aife column">
+                                <h5 class="d-inline-block">下一篇<i class='fas fa-angle-double-right' style='font-size:14px;'></i></h5>
+                                <h5>Lorem ipsum dolor sit, amet consectetur.</h5>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-right">
+                <form action="#" class="search topnav d-flex jcsb aic mt-10 mb-6">
+                    <input type="search" placeholder="請輸入關鍵字.." class="d-inline-block p-2" name="search">
+                    <button class="d-inline-block white-bg p-2" type="submit"><i class='fas fa-search' style="font-size: 16px;"></i></button>
+                </form>
+                <h3 class="title fz-m fwb p-3 pl-4 pr-4">相關文章</h3>
+                <ul>
+                    <li class="d-flex p-3 border-bottom white-bg">
+                        <h4 class="mr-2 fz-l">1</h4>
+                        <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
+                        <div class="content">
+                            <a href="#"><h3 class="fwb mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3></a>
+                        </div>
+                    </li>
+                    <li class="d-flex p-3 border-bottom white-bg">
+                        <h4 class="mr-2 fz-l">2</h4>
+                        <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
+                        <div class="content">
+                            <a href="#"><h3 class="fwb mb-2">Lorem ipsum dolor dipiscing elit.</h3></a>
+                        </div>
+                    </li>
+                    <li class="d-flex p-3 border-bottom white-bg">
+                        <h4 class="mr-2 fz-l">3</h4>
+                        <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
+                        <div class="content">
+                            <a href="#"><h3 class="fwb mb-2">Lorem ipsum dolor dipiscing elit.</h3></a>
+                        </div>
+                    </li>
+                    <li class="d-flex p-3 border-bottom white-bg">
+                        <h4 class="mr-2 fz-l">4</h4>
+                        <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
+                        <div class="content">
+                            <a href="#"><h3 class="fwb mb-2">Lorem ipsum dolor dipiscing elit.</h3></a>
+                        </div>
+                    </li>
+                    <li class="d-flex p-3 white-bg">
+                        <h4 class="mr-2 fz-l">5</h4>
+                        <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
+                        <div class="content">
+                            <a href="#"><h3 class="fwb mb-2">Lorem ipsum dolor dipiscing elit.</h3></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

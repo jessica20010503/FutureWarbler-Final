@@ -1,0 +1,128 @@
+{% extends 'layout.html'%}
+{% load static %}
+{% block content %}
+<div class="wrap d-flex m0-a">
+    <div class="side">
+        <h1 class="fz-xl fwb">F<span class="bright">u</span>ture <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
+        <ul class="menu">
+            <li><a href="index/"><i class="fas fa-home mr-2"></i>首頁</a></li>
+            <li><a href="trade/"><i class="fas fa-university mr-2"></i>模擬交易所</a></li>
+            <li><a href="class/"><i class="fas fa-chalkboard-teacher mr-2"></i>期貨小教室</a></li>
+            <li><a href="#"><i class="fas fa-robot mr-2"></i>智能機器人顧問</a></li>
+            <li><a href="news/"><i class="fas fa-newspaper mr-2"></i>新聞</a></li>
+            <li><a href="forum/"><i class="fas fa-comment-alt mr-2"></i>討論版</a></li>
+            <li><a href="personal/"><i class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
+        </ul>
+    </div>
+    <div class="news container">
+        <ul class="header--button d-flex jcfe">
+            <li><a href="login/" class="header__login--button fz-s tac mr-3">登入</a></li>
+            <li><a href="register/" class="header__register--button fz-s tac">註冊</a></li>
+        </ul>
+        <div class="topnav d-flex jcsb aic mt-15 mb-6 pr-4">
+            <ul class="d-flex fwb">
+                <li><a href="#" class="d-inline-block pt-3 pb-3 pl-4 pr-4 mr-2">焦點</a></li>
+                <li><a href="#" class="d-inline-block pt-3 pb-3 pl-4 pr-4 mr-2">即時</a></li>
+                <li><a href="#" class="d-inline-block pt-3 pb-3 pl-4 pr-4 mr-2">國際</a></li>
+                <li><a href="#" class="d-inline-block pt-3 pb-3 pl-4 pr-4 mr-2">期貨趨勢</a></li>
+                <li><a href="#" class="d-inline-block pt-3 pb-3 pl-4 pr-4 mr-2">科技趨勢</a></li>
+            </ul>
+            <form action="#" class="search topnav d-flex jcsb aic">
+                <input type="search" placeholder="請輸入關鍵字.." class="d-inline-block p-2" name="search">
+                <button class="d-inline-block white-bg p-2" type="submit"><i class='fas fa-search d-inline-block' style="font-size: 18px;"></i></button>
+            </form>
+        </div>
+        <div class="newsmain d-flex jcsb">
+            <div class="content-left mr-5 white-bg">
+                <h3 class="title fz-m fwb p-3 pl-4 pr-4">焦點新聞</h3>
+                <ul>
+                    <li class="d-flex p-3 border-bottom">
+                        <img src="https://fakeimg.pl/120x80/" alt="新聞圖片" class="mr-4">
+                        <div class="content">
+                            <a href="#"><h3 class="fwb mb-2">如何突破思考慣性，掌握反敗為勝關鍵？</h3></a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra ultricies dui massa ultricies neque. Quam nec tempus tellus nulla congue aliquet ...</p>
+                        </div>
+                    </li>
+                    <li class="d-flex p-3 border-bottom">
+                        <img src="https://fakeimg.pl/120x80/" alt="新聞圖片" class="mr-4">
+                        <div class="content">
+                            <a href="#"><h3 class="fwb mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3></a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra ultricies dui massa ultricies neque. Quam nec tempus tellus nulla congue aliquet ...</p>
+                        </div>
+                    </li>
+                    <li class="d-flex p-3 border-bottom">
+                        <img src="https://fakeimg.pl/120x80/" alt="新聞圖片" class="mr-4">
+                        <div class="content">
+                            <a href="#"><h3 class="fwb mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3></a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra ultricies dui massa ultricies neque. Quam nec tempus tellus nulla congue aliquet ...</p>
+                        </div>
+                    </li>
+                    <li class="d-flex p-3 border-bottom">
+                        <img src="https://fakeimg.pl/120x80/" alt="新聞圖片" class="mr-4">
+                        <div class="content">
+                            <a href="#"><h3 class="fwb mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3></a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra ultricies dui massa ultricies neque. Quam nec tempus tellus nulla congue aliquet ...</p>
+                        </div>
+                    </li>
+                    <li class="d-flex p-3">
+                        <img src="https://fakeimg.pl/120x80/" alt="新聞圖片" class="mr-4">
+                        <div class="content">
+                            <a href="#"><h3 class="fwb mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3></a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra ultricies dui massa ultricies neque. Quam nec tempus tellus nulla congue aliquet ...</p>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="pagination d-flex jcc mt-2 mb-2">
+                    <li class="m-2"><a href="#"><i class='fas fa-angle-double-left' style='font-size:20px;'></i></a></li>
+                    <li class="m-2"><a href="#">1</a></li>
+                    <li class="m-2"><a href="#">2</a></li>
+                    <li class="m-2"><a href="#">3</a></li>
+                    <li class="m-2"><a href="#">4</a></li>
+                    <li class="m-2"><a href="#">5</a></li>
+                    <li class="m-2"><a href="#"><i class='fas fa-angle-double-right' style='font-size:20px'></i></a></li>
+                </ul>
+            </div>
+            <div class="content-right">
+                <h3 class="title fz-m fwb p-3 pl-4 pr-4">焦點新聞 排行</h3>
+                <ul>
+                    <li class="d-flex p-3 border-bottom white-bg">
+                        <h4 class="mr-2 fz-l">1</h4>
+                        <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
+                        <div class="content">
+                            <a href="#"><h3 class="fwb mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3></a>
+                        </div>
+                    </li>
+                    <li class="d-flex p-3 border-bottom white-bg">
+                        <h4 class="mr-2 fz-l">2</h4>
+                        <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
+                        <div class="content">
+                            <a href="#"><h3 class="fwb mb-2">Lorem ipsum dolor dipiscing elit.</h3></a>
+                        </div>
+                    </li>
+                    <li class="d-flex p-3 border-bottom white-bg">
+                        <h4 class="mr-2 fz-l">3</h4>
+                        <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
+                        <div class="content">
+                            <a href="#"><h3 class="fwb mb-2">Lorem ipsum dolor dipiscing elit.</h3></a>
+                        </div>
+                    </li>
+                    <li class="d-flex p-3 border-bottom white-bg">
+                        <h4 class="mr-2 fz-l">4</h4>
+                        <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
+                        <div class="content">
+                            <a href="#"><h3 class="fwb mb-2">Lorem ipsum dolor dipiscing elit.</h3></a>
+                        </div>
+                    </li>
+                    <li class="d-flex p-3 white-bg">
+                        <h4 class="mr-2 fz-l">5</h4>
+                        <img src="https://fakeimg.pl/100x80/" alt="新聞圖片" class="mr-4">
+                        <div class="content">
+                            <a href="#"><h3 class="fwb mb-2">Lorem ipsum dolor dipiscing elit.</h3></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

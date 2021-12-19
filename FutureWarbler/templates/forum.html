@@ -1,0 +1,88 @@
+{% extends 'layout.html'%}
+{% load static %}
+{% block content %}
+<div class="wrap d-flex m0-a">
+    <div class="side">
+        <h1 class="fz-xl fwb">F<span class="bright">u</span>ture <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
+        <ul class="menu">
+            <li><a href="index/"><i class="fas fa-home mr-2"></i>首頁</a></li>
+            <li><a href="trade/"><i class="fas fa-university mr-2"></i>模擬交易所</a></li>
+            <li><a href="class/"><i class="fas fa-chalkboard-teacher mr-2"></i>期貨小教室</a></li>
+            <li><a href="#"><i class="fas fa-robot mr-2"></i>智能機器人顧問</a></li>
+            <li><a href="news/"><i class="fas fa-newspaper mr-2"></i>新聞</a></li>
+            <li><a href="forum/"><i class="fas fa-comment-alt mr-2"></i>討論版</a></li>
+            <li><a href="personal/"><i class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
+        </ul>
+    </div>
+    <div class="forum container">
+        <ul class="header--button d-flex jcfe">
+            <li><a href="login/" class="header__login--button fz-s tac mr-3">登入</a></li>
+            <li><a href="register/" class="header__register--button fz-s tac">註冊</a></li>
+        </ul>
+        <div class="topnav d-flex jcsb aic mt-15 mb-6 pr-4">
+            <ul class="d-flex fwb">
+                <li><a href="#" class="d-inline-block pt-3 pb-3 pl-4 pr-4 mr-2">熱門貼文</a></li>
+                <li><a href="#" class="d-inline-block pt-3 pb-3 pl-4 pr-4">最新貼文</a></li>
+            </ul>
+            <form action="#" class="search topnav d-flex jcsb aic">
+                <input type="search" placeholder="請輸入關鍵字.." class="d-inline-block p-2" name="search">
+                <button class="d-inline-block white-bg p-2" type="submit"><i class='fas fa-search d-inline-block' style="font-size: 18px;"></i></button>
+            </form>
+        </div>
+        <ul class="forum-main white-bg p-5">
+            <li class="d-flex pt-1 pb-4 border-bottom">
+                <img src="{% static 'img/大頭貼2.jpg' %}" alt="大頭貼2" class="mr-4">
+                <div class="content">
+                    <a href="#"><h3 class="fwb mb-1">如何突破思考慣性，掌握反敗為勝關鍵？</h3></a>
+                    <p class="mb-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra ultricies dui massa ultricies neque. Quam nec tempus tellus nulla congue aliquet ...</p>
+                    <p>-Brian | 2021.11.28 16:20 | <a href="forum-content.html" class="icon"><i class="fas fa-comment-alt"></i></a> 5 | <a href="#" class="icon"><i class="fas fa-heart"></i></a> 50</p>
+                </div>
+            </li>
+            <li class="d-flex pt-4 pb-4 border-bottom">
+                <img src="{% static 'img/大頭貼2.jpg' %}" alt="大頭貼2" class="mr-4">
+                <div class="content">
+                    <a href="#"><h3 class="fwb mb-1">如何突破思考慣性，掌握反敗為勝關鍵？</h3></a>
+                    <p class="mb-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra ultricies dui massa ultricies neque. Quam nec tempus tellus nulla congue aliquet ...</p>
+                    <p>-Brian | 2021.11.28 16:20 | <a href="forum-content.html" class="icon"><i class="fas fa-comment-alt"></i></a> 5 | <a href="#" class="icon"><i class="fas fa-heart"></i></a> 50</p>
+                </div>
+            </li>
+            <li class="d-flex pt-4 pb-4 border-bottom">
+                <img src="{% static 'img/大頭貼2.jpg' %}" alt="大頭貼2" class="mr-4">
+                <div class="content">
+                    <a href="#"><h3 class="fwb mb-1">如何突破思考慣性，掌握反敗為勝關鍵？</h3></a>
+                    <p class="mb-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra ultricies dui massa ultricies neque. Quam nec tempus tellus nulla congue aliquet ...</p>
+                    <p>-Brian | 2021.11.28 16:20 | <a href="forum-content.html" class="icon"><i class="fas fa-comment-alt"></i></a> 5 | <a href="#" class="icon"><i class="fas fa-heart"></i></a> 50</p>
+                </div>
+            </li>
+            <li class="d-flex pt-4 pb-4 border-bottom">
+                <img src="{% static 'img/大頭貼2.jpg' %}" alt="大頭貼2" class="mr-4">
+                <div class="content">
+                    <a href="#"><h3 class="fwb mb-1">如何突破思考慣性，掌握反敗為勝關鍵？</h3></a>
+                    <p class="mb-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra ultricies dui massa ultricies neque. Quam nec tempus tellus nulla congue aliquet ...</p>
+                    <p>-Brian | 2021.11.28 16:20 | <a href="forum-content.html" class="icon"><i class="fas fa-comment-alt"></i></a> 5 | <a href="#" class="icon"><i class="fas fa-heart"></i></a> 50</p>
+                </div>
+            </li>
+            <li class="d-flex pt-4 pb-1">
+                <img src="{% static 'img/大頭貼2.jpg' %}" alt="大頭貼2" class="mr-4">
+                <div class="content">
+                    <a href="#"><h3 class="fwb mb-1">如何突破思考慣性，掌握反敗為勝關鍵？</h3></a>
+                    <p class="mb-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra ultricies dui massa ultricies neque. Quam nec tempus tellus nulla congue aliquet ...</p>
+                    <p>-Brian | 2021.11.28 16:20 | <a href="forum-content.html" class="icon"><i class="fas fa-comment-alt"></i></a> 5 | <a href="#" class="icon"><i class="fas fa-heart"></i></a> 50</p>
+                </div>
+            </li>
+        </ul>
+
+        <a href="forum-write/" class="write"><img src="{% static 'img/edit.png' %}" alt="發文"></a>
+
+        <ul class="pagination d-flex jcc mt-2 mb-4">
+            <li class="m-2"><a href="#"><i class='fas fa-angle-double-left' style='font-size:20px;'></i></a></li>
+            <li class="m-2"><a href="#">1</a></li>
+            <li class="m-2"><a href="#">2</a></li>
+            <li class="m-2"><a href="#">3</a></li>
+            <li class="m-2"><a href="#">4</a></li>
+            <li class="m-2"><a href="#">5</a></li>
+            <li class="m-2"><a href="#"><i class='fas fa-angle-double-right' style='font-size:20px'></i></a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
