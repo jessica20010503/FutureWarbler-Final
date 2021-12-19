@@ -100,6 +100,9 @@ def register(request):
                     conn.commit()
                     conn.close()
                     request.session['username'] = account
+                    request.session['photo'] = uploadphoto
+                    photo = request.session['photo']
+                    username = request.session['username']
                     return render(request,'index.html',locals())
             
     return render(request,"register.html",locals())
