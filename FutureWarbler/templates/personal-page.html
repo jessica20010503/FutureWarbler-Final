@@ -15,15 +15,26 @@
         </ul>
     </div>
     <div class="container">
+        {% if ok == '' %}
+        <ul class="header--button d-flex jcfe  text-shadow">
+            <li><a href="/login/" class="header__login--button dark-gray  mr-2 tac br-s">登入</a></li>
+            <li><a href="/register/" class="header__register--button dark-gray  mr-2 tac br-s">註冊</a></li>
+        </ul>
+        {% else %}
         <ul class="header--button d-flex jcfe aic">
             <li class="fz-s mr-2 fwbr d-flex loginned_title aic">
                 <div class="loginned_photo mr-2">
-                    <img src="{% static 'img/會員大頭貼.jpg' %}" alt="會員大頭貼">
+                    <img src="/static/userimg/{{photo}}" alt="會員大頭貼">
                 </div>
-                <p>Hi&nbsp;&nbsp;蔡西西</p>   
+                <p>Hi, &nbsp;&nbsp;{{username}}</p>   
             </li>
-            <li><a href="/login/" class="header__logout--button dark-gray  mr-2 tac br-s fwb">登出</a></li>
+            <form action="/index/" method="post">
+                {% csrf_token %}
+                <input type ="hidden" name = "logout" value="logout">
+                <li><input type="submit" value="登出" class="header__logout--button dark-gray  mr-2 tac br-s fwb"></li>
+            </form>
         </ul>
+        {% endif %}
         <ul class="personal--page__content mt-4 w-100">
             <li class="fl second-white-bg w-65 br-m mr-3pct drop-shadow pt-4 pb-6 pl-8 pr-8">
                 <h2 class="mb-8"><i class="fas fa-user mr-3"></i>個人資訊</h2>
@@ -89,8 +100,9 @@
                                                     <input type="text" name="name" id="name" class="d-block w-100 br-s mt-1 mb-5 p-1 b-n" value="蔡西西">
                                                 </div>
                                                 <div class="w-48 fr">
-                                                    <label for="photo" class=" fwbr">頭像</label>
-                                                    <input type="file" name="photo" id="photo" class="d-block w-100 br-s mt-1 mb-4 p-1 b-n">
+                                                   
+                                                     <label for="photo" class=" fwbr">頭像</label>
+                                                    <input type="file" name="photo" accept=".jpg,.png"  id="photo" class="d-block w-100 br-s mt-1 mb-4 p-1 b-n">
                                                 </div>
                                                 <div class="w-35 mr-2 fl">
                                                     <label for="gender" class=" fwbr mb-2 d-inline-block">性別</label><br>

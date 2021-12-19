@@ -11,14 +11,30 @@
             <li><a href=""><i class="fas fa-robot mr-2"></i>智能機器人顧問</a></li>
             <li><a href="news.html"><i class="fas fa-newspaper mr-2"></i>新聞</a></li>
             <li><a href="forum.html"><i class="fas fa-comment-alt mr-2"></i>討論版</a></li>
-            <li ><a href="/personal/"><i class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
+            <li ><a href="/personal-page/"><i class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
         </ul>
     </div>
     <div class="container bg-img">
+        {% if ok == '' %}
         <ul class="header--button d-flex jcfe  text-shadow">
             <li><a href="/login/" class="header__login--button dark-gray  mr-2 tac br-s">登入</a></li>
             <li><a href="/register/" class="header__register--button dark-gray  mr-2 tac br-s">註冊</a></li>
         </ul>
+        {% else %}
+        <ul class="header--button d-flex jcfe aic">
+            <li class="fz-s mr-2 fwbr d-flex loginned_title aic">
+                <div class="loginned_photo mr-2">
+                    <img src="/static/userimg/{{photo}}" alt="會員大頭貼">
+                </div>
+                <p>Hi, &nbsp;&nbsp;{{username}}</p>   
+            </li>
+            <form action="/index/" method="post">
+                {% csrf_token %}
+                <input type ="hidden" name = "logout" value="logout">
+                <li><input type="submit" value="登出" class="header__logout--button dark-gray  mr-2 tac br-s fwb"></li>
+            </form>
+        </ul>
+        {% endif %}
         <ul class="index_content mt-7 w-100">
             <li class="fl second-white-bg w-60 br-m mr-4pct pb-5">
                 <div class="product--title white-bg p-4 mb-4 d-flex jcsb aic">
