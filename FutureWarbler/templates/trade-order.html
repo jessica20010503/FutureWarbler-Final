@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Warbler</title>
+
+    <link rel="shortcut icon" href="../img/robot.jpg" type="image/x-icon">
+    <meta name='description' content="Future Warbler" />
+    <meta name="keywords" content="期貨, 期貨模擬交易, 智能機器人, Future Warbler">
+    <meta property="og:title" content="Future Warbler" />
+    <meta property="og:description" content="期貨模擬交易平台">
+    <meta property="og:type" content="website" /> 
+    <meta property="og:url" content="FB上的網址" />
+    <meta property="og:image" content="../img/robot.jpg"/>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="../js/all.js"></script>
+    <link rel="stylesheet" href="../css/all.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+<body>
+    <div class="wrap d-flex m0-a">
+        <div class="side">
+            <h1 class="fz-xl fwb">F<span class="bright">u</span>ture <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
+            <ul class="menu">
+                <li><a href="index.html"><i class="fas fa-home mr-2"></i>首頁</a></li>
+                <li><a href="#"><i class="fas fa-university mr-2"></i>模擬交易所</a></li>
+                <li><a href="class.html"><i class="fas fa-chalkboard-teacher mr-2"></i>期貨小教室</a></li>
+                <li><a href="#"><i class="fas fa-robot mr-2"></i>智能機器人顧問</a></li>
+                <li><a href="news.html"><i class="fas fa-newspaper mr-2"></i>新聞</a></li>
+                <li><a href="forum.html"><i class="fas fa-comment-alt mr-2"></i>討論版</a></li>
+                <li class="chosed"><a href="#"><i class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
+            </ul>
+        </div>
+        <div class="container">
+            <ul class="header--button d-flex jcfe aic">
+                <li class="fz-s mr-2 fwbr d-flex loginned_title aic">
+                    <div class="loginned_photo mr-2">
+                        <img src="../img/會員大頭貼.jpg" alt="會員大頭貼">
+                    </div>
+                    <p>Hi&nbsp;&nbsp;蔡西西</p>   
+                </li>
+                <li><a href="#" class="header__logout--button dark-gray  mr-2 tac br-s">登出</a></li>
+            </ul>
+            <ul class="trade--order__content mt-4 w-100">
+                <li class="fl second-white-bg w-100 br-m mr-3pct drop-shadow pt-4 pb-6 pl-8 pr-8">
+                    <h2 class="mb-8"><i class="fas fa-shopping-cart mr-3"></i>我的訂單</h2>
+                    <div class="d-flex jcsb">
+                        <div class="ml-28 mt-3 fwb ">
+                            <p class="mb-2">Hi&nbsp;&nbsp;蔡西西</p>
+                            <p class="mb-4">你所選擇的是小那斯達(MXQ)</p>
+                            <p>現價:&nbsp;&nbsp;&nbsp;&nbsp;35,000</p>
+                        </div>
+                        <div class="piggy--bank  w-30 br-m drop-shadow second-white p-6 pl-8 pr-8 fr">
+                            <div class="d-flex jcsb mb-12">
+                                <p>可用餘額</p>
+                                <p>800,000</p>
+                            </div>
+                            <div class="d-flex jcsb aic">
+                            <i class="fas fa-piggy-bank fz-xxl"></i>
+                            <h2 class="fz-l fwb">F<span class="second-yellow">u</span>ture <br> &nbsp;&nbsp;Warbl<span class="second-yellow">e</span>r</h2>
+                            </div>
+                       </div>
+                    </div>
+                </li>
+               
+               <li class="fl second-white-bg w-100 br-m mr-3pct drop-shadow p-6 pl-8 pr-8 mt-6 ">
+                    <h2><i class="fas fa-sliders-h mr-3 mb-5"></i>詳細設定</h2>
+                    <select class="trade--option p-1 mr-3">
+                        <option value="買" >買</option>
+                        <option value="賣" >賣</option>
+                    </select>
+                    <input id="min" name="" type="button" value="-" class=" second-yellow-bg b-n p-1" />
+                    <input id="quantity" name="" type="text" value="1" />
+                    <input id="add" name="" type="button" value="+"  class="mr-3 second-yellow-bg"/>
+                    <select class="trade--option mr-3 p-1">
+                        <option value="停損">停損</option>
+                        <option value="停利">停利</option>
+                    </select>
+                    <input id="stopmin" name="" type="button" value="-" class=" second-yellow-bg" />
+                    <input id="stopquantity" name="" type="text" value="15000" />
+                    <input id="stopadd" name="" type="button" value="+" class="mr-3 second-yellow-bg" />
+                    <a href="" class="fr "><input type="button" value="confirm" class="trade__btn dark-gray b-n mt-6"></a>
+               </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
