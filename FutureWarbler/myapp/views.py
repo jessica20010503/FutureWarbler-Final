@@ -117,6 +117,24 @@ def logout(request):
     request.session.clear()
     return redirect('login/')
 
+#change
+def classes(request): # 不能用 class 命名
+    return render(request,"class.html",locals())
 
+def classcontent(request):
+    return render(request,"class-content.html",locals())
 
+def news(request):
+    return render(request,"news.html",locals())
 
+def newscontent(request):
+    return render(request,"news-content.html",locals())
+
+def forum(request):
+    return render(request,"forum.html",locals())
+
+def forumwrite (request):
+    return render(request,"forum-write.html",locals())
+
+def forumcontent (request):
+    return render(request,"forum-content.html",locals())

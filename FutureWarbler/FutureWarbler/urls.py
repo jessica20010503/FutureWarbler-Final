@@ -23,6 +23,13 @@ urlpatterns = [
     path('index/',index),
     path('login/',login),
     path('register/',register),
-    path('personal-page/',personal),
+    path('personal/',personal),
+    path('class/',classes), #change
+    path('class-content/',classcontent),
+    path('news/',news),
+    path('news-content',newscontent),
+    path('forum/',forum),
+    path('forum-write/',forumwrite),
+    path('forum-content/',forumcontent),
 
 ]
