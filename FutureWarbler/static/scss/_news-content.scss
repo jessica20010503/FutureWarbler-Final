@@ -1,65 +1,21 @@
 .news-content{
     .topnav{
-        background: #BFB595;
-        border-radius: 10px;
+        background: #4599d5;
         a{
-            color: $text_color;
             &:hover{
                 background-color: $text_color;
                 color: #ebcf46;
                 border-radius: 10px;
             }
         }
-        input{
-            font-size: 16px;
-            width: 100%;
-            border-radius: 5px 0 0 5px;
-            border-style: none;
-        }
-        button{
-            border-style: none;
-            border-radius: 0 5px 5px 0;
-            &:hover{
-                background-color: #ebcf46;
+    }
+    .content-left li a,.content-right li a{
+        &:hover{
+            background: #f3f2f2;
+            h3{
+                color: rgba(9, 44, 81, 0.88);
+                text-decoration: underline;
             }
         }
-    }
-    .content-left{
-        width: 60%;
-        border-radius: 10px;
-        img{
-            width: 600px;
-            height: 400px;
-        }
-    }
-    .content-right{
-        width: 35%;
-        >h3{
-            background-color: #ebcf46;
-            border-radius: 10px 10px 0 0;
-        }
-        li{
-            border-bottom: 2px dotted gray;
-            &:last-child{
-                border-radius: 0 0 10px 10px;
-                border-bottom: transparent;
-            }
-        }
-        img{
-            width: 100px;
-            height: 80px;
-        }
-        .content{
-            a{  
-                color: $text_color;
-                transition: 0.3s all;
-                &:hover{
-                    color: #BFB595;
-                }
-            }
-        }
-    }
-    .border-bottom{
-        border-bottom: 1px solid darkgray;
     }
 }

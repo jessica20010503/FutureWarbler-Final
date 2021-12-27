@@ -143,3 +143,6 @@ def forumwrite (request):
 
 def forumcontent (request):
     return render(request,"forum-content.html",locals())
+
+def strategy (request):
+    return render(request,"personal-strategyList.html",locals())

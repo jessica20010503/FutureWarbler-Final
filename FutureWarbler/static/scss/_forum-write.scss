@@ -1,8 +1,5 @@
 .forum-write{
-    .topnav{
-        background: #BFB595;
-        border-radius: 10px 10px 0 0 ;
-    }
+    margin: 20px auto ;
     h2, .forum-write-main{
         width: 80%;
         margin: 0 auto;
@@ -25,13 +22,15 @@
             height: 300px;
         }
         .submit{
-            color: $text_color;
-            background-color: #ebcf46;
-            border-style: none;
-            border-radius: 10px;
+            background: $primary_color;
+            border: none;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+            border-radius: 6px;
+            padding: 10px 12px;
             &:hover{
-                background-color: $text_color;
-                color: #ebcf46;
+                color: $second_color;
+                background: #1C383E;
             }
         }
     }

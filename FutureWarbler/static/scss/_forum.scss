@@ -1,72 +1,46 @@
 .forum{
-    .topnav{
-        background: #BFB595;
-        border-radius: 10px;
-        a{
-            color: $text_color;
-            &:hover{
-                background-color: $text_color;
-                color: #ebcf46;
-                border-radius: 10px;
-            }
-        }
-        input{
-            font-size: 16px;
-            width: 100%;
-            border-radius: 5px 0 0 5px;
-            border-style: unset;
-        }
-        button{
-            border-style: unset;
-            border-radius: 0 5px 5px 0;
-            &:hover{
-                background-color: #ebcf46;
-            }
-        }
+    img{
+        width: 100px;
+        height: 100px;
     }
-    .forum-main{
-        border-radius: 10px;
-        img{
-            width: 100px;
-            height: 100px;
-        }
-        .icon i{
-            color: $text_color;
-            &:hover{
-                color: #BFB595;
-            }
-        }
-    }
-    .content{
-        h3{
-            font-size: 16px;
-            color: $text_color;
-            transition: 0.3s all;
-            &:hover{
-                color: #BFB595;
-            }
-        }
-        p{
-            font-size: 14px;
-        }
-    }
-    .border-bottom{
-        border-bottom: 1px solid darkgray;
-    }
-    .pagination a{  
-        color: $text_color;
-        transition: 0.3s all;
+    
+    .content-left li a,.content-right li a{
         &:hover{
-            color: #ebcf46;
+            background: #f3f2f2;
+            h3{
+                color: rgba(9, 44, 81, 0.88);
+                text-decoration: underline;
+            }
+        }
+    }
+    .Avatars{
+        position: relative;
+        width: 20%; /* 固定寬度 */
+        margin-right: 22px;
+        &::after {
+            content: "";
+            display: block;
+            padding-bottom: 100%; /*padding取決於寬度，這裡設定padding-bottom: 100%就可以得到正方形*/
+        }
+        img{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0; /*將圖片大小固定為父類div的大小*/
+            width: 100%; 
+            height: 100%;
+            object-fit: cover; /* 相當於 background-size: cover; of a background-image */
+            object-position: center;
         }
     }
     .write{
         position: fixed;
-        right: 50px;
-        bottom: 50px;
+        bottom: 15px;
+        right: 60px;
         img{
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
         }
     }
 }

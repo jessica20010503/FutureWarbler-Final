@@ -3,48 +3,61 @@
 {% block content %}
 <div class="wrap d-flex m0-a">
     <div class="side">
-        <h1 class="fz-xl fwb">F<span class="bright">u</span>ture <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
-        <ul class="menu">
-            <li class=" main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href="index.html"><i class="fas fa-home mr-4"></i>首頁</a></li>
-            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href="trade.html"><i class="fas fa-university mr-4"></i>模擬交易所</a></li>
-            <li class="drop--menu">
-                <a href="" class="main--menu  pt-2 pb-2 pl-9 mb-3">
-                    <i class="fas fa-chalkboard-teacher mr-4"></i>期貨小教室<i class="fas fa-chevron-down  ml-6 fz-s"></i>
-                </a>
-                <ul class=" d-none">
-                    <li class="sub--menu"><a href="class.html">期貨基本知識</a></li>
-                    <li class="sub--menu"><a href="">期貨基本指標</a></li>
-                </ul>
-            </li>
-            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href=""><i class="fas fa-robot mr-4"></i>智能機器人顧問</a></li>
-            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href="news.html"><i class="fas fa-newspaper mr-4"></i>新聞</a></li>
-            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href="forum.html"><i class="fas fa-comment-alt mr-4"></i>討論版</a></li>
-            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3 chosed"><a href="personal-page.html"><i class="fas fa-user-alt mr-4"></i>個人頁面</a></li>
-        </ul>
+            <h1 class="fz-xl fwb">F<span class="bright">u</span>tures <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
+            <ul class="menu">
+                <li class=" main--menu pt-3 pr-5 pb-3 pl-9  "><a href="index.html"><i class="fas fa-home mr-4"></i>首頁</a></li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="trade.html"><i class="fas fa-university mr-4"></i>模擬交易所</a></li>
+                <li class="drop--menu">
+                    <a href="" class="main--menu  pt-3 pb-3 pl-9  ">
+                        <i class="fas fa-chalkboard-teacher mr-4"></i>期貨小教室<i class="fas fa-chevron-down  ml-6 fz-s"></i>
+                    </a>
+                    <ul class=" d-none">
+                        <li class="sub--menu"><a href="class.html">期貨基本知識</a></li>
+                        <li class="sub--menu"><a href="">期貨基本指標</a></li>
+                    </ul>
+                </li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href=""><i class="fas fa-robot mr-4"></i>智能機器人顧問</a></li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="news.html"><i class="fas fa-newspaper mr-4"></i>新聞</a></li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="forum.html"><i class="fas fa-comment-alt mr-4"></i>討論版</a></li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  chosed"><a href="personal-page.html"><i class="fas fa-user-alt mr-4"></i>個人頁面</a></li>
+            </ul>
+            <div class="circle"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
     </div>
-    <div class="container">
+    <div class="container pb-4">
         {% if ok == '' %}
         <ul class="header--button d-flex jcfe  text-shadow">
             <li><a href="/login/" class="header__login--button dark-gray  mr-2 tac br-s">登入</a></li>
             <li><a href="/register/" class="header__register--button dark-gray  mr-2 tac br-s">註冊</a></li>
         </ul>
         {% else %}
-        <ul class="header--button d-flex jcfe aic">
-            <li class="fz-s mr-2 fwbr d-flex loginned_title aic">
-                <div class="loginned_photo mr-2">
-                    <img src="/static/userimg/{{photo}}" alt="會員大頭貼">
-                </div>
-                <p>Hi, &nbsp;&nbsp;{{username}}</p>   
-            </li>
-            <form action="/index/" method="post">
+        <ul class="header d-flex jcfe card-shadow text-shadow p-1 aic ">
+                <li>
+                    <a href="" class="add--money--hover fz-s mr-2 fwbr d-flex  aic dark-gray">
+                        <i class="fas fa-piggy-bank fz-m mr-2"></i>
+                        <div>
+                            <p class="mr-2 tar"><span class="mr-2">800,000</span>(TWD)<span class="mr-2 ml-2">30,000</span>(USD)</p>
+                            <p>可用餘額</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="fz-s mr-3 fwbr d-flex  aic ">
+                    <div class="loginned_photo mr-2">
+                        <img src="../img/會員大頭貼.jpg" alt="會員大頭貼">
+                    </div>
+                    <p>Hi, &nbsp;&nbsp;{{username}}</p>
+                </li>
+                <form action="/index/" method="post">
                 {% csrf_token %}
                 <input type ="hidden" name = "logout" value="logout">
-                <li><input type="submit" value="登出" class="header__logout--button dark-gray  mr-2 tac br-s fwb"></li>
-            </form>
-        </ul>
+                <li><a href="#" class="header__logout--button dark-gray  mr-2 tac br-s fwb">登出</a></li>
+                </form>
+                <li><a href="#" class="header__logout--button dark-gray  mr-2 tac br-s fwb">登出</a></li>
+            </ul>
         {% endif %}
-        <ul class="personal--page__content mt-4 w-100">
-            <li class="fl second-white-bg w-65 br-m mr-3pct drop-shadow pt-4 pb-6 pl-8 pr-8">
+        <div class="personal--page__content mt-4 w-100">
+            <div class="fl second-white-bg w-65 br-m mr-3pct drop-shadow pt-4 pb-6 pl-8 pr-8">
                 <h2 class="mb-8"><i class="fas fa-user mr-3"></i>個人資訊</h2>
                 <div class="personal--information__content d-flex">
                     <div class="Avatars">
@@ -147,101 +160,204 @@
                     </div>
                 </div>
                 <div class="clearfix"></div>
-            </li>
-           <li class="bank--area w-30 fl">
-               <div class="piggy--bank  w-100 br-m drop-shadow second-white p-6 pl-8 pr-8">
-                    <div class="d-flex jcsb mb-5">
-                        <p>申請金額</p>
-                        <p>1,000,000</p>
-                    </div>
-                    <div class="d-flex jcsb mb-5">
-                        <p>可用餘額</p>
-                        <p>800,000</p>
-                    </div>
-                    <div class="d-flex jcsb aic">
-                    <i class="fas fa-piggy-bank fz-xxl"></i>
-                    <h2 class="fz-l fwb">F<span class="second-yellow">u</span>ture <br> &nbsp;&nbsp;Warbl<span class="second-yellow">e</span>r</h2>
-                    </div>
-               </div>
-               <div class="second-white-bg fl w-100 br-m drop-shadow pt-10 pl-8 pr-6 pb-5 d-flex jcsb add--money">
-                <p class="fwbr mr-3 dark-gray">若餘額已全數使用完畢，<br>則可前往進行補倉設定</p>
-                <a href="" class="fr personal__btn dark-gray b-n tac fwb">前往加值</a>
-               </div>
-           </li>
-           <li class="fl second-white-bg w-100 br-m  drop-shadow p-6 pl-8 mt-6 ">
-            <div class="d-flex jcsb aic">
-                <h2><i class="fas fa-exchange-alt mr-3"></i>交易紀錄</h2>
-                <a href=""  class="fr personal__btn dark-gray b-n fwb">查看更多</a>
             </div>
-            <table class="w-100 tac mt-5 trade--table">
-                <tr class="fwb">
-                    <th>序號</th>
-                    <th>商品代號</th>
-                    <th>商品名稱</th>
-                    <th>狀態</th>
-                    <th>持倉價格</th>
-                    <th>持倉時間</th>
-                    <th>持倉數量(口)</th>
-                    <th>平倉價格</th>
-                    <th>平倉時間</th>
-                    <th>平倉數量(口)</th>
-                    <th>投資報酬率</th>
-                </tr>
-                <tr class="trade--table__item">
-                    <td>1</td>
-                    <td>MNQ</td>
-                    <td>小那斯達克</td>
-                    <td>未平倉</td>
-                    <td>30,000</td>
-                    <td>2021/12/11 07:12</td>
-                    <td>5</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-                <tr class="trade--table__item br-m">
-                    <td>2</td>
-                    <td>TX</td>
-                    <td>大台指期</td>
-                    <td>平倉</td>
-                    <td>30,000</td>
-                    <td>2021/12/01 07:12</td>
-                    <td>3</td>
-                    <td>32,000</td>
-                    <td>2021/12/08 10:22</td>
-                    <td>2</td>
-                    <td class="light-green fwb">+ 1.98</td>
-                </tr>
-                <tr class="trade--table__item  br-m">
-                    <td>3</td>
-                    <td>MNQ</td>
-                    <td>小那斯達克</td>
-                    <td>平倉</td>
-                    <td>130,000</td>
-                    <td>2021//12/01 11:15</td>
-                    <td>6</td>
-                    <td>80,000</td>
-                    <td>2021//09/28 17:26</td>
-                    <td>6</td>
-                    <td class="dark-red fwb">- 2.55</td>
-                </tr>
-                <tr class="trade--table__item br-m">
-                    <td>4</td>
-                    <td>MX</td>
-                    <td>小台指期</td>
-                    <td>未平倉</td>
-                    <td>120,000</td>
-                    <td>2021/09/10 08:34</td>
-                    <td>4</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            </table>
-           </li>
-        </ul>
+           <div class="bank--area w-30 fl">
+                   <div class="piggy--bank  w-100 br-m card-shadow second-white p-5 pl-8 pr-8">
+                        <div class="d-flex jcsb mb-2">
+                            <p>申請金額</p>
+                            <div class="tar">
+                                <p>1,000,000&nbsp;(TWD)</p>
+                                <p>38,000&nbsp;(USD)</p>
+                            </div>
+                        </div>
+                        <div class="d-flex jcsb mb-2">
+                            <p>可用餘額</p>
+                            <div class="tar">
+                                <p>800,000&nbsp;(TWD)</p>
+                                <p>30,000&nbsp;(USD)</p>
+                            </div>
+                        </div>
+                        <div class="d-flex jcsb aic">
+                        <i class="fas fa-piggy-bank fz-xxl"></i>
+                        <h2 class="fz-l fwb">F<span class="second-yellow">u</span>tures <br> &nbsp;&nbsp;Warbl<span class="second-yellow">e</span>r</h2>
+                        </div>
+                   </div>
+                   <div class="white-bg fl w-100 br-m card-shadow pt-10 pl-8 pr-6 pb-5 d-flex jcsb add--money">
+                    <p class="fwbr mr-3 dark-gray">若餘額已全數使用完畢，<br>則可前往進行補倉設定</p>
+                    <a href="" class="fr personal__btn dark-gray b-n tac fwb" data-bs-toggle="modal" data-bs-target="#exampleModal">前往加值</a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header p-3">
+                                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-hand-holding-usd mr-3 ml-5 fz-m"></i>申請加值</h5>
+                                <button type="button" class="b-n close__btn" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times fz-s"></i></button>
+                                </div>
+                                <form action="">
+                                    <div class="modal-body  p-4  gray-bg">
+                                        <div class=" w-80 m0-a">
+                                                <div class="tac">
+                                                <p class="fwb ">請輸入欲加值金額!!</p>
+                                                </div>
+                                                <label for="TWD" class="dark-gray fz-s fwbr">台幣(TWD)</label>
+                                                <input type="text" name="TWD" id="TWD" class="br-s p-1 d-block w-100 mb-2 b-n">
+                                                <label for="USD" class="dark-gray fz-s fwbr">美金(USD)</label>
+                                                <input type="text" name="USD" id="USD" class="br-s  p-1 d-block w-100 b-n">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer ">
+                                        <button type="button" class="close__btn dark-gray b-n " data-bs-dismiss="modal">取消</button>
+                                        <button type="button" class="personal__btn dark-gray b-n">確認</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                   </div>
+                </div>
+                <div class="fl white-bg w-100 br-m mr-3pct card-shadow mt-6 pb-4">
+                    <div class="d-flex jcsb aic b-bottom p-4 pl-5 pr-5">
+                        <h2><i class="fas fa-bookmark mr-3"></i>策略清單</h2>
+                        <a href="personal-strategyList.html"  class="fr personal__btn dark-gray b-n fwb">查看更多</a>
+                    </div>
+                    <table class="w-100 tac mt-5 trade--table ">
+                        <tr class="fwb">
+                            <th>序號</th>
+                            <th>分析類型</th>
+                            <th>商品代號</th>
+                            <th>商品名稱</th>
+                            <th>資料周期</th>
+                            <th>開始時間</th>
+                            <th>結束時間</th>
+                            <th>技術指標</th>
+                            <th>分析策略</th>
+                            <th>演算法</th>
+                        </tr>
+                        <tr class="trade--table__item">
+                            <td>1</td>
+                            <td>一般交易</td>
+                            <td>MNQ</td>
+                            <td>小那斯達克</td>
+                            <td>Tick</td>
+                            <td>2020/10/11</td>
+                            <td>2021/5/31</td>
+                            <td>RSI指標</td>
+                            <td>均線策略</td>
+                            <td>-</td>
+                        </tr>
+                        <tr class="trade--table__item">
+                            <td>2</td>
+                            <td>智能交易</td>
+                            <td>MES</td>
+                            <td>小S&P</td>
+                            <td>5 分鐘</td>
+                            <td>2001/03/11</td>
+                            <td>2008/09/25</td>
+                            <td>MACD指標</td>
+                            <td>布林通道策略</td>
+                            <td>隨機森林</td>
+                        </tr>
+                        <tr class="trade--table__item">
+                            <td>3</td>
+                            <td>智能交易</td>
+                            <td>TY</td>
+                            <td>十年美國債劵</td>
+                            <td>一週</td>
+                            <td>2005/09/01</td>
+                            <td>2011/05/03</td>
+                            <td></td>
+                            <td>均線策略</td>
+                            <td>-</td>
+                        </tr>
+                        <tr class="trade--table__item">
+                            <td>4</td>
+                            <td>一般交易</td>
+                            <td>C</td>
+                            <td>玉米</td>
+                            <td>一個月</td>
+                            <td>2018/06/24</td>
+                            <td>2021/08/23</td>
+                            <td>BIAS乖離率</td>
+                            <td>ORB策略</td>
+                            <td>Ada Boost</td>
+                        </tr>
+                    </table>
+                </div>
+               <div class="fl white-bg w-100 br-m mr-3pct card-shadow mt-6 pb-4">
+                    <div class="d-flex jcsb aic b-bottom p-4 pl-5 pr-5">
+                        <h2><i class="fas fa-exchange-alt mr-3"></i>交易紀錄</h2>
+                        <a href="personal-transactionRecord.html"  class="fr personal__btn dark-gray b-n fwb">查看更多</a>
+                    </div>
+                    <table class="w-100 tac mt-5 trade--table">
+                        <tr class="fwb">
+                            <th>序號</th>
+                            <th>商品代號</th>
+                            <th>商品名稱</th>
+                            <th>狀態</th>
+                            <th>持倉價格</th>
+                            <th>持倉時間</th>
+                            <th>持倉數量(口)</th>
+                            <th>平倉價格</th>
+                            <th>平倉時間</th>
+                            <th>平倉數量(口)</th>
+                            <th>投資報酬率</th>
+                        </tr>
+                        <tr class="trade--table__item">
+                            <td>1</td>
+                            <td>MNQ</td>
+                            <td>小那斯達克</td>
+                            <td>未平倉</td>
+                            <td>30,000</td>
+                            <td>2021/12/11 07:12</td>
+                            <td>5</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr class="trade--table__item ">
+                            <td>2</td>
+                            <td>TX</td>
+                            <td>大台指期</td>
+                            <td>平倉</td>
+                            <td>30,000</td>
+                            <td>2021/12/01 07:12</td>
+                            <td>3</td>
+                            <td>32,000</td>
+                            <td>2021/12/08 10:22</td>
+                            <td>2</td>
+                            <td class="light-green fwb">+ 1.98</td>
+                        </tr>
+                        <tr class="trade--table__item  ">
+                            <td>3</td>
+                            <td>MNQ</td>
+                            <td>小那斯達克</td>
+                            <td>平倉</td>
+                            <td>130,000</td>
+                            <td>2021//12/01 11:15</td>
+                            <td>6</td>
+                            <td>80,000</td>
+                            <td>2021//09/28 17:26</td>
+                            <td>6</td>
+                            <td class="dark-red fwb">- 2.55</td>
+                        </tr>
+                        <tr class="trade--table__item ">
+                            <td>4</td>
+                            <td>MX</td>
+                            <td>小台指期</td>
+                            <td>未平倉</td>
+                            <td>120,000</td>
+                            <td>2021/09/10 08:34</td>
+                            <td>4</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                    </table>
+                </div>
+        </div>
     </div>
 </div>
 {% endblock %}

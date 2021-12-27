@@ -1,0 +1,188 @@
+{% extends 'layout.html'%}
+{% load static %}
+{% block content %}
+<div class="wrap d-flex m0-a">
+        <div class="side">
+            <h1 class="fz-xl fwb">F<span class="bright">u</span>tures <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
+            <ul class="menu">
+                <li class=" main--menu pt-3 pr-5 pb-3 pl-9  "><a href="index.html"><i class="fas fa-home mr-4"></i>首頁</a></li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="trade.html"><i class="fas fa-university mr-4"></i>模擬交易所</a></li>
+                <li class="drop--menu">
+                    <a href="" class="main--menu  pt-3 pb-3 pl-9  ">
+                        <i class="fas fa-chalkboard-teacher mr-4"></i>期貨小教室<i class="fas fa-chevron-down  ml-6 fz-s"></i>
+                    </a>
+                    <ul class=" d-none">
+                        <li class="sub--menu"><a href="class.html">期貨基本知識</a></li>
+                        <li class="sub--menu"><a href="">期貨基本指標</a></li>
+                    </ul>
+                </li>
+                <li class="drop--menu">
+                    <a href="" class="main--menu  pt-3 pb-3 pl-9 mb-3">
+                        <i class="fas fa-chalkboard-teacher mr-4"></i>智能機器人顧問<i class="fas fa-chevron-down  ml-6 fz-s"></i>
+                    </a>
+                    <ul class=" d-none">
+                        <li class="sub--menu"><a href="robot-normal.html">一般交易系統</a></li>
+                        <li class="sub--menu"><a href="robot-intelligent.html">智能交易系統</a></li>
+                    </ul>
+                </li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="news.html"><i class="fas fa-newspaper mr-4"></i>新聞</a></li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="forum.html"><i class="fas fa-comment-alt mr-4"></i>討論版</a></li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  chosed"><a href="personal-page.html"><i class="fas fa-user-alt mr-4"></i>個人頁面</a></li>
+            </ul>
+            <div class="circle"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+        </div>
+        <div class="container pb-4">
+            <ul class="header d-flex jcfe card-shadow text-shadow p-1 aic ">
+                <li class="fz-s mr-2 fwbr d-flex  aic ">
+                    <i class="fas fa-piggy-bank fz-m mr-2"></i>
+                    <div>
+                        <p class="mr-2 tar"><span class="mr-2">800,000</span>(TWD)<span class="mr-2 ml-2">30,000</span>(USD)</p>
+                        <p>可用餘額</p>
+                    </div>
+                </li>
+                <li class="fz-s mr-3 fwbr d-flex  aic ">
+                    <div class="loginned_photo mr-2">
+                        <img src="../img/會員大頭貼.jpg" alt="會員大頭貼">
+                    </div>
+                    <p>Hi&nbsp;&nbsp;蔡西西</p>
+                </li>
+
+                <li><a href="#" class="header__logout--button dark-gray  mr-2 tac br-s fwb">登出</a></li>
+            </ul>
+            <ul class="personal--transactionRecord__content mt-7 w-100 pl-12 pr-10 b-4">
+               <li class="fl white-bg w-100 br-m  card-shadow   ">
+                <div class="d-flex jcsb aic b-bottom p-4 pl-5 pr-5">
+                    <h2><i class="fas fa-bookmark mr-3"></i>策略清單</h2>
+                    <form action="#" class="d-flex">
+                        <input type="search" name="record" id="record" placeholder="search here..." class="search_input b-n pt-2 pb-2 pl-4 pr-3  box-shadow">
+                        <button class="search_btn b-n pt-2 pb-2 pl-3 pr-3  box-shadow"><i class="fas fa-search fz-s"></i></button>
+                    </form>
+                </div>
+                <div class="pb-4 ">
+                    <table class="w-100 tac trade--table mb-4 ">
+                        <tr class="fwb">
+                            <th>序號</th>
+                            <th>分析類型</th>
+                            <th>商品代號</th>
+                            <th>商品名稱</th>
+                            <th>資料周期</th>
+                            <th>開始時間</th>
+                            <th>結束時間</th>
+                            <th>技術指標</th>
+                            <th>分析策略</th>
+                            <th>演算法</th>
+                        </tr>
+                        <tr class="trade--table__item">
+                            <td>1</td>
+                            <td>一般交易</td>
+                            <td>MNQ</td>
+                            <td>小那斯達克</td>
+                            <td>Tick</td>
+                            <td>2020/10/11</td>
+                            <td>2021/5/31</td>
+                            <td>RSI指標</td>
+                            <td>均線策略</td>
+                            <td>-</td>
+                        </tr>
+                        <tr class="trade--table__item">
+                            <td>2</td>
+                            <td>智能交易</td>
+                            <td>MES</td>
+                            <td>小S&P</td>
+                            <td>5 分鐘</td>
+                            <td>2001/03/11</td>
+                            <td>2008/09/25</td>
+                            <td>MACD指標</td>
+                            <td>布林通道策略</td>
+                            <td>隨機森林</td>
+                        </tr>
+                        <tr class="trade--table__item">
+                            <td>3</td>
+                            <td>智能交易</td>
+                            <td>TY</td>
+                            <td>十年美國債劵</td>
+                            <td>一週</td>
+                            <td>2005/09/01</td>
+                            <td>2011/05/03</td>
+                            <td></td>
+                            <td>均線策略</td>
+                            <td>Ada Boost</td>
+                        </tr>
+                        <tr class="trade--table__item">
+                            <td>4</td>
+                            <td>一般交易</td>
+                            <td>C</td>
+                            <td>金融期</td>
+                            <td>Tick</td>
+                            <td>2012/03/21</td>
+                            <td>2019/11/27</td>
+                            <td>BIAS乖離率</td>
+                            <td>威廉指標</td>
+                            <td>-</td>
+                        </tr>
+                        <tr class="trade--table__item">
+                            <td>5</td>
+                            <td>一般交易</td>
+                            <td>C</td>
+                            <td>玉米</td>
+                            <td>一個月</td>
+                            <td>2018/06/24</td>
+                            <td>2021/08/23</td>
+                            <td>BIAS乖離率</td>
+                            <td>ORB策略</td>
+                            <td>-</td>
+                        </tr>
+                        <tr class="trade--table__item">
+                            <td>6</td>
+                            <td>智能交易</td>
+                            <td>MNQ</td>
+                            <td>小那斯達克</td>
+                            <td>5 分鐘</td>
+                            <td>2020/10/11</td>
+                            <td>2021/5/31</td>
+                            <td>RSI指標</td>
+                            <td>均線策略</td>
+                            <td>支援向量機(SVM)</td>
+                        </tr>
+                        <tr class="trade--table__item">
+                            <td>7</td>
+                            <td>一般交易</td>
+                            <td>YM</td>
+                            <td>小道瓊</td>
+                            <td>1 小時</td>
+                            <td>2005/08/23</td>
+                            <td>2010/12/21</td>
+                            <td>趨向指標DMI</td>
+                            <td>海龜策略</td>
+                            <td>-</td>
+                        </tr>
+                        <tr class="trade--table__item">
+                            <td>8</td>
+                            <td>智能交易</td>
+                            <td>TY</td>
+                            <td>小羅素2000</td>
+                            <td>3 個月</td>
+                            <td>2007/05/07</td>
+                            <td>2020/11/04</td>
+                            <td>WVAD指標</td>
+                            <td>ORB策略</td>
+                            <td>基因表達規劃法(GEP)</td>
+                        </tr>
+                    </table>
+                    <ul class="pagination d-flex jcc tac m0-a">
+                        <li><a href="#" class="prev--buttom mr-2"><i class='fas fa-angle-double-left'></i></a></li>
+                        <li><a href="#" class="active mr-2">1</a></li>
+                        <li><a href="#" class="mr-2">2</a></li>
+                        <li><a href="#"  class="mr-2">3</a></li>
+                        <li><a href="#"  class="mr-2">4</a></li>
+                        <li><a href="#"  class="mr-2">5</a></li>
+                        <li><a href="#" class="next--buttom mr-2"><i class='fas fa-angle-double-right'></i></a></li>
+                    </ul>
+                </div>
+               </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
