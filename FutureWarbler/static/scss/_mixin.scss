@@ -9,6 +9,9 @@ $text_color:#4F4E4B;
 .w-21{
     width: 21%;
 }
+.w-25{
+    width: 25%;
+}
 .w-30{
     width: 30%;
 }
@@ -277,8 +280,14 @@ $text_color:#4F4E4B;
 .pt-10{
     padding-top: 50px;
 }
+.pr-10{
+    padding-right: 50px;
+}
 .pb-11{
     padding-bottom: 55px;
+}
+.pl-12{
+    padding-left: 60px;
 }
 .pb-21{
     padding-bottom: 105px;
@@ -361,6 +370,9 @@ $text_color:#4F4E4B;
 .fz-s{
     font-size: 14px;
 }
+.fz-xm{
+    font-size: 18px;
+}
 .fz-m{
     font-size: 20px;
 }
@@ -402,7 +414,10 @@ $text_color:#4F4E4B;
     background: #d8d8d6;
 }
 .dark-gray{
-    color: #4F4E4B;
+    color: #272726;
+}
+.dark-gray-bg{
+    background: #272726;
 }
 .white{
     color: white;

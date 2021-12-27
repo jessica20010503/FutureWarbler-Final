@@ -1,4 +1,4 @@
-.index_content{
+.index{
     .more{
         background: $primary_color;
         text-align: center;
@@ -10,9 +10,6 @@
             background: #1C383E;
         }
     }
-    .product--title{
-        border-radius: 10px 10px 0 0;
-    }
     .product--content{
         th{
             width: 120px;
@@ -23,25 +20,23 @@
         }
 
     }
-    .chart--title{
-        border-radius: 10px 10px 0 0;
-    }
-   .news--title{
-    border-radius: 10px 10px 0 0; 
-   }
-    .news--content li{
-        a{
-            border-bottom: #E3E2DD 1px solid;
-            
-            
+    .go_classroom--content{
+        
+        img{
+            width: 150px;
+            height: 150px;
         }
     }
-    .discussing--title{
-        border-radius: 10px 10px 0 0;
+    .news--content li{
+        &:hover{
+            background: #f3f2f2;
+        }
     }
     .discussing--content li{
+        &:hover{
+            background: #f3f2f2;
+        }
         a{
-            border-bottom: #E3E2DD 1px solid;
             .Avatars{
                 position: relative;
                 width: 20%; /* 固定寬度 */
@@ -62,6 +57,16 @@
                     object-fit: cover; /* 相當於 background-size: cover; of a background-image */
                     object-position: center;
                 }
+            }
+        }
+    }
+    .trade--table{
+        th,td{
+            padding: 15px 10px;
+        }
+        .trade--table__item{
+            &:hover{
+                background: #f3f2f2;
             }
         }
     }

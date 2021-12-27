@@ -3,268 +3,316 @@
 {% block content %}
 <div class="wrap d-flex m0-a">
     <div class="side">
-        <h1 class="fz-xl fwb">F<span class="bright">u</span>ture <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
-        <ul class="menu">
-            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href="index.html"><i class="fas fa-home mr-4"></i>首頁</a></li>
-            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3 chosed"><a href="trade.html"><i class="fas fa-university mr-4"></i>模擬交易所</a></li>
-            <li class="drop--menu">
-                <a href="" class="main--menu  pt-2 pb-2 pl-9 mb-3">
-                    <i class="fas fa-chalkboard-teacher mr-4 "></i>期貨小教室<i class="fas fa-chevron-down  ml-6 fz-s"></i>
-                </a>
-                <ul class=" d-none">
-                    <li class="sub--menu"><a href="class.html">期貨基本知識</a></li>
-                    <li class="sub--menu"><a href="">期貨基本指標</a></li>
-                </ul>
-            </li>
-            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href=""><i class="fas fa-robot mr-4"></i>智能機器人顧問</a></li>
-            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href="news.html"><i class="fas fa-newspaper mr-4"></i>新聞</a></li>
-            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href="forum.html"><i class="fas fa-comment-alt mr-4"></i>討論版</a></li>
-            <li class="main--menu pt-2 pr-5 pb-2 pl-9 mb-3"><a href="personal-page.html"><i class="fas fa-user-alt mr-4"></i>個人頁面</a></li>
-        </ul>
-    </div>
-    <div class="container">
-        <ul class="header--button d-flex jcfe aic">
-            <li class="fz-s mr-2 fwbr d-flex loginned_title aic">
-                <div class="loginned_photo mr-2">
-                    <img src="{% static 'img/會員大頭貼.jpg' %}" alt="會員大頭貼">
-                </div>
-                <p>Hi&nbsp;&nbsp;蔡西西</p>   
-            </li>
-            <li><a href="#" class="header__logout--button dark-gray  mr-2 tac br-s fwb">登出</a></li>
-        </ul>
-        <ul class="trade__content mt-4 w-100">
-            <li class="fl second-white-bg w-100 br-m  card-shadow ">
-                <div class="d-flex jcsb aic p-4 pl-8 pr-8 b-bottom ">
-                    <h2><i class="fas fa-list mr-3"></i>商品列表</h2>
-                    <form action="#" class="d-flex">
-                        <input type="search" name="record" id="record" placeholder="search here..." class="search_input b-n pt-2 pb-2 pl-4 pr-3  box-shadow">
-                        <button class="search_btn b-n pt-2 pb-2 pl-3 pr-3  box-shadow"><i class="fas fa-search fz-s"></i></button>
-                    </form>            
-                </div>
-                <div class="trade--productList pb-4 p-2 h-40">
-                    <table class="w-100 tac trade--table mb-4 ">
-                        <tr class="fwb">
-                            <th>序號</th>
-                            <th>商品代號</th>
-                            <th>商品名稱</th>
-                            <th>月</th>
-                            <th>漲跌</th>
-                            <th>漲跌幅</th>
-                            <th>時間</th>
-                        </tr>
-                        <tr class="trade--table__item">
-                            <td>1</td>
-                            <td>FITX</td>
-                            <td>台指期</td>
-                            <td>3月</td>
-                            <td>+3.12</td>
-                            <td>+6.12</td>
-                            <td>2021/12/18 18:12</td>
-                        </tr>
-                        <tr class="trade--table__item">
-                            <td>2</td>
-                            <td>FITX</td>
-                            <td>台指期</td>
-                            <td>3月</td>
-                            <td>+3.12</td>
-                            <td>+6.12</td>
-                            <td>2021/12/18 18:12</td>
-                        </tr>
-                        <tr class="trade--table__item">
-                            <td>3</td>
-                            <td>FITX</td>
-                            <td>台指期</td>
-                            <td>3月</td>
-                            <td>+3.12</td>
-                            <td>+6.12</td>
-                            <td>2021/12/18 18:12</td>
-                        </tr>
-                        <tr class="trade--table__item">
-                            <td>4</td>
-                            <td>FITX</td>
-                            <td>台指期</td>
-                            <td>3月</td>
-                            <td>+3.12</td>
-                            <td>+6.12</td>
-                            <td>2021/12/18 18:12</td>
-                        </tr>
-                        <tr class="trade--table__item">
-                            <td>5</td>
-                            <td>FITX</td>
-                            <td>台指期</td>
-                            <td>3月</td>
-                            <td>+3.12</td>
-                            <td>+6.12</td>
-                            <td>2021/12/18 18:12</td>
-                        </tr>
-                        <tr class="trade--table__item">
-                            <td>6</td>
-                            <td>FITX</td>
-                            <td>台指期</td>
-                            <td>3月</td>
-                            <td>+3.12</td>
-                            <td>+6.12</td>
-                            <td>2021/12/18 18:12</td>
-                        </tr>
-                        <tr class="trade--table__item">
-                            <td>7</td>
-                            <td>FITX</td>
-                            <td>台指期</td>
-                            <td>3月</td>
-                            <td>+3.12</td>
-                            <td>+6.12</td>
-                            <td>2021/12/18 18:12</td>
-                        </tr>
-                        <tr class="trade--table__item">
-                            <td>8</td>
-                            <td>FITX</td>
-                            <td>台指期</td>
-                            <td>3月</td>
-                            <td>+3.12</td>
-                            <td>+6.12</td>
-                            <td>2021/12/18 18:12</td>
-                        </tr>
-                        <tr class="trade--table__item">
-                            <td>9</td>
-                            <td>FITX</td>
-                            <td>台指期</td>
-                            <td>3月</td>
-                            <td>+3.12</td>
-                            <td>+6.12</td>
-                            <td>2021/12/18 18:12</td>
-                        </tr>
-                        <tr class="trade--table__item">
-                            <td>10</td>
-                            <td>FITX</td>
-                            <td>台指期</td>
-                            <td>3月</td>
-                            <td>+3.12</td>
-                            <td>+6.12</td>
-                            <td>2021/12/18 18:12</td>
-                        </tr>
-                        <tr class="trade--table__item">
-                            <td>11</td>
-                            <td>FITX</td>
-                            <td>台指期</td>
-                            <td>3月</td>
-                            <td>+3.12</td>
-                            <td>+6.12</td>
-                            <td>2021/12/18 18:12</td>
-                        </tr>
-                        <tr class="trade--table__item">
-                            <td>12</td>
-                            <td>FITX</td>
-                            <td>台指期</td>
-                            <td>3月</td>
-                            <td>+3.12</td>
-                            <td>+6.12</td>
-                            <td>2021/12/18 18:12</td>
-                        </tr>
-                    </table>
-                    
-                </div>
-            </li>
-            <li class="fl second-white-bg w-75 br-m  card-shadow mt-6 mr-4pct pt-4 pb-6 pl-8 pr-8">
-                <h2><i class="fas fa-list mr-3"></i>技術分析</h2>
-                <div class="d-flex aic jcsb  mt-3">
-                    <h3 class="fwb fz-m">小那斯達克 (MNQ)</h3>
-                    <ul class="d-flex drop--menu">
-                        <li><a href="" class="main--menu  analyze__btn d-block mr-3">時間週期</a>
-                            <ul class=" d-none menu--drop">
-                                <li class="tac"><a href="">5分鐘</a></li>
-                                <li class="tac"><a href="">1小時</a></li>
-                                <li class="tac"><a href="">5小時</a></li>
-                                <li class="tac"><a href="">1天</a></li>
-                                <li class="tac"><a href="">1週</a></li>
-                                <li class="tac"><a href="">1個月</a></li>
-                                <li class="tac"><a href="">3個月</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="" class="main--menu analyze__btn d-block mr-3">圖表類型</a>
-                            <ul class=" d-none menu--drop">
-                                <li class="tac"><a href="">K 線</a></li>
-                                <li class="tac"><a href="">美國線</a></li>
-                                <li class="tac"><a href="">蠟燭線</a></li>
-                                <li class="tac"><a href="">線形圖</a></li>
-                                <li class="tac"><a href="">區域圖</a></li>
-                                <li class="tac"><a href="">基準線</a></li>
-                                <li class="tac"><a href="">平均 K 線</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="" class="main--menu analyze__btn d-block">策略指標</a>
-                            <ul class=" d-none menu--drop">
-                                <li class="tac"><a href="">5分鐘</a></li>
-                                <li class="tac"><a href="">1小時</a></li>
-                                <li class="tac"><a href="">5小時</a></li>
-                                <li class="tac"><a href="">1天</a></li>
-                                <li class="tac"><a href="">1週</a></li>
-                                <li class="tac"><a href="">1個月</a></li>
-                                <li class="tac"><a href="">3個月</a></li>
-                            </ul>
-                     
-                        </li>
+            <h1 class="fz-xl fwb">F<span class="bright">u</span>tures <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
+            <ul class="menu">
+                <li class=" main--menu pt-3 pr-5 pb-3 pl-9  "><a href="index.html"><i class="fas fa-home mr-4"></i>首頁</a></li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  chosed"><a href="trade.html"><i class="fas fa-university mr-4"></i>模擬交易所</a></li>
+                <li class="drop--menu">
+                    <a href="" class="main--menu  pt-3 pb-3 pl-9  ">
+                        <i class="fas fa-chalkboard-teacher mr-4"></i>期貨小教室<i class="fas fa-chevron-down  ml-6 fz-s"></i>
+                    </a>
+                    <ul class=" d-none">
+                        <li class="sub--menu"><a href="class.html">期貨基本知識</a></li>
+                        <li class="sub--menu"><a href="">期貨基本指標</a></li>
                     </ul>
-                </div>
-                
-                <!-- TradingView Widget BEGIN -->
-                <div class="tradingview-widget-container w-100 mt-3">
-                <div id="tradingview_f719f"></div>
-                <div class="tradingview-widget-copyright"><a href="https://tw.tradingview.com/symbols/CME_MINI-NQ1!/" rel="noopener" target="_blank"><span class="blue-text">NQ1! 圖表</span></a>由TradingView提供</div>
-                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                <script type="text/javascript">
-                new TradingView.widget(
-                {
-                "height": 400,
-                "symbol": "CME_MINI:NQ1!",
-                "interval": "D",
-                "timezone": "Etc/UTC",
-                "theme": "light",
-                "style": "1",
-                "locale": "zh_TW",
-                "toolbar_bg": "#f1f3f6",
-                "enable_publishing": false,
-                "allow_symbol_change": true,
-                "container_id": "tradingview_f719f"
-                }
-                );
-                </script>
-                </div>
-                <!-- TradingView Widget END -->
-            </li>  
-            <li class="fl second-white-bg w-21 br-m card-shadow mt-6 pt-4 pb-6 pl-8 pr-8">
-                <h2><i class="fas fa-cash-register mr-3"></i>下單</h2>
-                <form action="" class="mt-3">
-                    <ul>
-                        <li class="d-flex">
-                            <p class="mr-3"><span class="fwb fz-m">3500</span>&nbsp;/&nbsp;口 </p>
-                            <p></p>
-                        </li>
-                        <li>
-                            <select class="trade--option p-1 w-75 mt-2">
-                                <option value="買" >買</option>
-                                <option value="賣" >賣</option>
+                </li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href=""><i class="fas fa-robot mr-4"></i>智能機器人顧問</a></li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="news.html"><i class="fas fa-newspaper mr-4"></i>新聞</a></li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="forum.html"><i class="fas fa-comment-alt mr-4"></i>討論版</a></li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="personal-page.html"><i class="fas fa-user-alt mr-4"></i>個人頁面</a></li>
+            </ul>
+            <div class="circle"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+        </div>
+    <div class="container pb-4">
+        <ul class="header d-flex jcfe card-shadow text-shadow p-1 aic ">
+                <li>
+                    <a href="" class="add--money--hover fz-s mr-2 fwbr d-flex  aic dark-gray">
+                        <i class="fas fa-piggy-bank fz-m mr-2"></i>
+                        <div>
+                            <p class="mr-2 tar"><span class="mr-2">800,000</span>(TWD)<span class="mr-2 ml-2">30,000</span>(USD)</p>
+                            <p>可用餘額</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="fz-s mr-3 fwbr d-flex  aic ">
+                    <div class="loginned_photo mr-2">
+                        <img src="../img/會員大頭貼.jpg" alt="會員大頭貼">
+                    </div>
+                    <p>Hi&nbsp;&nbsp;蔡西西</p>
+                </li>
+
+                <li><a href="#" class="header__logout--button dark-gray  mr-2 tac br-s fwb">登出</a></li>
+        </ul>
+        <ul class="trade__content w-100 mt-7  pl-12 pr-10 b-4 ">
+                <li class="fl white-bg w-100 br-m  card-shadow ">
+                    <div class="d-flex jcsb aic p-4 pl-8 pr-8 b-bottom ">
+                        <h2><i class="fas fa-list mr-3"></i>商品行情表</h2>
+                    </div>
+                    <div class="d-flex jcsb">
+                        <div class="trade--productList pb-4 p-2 h-40 w-80">
+                            <table class="w-100 tac trade--table mb-4 ">
+                                <tr class="fwb">
+                                    <th>序號</th>
+                                    <th>商品代號</th>
+                                    <th>商品名稱</th>
+                                    <th>月</th>
+                                    <th>漲跌</th>
+                                    <th>漲跌幅</th>
+                                    <th>時間</th>
+                                </tr>
+                                <tr class="trade--table__item">
+                                    <td>1</td>
+                                    <td>FITX</td>
+                                    <td>台指期</td>
+                                    <td>3月</td>
+                                    <td>+3.12</td>
+                                    <td>+6.12</td>
+                                    <td>2021/12/18 18:12</td>
+                                </tr>
+                                <tr class="trade--table__item">
+                                    <td>2</td>
+                                    <td>FITX</td>
+                                    <td>台指期</td>
+                                    <td>3月</td>
+                                    <td>+3.12</td>
+                                    <td>+6.12</td>
+                                    <td>2021/12/18 18:12</td>
+                                </tr>
+                                <tr class="trade--table__item">
+                                    <td>3</td>
+                                    <td>FITX</td>
+                                    <td>台指期</td>
+                                    <td>3月</td>
+                                    <td>+3.12</td>
+                                    <td>+6.12</td>
+                                    <td>2021/12/18 18:12</td>
+                                </tr>
+                                <tr class="trade--table__item">
+                                    <td>4</td>
+                                    <td>FITX</td>
+                                    <td>台指期</td>
+                                    <td>3月</td>
+                                    <td>+3.12</td>
+                                    <td>+6.12</td>
+                                    <td>2021/12/18 18:12</td>
+                                </tr>
+                                <tr class="trade--table__item">
+                                    <td>5</td>
+                                    <td>FITX</td>
+                                    <td>台指期</td>
+                                    <td>3月</td>
+                                    <td>+3.12</td>
+                                    <td>+6.12</td>
+                                    <td>2021/12/18 18:12</td>
+                                </tr>
+                                <tr class="trade--table__item">
+                                    <td>6</td>
+                                    <td>FITX</td>
+                                    <td>台指期</td>
+                                    <td>3月</td>
+                                    <td>+3.12</td>
+                                    <td>+6.12</td>
+                                    <td>2021/12/18 18:12</td>
+                                </tr>
+                                <tr class="trade--table__item">
+                                    <td>7</td>
+                                    <td>FITX</td>
+                                    <td>台指期</td>
+                                    <td>3月</td>
+                                    <td>+3.12</td>
+                                    <td>+6.12</td>
+                                    <td>2021/12/18 18:12</td>
+                                </tr>
+                                <tr class="trade--table__item">
+                                    <td>8</td>
+                                    <td>FITX</td>
+                                    <td>台指期</td>
+                                    <td>3月</td>
+                                    <td>+3.12</td>
+                                    <td>+6.12</td>
+                                    <td>2021/12/18 18:12</td>
+                                </tr>
+                                <tr class="trade--table__item">
+                                    <td>9</td>
+                                    <td>FITX</td>
+                                    <td>台指期</td>
+                                    <td>3月</td>
+                                    <td>+3.12</td>
+                                    <td>+6.12</td>
+                                    <td>2021/12/18 18:12</td>
+                                </tr>
+                                <tr class="trade--table__item">
+                                    <td>10</td>
+                                    <td>FITX</td>
+                                    <td>台指期</td>
+                                    <td>3月</td>
+                                    <td>+3.12</td>
+                                    <td>+6.12</td>
+                                    <td>2021/12/18 18:12</td>
+                                </tr>
+                                <tr class="trade--table__item">
+                                    <td>11</td>
+                                    <td>FITX</td>
+                                    <td>台指期</td>
+                                    <td>3月</td>
+                                    <td>+3.12</td>
+                                    <td>+6.12</td>
+                                    <td>2021/12/18 18:12</td>
+                                </tr>
+                                <tr class="trade--table__item">
+                                    <td>12</td>
+                                    <td>FITX</td>
+                                    <td>台指期</td>
+                                    <td>3月</td>
+                                    <td>+3.12</td>
+                                    <td>+6.12</td>
+                                    <td>2021/12/18 18:12</td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <form action="" class="w-30 p-2 pl-5">
+                            <div class="d-block">
+                                <label for="product">期貨商品：
+                                    <select name="product" id="product" class="trade--option  w-25 mt-2 p-1 br-s ">
+                                        <option value="">台指期</option>
+                                        <option value="">小台指</option>
+                                        <option value="5hr">電子期</option>
+                                        <option value="1day">金融期</option>
+                                        <option value="1week">小道瓊</option>
+                                        <option value="1month">小那斯達克</option>
+                                        <option value="3month">小S&P</option>
+                                        <option value="3month">小羅素2000</option>
+                                        <option value="3month">美國十年公債</option>
+                                        <option value="3month">黃豆</option>
+                                        <option value="3month">小麥</option>
+                                        <option value="3month">玉米</option>
+                                    </select>
+                            </div>
+                            <div class="d-block">
+                                <label for="cycle">資料周期：
+                                <select name="cycle" id="cycle" class="trade--option  w-25 mt-2 p-1 br-s ">
+                                    <option value="5min">5 分鐘</option>
+                                    <option value="1hr">1 小時</option>
+                                    <option value="5hr">5 小時</option>
+                                    <option value="1day">1 天</option>
+                                    <option value="1week">1 周</option>
+                                    <option value="1month">1 個月</option>
+                                    <option value="3month">3 個月</option>
+                                </select>
+                            </div>
+                            <div class="d-block">
+                                <label for="start-time">開始時間：</label>
+                                <input id="start-time" type="date" class="trade--option  mt-2 p-1 ">
+                                <br>
+                                <label for="end-time">結束時間：</label>
+                                <input id="end-time" type="date" class="trade--option  mt-2 p-1 ">
+                            </div>
+                            <div class="d-block">
+                                <label for="index1">副圖指標1：
+                                <select name="index1" id="index1" class="trade--option  w-30 mt-2 p-1 br-s">
+                                    <option value="">RSI指標</option>
+                                    <option value="">KD指標</option>
+                                    <option value="">BIAS乖離率</option>
+                                    <option value="">MACD指標</option>
+                                    <option value="">布林通道</option>
+                                    <option value="">威廉指標</option>
+                                    <option value="">WVAD指標</option>
+                                    <option value="">MA策略</option>
+                                    <option value="">趨向指標 DMI</option>
+                                    <option value="">威廉指標</option>
+                                    <option value="">EMA(指數平均數指標）</option>
+                                    <option value="">RSV（未成熟隨機值）</option>
+                                </select>
+                            </div>
+                            <div class="d-block">
+                                <label for="index2">副圖指標2：
+                                    <select name="index2" id="index2" class="trade--option  w-30 mt-2 p-1 br-s">
+                                        <option value="">RSI指標</option>
+                                        <option value="">KD指標</option>
+                                        <option value="">BIAS乖離率</option>
+                                        <option value="">MACD指標</option>
+                                        <option value="">布林通道</option>
+                                        <option value="">威廉指標</option>
+                                        <option value="">WVAD指標</option>
+                                        <option value="">MA策略</option>
+                                        <option value="">趨向指標 DMI</option>
+                                        <option value="">威廉指標</option>
+                                        <option value="">EMA(指數平均數指標）</option>
+                                        <option value="">RSV（未成熟隨機值）</option>
+                                    </select>
+                            </div>
+                            <input type="submit" value="送出" class="fr submit__btn dark-gray b-n mt-5 fwb">
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </li>
+                <li class="fl white-bg w-75 br-m  card-shadow mt-6 mr-4pct pt-4 pb-6 pl-8 pr-8">
+                    <h2><i class="fas fa-list mr-3"></i>技術分析</h2>
+                    <h3 class="fwb fz-m mt-3">台指期 (FITX)</h3>
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="tradingview-widget-container mt-2">
+                            <div id="tradingview_390a9"></div>
+                            <div class="tradingview-widget-copyright"><a href="https://tw.tradingview.com/symbols/OTC-FITX/" rel="noopener" target="_blank"><span class="blue-text">FITX 圖表</span></a>由TradingView提供</div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                            <script type="text/javascript">
+                            new TradingView.widget(
+                            {
+                            "width": 800,
+                            "height": 510,
+                            "symbol": "OTC:FITX",
+                            "interval": "D",
+                            "timezone": "Etc/UTC",
+                            "theme": "light",
+                            "style": "1",
+                            "locale": "zh_TW",
+                            "toolbar_bg": "#f1f3f6",
+                            "enable_publishing": false,
+                            "allow_symbol_change": true,
+                            "container_id": "tradingview_390a9"
+                        }
+                            );
+                            </script>
+                        </div>
+                        <!-- TradingView Widget END -->
+                </li>
+                <li class="fl white-bg w-21 br-m card-shadow mt-6 p-3">
+                    <h2><i class="fas fa-cash-register mr-3"></i>下單</h2>
+                    <form action="" class="mt-3">
+                        <ul>
+                            <li class="d-flex">
+                                <p class="mr-3"><span class="fwb fz-m">3500</span>&nbsp;/&nbsp;口 </p>
+                                <p></p>
+                            </li>
+                            <li>
+                                <select class="trade--option p-1 w-75 mt-2">
+                                    <option value="買" >買</option>
+                                    <option value="賣" >賣</option>
+                                </select>
+                                <div class="w-75 mt-2">
+                                    <input id="min" name="" type="button" value="-" class="  b-n p-1" />
+                                    <input id="quantity" name="" type="text" value="1" class="w-65"/>
+                                    <input id="add" name="" type="button" value="+"  class="  b-n p-1"/>
+                                </div>
+
+                            </li>
+                            <li><select class="trade--option p-1 w-75 mt-2">
+                                <option value="停損">停損</option>
+                                <option value="停利">停利</option>
                             </select>
                             <div class="w-75 mt-2">
-                                <input id="min" name="" type="button" value="-" class="  b-n p-1" />
-                                <input id="quantity" name="" type="text" value="1" class="w-65"/>
-                                <input id="add" name="" type="button" value="+"  class="  b-n p-1"/>
-                            </div>
-                            
-                        </li>
-                        <li><select class="trade--option p-1 w-75 mt-2">
-                            <option value="停損">停損</option>
-                            <option value="停利">停利</option>
-                        </select>
-                        <div class="w-75 mt-2">
-                            <input id="stopmin" name="" type="button" value="-" class="  b-n p-1" />
-                            <input id="stopquantity" name="" type="text" value="15000"  class="w-65"/>
-                            <input id="stopadd" name="" type="button" value="+" class=" b-n p-1" />
-                        </div></li>
-                        <li><a href="" class="fr "><input type="button" value="confirm" class="order__btn dark-gray b-n mt-6"></a></li>
-                    </ul>
-                </form>
-            </li> 
-        </ul>
+                                <input id="stopmin" name="" type="button" value="-" class="  b-n p-1" />
+                                <input id="stopquantity" name="" type="text" value="15000"  class="w-65"/>
+                                <input id="stopadd" name="" type="button" value="+" class=" b-n p-1" />
+                            </div></li>
+                            <input type="submit" value="下單" class="fr submit__btn dark-gray b-n mt-5 fwb">
+                            <div class="clearfix"></div>
+                        </ul>
+                    </form>
+                </li>
+            </ul>
     </div>
 </div>
 {% endblock %}

@@ -1,26 +1,4 @@
 .class__content{
-    .tag{
-        flex-wrap: wrap;
-        a{
-            transition: 0.5s all;
-            &:hover{
-                background-color: $text_color;
-                color: $primary_color;
-            }
-        }
-    }
-    .realitive--article{
-       li{
-           &:hover{
-               background: #f3f2f2;
-           }
-        }
-       h3{
-           &:hover{
-               color: #226F7D;
-            }
-        }
-    }
     .near--page__btn{
         background: $primary_color;
         text-align: center;
@@ -31,6 +9,15 @@
             color: $second_color;
             background: #1C383E;
            transition: 0.1s;
+        }
+    }
+    .realitive--article li a{
+        &:hover{
+            background: #f3f2f2;
+            h3{
+                color: rgba(9, 44, 81, 0.88);
+                text-decoration: underline;
+            }
         }
     }
 
