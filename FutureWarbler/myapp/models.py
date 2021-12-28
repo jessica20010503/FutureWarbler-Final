@@ -186,6 +186,7 @@ class Feedback(models.Model):
 class Futures(models.Model):
     futures_id = models.CharField(primary_key=True, max_length=10)
     futures_name = models.CharField(max_length=10)
+    futures_deposit = models.CharField(max_length=10)
 
     class Meta:
         managed = False
