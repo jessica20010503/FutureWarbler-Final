@@ -122,18 +122,48 @@ def trade (request):
 
 def transactionRecord (request):
     return render(request,"personal-transactionRecord.html",locals())
-#change
-def classes(request): # 不能用 class 命名
+
+def classes(request): 
     return render(request,"class.html",locals())
 
 def classcontent(request):
     return render(request,"class-content.html",locals())
 
+def indexclass(request):
+    return render(request,"index-class.html",locals())
+
+def indexclasscontent(request):
+    return render(request,"index-class-content.html",locals())
+
+def robotnormal(request):
+    return render(request,"robot-normal.html",locals())
+
+def robotintelligent(request):
+    return render(request,"robot-intelligent.html",locals())
+
 def news(request):
-    return render(request,"news.html",locals())
+    return render(request,"news.html",locals()) # 財經
+
+def news1(request):
+    return render(request,"news-1.html",locals()) # 期貨
+
+def news2(request):
+    return render(request,"news-2.html",locals()) # 兩岸
+
+def news3(request):
+    return render(request,"news-3.html",locals()) # 國際
+
+def news4(request):
+    return render(request,"news-4.html",locals()) # 產業
+
+def news5(request):
+    return render(request,"news-5.html",locals()) # 理財
 
 def newscontent(request):
     return render(request,"news-content.html",locals())
+
+def newssearch(request):
+    return render(request,"news-search.html",locals())
 
 def forum(request):
     return render(request,"forum.html",locals())

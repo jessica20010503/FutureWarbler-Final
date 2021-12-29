@@ -1546,7 +1546,11 @@ img {
 }
 
 .news .topnav a:hover {
+<<<<<<< HEAD
   background-color: #1C383E;
+=======
+  background-color: #0F2E4F;
+>>>>>>> 94e1d0eb07123b74a8e360f3241b1b727173ee05
   border-radius: 10px;
 }
 
@@ -1569,7 +1573,11 @@ img {
 }
 
 .news-content .topnav a:hover {
+<<<<<<< HEAD
   background-color: #1C383E;
+=======
+  background-color: #0F2E4F;
+>>>>>>> 94e1d0eb07123b74a8e360f3241b1b727173ee05
   border-radius: 10px;
 }
 
@@ -2017,6 +2025,7 @@ img {
   font-size: 16px;
 }
 
+<<<<<<< HEAD
 .trade__content .personal__btn:hover {
   color: #FAFAFA;
   background: #1C383E;
@@ -2045,6 +2054,8 @@ img {
   padding: 15px 10px;
 }
 
+=======
+>>>>>>> 94e1d0eb07123b74a8e360f3241b1b727173ee05
 .robot-normal .robot__btn {
   background: #FFDD00;
   text-align: center;
