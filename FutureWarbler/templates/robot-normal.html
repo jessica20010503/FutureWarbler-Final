@@ -1,0 +1,138 @@
+{% extends 'layout.html'%}
+{% load static %}
+{% block content %}
+    <div class="wrap d-flex m0-a">
+        <div class="side">
+            <h1 class="fz-xl fwb">F<span class="bright">u</span>tures <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
+            <ul class="menu">
+                <li class=" main--menu pt-3 pr-5 pb-3 pl-9  "><a href="index/"><i class="fas fa-home mr-2"></i>首頁</a></li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="trade/"><i class="fas fa-university mr-2"></i>模擬交易所</a></li>
+                <li class="drop--menu">
+                    <a href="" class="main--menu pt-3 pb-3 pl-9  ">
+                        <i class="fas fa-chalkboard-teacher mr-2"></i>期貨小教室<i class="fas fa-chevron-down ml-1 fz-s"></i>
+                    </a>
+                    <ul class=" d-none">
+                        <li class="sub--menu"><a href="class/">期貨基本介紹</a></li>
+                        <li class="sub--menu"><a href="index-class/">期貨指標介紹</a></li>
+                    </ul>
+                </li>
+                <li class="drop--menu">
+                    <a href="" class="main--menu pt-3 pb-3 pl-9 chosed">
+                        <i class="fas fa-robot mr-2"></i>智能機器人顧問<i class="fas fa-chevron-down ml-1 fz-s"></i>
+                    </a>
+                    <ul class=" d-none">
+                        <li class="sub--menu"><a href="robot-normal/">交易策略</a></li>
+                        <li class="sub--menu"><a href="robot-intelligent/">智能交易策略</a></li>
+                    </ul>
+                </li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="news/"><i class="fas fa-newspaper mr-2"></i>新聞</a></li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="forum/"><i class="fas fa-comment-alt mr-2"></i>討論版</a></li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="personal-page/"><i class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
+            </ul>
+        </div>
+        <div class="container pb-4">
+            <ul class="header d-flex jcfe card-shadow text-shadow p-3">
+                <li><a href="login/" class="header__login--button dark-gray  mr-2 tac br-s fwb"><i class="fas fa-sign-in-alt mr-3"></i>登入</a></li>
+            </ul>
+            <div class="robot-normal mt-7 w-100 pl-12 pr-10 b-4">
+                <div class="fl white-bg w-100 br-m mr-3pct card-shadow pt-6 pb-6 pl-8 pr-8">
+                    <h2 class="mb-6"><i class="fas fa-list mr-3"></i>設定計算項目</h2>
+                    <form action="#" method="#" class="time-table d-flex jcsb">
+                        <div class="w-30">
+                            <h2 class="mb-4 fwb primary b-bottom pb-2">商品設定</h2>
+                            <label for="product">期貨商品：
+                            <select name="product" id="product">
+                                <option value="TX">台指期</option>
+                                <option value="MTX">小台指</option>
+                                <option value="TE">電子期</option>
+                                <option value="TF">金融期</option>
+                                <option value="UDF">小道瓊</option>
+                                <option value="NAS">小那斯達克</option>
+                                <option value="S&P">小S&P</option>
+                                <option value="RUT">小羅素2000</option>
+                                <option value="US10">美國十年公債</option>
+                                <option value="S">黃豆</option>
+                                <option value="W">小麥</option>
+                                <option value="C">玉米</option>
+                            </select>
+                        </div>
+                        <div class="w-30">
+                            <h2 class="mb-4 fwb primary b-bottom pb-2">時間設定</h2>
+                            <label for="cycle">資料周期：
+                                <input type="number" name="number" id="cycle" class="number">
+                                <select id="cycle" name="cycle" class="mb-5">
+                                    <option value="min">分鐘</option>
+                                    <option value="hr">小時</option>
+                                    <option value="day">天</option>
+                                </select>
+                            <br>
+                            <label for="start-time">開始時間：</label>
+                            <input id="start-time" name="start-time" type="date" class="mb-5">
+                            <br>
+                            <label for="end-time">結束時間：</label>
+                            <input id="end-time" name="end-time" type="date" class="mb-5">
+                        </div>
+                        <div class="w-30">
+                            <h2 class="mb-4 fwb primary b-bottom pb-2">進出場策略</h2>
+                            <label for="in">進場：
+                                <select id="in" name="in" class="mb-5">
+                                    <option value="">MA快線向上突破慢線</option>
+                                    <option value="">MA快線向下跌破慢線</option>
+                                    <option value="">RSI > 50及MA向上穿越</option>
+                                    <option value="">RSI < 50及MA向下跌破</option>
+                                    <option value="MA">均線策略</option>
+                                    <option value="Bollinger2">布林通道</option>
+                                    <option value="Turtle">海龜策略</option> 
+s                                </select>
+                            <br>
+                            <label for="out">出場：
+                                <select id="out" name="out" class="mb-5">
+                                    <option value="">停利RSI > 80</option>
+                                    <option value="">停損RSI < 30</option>
+                                    <option value="">多單K值向下穿越D值</option>
+                                    <option value="">空單K值向上跌破D值</option>
+                                    <option value="MA">均線策略</option>
+                                    <option value="Bollinger2">布林通道</option>
+                                    <option value="Turtle">海龜策略</option>
+                                </select>
+                        </div>
+                    </form>
+                    <a href="#"  class="d-inline-block fr robot__btn dark-gray b-n fwb">確認送出</a>
+                </div>
+                
+                <div class="fl second-white-bg w-100 br-m card-shadow mt-6 mr-4pct pt-6 pb-6 pl-8 pr-8">
+                    <div class="d-flex aic jcsb mb-8">
+                        <h2><i class="fas fa-chart-line mr-2"></i>分析結果</h2>
+                        <a href="#"  class="d-inline-block fr robot__btn dark-gray b-n fwb">保存此策略</a>
+                    </div>
+                    <!-- TradingView Widget BEGIN -->
+                    <div class="tradingview-widget-container w-100 mt-3">
+                        <div id="tradingview_f719f"></div>
+                        <div class="tradingview-widget-copyright"><a href="https://tw.tradingview.com/symbols/CME_MINI-NQ1!/" rel="noopener" target="_blank"><span class="blue-text">NQ1! 圖表</span></a>由TradingView提供</div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                        <script type="text/javascript">
+                        new TradingView.widget(
+                        {
+                        "height": 400,
+                        "symbol": "CME_MINI:NQ1!",
+                        "interval": "D",
+                        "timezone": "Etc/UTC",
+                        "theme": "light",
+                        "style": "1",
+                        "locale": "zh_TW",
+                        "toolbar_bg": "#f1f3f6",
+                        "enable_publishing": false,
+                        "allow_symbol_change": true,
+                        "container_id": "tradingview_f719f"
+                        }
+                        );
+                        </script>
+                    </div>
+                    <!-- TradingView Widget END -->
+                    <h2 class="mb-4 fwb primary b-bottom pb-2 tac mt-6">交易建議</h2>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt eligendi cupiditate esse corrupti excepturi saepe aut libero voluptate quaerat quos nisi, quod facere tempore labore rerum minima, quasi fuga nihil.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
