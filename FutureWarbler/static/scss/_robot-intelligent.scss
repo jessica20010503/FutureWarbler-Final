@@ -7,15 +7,8 @@
             padding: 10px;
         }
     }
-    .conclusion-table tr{
-        border-bottom: 1px solid darkgray;
-    }
-    .product-table{
-        height: 300px;
-        overflow-y: auto;
-    }
-    .time-table,.index-table{
-        height: 300px;
+    .conclusin-table th{
+        background-color: rgb(214, 237, 252);
     }
     .robot__btn{
         background: $primary_color;
@@ -30,12 +23,14 @@
            transition: 0.1s;
         }
     }
-    .trade--table__item{
-        &:hover{
-            background: #faf6bd;
-        }
-    }
     .border-bottom{
         border-bottom: 1px solid darkgray;
     }
+    .number{
+        width: 50px;
+    }
+    .bg-lightgray{
+        background-color: #f9f9f9;
+    }
+
 }

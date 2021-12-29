@@ -3,11 +3,14 @@
         background: #4599d5;
         a{
             &:hover{
-                background-color: $text_color;
-                color: #ebcf46;
+                background-color: #1C383E;
                 border-radius: 10px;
             }
         }
+    }
+    img{
+        width: 120px;
+        height: 100px;
     }
     .content-left li a,.content-right li a{
         &:hover{

@@ -81,7 +81,7 @@
     }
     .trade--table{
         th,td{
-            padding: 15px 10px;
+            padding: 15px 13px;
         }
         .trade--table__item{
             &:hover{
@@ -89,7 +89,25 @@
             }
         }
     }
+    .unlogin{
+        position: fixed;
+        top: 40%;
+        left: 46%;
+    }
+    .unlogin-bg{
+        background: rgba(49, 47, 47, 0.753);
+	    height: 722px;
+        padding: 100px;
+        position: fixed;
+        left: 15%;
+        top:0%;
+        z-index: 101;
+    }
+    
+    
 }
+
+
 
 
 

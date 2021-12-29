@@ -97,6 +97,10 @@ table {
   width: 65%;
 }
 
+.w-70 {
+  width: 70%;
+}
+
 .w-75 {
   width: 75%;
 }
@@ -131,6 +135,10 @@ table {
 
 .mr-1 {
   margin-right: 5px;
+}
+
+.ml-1 {
+  margin-left: 5px;
 }
 
 .m-2 {
@@ -215,6 +223,10 @@ table {
 
 .mt-7 {
   margin-top: 35px;
+}
+
+.mt-8 {
+  margin-top: 40px;
 }
 
 .ml-8 {
@@ -395,6 +407,10 @@ table {
 
 .pt-8 {
   padding-top: 40px;
+}
+
+.p-8 {
+  padding: 40px;
 }
 
 .pl-8 {
@@ -1204,9 +1220,26 @@ img {
   padding: 12px 5px;
 }
 
-.index .go_classroom--content img {
-  width: 150px;
-  height: 150px;
+.index .go_classroom--content {
+  background: #003a25;
+}
+
+.index .go_classroom--content .go_classroom--btn {
+  background: #FFDD00;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+.index .go_classroom--content .go_classroom--btn:hover {
+  color: #FAFAFA;
+  background: #1C383E;
+}
+
+.index .go_classroom--content .go_classroom--bottom {
+  background: #cd9d45;
+  border-radius: 0px 0px 10px 10px;
 }
 
 .index .news--content li:hover {
@@ -1503,13 +1536,17 @@ img {
   text-decoration: underline;
 }
 
+.class__content .realitive--article img {
+  width: 100px;
+  height: 80px;
+}
+
 .news .topnav {
   background: #4599d5;
 }
 
 .news .topnav a:hover {
-  background-color: #4F4E4B;
-  color: #ebcf46;
+  background-color: #1C383E;
   border-radius: 10px;
 }
 
@@ -1532,9 +1569,13 @@ img {
 }
 
 .news-content .topnav a:hover {
-  background-color: #4F4E4B;
-  color: #ebcf46;
+  background-color: #1C383E;
   border-radius: 10px;
+}
+
+.news-content img {
+  width: 120px;
+  height: 100px;
 }
 
 .news-content .content-left li a:hover, .news-content .content-right li a:hover {
@@ -1860,15 +1901,31 @@ img {
 }
 
 .personal--page__content .trade--table th, .personal--page__content .trade--table td {
-  padding: 15px 10px;
+  padding: 15px 13px;
 }
 
 .personal--page__content .trade--table .trade--table__item:hover {
   background: #f3f2f2;
 }
 
+.personal--page__content .unlogin {
+  position: fixed;
+  top: 40%;
+  left: 46%;
+}
+
+.personal--page__content .unlogin-bg {
+  background: rgba(49, 47, 47, 0.753);
+  height: 722px;
+  padding: 100px;
+  position: fixed;
+  left: 15%;
+  top: 0%;
+  z-index: 101;
+}
+
 .personal--transactionRecord__content .trade--table th, .personal--transactionRecord__content .trade--table td {
-  padding: 15px 10px;
+  padding: 15px 13px;
 }
 
 .personal--transactionRecord__content .trade--table .trade--table__item:hover {
@@ -1876,7 +1933,7 @@ img {
 }
 
 .trade__content .trade--productList {
-  height: 300px;
+  height: 450px;
   overflow-y: auto;
 }
 
@@ -1951,17 +2008,41 @@ img {
   transition: 0.1s;
 }
 
+.trade__content .personal__btn {
+  background: #FFDD00;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 16px;
+}
+
+.trade__content .personal__btn:hover {
+  color: #FAFAFA;
+  background: #1C383E;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+
+.trade__content .close__btn {
+  background: #db2a2a;
+  color: #FAFAFA;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 16px;
+}
+
+.trade__content .close__btn:hover {
+  color: #FAFAFA;
+  background: #991313;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+
 .robot-normal table td {
   padding: 15px 10px;
-}
-
-.robot-normal .product-table {
-  height: 300px;
-  overflow-y: auto;
-}
-
-.robot-normal .time-table, .robot-normal .index-table {
-  height: 300px;
 }
 
 .robot-normal .robot__btn {
@@ -1980,8 +2061,8 @@ img {
   transition: 0.1s;
 }
 
-.robot-normal .trade--table__item:hover {
-  background: #faf6bd;
+.robot-normal .number {
+  width: 50px;
 }
 
 .robot-intelligent table th {
@@ -1992,17 +2073,8 @@ img {
   padding: 10px;
 }
 
-.robot-intelligent .conclusion-table tr {
-  border-bottom: 1px solid darkgray;
-}
-
-.robot-intelligent .product-table {
-  height: 300px;
-  overflow-y: auto;
-}
-
-.robot-intelligent .time-table, .robot-intelligent .index-table {
-  height: 300px;
+.robot-intelligent .conclusin-table th {
+  background-color: #d6edfc;
 }
 
 .robot-intelligent .robot__btn {
@@ -2021,11 +2093,15 @@ img {
   transition: 0.1s;
 }
 
-.robot-intelligent .trade--table__item:hover {
-  background: #faf6bd;
-}
-
 .robot-intelligent .border-bottom {
   border-bottom: 1px solid darkgray;
+}
+
+.robot-intelligent .number {
+  width: 50px;
+}
+
+.robot-intelligent .bg-lightgray {
+  background-color: #f9f9f9;
 }
 /*# sourceMappingURL=all.css.map */
