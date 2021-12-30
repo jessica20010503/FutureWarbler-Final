@@ -11,6 +11,7 @@ class ADebt(models.Model):
     a_debt_volume = models.CharField(max_length=8)
 
     class Meta:
+        
         managed = False
         db_table = 'a_debt'
         unique_together = (('a_debt_time', 'a_debt_date'),)
@@ -20,6 +21,7 @@ class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
     class Meta:
+
         managed = False
         db_table = 'auth_group'
 
@@ -30,6 +32,7 @@ class AuthGroupPermissions(models.Model):
     permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
 
     class Meta:
+
         managed = False
         db_table = 'auth_group_permissions'
         unique_together = (('group', 'permission'),)
@@ -41,6 +44,7 @@ class AuthPermission(models.Model):
     codename = models.CharField(max_length=100)
 
     class Meta:
+
         managed = False
         db_table = 'auth_permission'
         unique_together = (('content_type', 'codename'),)
@@ -59,6 +63,7 @@ class AuthUser(models.Model):
     date_joined = models.DateTimeField()
 
     class Meta:
+
         managed = False
         db_table = 'auth_user'
 
@@ -69,6 +74,7 @@ class AuthUserGroups(models.Model):
     group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
 
     class Meta:
+
         managed = False
         db_table = 'auth_user_groups'
         unique_together = (('user', 'group'),)
@@ -80,6 +86,7 @@ class AuthUserUserPermissions(models.Model):
     permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
 
     class Meta:
+
         managed = False
         db_table = 'auth_user_user_permissions'
         unique_together = (('user', 'permission'),)
@@ -92,7 +99,8 @@ class Class(models.Model):
     class_photo = models.CharField(max_length=100)
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'class'
 
 
@@ -106,7 +114,8 @@ class Corn(models.Model):
     corn_volume = models.CharField(max_length=8)
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'corn'
         unique_together = (('corn_time', 'corn_date'),)
 
@@ -121,7 +130,8 @@ class Dcboard(models.Model):
     dcboard_uploads = models.CharField(max_length=200)
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'dcboard'
         unique_together = (('dcboard_id', 'member'),)
 
@@ -136,6 +146,7 @@ class DjangoAdminLog(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
 
     class Meta:
+        
         managed = False
         db_table = 'django_admin_log'
 
@@ -145,6 +156,7 @@ class DjangoContentType(models.Model):
     model = models.CharField(max_length=100)
 
     class Meta:
+
         managed = False
         db_table = 'django_content_type'
         unique_together = (('app_label', 'model'),)
@@ -157,6 +169,7 @@ class DjangoMigrations(models.Model):
     applied = models.DateTimeField()
 
     class Meta:
+
         managed = False
         db_table = 'django_migrations'
 
@@ -167,6 +180,7 @@ class DjangoSession(models.Model):
     expire_date = models.DateTimeField()
 
     class Meta:
+
         managed = False
         db_table = 'django_session'
 
@@ -178,7 +192,8 @@ class Feedback(models.Model):
     feedback_content = models.TextField()
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'feedback'
         unique_together = (('feedback_id', 'member'),)
 
@@ -189,7 +204,8 @@ class Futures(models.Model):
     futures_deposit = models.CharField(max_length=10)
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'futures'
 
 
@@ -205,7 +221,8 @@ class History(models.Model):
     record = models.IntegerField()
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'history'
         unique_together = (('member', 'futures'),)
 
@@ -217,7 +234,8 @@ class IndexClass(models.Model):
     index_class_photo = models.CharField(max_length=100)
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'index_class'
 
 
@@ -234,7 +252,8 @@ class IntelligentStrategy(models.Model):
     intelligent_strategy_exit = models.IntegerField()
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'intelligent_strategy'
         unique_together = (('intelligent_strategy_name', 'member'),)
 
@@ -252,7 +271,8 @@ class Member(models.Model):
     member_usd = models.CharField(max_length=50)
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'member'
 
 
@@ -266,7 +286,8 @@ class MiniDow(models.Model):
     mini_dow_volume = models.CharField(max_length=8)
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'mini_dow'
         unique_together = (('mini_dow_time', 'mini_dow_date'),)
 
@@ -281,7 +302,8 @@ class MiniNastaq(models.Model):
     mini_nastaq_volume = models.CharField(max_length=8)
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'mini_nastaq'
         unique_together = (('mini_nastaq_time', 'mini_nastaq_date'),)
 
@@ -295,8 +317,10 @@ class MiniRussell(models.Model):
     mini_russell_low = models.CharField(max_length=8)
     mini_russell_volume = models.CharField(max_length=8)
 
+
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'mini_russell'
         unique_together = (('mini_russell_time', 'mini_russell_date'),)
 
@@ -311,7 +335,8 @@ class MiniSp(models.Model):
     mini_sp_volume = models.CharField(max_length=8)
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'mini_sp'
         unique_together = (('mini_sp_time', 'mini_sp_date'),)
 
@@ -326,7 +351,8 @@ class Mtx(models.Model):
     mtx_volume = models.CharField(max_length=8)
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'mtx'
         unique_together = (('mtx_time', 'mtx_date'),)
 
@@ -341,7 +367,8 @@ class News(models.Model):
     news_photo = models.CharField(max_length=100)
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'news'
 
 
@@ -355,7 +382,8 @@ class Soy(models.Model):
     soy_volume = models.CharField(max_length=8)
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'soy'
         unique_together = (('soy_time', 'soy_date'),)
 
@@ -370,7 +398,8 @@ class Te(models.Model):
     te_volume = models.CharField(max_length=8)
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'te'
         unique_together = (('te_time', 'te_date'),)
 
@@ -388,7 +417,8 @@ class TechnicalStrategry(models.Model):
     technical_strategry_exit = models.IntegerField()
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'technical_strategry'
         unique_together = (('technical_strategry_id', 'member'),)
 
@@ -403,7 +433,8 @@ class Tf(models.Model):
     tf_volume = models.CharField(max_length=8)
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'tf'
         unique_together = (('tf_time', 'tf_date'),)
 
@@ -418,7 +449,8 @@ class Tx(models.Model):
     tx_volume = models.CharField(max_length=8)
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'tx'
         unique_together = (('tx_time', 'tx_date'),)
 
@@ -433,7 +465,8 @@ class Wheat(models.Model):
     wheat_volume = models.CharField(max_length=8)
 
     class Meta:
-        managed = False
+
+        managed = True
         db_table = 'wheat'
         unique_together = (('wheat_time', 'wheat_date'),)
 
@@ -449,5 +482,6 @@ class Newscontent(models.Model):
     member_id = models.CharField(max_length=45, blank=True, null=True)
 
     class Meta:
-        managed = False
-        db_table = 'news'        
+
+        managed = True
+        db_table = 'news_content'        
