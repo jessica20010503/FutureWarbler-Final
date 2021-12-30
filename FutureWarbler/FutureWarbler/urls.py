@@ -37,7 +37,7 @@ urlpatterns = [
     path('news3/',news3),
     path('news4/',news4),
     path('news5/',news5),
-    path('news-content',newscontent),
+    path('news-content/<int:pk>/', newscontent),
     path('news-search/',newssearch),
     path('forum/',forum),
     path('forum-write/',forumwrite),

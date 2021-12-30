@@ -7,6 +7,18 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 import time
 import pymysql
+from django.core.paginator import Paginator, Page  # 翻頁
+from django.db import connection, connections
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import random
+import math
+import pymysql.cursors
+from myapp.models import News
+from pymysql import cursors
+import pymysql
+
+
+
 
 
 #連線至資料庫
@@ -141,29 +153,258 @@ def robotnormal(request):
 def robotintelligent(request):
     return render(request,"robot-intelligent.html",locals())
 
+
+
+
+
+
 def news(request):
-    return render(request,"news.html",locals()) # 財經
+    cursor0 = connection.cursor()
+    cursor1 = connection.cursor()
+    cursor0.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['0'])
+    cursor1.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['1'])
+    news0 = cursor1.fetchall()[:5]
+    news1 = cursor0.fetchall()[:5]
+
+    return render(request, "news.html", {'News0': news0, 'News1': news1})
+
+
+def newscontent(request, pk):
+    cursor0 = connection.cursor()
+    cursor1 = connection.cursor()
+    cursor2 = connection.cursor()
+    cursor3 = connection.cursor()
+    cursor4 = connection.cursor()
+    cursor5 = connection.cursor()
+    cursor6 = connection.cursor()
+    cursor7 = connection.cursor()
+    cursor8 = connection.cursor()
+    cursor9 = connection.cursor()
+    cursor10 = connection.cursor()
+    cursor11 = connection.cursor()
+    cursor12 = connection.cursor()
+    cursor13 = connection.cursor()
+    cursor14 = connection.cursor()
+    cursor15 = connection.cursor()
+    cursor16 = connection.cursor()
+    cursor17 = connection.cursor()
+    cursor18 = connection.cursor()
+    cursor19 = connection.cursor()
+    cursor20 = connection.cursor()
+    cursor21 = connection.cursor()
+    cursor22 = connection.cursor()
+
+    cursor0.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['0'])
+    cursor1.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['1'])
+    cursor2.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['2'])
+    cursor3.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['3'])
+    cursor4.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['4'])
+    cursor5.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['5'])
+    cursor6.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['6'])
+    cursor7.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['7'])
+    cursor8.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['8'])
+    cursor9.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['9'])
+    cursor10.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['10'])
+    cursor11.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['11'])
+    cursor12.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_id=%s" % (pk))
+    cursor13.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_id=%s" % (pk))
+    cursor14.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_id=%s" % (pk))
+    cursor15.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_id=%s" % (pk))
+    cursor16.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_id=%s" % (pk))
+    cursor17.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_id=%s" % (pk))
+    cursor18.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_id=%s" % (pk))
+    cursor19.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_id=%s" % (pk))
+    cursor20.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_id=%s" % (pk))
+    cursor21.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_id=%s" % (pk))
+    cursor22.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_id=%s" % (pk))
+
+    news1 = News.objects.filter(pk=pk)
+    news2 = News.objects.filter(pk=pk)
+    news3 = News.objects.filter(pk=pk)
+    news4 = News.objects.filter(pk=pk)
+    news5 = News.objects.filter(pk=pk)
+    news6 = News.objects.filter(pk=pk)
+    news7 = News.objects.filter(pk=pk)
+    news8 = News.objects.filter(pk=pk)
+    news9 = News.objects.filter(pk=pk)
+    news10 = News.objects.filter(pk=pk)
+    news11 = News.objects.filter(pk=pk)
+    news12 = News.objects.filter(pk=pk)
+    news13 = News.objects.filter(pk=pk)
+    news14 = News.objects.filter(pk=pk)
+    news15 = News.objects.filter(pk=pk)
+    news16 = News.objects.filter(pk=pk)
+    news17 = News.objects.filter(pk=pk)
+    news18 = News.objects.filter(pk=pk)
+    news19 = News.objects.filter(pk=pk)
+    news20 = News.objects.filter(pk=pk)
+    news21 = News.objects.filter(pk=pk)
+
+    news0 = cursor0.fetchall()[:5]
+    news1 = cursor1.fetchall()[:5]
+    news2 = cursor2.fetchall()[:5]
+    news3 = cursor3.fetchall()[:5]
+    news4 = cursor4.fetchall()[:5]
+    news5 = cursor5.fetchall()[:5]
+    news6 = cursor6.fetchall()[:5]
+    news7 = cursor7.fetchall()[:5]
+    news8 = cursor8.fetchall()[:5]
+    news9 = cursor9.fetchall()[:5]
+    news10 = cursor10.fetchall()
+    news11 = cursor11.fetchall()
+    news12 = cursor12.fetchall()
+    news13 = cursor13.fetchall()
+    news14 = cursor14.fetchall()
+    news15 = cursor15.fetchall()
+    news16 = cursor16.fetchall()
+    news17 = cursor17.fetchall()
+    news18 = cursor18.fetchall()
+    news19 = cursor19.fetchall()
+    news20 = cursor20.fetchall()
+    news21 = cursor21.fetchall()
+
+    return render(request, "news-content.html", {'News0': news0, 'News1': news1,'News2': news2, 'News3': news3, 'News4': news4, 'News5': news5, 'News6': news6, 'News7': news7, 'News8': news8, 'News9': news9, 'News10': news10, 'News11': news11, 'News12': news12, 'News13': news13, 'News14': news14, 'News15': news15, 'News16': news16, 'News17': news17, 'News18': news18, 'News19': news19, 'News20': news20, 'News21': news21})
+
 
 def news1(request):
-    return render(request,"news-1.html",locals()) # 期貨
-
+    cursor2 = connection.cursor()
+    cursor3 = connection.cursor()
+    cursor2.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['2'])
+    cursor3.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['3'])
+    news2 = cursor2.fetchall()[:5]
+    news3 = cursor3.fetchall()[:5]
+    # 期貨
+    return render(request, "news-1.html", {'News2': news2, 'News3': news3})
+    
 def news2(request):
-    return render(request,"news-2.html",locals()) # 兩岸
+    cursor4 = connection.cursor()
+    cursor5 = connection.cursor()
+    cursor4.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['4'])
+    cursor5.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['5'])
+    news4 = cursor4.fetchall()[:5]
+    news5 = cursor5.fetchall()[:5]
+    # 兩岸
+    return render(request, "news-2.html", {'News4': news4, 'News5': news5})
+
 
 def news3(request):
-    return render(request,"news-3.html",locals()) # 國際
+    cursor6 = connection.cursor()
+    cursor7 = connection.cursor()
+    cursor6.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['6'])
+    cursor7.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['7'])
+    news6 = cursor6.fetchall()[:5]
+    news7 = cursor7.fetchall()[:5]
+
+    # 國際
+    return render(request, "news-3.html", {'News6': news6, 'News7': news7})
+
 
 def news4(request):
-    return render(request,"news-4.html",locals()) # 產業
+    cursor8 = connection.cursor()
+    cursor9 = connection.cursor()
+
+    cursor8.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['8'])
+    cursor9.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['9'])
+    news8 = cursor8.fetchall()[:5]
+    news9 = cursor9.fetchall()[:5]
+
+    # 產業
+    return render(request, "news-4.html", {'News8': news8, 'News9': news9})
+
 
 def news5(request):
-    return render(request,"news-5.html",locals()) # 理財
+    cursor10 = connection.cursor()
+    cursor11 = connection.cursor()
+    cursor10.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['10'])
+    cursor11.execute(
+        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['11'])
+    news10 = cursor10.fetchall()[:5]
+    news11 = cursor11.fetchall()[:5]
+    # 理財
+    return render(request, "news-5.html", {'News10': news10, 'News11': news11})
 
-def newscontent(request):
-    return render(request,"news-content.html",locals())
 
 def newssearch(request):
-    return render(request,"news-search.html",locals())
+#     cursor0 = connection.cursor()
+#     cursor0.execute("select newsid,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s",['1'])
+#     news0 = cursor0.fetchall()[:5]
+#     paginator=Paginator(news0,5)
+#     try:
+#         current_page=request.GET.get("page",1) #  http://127.0.0.1:8000/index/?page=20
+#         news=paginator.page(current_page)
+#     except (EmptyPage,PageNotAnInteger):
+#         news=paginator.page(1)
+
+#     return render(request,'news.html',{'News':news})
+
+# def doc_main(request):
+#     doc_all = News.objects.all().order_by("newsid")
+#     limit = 20
+#     page = request.GET.get('page', 1)
+#     paginator = Paginator(doc_all, limit)
+#     try:
+#         newsid = paginator.page(page)
+#     except PageNotAnInteger:
+#         newsid = paginator.page(1)
+#     except EmptyPage:
+#         newsid = paginator.page(paginator.num_pages)
+#     context = {
+#         'newsid': newsid,
+#     }
+#     return render(request, 'news.html', context)
+
+# def doc_user_list(request):
+#     user = request.user
+#     doc_filter = News.objects.filter(user_id=user.id).order_by("id")
+#     limit = 5
+#     page = request.GET.get('page', 1)
+#     paginator = Paginator(doc_filter, limit)
+#     try:
+#         newsid = paginator.page(page)
+#     except PageNotAnInteger:
+#         newsid = paginator.page(1)
+#     except EmptyPage:
+#         newsid = paginator.page(paginator.num_pages)
+#     context = {
+#         'newsid': newsid,
+#     }
+   return render(request, "news-search.html", locals())
+
+
 
 def forum(request):
     return render(request,"forum.html",locals())
