@@ -436,3 +436,18 @@ class Wheat(models.Model):
         managed = False
         db_table = 'wheat'
         unique_together = (('wheat_time', 'wheat_date'),)
+
+
+class Newscontent(models.Model):
+    news_id = models.IntegerField(primary_key=True)
+    news_title = models.TextField(blank=True, null=True)
+    news_content = models.TextField(blank=True, null=True)
+    news_time = models.TextField(blank=True, null=True)
+    news_author = models.TextField(blank=True, null=True)
+    news_photo = models.TextField(blank=True, null=True)
+    news_area = models.BigIntegerField(blank=True, null=True)
+    member_id = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'news'        
