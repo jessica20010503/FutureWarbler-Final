@@ -1582,7 +1582,16 @@ img {
   height: 100px;
 }
 
+<<<<<<< HEAD
 .news-content .content-left li a:hover, .news-content .content-right li a:hover {
+=======
+.news-content img {
+  height: 400px;
+}
+
+.news-content .content-left li a:hover,
+.news-content .content-right li a:hover {
+>>>>>>> 1fbfc2e4c802d7a7b539a2b692e40429ee34d4ef
   background: #f3f2f2;
 }
 
