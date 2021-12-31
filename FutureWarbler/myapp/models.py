@@ -365,6 +365,8 @@ class News(models.Model):
     news_author = models.CharField(max_length=50)
     news_area = models.IntegerField()
     news_photo = models.CharField(max_length=100)
+    news_type = models.CharField(max_length=100)
+    news_category = models.CharField(max_length=100)
 
     class Meta:
 

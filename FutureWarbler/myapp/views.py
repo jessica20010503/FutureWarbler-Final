@@ -206,17 +206,49 @@ def robotintelligent(request):
     return render(request,"robot-intelligent.html",locals())
 
 
-def news(request):
-    cursor0 = connection.cursor()
-    cursor1 = connection.cursor()
-    cursor0.execute(
-        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['0'])
-    cursor1.execute(
-        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['1'])
-    news0 = cursor1.fetchall()[:5]
-    news1 = cursor0.fetchall()[:5]
 
-    return render(request, "news.html", {'News0': news0, 'News1': news1})
+def news(request):
+#new2 最新 news3熱門
+#如果html 裡 category=category ，判斷是category 0 財經 1 期貨 2 兩岸 3  國際 4產業 5理財
+#news3裡 抓category 裡的type最新與熱門
+#如果try 裡抓page一頁有幾個，下一頁
+#except 防止報錯
+#else 防止報錯
+    # print(request.GET['page'])
+    if 'category' in request.GET:
+        category = int(request.GET['category'])
+        news3=News.objects.filter(news_category=category).filter(news_type=1)[:4]
+        titleWord = {
+            "0":"財經",
+            "1":"期貨",
+            "2":"兩岸",
+            "3":"國際",
+            "4":"產業",
+            "5":"理財"
+        }
+        title = titleWord[str(category)]
+        print(title)
+        if 'page' in request.GET:
+            try:   
+                page = int(request.GET['page'])*5
+                news2 = News.objects.all()[page-4:page]
+                return render(request, "news-1.html", {'News2': news2, 'News3': news3,"title":title,"category":str(category)})
+            except:
+                page = request.GET['page']
+                news2 = News.objects.all()[:5]
+                return render(request, "news-1.html", {'News2': news2, 'News3': news3,"title":title,"category":str(category)})
+        else:
+            category = int(request.GET['category'])
+            news2 = News.objects.filter(news_category=category).filter(news_type=0)[:5]
+            news3=News.objects.filter(news_category=category).filter(news_type=1)[:5]
+            return render(request, "news-1.html", {'News2': news2, 'News3': news3,"title":title})
+    else:
+        print('預設')
+        news3 = News.objects.all()[:5]
+        news2 = News.objects.all()[:5]
+        return render(request, "news-1.html", {'News2': news2, 'News3': news3})
+
+
 
 
 def newscontent(request, pk):
