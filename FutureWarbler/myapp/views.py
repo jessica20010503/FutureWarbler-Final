@@ -15,7 +15,7 @@ import math
 import pymysql.cursors
 from myapp.models import News,Class as study,IndexClass
 from pymysql import cursors
-
+from django.db import connection
 #連線至資料庫
 db_settings = {
 "host": "localhost", 
@@ -44,26 +44,21 @@ def login(request):
     if request.method == 'POST':
         account = request.POST['account']
         password = request.POST['password']
-        with conn.cursor() as cursor:
-                sql = "SELECT `member_password`, `member_photo`,`member_name` FROM `member` WHERE member_id='%s'"%(account)
-                cursor.execute(sql)
-                try:
-                    data = cursor.fetchone()
-                    if password == data[0]:
-
-                            request.session['username'] = data[2]
-                            request.session['photo']= data[1] #大頭照也用session接一下
-                            photo =request.session['photo']
-                            username = request.session['username']
-                            check = 'ok'
-                            return render(request,"index.html",locals())
-                    else:
-                        message = '登入失敗!請確認帳號或者密碼是否正確'
-                      
-                except:
-                    message = '此帳號尚未註冊，請重新輸入帳號密碼'
-                    
-       
+        cursor = connection.cursor()
+        sql = "SELECT `member_password`, `member_photo`,`member_name` FROM `member` WHERE `member_id` = '%s'"%(account)
+        cursor.execute(sql)
+        data = cursor.fetchone()
+        if data == None: #這個帳號沒人註冊
+            message = '此帳號尚未註冊，請再次確認'
+        else:
+            if password != data[0]: #帳號密碼錯誤
+                message ='帳號密碼錯誤，請再次確認'
+            else:
+                request.session['username'] = data[2]
+                request.session['photo'] = data[1]
+                username =  request.session['username']
+                photo = request.session['photo']
+                return render(request,"index.html",locals())
     return render(request,"login.html",locals())
 
 #--------------註冊功能------------------
