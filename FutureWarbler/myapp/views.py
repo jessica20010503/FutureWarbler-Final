@@ -37,7 +37,7 @@ def index(request):
     ok = ''
     if request.method == 'POST':
         if request.POST['logout'] =="logout":
-            request.session.clear()
+            request.session.flush()
 
     return render(request,"index.html",locals())
 
@@ -48,26 +48,26 @@ def login(request):
     if request.method == 'POST':
         account = request.POST['account']
         password = request.POST['password']
-        if account == "" or password =="":
-             message = '登入失敗!請確認帳號或者密碼是否正確'
-        else:
-            with conn.cursor() as cursor:
+        with conn.cursor() as cursor:
                 sql = "SELECT `member_password`, `member_photo`,`member_name` FROM `member` WHERE member_id='%s'"%(account)
                 cursor.execute(sql)
-                data = cursor.fetchone()
+                try:
+                    data = cursor.fetchone()
+                    if password == data[0]:
 
-                if password == data[0]:
-
-                    request.session['username'] = data[2]
-                    request.session['photo']= data[1] #大頭照也用session接一下
-                    photo =request.session['photo']
-                    username = request.session['username']
-                    check = 'ok'
-                    return render(request,"index.html",locals())
-                else:
-
-                    message = '登入失敗!請確認帳號或者密碼是否正確'
-            conn.close()
+                            request.session['username'] = data[2]
+                            request.session['photo']= data[1] #大頭照也用session接一下
+                            photo =request.session['photo']
+                            username = request.session['username']
+                            check = 'ok'
+                            return render(request,"index.html",locals())
+                    else:
+                        message = '登入失敗!請確認帳號或者密碼是否正確'
+                      
+                except:
+                    message = '此帳號尚未註冊，請重新輸入帳號密碼'
+                    
+       
     return render(request,"login.html",locals())
 
 #--------------註冊功能------------------
