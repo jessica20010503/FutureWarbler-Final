@@ -46,71 +46,47 @@
                 </form>  
             </div>
             <ul class="main d-flex jcsb mt-4">
+                {% for classes in results %}
                 <li class="fl white-bg w-33 br-m  card-shadow  pb-2 class-card">
                     <a href="class-content/">
-                        <img src="{% static 'img/課程假圖.jpg' %}" alt="課程圖片" class="w-100">
-                        <div class="content p-5 ">
-                            <h3 class="fz-l fwb dark-gray mb-2">理財小學堂</h3>
-                            <p class="fz-s dark-gray">理財小學堂開課囉！全台灣最生動的理財教學，學習網為你打造一系列的基礎教學文！ 特色有三個： 1.內容活潑又輕鬆，沒有複雜的專有名詞！ 2.舉例豐富，精美插圖，圖文並茂加強記憶！...</p>
-                        </div>
-                    </a>
-                </li>
-                <li class="fl white-bg w-33 br-m  card-shadow  pb-2 class-card">
-                    <a href="class-content/">
-                        <img src="{% static 'img/課程假圖.jpg' %}" alt="課程圖片" class="w-100">
+                        <img src="{{ classes.class_photo }}" alt="課程圖片" class="w-100">
                         <div class="content p-5">
-                            <h3 class="fz-l fwb dark-gray mb-2">理財小學堂</h3>
-                            <p class="fz-s dark-gray">理財小學堂開課囉！全台灣最生動的理財教學，學習網為你打造一系列的基礎教學文！ 特色有三個： 1.內容活潑又輕鬆，沒有複雜的專有名詞！ 2.舉例豐富，精美插圖，圖文並茂加強記憶！...</p>
+                            <h3 class="fz-l fwb dark-gray mb-2">{{ classes.class_title }}</h3>
+                            <p class="fz-s dark-gray">{{ classes.class_article|truncatechars:100 }}</p> 
                         </div>
                     </a>
                 </li>
+                {% endfor %}
+                {% comment %} {% for classes in articles %}
                 <li class="fl white-bg w-33 br-m  card-shadow  pb-2 class-card">
                     <a href="class-content/">
-                        <img src="{% static 'img/課程假圖.jpg' %}" alt="課程圖片" class="w-100">
+                        <img src="{{ classes.class_photo }}" alt="課程圖片" class="w-100">
                         <div class="content p-5">
-                            <h3 class="fz-l fwb dark-gray mb-2">理財小學堂</h3>
-                            <p class="fz-s dark-gray">理財小學堂開課囉！全台灣最生動的理財教學，學習網為你打造一系列的基礎教學文！ 特色有三個： 1.內容活潑又輕鬆，沒有複雜的專有名詞！ 2.舉例豐富，精美插圖，圖文並茂加強記憶！...</p>
+                            <h3 class="fz-l fwb dark-gray mb-2">{{ classes.class_title }}</h3>
+                            <p class="fz-s dark-gray">{{ classes.class_article|truncatechars:100 }}</p> 
                         </div>
                     </a>
                 </li>
-                <li class="fl white-bg w-33 br-m  card-shadow  pb-2 class-card">
-                    <a href="class-content/">
-                        <img src="{% static 'img/課程假圖.jpg' %}" alt="課程圖片" class="w-100">
-                        <div class="content p-5">
-                            <h3 class="fz-l fwb dark-gray mb-2">理財小學堂</h3>
-                            <p class="fz-s dark-gray">理財小學堂開課囉！全台灣最生動的理財教學，學習網為你打造一系列的基礎教學文！ 特色有三個： 1.內容活潑又輕鬆，沒有複雜的專有名詞！ 2.舉例豐富，精美插圖，圖文並茂加強記憶！...</p>
-                        </div>
-                    </a>
-                </li>
-                <li class="fl white-bg w-33 br-m  card-shadow  pb-2 class-card">
-                    <a href="class-content/">
-                        <img src="{% static 'img/課程假圖.jpg' %}" alt="課程圖片" class="w-100">
-                        <div class="content p-5">
-                            <h3 class="fz-l fwb dark-gray mb-2">理財小學堂</h3>
-                            <p class="fz-s dark-gray">理財小學堂開課囉！全台灣最生動的理財教學，學習網為你打造一系列的基礎教學文！ 特色有三個： 1.內容活潑又輕鬆，沒有複雜的專有名詞！ 2.舉例豐富，精美插圖，圖文並茂加強記憶！...</p>
-                        </div>
-                    </a>
-                </li>
-                <li class="fl white-bg w-33 br-m  card-shadow  pb-2 class-card">
-                    <a href="class-content/">
-                        <img src="{% static 'img/課程假圖.jpg' %}" alt="課程圖片" class="w-100">
-                        <div class="content p-5">
-                            <h3 class="fz-l fwb dark-gray mb-2">理財小學堂</h3>
-                            <p class="fz-s dark-gray">理財小學堂開課囉！全台灣最生動的理財教學，學習網為你打造一系列的基礎教學文！ 特色有三個： 1.內容活潑又輕鬆，沒有複雜的專有名詞！ 2.舉例豐富，精美插圖，圖文並茂加強記憶！...</p>
-                        </div>
-                    </a>
-                </li>
+                {% endfor %} {% endcomment %}
             </ul>
             <ul class="pagination d-flex jcc tac m0-a">
-                <li><a href="#" class="prev--buttom mr-2"><i class='fas fa-angle-double-left'></i></a></li>
-                <li><a href="#" class="active mr-2">1</a></li>
-                <li><a href="#" class="mr-2">2</a></li>
-                <li><a href="#"  class="mr-2">3</a></li>
-                <li><a href="#"  class="mr-2">4</a></li>
-                <li><a href="#"  class="mr-2">5</a></li>
-                <li><a href="#" class="next--buttom mr-2"><i class='fas fa-angle-double-right'></i></a></li>
+                <li><a href="?page=1" class="prev--buttom mr-2"><i class='fas fa-angle-double-left'></i></a></li>
+                <li><a href="?page=1" class="mr-2">1</a></li>
+                <li><a href="?page=2" class="mr-2" >2</a></li>
+                <li><a href="?page=2" class="next--buttom mr-2"><i class='fas fa-angle-double-right'></i></a></li>
             </ul>
         </div>
     </div>
 </div>
+<script>
+    function page() {
+      var page = 2
+      var Url = "?page=" + page
+    document.location.href = Url
+    }
+    function page() {
+        var Url = "?page=" + page
+      document.location.href = Url
+      }
+</script>
 {% endblock %}

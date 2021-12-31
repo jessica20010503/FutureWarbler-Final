@@ -13,22 +13,18 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import random
 import math
 import pymysql.cursors
-from myapp.models import News
+from myapp.models import News,Class as study,IndexClass
 from pymysql import cursors
-import pymysql
-
-
-
-
 
 #連線至資料庫
 db_settings = {
-"host": "localhost",
+"host": "localhost", 
 "port": 3306,
 "user": "root",
-"password": "12345678",
+"password": "12345678", 
 "db": "futurewarbler",
-"charset": "utf8"
+"charset": "utf8",
+"cursorclass": pymysql.cursors.DictCursor
 }
 conn = pymysql.connect(**db_settings)
 
@@ -135,14 +131,70 @@ def trade (request):
 def transactionRecord (request):
     return render(request,"personal-transactionRecord.html",locals())
 
-def classes(request): 
-    return render(request,"class.html",locals())
+def classes(request):          
+    # if 'keyWord' in request.GET:
+    #     keyWord = request.GET['keyWord']
+    #     keyWord2 = '期貨'
+    #     results = study.objects.filter(class_title__contains=keyWord2)
+    #     import urllib.parse
+    #     urllib.parse.unquote(results)
+    #     print(keyWord)
+    #     print(results)
+    #     for i in results:
+    #         print(i)
+    #     return render(request, "class.html", {'results': results})
+    if 'page' in request.GET:
+        try:
+            page = int(request.GET['page'])*6
+            results = study.objects.all()[page-6:page] # Class as study  # [page-6:page]代表一頁資料數量
+            return render(request, "class.html", {'results': results})
+        except:
+            results = study.objects.all()[:6]
+            return render(request, "class.html", {'results': results})
+    else:
+        results = study.objects.all()[:6]
+        return render(request, "class.html",{'results': results})     
+
+
+    # results = {}
+    # sql = "SELECT `class_id`,`class_title`,`class_article`,`class_photo` FROM `class`"
+    # with conn.cursor() as cursor:
+    #     cursor.execute(sql)
+    #     results['articles'] = cursor.fetchall() 
+
+    # cursor23 = conn.cursor()
+    # cursor23.execute("SELECT `class_id`,`class_title`,`class_article`,`class_photo` FROM `class`")
+    # articles = cursor23.fetchall()
+    # return render(request,"class.html", articles)
+
+def SelectKeyWord(request):
+    if 'keyWord' in request.GET:
+        keyWord = request.GET['keyWord']
+        news2 = News.objects.filter(news_title__iexact=keyWord)
+    return render(request, "news-1.html", {'News2': news2, 'News3': news3})
 
 def classcontent(request):
     return render(request,"class-content.html",locals())
 
 def indexclass(request):
-    return render(request,"index-class.html",locals())
+    if 'page' in request.GET:
+        try:
+            page = int(request.GET['page'])*6
+            results = IndexClass.objects.all()[page-6:page] # [page-6:page]代表一頁資料數量
+            return render(request, "index-class.html", {'results': results})
+        except:
+            results = IndexClass.objects.all()[:6]
+            return render(request, "index-class.html", {'results': results})
+    else:
+        results = IndexClass.objects.all()[:6]
+        return render(request, "index-class.html",{'results': results})
+
+    # results = {}
+    # sql = "SELECT `index_class_id`,`index_class_title`,`index_class_article`,`index_class_photo` FROM `index_class`"
+    # with conn.cursor() as cursor:
+    #     cursor.execute(sql)
+    #     results['articles'] = cursor.fetchall()
+    # return render(request,"index-class.html",results)
 
 def indexclasscontent(request):
     return render(request,"index-class-content.html",locals())
@@ -152,10 +204,6 @@ def robotnormal(request):
 
 def robotintelligent(request):
     return render(request,"robot-intelligent.html",locals())
-
-
-
-
 
 
 def news(request):
