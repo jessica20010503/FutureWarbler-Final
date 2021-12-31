@@ -36,7 +36,7 @@
     <div class="container pb-4">
         {% if ok == '' %}
         <ul class="header d-flex jcfe card-shadow text-shadow p-3">
-                <li><a href="login.html" class="header__login--button dark-gray  mr-2 tac br-s fwb"><i class="fas fa-sign-in-alt mr-3"></i>登入</a></li>
+                <li><a href="/login/" class="header__login--button dark-gray  mr-2 tac br-s fwb"><i class="fas fa-sign-in-alt mr-3"></i>登入</a></li>
         </ul>
         {% else %}
         <ul class="header d-flex jcfe card-shadow text-shadow p-1 aic ">
@@ -51,7 +51,7 @@
                 </li>
                 <li class="fz-s mr-3 fwbr d-flex  aic ">
                     <div class="loginned_photo mr-2">
-                        <img src="../img/會員大頭貼.jpg" alt="會員大頭貼">
+                        <img src="../static/userimg/{{photo}}" alt="會員大頭貼">
                     </div>
                     <p>Hi, &nbsp;&nbsp;{{username}}</p>
                 </li>

@@ -13,9 +13,11 @@
             <form action="." class="w-80" method="post">
                 {% csrf_token %} 
                 <label for="account" class="fwbr">帳戶</label>
-                <input type="text" name="account" id="account" class="d-block w-100  br-s mt-2 mb-4 p-1 b-n">
+                
+                <input type="text" name="account" id="account" class="d-block w-100  br-s mt-2 mb-4 p-1 b-n" required="required" >
                 <label for="password" class="fwbr">密碼</label>
-                <input type="password" name="password" id="password" class="d-block w-100  br-s mt-2 mb-5 p-1 b-n">
+
+                <input type="password" name="password" id="password" class="d-block w-100  br-s mt-2 mb-5 p-1 b-n" required="required" >
                 <div class="d-flex jcsb ">
 
                     <a href="/" class=" d-block w-48"><input type="submit" value="返回" class=" b-n br-s p-2 fz-m text-shadow  back_btn w-100 white fwb"></a>
