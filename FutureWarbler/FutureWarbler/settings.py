@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import pymysql
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -83,6 +83,7 @@ DATABASES = {
         'PASSWORD': '12345678',
         'HOST': 'localhost',
         'PORT': '3306',
+        'cursorclass': pymysql.cursors.DictCursor,
        'OPTIONS': {
         'init_command': "SET sql_mode='STRICT_TRANS_TABLES'", #防止migrate時出現報錯
     },
