@@ -30,17 +30,20 @@ conn = pymysql.connect(**db_settings)
 
 # Create your views here.
 def index(request):
-    ok = ''
-    if request.method == 'POST':
-        if request.POST['logout'] =="logout":
-            request.session.flush()
-
+    
+    if 'username' in request.session:
+        ok ='yes'
+        username = request.session['username']
+        photo = request.session['photo']
+    else:
+        ok = ''
     return render(request,"index.html",locals())
 
 #--------------登入功能------------------
 
 def login(request):
-        
+    if 'username' in request.session:
+        return  redirect('/index/') #如果處於登入狀態，只要人為方式回到login，就會自動跳轉到index
     if request.method == 'POST':
         account = request.POST['account']
         password = request.POST['password']
@@ -56,9 +59,7 @@ def login(request):
             else:
                 request.session['username'] = data[2]
                 request.session['photo'] = data[1]
-                username =  request.session['username']
-                photo = request.session['photo']
-                return render(request,"index.html",locals())
+                return redirect('/index/') 
     return render(request,"login.html",locals())
 
 #--------------註冊功能------------------
@@ -117,8 +118,11 @@ def personal(request):
     return render(request,"personal-page.html",locals())
 
 def logout(request):
-    request.session.clear()
-    return redirect('login/')
+
+    if request.method == 'POST': 
+        if request.POST['logout'] =="logout":
+            request.session.flush()
+    return redirect('/index/')
 
 def trade (request):
     return render(request,"trade.html",locals())
