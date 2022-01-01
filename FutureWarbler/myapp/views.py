@@ -172,8 +172,12 @@ def SelectKeyWord(request):
         news2 = News.objects.filter(news_title__iexact=keyWord)
     return render(request, "news-1.html", {'News2': news2, 'News3': news3})
 
-def classcontent(request):
-    return render(request,"class-content.html",locals())
+def classcontent(request, pk):
+    cursor = conn.cursor()
+    cursor.execute("select class_id,class_title,class_article,class_photo from class where class_id=%s" % (pk))
+    class1 = study.objects.filter(pk=pk)
+    class1 = cursor.fetchall()
+    return render(request,"class-content.html", {'Class1': class1})
 
 def indexclass(request):
     if 'page' in request.GET:
@@ -195,8 +199,12 @@ def indexclass(request):
     #     results['articles'] = cursor.fetchall()
     # return render(request,"index-class.html",results)
 
-def indexclasscontent(request):
-    return render(request,"index-class-content.html",locals())
+def indexclasscontent(request,pk):
+    cursor = conn.cursor()
+    cursor.execute("select index_class_id,index_class_title,index_class_article,index_class_photo from index_class where index_class_id=%s" % (pk))
+    indexclass1 = IndexClass.objects.filter(pk=pk)
+    indexclass1 = cursor.fetchall()
+    return render(request,"index-class-content.html",{'Indexclass1': indexclass1})
 
 def robotnormal(request):
     return render(request,"robot-normal.html",locals())

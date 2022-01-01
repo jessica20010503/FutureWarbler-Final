@@ -6,7 +6,7 @@
             <h1 class="fz-xl fwb">F<span class="bright">u</span>tures <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
             <ul class="menu">
                 <li class=" main--menu pt-3 pr-5 pb-3 pl-9 "><a href="/index/"><i class="fas fa-home mr-2"></i>首頁</a></li>
-                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/trade"><i class="fas fa-university mr-2"></i>模擬交易所</a></li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/trade/"><i class="fas fa-university mr-2"></i>模擬交易所</a></li>
                 <li class="drop--menu">
                     <a href="" class="main--menu pt-3 pb-3 pl-9   chosed">
                         <i class="fas fa-chalkboard-teacher mr-2"></i>期貨小教室<i class="fas fa-chevron-down ml-7 fz-s"></i>
@@ -34,14 +34,41 @@
             <div class="circle3"></div>
         </div>
         <div class="container pb-4">
-            <ul class="header d-flex jcfe card-shadow text-shadow p-3">
-                <li><a href="login/" class="header__login--button dark-gray  mr-2 tac br-s fwb"><i class="fas fa-sign-in-alt mr-3"></i>登入</a></li>
+            {% if ok == '' %}
+        <ul class="header d-flex jcfe card-shadow text-shadow p-3">
+                <li><a href="/login/" class="header__login--button dark-gray  mr-2 tac br-s fwb"><i class="fas fa-sign-in-alt mr-3"></i>登入</a></li>
+        </ul>
+        {% else %}
+        <ul class="header d-flex jcfe card-shadow text-shadow p-1 aic ">
+                <li>
+                    <a href="" class="add--money--hover fz-s mr-2 fwbr d-flex  aic dark-gray">
+                        <i class="fas fa-piggy-bank fz-m mr-2"></i>
+                        <div>
+                            <p class="mr-2 tar"><span class="mr-2">800,000</span>(TWD)<span class="mr-2 ml-2">30,000</span>(USD)</p>
+                            <p>可用餘額</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="fz-s mr-3 fwbr d-flex  aic ">
+                    <div class="loginned_photo mr-2">
+                        <img src="../static/userimg/{{photo}}" alt="會員大頭貼">
+                    </div>
+                    <p>Hi, &nbsp;&nbsp;{{username}}</p>
+                </li>
+                
+                <form action="/logout/" method="post">
+                {% csrf_token %}
+                <input type ="hidden" name = "logout" value="logout">
+                <li><input type="submit" value="登出" class="header__logout--button dark-gray  mr-2 tac br-s fwb"></li>
+                </form>
             </ul>
+        {% endif %}
             <div class="class__content w-100 pl-12 pr-10 b-4 mt-5">
                 <h2 class="dark-gray fz-xl fwb">期貨指標介紹</h2>
                 <div>
                     <div class="fl white-bg w-65 mr-4pct br-m p-5  card-shadow  mt-4">
-                        <h3 class="title fz-l fwb mb-2">理財小學堂</h3>
+                        {% for indexclass in Indexclass1 %}
+                        <h3 class="title fz-l fwb mb-2">{{ indexclass.index_class_title }}</h3>
                         <div class="d-flex jcsb aife mb-4">
                             <ul class="detail d-flex column fz-s ">
                                 <li class="d-flex mb-1"><p class="mr-2">文章擷至：CMoney</p></li>
@@ -56,19 +83,12 @@
                             </div>
                         </div>
                         
-                        <img src="{% static 'img/課程假圖.jpg' %}" alt="圖片" class="mb-6 w-100">
+                        <img src="{{ indexclass.index_class_photo }}" alt="圖片" class="mb-6 w-100">
                         <div class="article">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste praesentium perspiciatis fugiat illum exercitationem! Officia inventore vitae quaerat temporibus, odit, eum eos voluptatum nemo consectetur voluptatem iste veritatis veniam necessitatibus.</p>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod ullam magnam pariatur reprehenderit veniam quibusdam dolorum? Non, unde? Laborum cupiditate quia aspernatur laboriosam unde necessitatibus suscipit possimus, nesciunt expedita commodi?</p>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis ea voluptate animi itaque laudantium, officia possimus consequatur ducimus porro eius corrupti ad, dolor incidunt! Laudantium suscipit nostrum eveniet dicta natus?</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate dolor eveniet laborum quaerat, excepturi quod aperiam earum non unde deleniti ipsum exercitationem necessitatibus cum consequuntur assumenda quae facere. Et, odio!</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate dolor eveniet laborum quaerat, excepturi quod aperiam earum non unde deleniti ipsum exercitationem necessitatibus cum consequuntur assumenda quae facere. Et, odio!</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate dolor eveniet laborum quaerat, excepturi quod aperiam earum non unde deleniti ipsum exercitationem necessitatibus cum consequuntur assumenda quae facere. Et, odio!</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate dolor eveniet laborum quaerat, excepturi quod aperiam earum non unde deleniti ipsum exercitationem necessitatibus cum consequuntur assumenda quae facere. Et, odio!</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate dolor eveniet laborum quaerat, excepturi quod aperiam earum non unde deleniti ipsum exercitationem necessitatibus cum consequuntur assumenda quae facere. Et, odio!</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate dolor eveniet laborum quaerat, excepturi quod aperiam earum non unde deleniti ipsum exercitationem necessitatibus cum consequuntur assumenda quae facere. Et, odio!</p>
+                            <p>{{ indexclass.index_class_article }}</p>
                         </div>
                         <div class="border-bottom mt-4 mb-4"></div>
+                        {% endfor %}
                     </div>
                     <div class="fl white-bg w-30 br-m pb-4 card-shadow  mt-4">
                         <h3 class=" fz-m fwb ml-4 mr-4 mt-4 mb-4  d-inline-block">相關文章</h3>

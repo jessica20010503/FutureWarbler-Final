@@ -7,10 +7,10 @@
     </h1>
     <ul class="menu">
       <li class="main--menu pt-3 pr-5 pb-3 pl-9">
-        <a href="index/"><i class="fas fa-home mr-2"></i>首頁</a>
+        <a href="/index/"><i class="fas fa-home mr-2"></i>首頁</a>
       </li>
       <li class="main--menu pt-3 pr-5 pb-3 pl-9">
-        <a href="trade/"><i class="fas fa-university mr-2"></i>模擬交易所</a>
+        <a href="/trade/"><i class="fas fa-university mr-2"></i>模擬交易所</a>
       </li>
       <li class="drop--menu">
         <a href="" class="main--menu pt-3 pb-3 pl-9">
@@ -19,8 +19,8 @@
           ></i>
         </a>
         <ul class="d-none">
-          <li class="sub--menu"><a href="class/">期貨基本介紹</a></li>
-          <li class="sub--menu"><a href="index-class/">期貨指標介紹</a></li>
+          <li class="sub--menu"><a href="/class/">期貨基本介紹</a></li>
+          <li class="sub--menu"><a href="/index-class/">期貨指標介紹</a></li>
         </ul>
       </li>
       <li class="drop--menu">
@@ -30,20 +30,20 @@
           ></i>
         </a>
         <ul class="d-none">
-          <li class="sub--menu"><a href="robot-normal/">交易策略</a></li>
+          <li class="sub--menu"><a href="/robot-normal/">交易策略</a></li>
           <li class="sub--menu">
-            <a href="robot-intelligent/">智能交易策略</a>
+            <a href="/robot-intelligent/">智能交易策略</a>
           </li>
         </ul>
       </li>
       <li class="main--menu pt-3 pr-5 pb-3 pl-9 chosed">
-        <a href="news/"><i class="fas fa-newspaper mr-2"></i>新聞</a>
+        <a href="/news/"><i class="fas fa-newspaper mr-2"></i>新聞</a>
       </li>
       <li class="main--menu pt-3 pr-5 pb-3 pl-9">
-        <a href="forum/"><i class="fas fa-comment-alt mr-2"></i>討論版</a>
+        <a href="/forum/"><i class="fas fa-comment-alt mr-2"></i>討論版</a>
       </li>
       <li class="main--menu pt-3 pr-5 pb-3 pl-9">
-        <a href="personal-page/"
+        <a href="/personal-page/"
           ><i class="fas fa-user-alt mr-2"></i>個人頁面</a
         >
       </li>
@@ -53,15 +53,35 @@
     <div class="circle3"></div>
   </div>
   <div class="container pb-4">
+    {% if ok == '' %}
     <ul class="header d-flex jcfe card-shadow text-shadow p-3">
-      <li>
-        <a
-          href="login/"
-          class="header__login--button dark-gray mr-2 tac br-s fwb"
-          ><i class="fas fa-sign-in-alt mr-3"></i>登入</a
-        >
-      </li>
+            <li><a href="/login/" class="header__login--button dark-gray  mr-2 tac br-s fwb"><i class="fas fa-sign-in-alt mr-3"></i>登入</a></li>
     </ul>
+    {% else %}
+    <ul class="header d-flex jcfe card-shadow text-shadow p-1 aic ">
+            <li>
+                <a href="" class="add--money--hover fz-s mr-2 fwbr d-flex  aic dark-gray">
+                    <i class="fas fa-piggy-bank fz-m mr-2"></i>
+                    <div>
+                        <p class="mr-2 tar"><span class="mr-2">800,000</span>(TWD)<span class="mr-2 ml-2">30,000</span>(USD)</p>
+                        <p>可用餘額</p>
+                    </div>
+                </a>
+            </li>
+            <li class="fz-s mr-3 fwbr d-flex  aic ">
+                <div class="loginned_photo mr-2">
+                    <img src="../static/userimg/{{photo}}" alt="會員大頭貼">
+                </div>
+                <p>Hi, &nbsp;&nbsp;{{username}}</p>
+            </li>
+            
+            <form action="/logout/" method="post">
+            {% csrf_token %}
+            <input type ="hidden" name = "logout" value="logout">
+            <li><input type="submit" value="登出" class="header__logout--button dark-gray  mr-2 tac br-s fwb"></li>
+            </form>
+        </ul>
+    {% endif %}
     <div class="news w-100">
       <div class="topnav d-flex jcsb aic pr-4 card-shadow">
         <ul class="d-flex fwb">
