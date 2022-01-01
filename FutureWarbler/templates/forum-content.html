@@ -31,35 +31,7 @@
         </ul>
     </div>
     <div class="container pb-4">
-        {% if ok == '' %}
-        <ul class="header d-flex jcfe card-shadow text-shadow p-3">
-                <li><a href="/login/" class="header__login--button dark-gray  mr-2 tac br-s fwb"><i class="fas fa-sign-in-alt mr-3"></i>登入</a></li>
-        </ul>
-        {% else %}
-        <ul class="header d-flex jcfe card-shadow text-shadow p-1 aic ">
-                <li>
-                    <a href="" class="add--money--hover fz-s mr-2 fwbr d-flex  aic dark-gray">
-                        <i class="fas fa-piggy-bank fz-m mr-2"></i>
-                        <div>
-                            <p class="mr-2 tar"><span class="mr-2">800,000</span>(TWD)<span class="mr-2 ml-2">30,000</span>(USD)</p>
-                            <p>可用餘額</p>
-                        </div>
-                    </a>
-                </li>
-                <li class="fz-s mr-3 fwbr d-flex  aic ">
-                    <div class="loginned_photo mr-2">
-                        <img src="../static/userimg/{{photo}}" alt="會員大頭貼">
-                    </div>
-                    <p>Hi, &nbsp;&nbsp;{{username}}</p>
-                </li>
-                
-                <form action="/logout/" method="post">
-                {% csrf_token %}
-                <input type ="hidden" name = "logout" value="logout">
-                <li><input type="submit" value="登出" class="header__logout--button dark-gray  mr-2 tac br-s fwb"></li>
-                </form>
-            </ul>
-        {% endif %}
+        {% include 'login-nav.html' %}
         <div class="forum-content w-100 pl-12 pr-10 b-4">
             <div class="top d-flex jcfe mt-5 aic">
                 <form action="#" class="d-flex jcfe">
@@ -72,7 +44,7 @@
                 <div class="content-left fl white-bg w-60 br-m mr-4pct card-shadow  p-5">
                     <div class="article p-4 white-bg">
                         <div class="user d-flex aic mb-4">
-                            <img src="{% static 'img/大頭貼2.jpg' %}" alt="大頭貼" class="mr-4">
+                            <img src="{% static 'img/大頭貼6.jpg' %}" alt="大頭貼" class="mr-4">
                             <div class="user-content">
                                 <h4>Emily</h4>
                                 <p class="fz-xs">22 小時前</p>
@@ -119,28 +91,28 @@ print(a+b)
                                 </div>
                             </li>
                             <li class="user d-flex border-bottom pt-4 pb-4">
-                                <img src="{% static 'img/大頭貼2.jpg' %}" alt="大頭貼" class="mr-4">
+                                <img src="{% static 'img/大頭貼3.jpg' %}" alt="大頭貼" class="mr-4">
                                 <div class="user-content">
                                     <p>謝謝！這個資訊很重要！</p>
                                     <p class="fz-xs">Emily｜22 小時前</p>
                                 </div>
                             </li>
                             <li class="user d-flex border-bottom pt-4 pb-4">
-                                <img src="{% static 'img/大頭貼2.jpg' %}" alt="大頭貼" class="mr-4">
+                                <img src="{% static 'img/大頭貼4.jpg' %}" alt="大頭貼" class="mr-4">
                                 <div class="user-content">
                                     <p>感謝～</p>
                                     <p class="fz-xs">Emily｜22 小時前</p>
                                 </div>
                             </li>
                             <li class="user d-flex border-bottom pt-4 pb-4">
-                                <img src="{% static 'img/大頭貼2.jpg' %}" alt="大頭貼" class="mr-4">
+                                <img src="{% static 'img/大頭貼5.jpg' %}" alt="大頭貼" class="mr-4">
                                 <div class="user-content">
                                     <p>知道了！謝！</p>
                                     <p class="fz-xs">Emily｜22 小時前</p>
                                 </div>
                             </li>
                             <li class="user d-flex border-bottom pt-4 pb-4">
-                                <img src="{% static 'img/大頭貼2.jpg' %}" alt="大頭貼" class="mr-4">
+                                <img src="{% static 'img/大頭貼7.jpg' %}" alt="大頭貼" class="mr-4">
                                 <div class="user-content">
                                     <p>感謝分享</p>
                                     <p class="fz-xs">Emily｜22 小時前</p>
@@ -148,7 +120,7 @@ print(a+b)
                             </li>
                             <li class="user pt-4 pb-4">
                                 <form action="#" class="leave-message d-flex">
-                                    <img src="{% static 'img/大頭貼2.jpg' %}" alt="大頭貼" class="mr-2">
+                                    <img src="../static/userimg/{{photo}}" alt="大頭貼" class="mr-2">
                                     <input type="text" placeholder="留言..." class="d-inline-block p-2" name="text">
                                     <button class="d-inline-block white-bg p-2 pl-4 pr-4" type="submit">提交</button>
                                 </form>
