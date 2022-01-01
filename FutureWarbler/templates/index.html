@@ -55,7 +55,8 @@
                     </div>
                     <p>Hi, &nbsp;&nbsp;{{username}}</p>
                 </li>
-                <form action="/index/" method="post">
+                
+                <form action="/logout/" method="post">
                 {% csrf_token %}
                 <input type ="hidden" name = "logout" value="logout">
                 <li><input type="submit" value="登出" class="header__logout--button dark-gray  mr-2 tac br-s fwb"></li>
