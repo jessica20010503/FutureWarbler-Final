@@ -6,7 +6,7 @@
         <h1 class="fz-xl fwb">F<span class="bright">u</span>tures <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
         <ul class="menu">
             <li class=" main--menu pt-3 pr-5 pb-3 pl-9 "><a href="/index/"><i class="fas fa-home mr-2"></i>首頁</a></li>
-            <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/trade"><i class="fas fa-university mr-2"></i>模擬交易所</a></li>
+            <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/trade/"><i class="fas fa-university mr-2"></i>模擬交易所</a></li>
             <li class="drop--menu">
                 <a href="" class="main--menu pt-3 pb-3 pl-9  ">
                     <i class="fas fa-chalkboard-teacher mr-2"></i>期貨小教室<i class="fas fa-chevron-down ml-7 fz-s"></i>
@@ -34,9 +34,35 @@
         <div class="circle3"></div>
     </div>
     <div class="container pb-4">
+        {% if ok == '' %}
         <ul class="header d-flex jcfe card-shadow text-shadow p-3">
-            <li><a href="login/" class="header__login--button dark-gray  mr-2 tac br-s fwb"><i class="fas fa-sign-in-alt mr-3"></i>登入</a></li>
+                <li><a href="/login/" class="header__login--button dark-gray  mr-2 tac br-s fwb"><i class="fas fa-sign-in-alt mr-3"></i>登入</a></li>
         </ul>
+        {% else %}
+        <ul class="header d-flex jcfe card-shadow text-shadow p-1 aic ">
+                <li>
+                    <a href="" class="add--money--hover fz-s mr-2 fwbr d-flex  aic dark-gray">
+                        <i class="fas fa-piggy-bank fz-m mr-2"></i>
+                        <div>
+                            <p class="mr-2 tar"><span class="mr-2">800,000</span>(TWD)<span class="mr-2 ml-2">30,000</span>(USD)</p>
+                            <p>可用餘額</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="fz-s mr-3 fwbr d-flex  aic ">
+                    <div class="loginned_photo mr-2">
+                        <img src="../static/userimg/{{photo}}" alt="會員大頭貼">
+                    </div>
+                    <p>Hi, &nbsp;&nbsp;{{username}}</p>
+                </li>
+                
+                <form action="/logout/" method="post">
+                {% csrf_token %}
+                <input type ="hidden" name = "logout" value="logout">
+                <li><input type="submit" value="登出" class="header__logout--button dark-gray  mr-2 tac br-s fwb"></li>
+                </form>
+            </ul>
+        {% endif %}
         <div class="w-100 pl-12 pr-10 b-4">
             <div class="top d-flex jcfe mt-5 aic">
                 <form action="#" class="d-flex jcfe">
@@ -52,8 +78,8 @@
                             <a href="/forum-content/" class="d-flex p-5 dark-gray">
                                 <img src="{% static 'img/大頭貼2.jpg' %}" alt="大頭貼" class="mr-4">
                                 <div>
-                                    <h3 class="fwb mb-1">通膨.氣候.地緣政治等因素 「黃小玉」2022年價格恐更加波動</h3>
-                                    <p class="mb-1">穀物價格今年漲勢強勁，美國農民趁勢計劃 2022 年種植更多的玉米、小麥與黃豆，然而明年化肥價格攀升、惡劣天氣不斷加上中國可能減少採購，專家預估農作物價格恐怕更加波動。...</p>
+                                    <h3 class="fwb mb-1">懶得畫圖還想知道交易策略？ 神器TradingCentral來幫您| GKFXPrime</h3>
+                                    <p class="mb-1">你或許是一個普通上班族，交易對你而言是業餘生活的投資;你或許是一個剛接觸的新手，面對紛繁複雜的行情，正在抓耳撓腮。 別怕，其實交易就是看準方向，把握多空，然後出手！...</p>
                                     <p class="fz-xs">-Brian | 2021.11.28 16:20 | <i class="fas fa-comment-alt"></i> 5 | <i class="fas fa-heart"></i> 50</p>
                                 </div>
                             </a>
