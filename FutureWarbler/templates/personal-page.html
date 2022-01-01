@@ -52,7 +52,7 @@
                 </li>
                 <li class="fz-s mr-3 fwbr d-flex  aic ">
                     <div class="loginned_photo mr-2">
-                        <img src="../img/會員大頭貼.jpg" alt="會員大頭貼">
+                        <img src="../static/userimg/{{photo}}" alt="會員大頭貼">
                     </div>
                     <p>Hi, &nbsp;&nbsp;{{username}}</p>
                 </li>
@@ -68,11 +68,11 @@
                 <h2 class="mb-8"><i class="fas fa-user mr-3"></i>個人資訊</h2>
                 <div class="personal--information__content d-flex">
                     <div class="Avatars">
-                        <img src="{% static 'img/會員大頭貼.jpg' %}" alt="會員大頭貼">
+                        <img src="../static/userimg/{{photo}}" alt="會員大頭貼">
                     </div>
                     <ul class="ml-16">
                         <li class="mb-1">Terisa Tsai</li>
-                        <li class="mb-1">蔡西西</li>
+                        <li class="mb-1">{{username}}</li>
                         <li class="fz-s mb-1">女</li>
                         <li class="fz-s mb-1">1998/11/26</li>
                     </ul>
@@ -101,8 +101,8 @@
                                                 <label for="account" class="dark-gray fz-s fwbr">帳號</label>
                                                 <input type="text" name="account" id="account" class="br-s p-1 d-block w-100 mb-2 b-n" value="Terisa Tsai">
                                                 <div class="w-48 fl">
-                                                    <label for="name" class=" fwbr">{{username}}</label>
-                                                    <input type="text" name="name" id="name" class="d-block w-100 br-s mt-1 mb-5 p-1 b-n" value="蔡西西">
+                                                    <label for="name" class=" fwbr">姓名</label>
+                                                    <input type="text" name="name" id="name" class="d-block w-100 br-s mt-1 mb-5 p-1 b-n" value="{{username}}">
                                                 </div>
                                                 <div class="w-48 fr">
                                                    

@@ -8,9 +8,8 @@
             <div class="clearfix"></div>
     </div>
     <div class="login_form br-m  w-30 p-6 card-shadow">
-        <div class="w-80 m0-a pl-5">
-            <h2 class="fz-xxl fwb mb-8 ">Login</h2>
-            <form action="." class="w-80" method="post">
+        <h2 class="fz-xxl fwb mb-8 ">Login</h2>
+            <form action="."  method="post">
                 {% csrf_token %} 
                 <label for="account" class="fwbr">帳戶</label>
                 
@@ -29,7 +28,6 @@
                 <div class="clearfix"></div>
                 <span style="color:red">{{message}}</span>
             </form>
-        </div>
     </div>
 </div>
 {% endblock %}

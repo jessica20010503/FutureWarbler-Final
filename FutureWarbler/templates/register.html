@@ -8,7 +8,7 @@
     </div>
     <div class="register_form p-6 w-30 br-m card-shadow">
         <h2 class="fz-xxl fwb mb-8">Register</h2>
-            <form action="." class="w-80" method="post" enctype="multipart/form-data">
+            <form action="."  method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% if lostSomething == 'lostSomething' %}
                 <span style="color:red">{{checkLost}}</span><br>
@@ -16,17 +16,17 @@
                     <span style="color:red">{{message}}</span> <br>
                 {% endif %}
                 <label for="account" class=" fwbr">帳戶</label>
-                <input type="text" name="account" id="account" class="d-block w-100 br-s mt-1 mb-4 p-1 b-n">
+                <input type="text" name="account" id="account" class="d-block w-100 br-s mt-1 mb-2 p-1 b-n">
                 <label for="password" class=" fwbr">密碼</label>
-                <input type="password" name="password" id="password" class="d-block w-100 br-s mt-1 mb-5 p-1 b-n">
+                <input type="password" name="password" id="password" class="d-block w-100 br-s mt-1 mb-2 p-1 b-n">
                 <div class="w-48 fl">
                     <label for="name" class=" fwbr">姓名</label>
-                    <input type="text" name="name" id="name" class="d-block w-100 br-s mt-1 mb-5 p-1 b-n">
+                    <input type="text" name="name" id="name" class="d-block w-100 br-s mt-1 mb-2 p-1 b-n">
                 </div>
                 <div class="w-48 fr">
                     <label for="photo" class=" fwbr">頭像</label>
 
-                    <input type="file" name="photo" id="photo" accept=".jpg,.png" class="d-block w-100 br-s mt-1 mb-5 p-1 b-n">
+                    <input type="file" name="photo" id="photo" accept=".jpg,.png" class="d-block w-100 br-s mt-1 mb-2 p-1 b-n">
                 </div>
                 <div class="w-35 mr-2 fl">
                     <label for="gender" class=" fwbr mb-2 d-inline-block">性別</label><br>
@@ -34,13 +34,13 @@
                     <input type="radio" name="gender" id="gender" value="0" checked><font class=" fwbr">男</font>
                     <input type="radio" name="gender" id="gender" value="1"><font class=" fwbr">女</font>
                 </div>
-                <div class="mb-5 w-48 fr">
+                <div class="mb-2 w-48 fr">
                     <label for="birth" class=" fwbr">生日</label>
                     <input type="date" name="birth" id="birth" class="br-s p-1 b-n  d-block w-100 mt-1">
                 </div>
                 <div class="clearfix"></div>
                 <label for="phone" class=" fwbr">手機</label>
-                <input type="tel" name="phone" id="phone" class="d-block w-100 br-s mt-1 mb-5 p-1 b-n">
+                <input type="tel" name="phone" id="phone" class="d-block w-100 br-s mt-1 mb-2 p-1 b-n">
                 <label for="mail" class=" fwbr">信箱</label>
                 <input type="email" name="mail" id="mail" class="d-block w-100 br-s mt-1 mb-5 p-1 b-n">
                 <div class="d-flex jcsb ">

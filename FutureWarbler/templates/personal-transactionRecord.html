@@ -27,13 +27,19 @@
                 </li>
                 <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/news/"><i class="fas fa-newspaper mr-2"></i>新聞</a></li>
                 <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/forum/"><i class="fas fa-comment-alt mr-2"></i>討論版</a></li>
-                <li class="main--menu pt-3 pr-5 pb-3 pl-9  chosed"><a href="/personal-page/"><i class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  chosed"><a href="/personal/"><i class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
             </ul>
             <div class="circle"></div>
             <div class="circle2"></div>
             <div class="circle3"></div>
         </div>
     <div class="container pb-4">
+        {% if ok == '' %}
+        <ul class="header--button d-flex jcfe  text-shadow">
+            <li><a href="/login/" class="header__login--button dark-gray  mr-2 tac br-s">登入</a></li>
+            <li><a href="/register/" class="header__register--button dark-gray  mr-2 tac br-s">註冊</a></li>
+        </ul>
+        {% else %}
         <ul class="header d-flex jcfe card-shadow text-shadow p-1 aic ">
                 <li>
                     <a href="" class="add--money--hover fz-s mr-2 fwbr d-flex  aic dark-gray">
@@ -46,13 +52,17 @@
                 </li>
                 <li class="fz-s mr-3 fwbr d-flex  aic ">
                     <div class="loginned_photo mr-2">
-                        <img src="../img/會員大頭貼.jpg" alt="會員大頭貼">
+                        <img src="../static/userimg/{{photo}}" alt="會員大頭貼">
                     </div>
-                    <p>Hi&nbsp;&nbsp;蔡西西</p>
+                    <p>Hi, &nbsp;&nbsp;{{username}}</p>
                 </li>
-
-                <li><a href="#" class="header__logout--button dark-gray  mr-2 tac br-s fwb">登出</a></li>
-        </ul>
+                <form action="/index/" method="post">
+                {% csrf_token %}
+                <input type ="hidden" name = "logout" value="logout">
+                <li><a href="/logout/" class="header__logout--button dark-gray  mr-2 tac br-s fwb">登出</a></li>
+                </form>
+            </ul>
+        {% endif %}
         <ul class="personal--transactionRecord__content mt-7 w-100 pl-12 pr-10 b-4">
                <li class="fl white-bg w-100 br-m  card-shadow   ">
                 <div class="d-flex jcsb aic b-bottom p-4 pl-5 pr-5">
