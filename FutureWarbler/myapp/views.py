@@ -166,11 +166,7 @@ def classes(request):
     # articles = cursor23.fetchall()
     # return render(request,"class.html", articles)
 
-def SelectKeyWord(request):
-    if 'keyWord' in request.GET:
-        keyWord = request.GET['keyWord']
-        news2 = News.objects.filter(news_title__iexact=keyWord)
-    return render(request, "news-1.html", {'News2': news2, 'News3': news3})
+
 
 def classcontent(request, pk):
     cursor = conn.cursor()
@@ -378,72 +374,13 @@ def newscontent(request, pk):
 
 
 def news1(request):
-    cursor2 = connection.cursor()
-    cursor3 = connection.cursor()
+    cursor2 = conn.cursor()
     cursor2.execute(
         "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['2'])
-    cursor3.execute(
-        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['3'])
     news2 = cursor2.fetchall()[:5]
-    news3 = cursor3.fetchall()[:5]
     # 期貨
-    return render(request, "news-1.html", {'News2': news2, 'News3': news3})
-    
-def news2(request):
-    cursor4 = connection.cursor()
-    cursor5 = connection.cursor()
-    cursor4.execute(
-        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['4'])
-    cursor5.execute(
-        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['5'])
-    news4 = cursor4.fetchall()[:5]
-    news5 = cursor5.fetchall()[:5]
-    # 兩岸
-    return render(request, "news-2.html", {'News4': news4, 'News5': news5})
-
-
-def news3(request):
-    cursor6 = connection.cursor()
-    cursor7 = connection.cursor()
-    cursor6.execute(
-        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['6'])
-    cursor7.execute(
-        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['7'])
-    news6 = cursor6.fetchall()[:5]
-    news7 = cursor7.fetchall()[:5]
-
-    # 國際
-    return render(request, "news-3.html", {'News6': news6, 'News7': news7})
-
-
-def news4(request):
-    cursor8 = connection.cursor()
-    cursor9 = connection.cursor()
-
-    cursor8.execute(
-        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['8'])
-    cursor9.execute(
-        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['9'])
-    news8 = cursor8.fetchall()[:5]
-    news9 = cursor9.fetchall()[:5]
-
-    # 產業
-    return render(request, "news-4.html", {'News8': news8, 'News9': news9})
-
-
-def news5(request):
-    cursor10 = connection.cursor()
-    cursor11 = connection.cursor()
-    cursor10.execute(
-        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['10'])
-    cursor11.execute(
-        "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['11'])
-    news10 = cursor10.fetchall()[:5]
-    news11 = cursor11.fetchall()[:5]
-    # 理財
-    return render(request, "news-5.html", {'News10': news10, 'News11': news11})
-
-
+    return render(request, "index.html", {'News2': news2})
+ 
 def newssearch(request):
 #     cursor0 = connection.cursor()
 #     cursor0.execute("select newsid,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s",['1'])
