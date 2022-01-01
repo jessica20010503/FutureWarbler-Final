@@ -213,7 +213,7 @@ def news(request):
 #如果try 裡抓page一頁有幾個，下一頁
 #except 防止報錯
 #else 防止報錯
-    # print(request.GET['page'])
+# print(request.GET['page'])
     if 'category' in request.GET:
         category = int(request.GET['category'])
         news3=News.objects.filter(news_category=category).filter(news_type=1)[:4]
@@ -226,7 +226,6 @@ def news(request):
             "5":"理財"
         }
         title = titleWord[str(category)]
-        print(title)
         if 'page' in request.GET:
             try:   
                 page = int(request.GET['page'])*5
@@ -242,7 +241,7 @@ def news(request):
             news3=News.objects.filter(news_category=category).filter(news_type=1)[:5]
             return render(request, "news-1.html", {'News2': news2, 'News3': news3,"title":title})
     else:
-        print('預設')
+
         news3 = News.objects.all()[:5]
         news2 = News.objects.all()[:5]
         return render(request, "news-1.html", {'News2': news2, 'News3': news3})
