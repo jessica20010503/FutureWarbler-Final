@@ -27,7 +27,7 @@
                 </li>
                 <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/news/"><i class="fas fa-newspaper mr-2"></i>新聞</a></li>
                 <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/forum/"><i class="fas fa-comment-alt mr-2"></i>討論版</a></li>
-                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/personal-page/"><i class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/personal/"><i class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
             </ul>
             <div class="circle"></div>
             <div class="circle2"></div>
@@ -35,7 +35,7 @@
         </div>
     <div class="container pb-4">
         <ul class="header d-flex jcfe card-shadow text-shadow p-3">
-            <li><a href="login/" class="header__login--button dark-gray  mr-2 tac br-s fwb"><i class="fas fa-sign-in-alt mr-3"></i>登入</a></li>
+            <li><a href="/login/" class="header__login--button dark-gray  mr-2 tac br-s fwb"><i class="fas fa-sign-in-alt mr-3"></i>登入</a></li>
         </ul>
         <div class="class w-100 pl-12 pr-10 b-4">
             <div class="top d-flex jcsb mt-5 aic">
@@ -48,7 +48,7 @@
             <ul class="main d-flex jcsb mt-4">
                 {% for classes in results %}
                 <li class="fl white-bg w-33 br-m  card-shadow  pb-2 class-card">
-                    <a href="class-content/">
+                    <a href="/class-content/">
                         <img src="{{ classes.class_photo }}" alt="課程圖片" class="w-100">
                         <div class="content p-5">
                             <h3 class="fz-l fwb dark-gray mb-2">{{ classes.class_title }}</h3>
