@@ -1,3 +1,4 @@
+
 {% extends 'layout.html'%}
 {% load static %}
 {% block content %}
@@ -34,36 +35,8 @@
             <div class="circle3"></div>
         </div>
     <div class="container pb-4">
-        {% if ok == '' %}
-        <ul class="header--button d-flex jcfe  text-shadow">
-            <li><a href="/login/" class="header__login--button dark-gray  mr-2 tac br-s">登入</a></li>
-            <li><a href="/register/" class="header__register--button dark-gray  mr-2 tac br-s">註冊</a></li>
-        </ul>
-        {% else %}
-        <ul class="header d-flex jcfe card-shadow text-shadow p-1 aic ">
-                <li>
-                    <a href="" class="add--money--hover fz-s mr-2 fwbr d-flex  aic dark-gray">
-                        <i class="fas fa-piggy-bank fz-m mr-2"></i>
-                        <div>
-                            <p class="mr-2 tar"><span class="mr-2">800,000</span>(TWD)<span class="mr-2 ml-2">30,000</span>(USD)</p>
-                            <p>可用餘額</p>
-                        </div>
-                    </a>
-                </li>
-                <li class="fz-s mr-3 fwbr d-flex  aic ">
-                    <div class="loginned_photo mr-2">
-                        <img src="../static/userimg/{{photo}}" alt="會員大頭貼">
-                    </div>
-                    <p>Hi, &nbsp;&nbsp;{{username}}</p>
-                </li>
-                <form action="/index/" method="post">
-                {% csrf_token %}
-                <input type ="hidden" name = "logout" value="logout">
-                <li><a href="/logout/" class="header__logout--button dark-gray  mr-2 tac br-s fwb">登出</a></li>
-                </form>
-            </ul>
-        {% endif %}
-        <div class="personal--page__content mt-4 w-100 pl-12 pr-10 b-4">
+        {% include 'login-nav.html' %}
+        <div class="personal--page__content mt-4 w-100">
             <div class="fl second-white-bg w-65 br-m mr-3pct drop-shadow pt-4 pb-6 pl-8 pr-8">
                 <h2 class="mb-8"><i class="fas fa-user mr-3"></i>個人資訊</h2>
                 <div class="personal--information__content d-flex">
@@ -71,15 +44,14 @@
                         <img src="../static/userimg/{{photo}}" alt="會員大頭貼">
                     </div>
                     <ul class="ml-16">
-                        <li class="mb-1">Terisa Tsai</li>
+                        <li class="mb-1">{{userid}}</li>
                         <li class="mb-1">{{username}}</li>
-                        <li class="fz-s mb-1">女</li>
-                        <li class="fz-s mb-1">1998/11/26</li>
+                        <li class="fz-s mb-1">{{gender}}</li>
+                        <li class="fz-s mb-1">{{birth}}</li>
                     </ul>
                     <ul class="ml-28 fz-s">
-                        <li class="mb-1">手機&nbsp;&nbsp;&nbsp;0912-345678</li>
-                        <li class="mb-1">信箱&nbsp;&nbsp;&nbsp;shishi1126@gmail.com</li>
-                        <li class="mb-1">密碼&nbsp;&nbsp;&nbsp;**********</li>
+                        <li class="mb-1">手機&nbsp;&nbsp;&nbsp;{{phone}}</li>
+                        <li class="mb-1">信箱&nbsp;&nbsp;&nbsp;{{mail}}</li>
                     </ul>
                 </div>
                 <!-- Button trigger modal -->
@@ -92,17 +64,17 @@
                             <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-user-edit mr-3  ml-5"></i>個人資料修改</h5>
                             <button type="button" class="b-n close__btn" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times fz-s"></i></button>
                             </div>
-                            <form action="">
+                            <!--修改介面-->
+                            <form action="/personal_update/" method='post'>
+                                {% csrf_token %}
                                 <div class="modal-body  p-4  gray-bg">
                                     <div class=" w-80 m0-a">
-                                            <!-- 3.修改資料 -->
-                                            <form method="post" action=".">
-                                                {% csrf_token %}
+                                                <input  name="functions" type="hidden" value="update">
                                                 <label for="account" class="dark-gray fz-s fwbr">帳號</label>
-                                                <input type="text" name="account" id="account" class="br-s p-1 d-block w-100 mb-2 b-n" value="Terisa Tsai">
+                                                <input type="text" name="account" id="account" class="br-s p-1 d-block w-100 mb-2 b-n" value="Terisa Tsai" readonly>
                                                 <div class="w-48 fl">
                                                     <label for="name" class=" fwbr">姓名</label>
-                                                    <input type="text" name="name" id="name" class="d-block w-100 br-s mt-1 mb-5 p-1 b-n" value="{{username}}">
+                                                    <input type="text" name="username" id="name" class="d-block w-100 br-s mt-1 mb-5 p-1 b-n" placeholder="{{username}}">
                                                 </div>
                                                 <div class="w-48 fr">
                                                    
@@ -111,8 +83,13 @@
                                                 </div>
                                                 <div class="w-35 mr-2 fl">
                                                     <label for="gender" class=" fwbr mb-2 d-inline-block">性別</label><br>
+                                                    {% if gender == '女' %}
                                                     <input type="radio" name="gender" id="gender" value="0"><font class=" fwbr">男</font>
                                                     <input type="radio" name="gender" id="gender" value="1" checked><font class=" fwbr">女</font>
+                                                    {% else %}
+                                                    <input type="radio" name="gender" id="gender" value="0" checked><font class=" fwbr">男</font>
+                                                    <input type="radio" name="gender" id="gender" value="1" ><font class=" fwbr">女</font>
+                                                    {% endif %}
                                                 </div>
                                                 <div class="mb-5 w-48 fr">
                                                     <label for="birth" class=" fwbr">生日</label>
@@ -120,13 +97,16 @@
                                                 </div>
                                                 <div class="clearfix"></div>
                                                 <label for="phone" class="dark-gray fz-s fwbr">手機</label>
-                                                <input type="tel" name="phone" id="phone" class="br-s p-1 d-block w-100 mb-2 b-n" value="0912-345678">
+                                                <input type="tel" name="phone" id="phone" class="br-s p-1 d-block w-100 mb-2 b-n" placeholder="{{phone}}">
                                                 <label for="mail" class="dark-gray fz-s fwbr">信箱</label>
-                                                <input type="email" name="mail" id="mail" class="br-s p-1 d-block w-100 mb-2 b-n" value="shishi1126@gmail.com">
+                                                <input type="email" name="mail" id="mail" class="br-s p-1 d-block w-100 mb-2 b-n" placeholder="{{mail}}">
                                                 <label for="password" class="dark-gray fz-s fwbr">密碼</label>
-                                                <input type="password" name="password" id="password" class="br-s p-1 d-block w-100 mb-2 b-n" value="shishi1126">
-                                            <form >
-                                            <!-- 4.資料更新成功 -->
+                                                <input type="password" name="password" id="password" class="br-s p-1 d-block w-100 mb-2 b-n" >
+                                                <label for="password2" class="dark-gray fz-s fwbr">再次輸入密碼</label>
+                                                <input type="password2" name="password2" id="password2" class="br-s p-1 d-block w-100 mb-2 b-n" >
+                                                <p style="color:red;">{{message}}</p>
+                                            <!--修改介面-->
+                                            <!-- 資料更新成功 -->
                                             <!--
                                                 <div class="tac">
                                                     <i class="fas fa-check fz-xxl light-green"></i>
@@ -137,7 +117,7 @@
                                 </div>
                                 <div class="modal-footer ">
                                     <button type="button" class="close__btn dark-gray b-n " data-bs-dismiss="modal">取消</button>
-                                    <button type="button" class="personal__btn dark-gray b-n">確認</button>
+                                    <button type="submit" class="personal__btn dark-gray b-n">確認</button>
                                 </div>
                             </form>
                         </div>
@@ -203,21 +183,19 @@
                 <div class="fl white-bg w-100 br-m mr-3pct card-shadow mt-6 pb-4">
                     <div class="d-flex jcsb aic b-bottom p-4 pl-5 pr-5">
                         <h2><i class="fas fa-bookmark mr-3"></i>策略清單</h2>
-                        <a href="/strategy/"  class="fr personal__btn dark-gray b-n fwb">查看更多</a>
+                        <a href="personal-strategyList.html"  class="fr personal__btn dark-gray b-n fwb">查看更多</a>
                     </div>
                     <table class="w-100 tac mt-5 trade--table ">
                         <tr class="fwb">
                             <th>序號</th>
-                            <th>策略<br>類型</th>
-                            <th>商品<br>代號</th>
-                            <th>商品<br>名稱</th>
-                            <th>資料<br>週期</th>
-                            <th>開始<br>時間</th>
-                            <th>結束<br>時間</th>
-                            <th>技術<br>指標一</th>
-                            <th>技術<br>指標二</th>
-                            <th>進場<br>策略</th>
-                            <th>出場<br>策略</th>
+                            <th>分析類型</th>
+                            <th>商品代號</th>
+                            <th>商品名稱</th>
+                            <th>資料周期</th>
+                            <th>開始時間</th>
+                            <th>結束時間</th>
+                            <th>技術指標</th>
+                            <th>分析策略</th>
                             <th>演算法</th>
                         </tr>
                         <tr class="trade--table__item">
@@ -225,12 +203,10 @@
                             <td>一般交易</td>
                             <td>MNQ</td>
                             <td>小那斯達克</td>
-                            <td>1分鐘</td>
+                            <td>Tick</td>
                             <td>2020/10/11</td>
                             <td>2021/5/31</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>均線策略</td>
+                            <td>RSI指標</td>
                             <td>均線策略</td>
                             <td>-</td>
                         </tr>
@@ -243,9 +219,7 @@
                             <td>2001/03/11</td>
                             <td>2008/09/25</td>
                             <td>MACD指標</td>
-                            <td>DMI趨向指標</td>
-                            <td>MA快線向上突破慢線</td>
-                            <td>空單K值向上跌破D值</td>
+                            <td>布林通道策略</td>
                             <td>隨機森林</td>
                         </tr>
                         <tr class="trade--table__item">
@@ -253,26 +227,22 @@
                             <td>智能交易</td>
                             <td>TY</td>
                             <td>十年美國債劵</td>
-                            <td>3 週</td>
+                            <td>一週</td>
                             <td>2005/09/01</td>
                             <td>2011/05/03</td>
-                            <td>威廉指標</td>
-                            <td>BIAS乖離率</td>
-                            <td>RSI < 50及MA向下跌破</td>
-                            <td>停損RSI < 30</td>
-                            <td>SVM支援向量機</td>
+                            <td></td>
+                            <td>均線策略</td>
+                            <td>-</td>
                         </tr>
                         <tr class="trade--table__item">
                             <td>4</td>
                             <td>一般交易</td>
                             <td>C</td>
                             <td>玉米</td>
-                            <td>1 個月</td>
+                            <td>一個月</td>
                             <td>2018/06/24</td>
                             <td>2021/08/23</td>
                             <td>BIAS乖離率</td>
-                            <td>EMA指數平均數指標</td>
-                            <td>ORB策略</td>
                             <td>ORB策略</td>
                             <td>Ada Boost</td>
                         </tr>
@@ -281,7 +251,7 @@
                <div class="fl white-bg w-100 br-m mr-3pct card-shadow mt-6 pb-4">
                     <div class="d-flex jcsb aic b-bottom p-4 pl-5 pr-5">
                         <h2><i class="fas fa-exchange-alt mr-3"></i>交易紀錄</h2>
-                        <a href="/transactionRecord/"  class="fr personal__btn dark-gray b-n fwb">查看更多</a>
+                        <a href="personal-transactionRecord.html"  class="fr personal__btn dark-gray b-n fwb">查看更多</a>
                     </div>
                     <table class="w-100 tac mt-5 trade--table">
                         <tr class="fwb">
