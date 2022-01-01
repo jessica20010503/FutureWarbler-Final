@@ -59,12 +59,11 @@
                 <form action="/index/" method="post">
                 {% csrf_token %}
                 <input type ="hidden" name = "logout" value="logout">
-                <li><a href="#" class="header__logout--button dark-gray  mr-2 tac br-s fwb">登出</a></li>
+                <li><a href="/logout/" class="header__logout--button dark-gray  mr-2 tac br-s fwb">登出</a></li>
                 </form>
-                <li><a href="#" class="header__logout--button dark-gray  mr-2 tac br-s fwb">登出</a></li>
             </ul>
         {% endif %}
-        <div class="personal--page__content mt-4 w-100">
+        <div class="personal--page__content mt-4 w-100 pl-12 pr-10 b-4">
             <div class="fl second-white-bg w-65 br-m mr-3pct drop-shadow pt-4 pb-6 pl-8 pr-8">
                 <h2 class="mb-8"><i class="fas fa-user mr-3"></i>個人資訊</h2>
                 <div class="personal--information__content d-flex">
@@ -96,36 +95,13 @@
                             <form action="">
                                 <div class="modal-body  p-4  gray-bg">
                                     <div class=" w-80 m0-a">
-                                            <!-- 1.輸入帳號密碼-->
-                                            <div class="tac">
-                                            <i class="fas fa-lock fz-l "></i>
-                                            <p class="fwb ">請先輸入帳號密碼!!</p>
-                                            </div>
+                                            <!-- 3.修改資料 -->
                                             <form method="post" action=".">
                                                 {% csrf_token %}
                                                 <label for="account" class="dark-gray fz-s fwbr">帳號</label>
-                                                <input type="text" name="account" id="account" class="br-s p-1 d-block w-100 mb-2 b-n">
-                                                <label for="password" class="dark-gray fz-s fwbr">密碼</label>
-                                                <input type="text" name="password" id="password" class="br-s  p-1 d-block w-100 b-n"> 
-                                                <label for="password" class="dark-gray fz-s fwbr">{{username}}</label>
-                                            <form >
-                                            <!-- 2.帳號密碼輸入錯誤 -->
-                                            <!--
-                                                <div class="tac">
-                                                    <i class="fas fa-lock fz-l "></i>
-                                                    <p class="fwb  dark-red">帳號密碼輸入錯誤!!</p>
-                                                </div>
-                                                <label for="account" class="dark-gray fz-s fwbr">帳號</label>
-                                                <input type="text" name="account" id="account" class="br-s p-1 d-block w-100 mb-2 b-n">
-                                                <label for="password" class="dark-gray fz-s fwbr">密碼</label>
-                                                <input type="text" name="password" id="password" class="br-s  p-1 d-block w-100 b-n"> 
-                                            --> 
-                                            <!-- 3.修改資料 -->
-                                            <!--
-                                                <label for="account" class="dark-gray fz-s fwbr">帳號</label>
                                                 <input type="text" name="account" id="account" class="br-s p-1 d-block w-100 mb-2 b-n" value="Terisa Tsai">
                                                 <div class="w-48 fl">
-                                                    <label for="name" class=" fwbr">姓名</label>
+                                                    <label for="name" class=" fwbr">{{username}}</label>
                                                     <input type="text" name="name" id="name" class="d-block w-100 br-s mt-1 mb-5 p-1 b-n" value="蔡西西">
                                                 </div>
                                                 <div class="w-48 fr">
@@ -149,7 +125,7 @@
                                                 <input type="email" name="mail" id="mail" class="br-s p-1 d-block w-100 mb-2 b-n" value="shishi1126@gmail.com">
                                                 <label for="password" class="dark-gray fz-s fwbr">密碼</label>
                                                 <input type="password" name="password" id="password" class="br-s p-1 d-block w-100 mb-2 b-n" value="shishi1126">
-                                            -->
+                                            <form >
                                             <!-- 4.資料更新成功 -->
                                             <!--
                                                 <div class="tac">
@@ -227,19 +203,21 @@
                 <div class="fl white-bg w-100 br-m mr-3pct card-shadow mt-6 pb-4">
                     <div class="d-flex jcsb aic b-bottom p-4 pl-5 pr-5">
                         <h2><i class="fas fa-bookmark mr-3"></i>策略清單</h2>
-                        <a href="personal-strategyList.html"  class="fr personal__btn dark-gray b-n fwb">查看更多</a>
+                        <a href="/strategy/"  class="fr personal__btn dark-gray b-n fwb">查看更多</a>
                     </div>
                     <table class="w-100 tac mt-5 trade--table ">
                         <tr class="fwb">
                             <th>序號</th>
-                            <th>分析類型</th>
-                            <th>商品代號</th>
-                            <th>商品名稱</th>
-                            <th>資料周期</th>
-                            <th>開始時間</th>
-                            <th>結束時間</th>
-                            <th>技術指標</th>
-                            <th>分析策略</th>
+                            <th>策略<br>類型</th>
+                            <th>商品<br>代號</th>
+                            <th>商品<br>名稱</th>
+                            <th>資料<br>週期</th>
+                            <th>開始<br>時間</th>
+                            <th>結束<br>時間</th>
+                            <th>技術<br>指標一</th>
+                            <th>技術<br>指標二</th>
+                            <th>進場<br>策略</th>
+                            <th>出場<br>策略</th>
                             <th>演算法</th>
                         </tr>
                         <tr class="trade--table__item">
@@ -247,10 +225,12 @@
                             <td>一般交易</td>
                             <td>MNQ</td>
                             <td>小那斯達克</td>
-                            <td>Tick</td>
+                            <td>1分鐘</td>
                             <td>2020/10/11</td>
                             <td>2021/5/31</td>
-                            <td>RSI指標</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>均線策略</td>
                             <td>均線策略</td>
                             <td>-</td>
                         </tr>
@@ -263,7 +243,9 @@
                             <td>2001/03/11</td>
                             <td>2008/09/25</td>
                             <td>MACD指標</td>
-                            <td>布林通道策略</td>
+                            <td>DMI趨向指標</td>
+                            <td>MA快線向上突破慢線</td>
+                            <td>空單K值向上跌破D值</td>
                             <td>隨機森林</td>
                         </tr>
                         <tr class="trade--table__item">
@@ -271,22 +253,26 @@
                             <td>智能交易</td>
                             <td>TY</td>
                             <td>十年美國債劵</td>
-                            <td>一週</td>
+                            <td>3 週</td>
                             <td>2005/09/01</td>
                             <td>2011/05/03</td>
-                            <td></td>
-                            <td>均線策略</td>
-                            <td>-</td>
+                            <td>威廉指標</td>
+                            <td>BIAS乖離率</td>
+                            <td>RSI < 50及MA向下跌破</td>
+                            <td>停損RSI < 30</td>
+                            <td>SVM支援向量機</td>
                         </tr>
                         <tr class="trade--table__item">
                             <td>4</td>
                             <td>一般交易</td>
                             <td>C</td>
                             <td>玉米</td>
-                            <td>一個月</td>
+                            <td>1 個月</td>
                             <td>2018/06/24</td>
                             <td>2021/08/23</td>
                             <td>BIAS乖離率</td>
+                            <td>EMA指數平均數指標</td>
+                            <td>ORB策略</td>
                             <td>ORB策略</td>
                             <td>Ada Boost</td>
                         </tr>
@@ -295,7 +281,7 @@
                <div class="fl white-bg w-100 br-m mr-3pct card-shadow mt-6 pb-4">
                     <div class="d-flex jcsb aic b-bottom p-4 pl-5 pr-5">
                         <h2><i class="fas fa-exchange-alt mr-3"></i>交易紀錄</h2>
-                        <a href="personal-transactionRecord.html"  class="fr personal__btn dark-gray b-n fwb">查看更多</a>
+                        <a href="/transactionRecord/"  class="fr personal__btn dark-gray b-n fwb">查看更多</a>
                     </div>
                     <table class="w-100 tac mt-5 trade--table">
                         <tr class="fwb">
