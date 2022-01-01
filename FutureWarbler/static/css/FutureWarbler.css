@@ -1635,6 +1635,37 @@ img {
      object-position: center;
 }
 
+.forum .Avatars-l {
+  position: relative;
+  width: 35%;
+  /* 固定寬度 */
+  height: 35%;
+  margin-right: 22px;
+}
+
+.forum .Avatars-l::after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+  /*padding取決於寬度，這裡設定padding-bottom: 100%就可以得到正方形*/
+}
+
+.forum .Avatars-l img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /*將圖片大小固定為父類div的大小*/
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  /* 相當於 background-size: cover; of a background-image */
+  -o-object-position: center;
+     object-position: center;
+}
+
 .forum .write {
   position: fixed;
   bottom: 15px;

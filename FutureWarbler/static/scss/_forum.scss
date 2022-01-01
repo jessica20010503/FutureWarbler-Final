@@ -34,6 +34,28 @@
             object-position: center;
         }
     }
+    .Avatars-l{
+        position: relative;
+        width: 35%; /* 固定寬度 */
+        height: 35%;
+        margin-right: 22px;
+        &::after {
+            content: "";
+            display: block;
+            padding-bottom: 100%; /*padding取決於寬度，這裡設定padding-bottom: 100%就可以得到正方形*/
+        }
+        img{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0; /*將圖片大小固定為父類div的大小*/
+            width: 100%; 
+            height: 100%;
+            object-fit: cover; /* 相當於 background-size: cover; of a background-image */
+            object-position: center;
+        }
+    }
     .write{
         position: fixed;
         bottom: 15px;
