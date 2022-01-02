@@ -10,15 +10,15 @@ $(document).ready(function () {
 
     //字體放大縮小
 	$('.font-s').click(function (e) { 
-		$('.news-content .article p').css('font-size','14px');
+	  $('.article p').css('font-size','14px');
 	  });
 	
 	  $('.font-m').click(function (e) { 
-		$('.news-content .article p').css('font-size','18px');
+		$('.article p').css('font-size','18px');
 	  });
 	
 	  $('.font-b').click(function (e) { 
-		$('.news-content .article p').css('font-size','20px');
+		$('.article p').css('font-size','20px');
 	  });	
 	});
 	
@@ -29,7 +29,12 @@ $(document).ready(function () {
 			$(this).parent().find('.menu--drop').slideToggle();
 			$(this).parent().siblings().find('.menu--drop').slideUp();
 	});
-	
 });
+function copyFn() {
+	var val = document.getElementById('copyMy');
+	window.getSelection().selectAllChildren(val);
+	document.execCommand("Copy");
+	alert("已成功複製！");
+}
 
  
