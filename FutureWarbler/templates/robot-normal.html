@@ -38,74 +38,98 @@
             <div class="robot-normal mt-7 w-100 pl-12 pr-10 b-4">
                 <div class="fl white-bg w-100 br-m mr-3pct card-shadow pt-6 pb-6 pl-8 pr-8">
                     <h2 class="mb-6"><i class="fas fa-list mr-3"></i>設定計算項目</h2>
-                    <form action="#" method="#" class="time-table d-flex jcsb">
-                        <div class="w-30">
-                            <h2 class="mb-4 fwb primary b-bottom pb-2">商品設定</h2>
-                            <label for="product">期貨商品：
-                            <select name="product" id="product">
-                                <option value="TX">台指期</option>
-                                <option value="MTX">小台指</option>
-                                <option value="TE">電子期</option>
-                                <option value="TF">金融期</option>
-                                <option value="UDF">小道瓊</option>
-                                <option value="NAS">小那斯達克</option>
-                                <option value="S&P">小S&P</option>
-                                <option value="RUT">小羅素2000</option>
-                                <option value="US10">美國十年公債</option>
-                                <option value="S">黃豆</option>
-                                <option value="W">小麥</option>
-                                <option value="C">玉米</option>
-                            </select>
-                        </div>
-                        <div class="w-30">
-                            <h2 class="mb-4 fwb primary b-bottom pb-2">時間設定</h2>
-                            <label for="cycle">資料周期：
-                                <input type="number" name="number" id="cycle" class="number">
-                                <select id="cycle" name="cycle" class="mb-5">
-                                    <option value="min">分鐘</option>
-                                    <option value="hr">小時</option>
-                                    <option value="day">天</option>
+                    <form action="#" method="#" class="time-table">
+                        <div class="d-flex jcsb">
+                            <div class="w-30">
+                                <h2 class="mb-4 fwb primary b-bottom pb-2">商品設定</h2>
+                                <label for="product">期貨商品：
+                                <select name="product" id="product">
+                                    <option value="TX">台指期</option>
+                                    <option value="MTX">小台指</option>
+                                    <option value="TE">電子期</option>
+                                    <option value="TF">金融期</option>
+                                    <option value="UDF">小道瓊</option>
+                                    <option value="NAS">小那斯達克</option>
+                                    <option value="S&P">小S&P</option>
+                                    <option value="RUT">小羅素2000</option>
+                                    <option value="US10">美國十年公債</option>
+                                    <option value="S">黃豆</option>
+                                    <option value="W">小麥</option>
+                                    <option value="C">玉米</option>
                                 </select>
-                            <br>
-                            <label for="start-time">開始時間：</label>
-                            <input id="start-time" name="start-time" type="date" class="mb-5">
-                            <br>
-                            <label for="end-time">結束時間：</label>
-                            <input id="end-time" name="end-time" type="date" class="mb-5">
+                            </div>
+                            <div class="w-30">
+                                <h2 class="mb-4 fwb primary b-bottom pb-2">時間設定</h2>
+                                <label for="cycle">資料周期：
+                                    <input type="number" name="number" id="cycle" class="number">
+                                    <select id="cycle" name="cycle" class="mb-5">
+                                        <option value="min">分鐘</option>
+                                        <option value="hr">小時</option>
+                                        <option value="day">天</option>
+                                    </select>
+                                <br>
+                                <label for="start-time">開始時間：</label>
+                                <input id="start-time" name="start-time" type="date" class="mb-5">
+                                <br>
+                                <label for="end-time">結束時間：</label>
+                                <input id="end-time" name="end-time" type="date" class="mb-5">
+                            </div>
+                            <div class="w-30">
+                                <h2 class="mb-4 fwb primary b-bottom pb-2">進出場策略</h2>
+                                <label for="in">進場：
+                                    <select id="in" name="in" class="mb-5">
+                                        <option value="">MA快線向上突破慢線</option>
+                                        <option value="">MA快線向下跌破慢線</option>
+                                        <option value="">RSI > 50及MA向上穿越</option>
+                                        <option value="">RSI < 50及MA向下跌破</option>
+                                        <option value="MA">均線策略</option>
+                                        <option value="Bollinger2">布林通道</option>
+                                        <option value="Turtle">海龜策略</option> 
+    s                                </select>
+                                <br>
+                                <label for="out">出場：
+                                    <select id="out" name="out" class="mb-5">
+                                        <option value="">停利RSI > 80</option>
+                                        <option value="">停損RSI < 30</option>
+                                        <option value="">多單K值向下穿越D值</option>
+                                        <option value="">空單K值向上跌破D值</option>
+                                        <option value="MA">均線策略</option>
+                                        <option value="Bollinger2">布林通道</option>
+                                        <option value="Turtle">海龜策略</option>
+                                    </select>
+                            </div>
                         </div>
-                        <div class="w-30">
-                            <h2 class="mb-4 fwb primary b-bottom pb-2">進出場策略</h2>
-                            <label for="in">進場：
-                                <select id="in" name="in" class="mb-5">
-                                    <option value="">MA快線向上突破慢線</option>
-                                    <option value="">MA快線向下跌破慢線</option>
-                                    <option value="">RSI > 50及MA向上穿越</option>
-                                    <option value="">RSI < 50及MA向下跌破</option>
-                                    <option value="MA">均線策略</option>
-                                    <option value="Bollinger2">布林通道</option>
-                                    <option value="Turtle">海龜策略</option> 
-s                                </select>
-                            <br>
-                            <label for="out">出場：
-                                <select id="out" name="out" class="mb-5">
-                                    <option value="">停利RSI > 80</option>
-                                    <option value="">停損RSI < 30</option>
-                                    <option value="">多單K值向下穿越D值</option>
-                                    <option value="">空單K值向上跌破D值</option>
-                                    <option value="MA">均線策略</option>
-                                    <option value="Bollinger2">布林通道</option>
-                                    <option value="Turtle">海龜策略</option>
-                                </select>
-                        </div>
+                        <input type="button" value="確認送出" class="d-inline-block fr robot__btn dark-gray b-n fwb w-10"></input>
                     </form>
-                    <a href="#"  class="d-inline-block fr robot__btn dark-gray b-n fwb">確認送出</a>
                 </div>
                 
                 <div class="fl white-bg w-100 br-m card-shadow mt-6 mr-4pct pt-6 pb-6 pl-8 pr-8">
-                    <div class="d-flex aic jcsb mb-8">
+                    <div class="d-flex jcsb aic">
                         <h2><i class="fas fa-chart-line mr-2"></i>分析結果</h2>
-                        <a href="#"  class="d-inline-block fr robot__btn dark-gray b-n fwb">保存此策略</a>
+                        <form action="#">
+                                <input type="button" value="保存策略" class="d-inline-block  submit__btn robot__btn dark-gray b-n fwb" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                            <!-- Modal -->
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header p-3">
+                                            <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-cash-register mr-3  ml-5"></i>保存策略</h5>
+                                            <button type="button" class="b-n close__btn" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times fz-s"></i></button>
+                                            </div>
+                                            <form action="">
+                                                <div class="modal-body  p-4  gray-bg">
+                                                    <div class=" w-80 m0-a tac">
+                                                            <h2>已成功新增一筆策略組合<br>請前往個人頁面查看</h2>
+                                                            <a href="/personal/"  class="personal__btn dark-gray b-n fwb mt-3 d-inline-block">前往查看</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
                     </div>
+                    
                     <!-- TradingView Widget BEGIN -->
                     <div class="tradingview-widget-container w-100 mt-3">
                         <div id="tradingview_f719f"></div>
@@ -131,7 +155,7 @@ s                                </select>
                     </div>
                     <!-- TradingView Widget END -->
                     <h2 class="mb-4 fwb primary b-bottom pb-2 tac mt-6">交易建議</h2>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt eligendi cupiditate esse corrupti excepturi saepe aut libero voluptate quaerat quos nisi, quod facere tempore labore rerum minima, quasi fuga nihil.</p>
+                    <p>本系統分析功能使用均線策略來未使用者分析台指期的進出場時機及停損停利點，使用者可參考此分析結果決定何時買進或賣出商品，本預測數值僅供使用者參考，切勿當真！</p>
                 </div>
             </div>
         </div>
