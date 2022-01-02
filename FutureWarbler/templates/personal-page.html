@@ -1,6 +1,12 @@
+
 {% extends 'layout.html'%}
 {% load static %}
 {% block content %}
+{% if alertmessage != None %}
+<script>
+    alert('{{alertmessage}}');
+</script>
+{% endif %}
 <div class="wrap d-flex m0-a">
     <div class="side">
             <h1 class="fz-xl fwb">F<span class="bright">u</span>tures <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
@@ -34,6 +40,7 @@
             <div class="circle3"></div>
         </div>
     <div class="container pb-4">
+       
         {% include 'login-nav.html' %}
         <div class="personal--page__content mt-4 w-100 pl-12 pr-10 b-4">
             <div class="fl second-white-bg w-65 br-m mr-3pct drop-shadow pt-4 pb-6 pl-8 pr-8">

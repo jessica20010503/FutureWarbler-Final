@@ -133,7 +133,7 @@ def personal_unlogin(request):
 
 #------------登入狀態下的個人頁面-----------------
 def personal(request):
-          
+    
     if 'username' in request.session:
         ok = "yes"
         userid = request.session['userid']
@@ -163,16 +163,19 @@ def update(request):
        
         if request.POST['update'] == 'password': #表示要修密碼
             if request.POST['password'] == request.POST['password2']:
+               
                 message ='個人資料修改完成!^^'
                 password =request.POST['password']
                 password2 = request.POST['password2']
                 sql = "UPDATE `member` SET `member_password`='%s' WHERE `member_id` ='%s'"%(password,account)
                 cursor.execute(sql)
-            else:
-                message ='兩個密碼不一樣啦 婊子!'
-        else: #表示要修其他個人資訊
 
-           
+            else:
+              
+                message ='兩個密碼不一樣啦!'
+                return redirect('/personal/',alertmessage=message)
+
+        else: #表示要修其他個人資訊
 
             if 'username' in request.POST:
                 username = request.POST['username']
@@ -221,15 +224,17 @@ def update(request):
             
             sql = "UPDATE `member` SET `member_name`='%s', `member_gender`='%s',`member_birth`='%s',`member_photo`='%s',`member_phone`='%s',`member_email`='%s' WHERE `member_id` ='%s'"%(username,gender,birth,photo,phone,mail,account)
             try:
+               
                 message= "成功更改資料!>.-"
                 cursor.execute(sql)
                
             except:
+               
                 message= "出錯嚕>.-"
-                return redirect('/personal/')
+                return redirect('/personal/',alertmessage=message)
 
 
-    return render(request,'/personal/',locals())
+    return redirect('/personal/',alertmessage=message)
 
 
 
