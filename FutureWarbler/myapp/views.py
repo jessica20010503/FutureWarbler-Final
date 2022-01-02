@@ -65,6 +65,7 @@ def login(request):
                 message ='帳號密碼錯誤，請再次確認'
             else:
                 request.session['userid'] = account
+                request.session['password'] = password
                 request.session['username'] = data[2]
                 request.session['gender'] = data[3]
                 request.session['birth'] = data[4].strftime("%Y-%m-%d") #type=datetime.date
@@ -135,10 +136,13 @@ def personal(request):
           
     if 'username' in request.session:
         ok = "yes"
+        userid = request.session['userid']
         username = request.session['username']
         photo = request.session['photo']
         userid = request.session['userid']
         gender = request.session['gender']
+        phone = request.session['phone']
+        mail = request.session['mail']
         if gender =='F':
             gender = '女'
         else:
@@ -150,6 +154,84 @@ def personal(request):
        return redirect('/personal-unlogin/')
     
     return render(request,"personal-page.html",locals())
+
+#------------個人介面個人資料修改--------------------
+def update(request):
+    account = request.session['userid']
+    cursor = connection.cursor()
+    if request.method == 'POST':
+       
+        if request.POST['update'] == 'password': #表示要修密碼
+            if request.POST['password'] == request.POST['password2']:
+                message ='個人資料修改完成!^^'
+                password =request.POST['password']
+                password2 = request.POST['password2']
+                sql = "UPDATE `member` SET `member_password`='%s' WHERE `member_id` ='%s'"%(password,account)
+                cursor.execute(sql)
+            else:
+                message ='兩個密碼不一樣啦 婊子!'
+        else: #表示要修其他個人資訊
+
+           
+
+            if 'username' in request.POST:
+                username = request.POST['username']
+                request.session['usrname'] = username
+            
+            if 'gender' in request.POST:
+                gender = request.POST['gender']
+                request.session['gender'] = gender
+
+
+            photopath = request.FILES.get('photo',False)
+            if photopath == False:
+                photo = request.session['photo']
+            else:
+                photo = request.FILES['photo']
+                photoname = request.session['photo'] #因為要蓋掉之前的照片，所以名子要一樣
+                with open('static/userimg/'+photoname, 'wb+') as destination:
+                            for chunk in photo.chunks():
+                                destination.write(chunk)
+                request.session['photo'] = photoname
+               
+
+            #因為birth是必填選項，所以不用判斷
+            birth = request.POST['birth']
+            
+            if 'phone' in request.POST:
+                phone = request.POST['phone']
+                if len(phone) < 9:
+                    phone = request.session['phone']
+                else:
+                    phone = request.POST['phone']
+
+            if 'mail'  in request.POST:
+                mail = request.session['mail']
+                request.session['mail'] = mail
+           
+           
+            mail = request.session['mail']
+            username = request.session['username']
+            photo = request.session['photo']
+            gender = request.session['gender']
+            if gender == "0":
+                gender = 'M'
+            else:
+                 gender = 'F'
+            
+            sql = "UPDATE `member` SET `member_name`='%s', `member_gender`='%s',`member_birth`='%s',`member_photo`='%s',`member_phone`='%s',`member_email`='%s' WHERE `member_id` ='%s'"%(username,gender,birth,photo,phone,mail,account)
+            try:
+                message= "成功更改資料!>.-"
+                cursor.execute(sql)
+               
+            except:
+                message= "出錯嚕>.-"
+                return redirect('/personal/')
+
+
+    return render(request,'/personal/',locals())
+
+
 
 # ------------個人介面交易紀錄-----------------------
 def transactionRecord (request):
@@ -172,18 +254,40 @@ def strategy (request):
         return redirect ('/personal-unlogin/')
     return render(request,"personal-strategyList.html",locals())
 
-#-------模擬交易所---------------------
+#-------------模擬交易所---------------------
 def trade (request):
     if 'username' in request.session:
         ok ='yes'
         username = request.session['username']
         photo = request.session['photo']
     else:
-        ok = ''
+        return redirect ('/personal-unlogin/')
     return render(request,"trade.html",locals())
 
 
+#-----------------策略交易機器人--------------------------
+def robotnormal(request):
+    if 'username' in request.session:
+        ok ='yes'
+        username = request.session['username']
+        photo = request.session['photo']
+    else:
+         return redirect ('/personal-unlogin/')
+    return render(request,"robot-normal.html",locals())
 
+
+#-----------------智能交易機器人--------------------------
+def robotintelligent(request):
+    if 'username' in request.session:
+        ok ='yes'
+        username = request.session['username']
+        photo = request.session['photo']
+    else:
+         return redirect ('/personal-unlogin/')
+    return render(request,"robot-intelligent.html",locals())
+
+
+#-------------------期貨小教室----------------------------
 
 def classes(request):          
     # if 'keyWord' in request.GET:
@@ -290,26 +394,7 @@ def indexclasscontent(request,pk):
     indexclass1 = cursor.fetchall()
     return render(request,"index-class-content.html",{'Indexclass1': indexclass1, 'ok': ok, 'username' : username,'photo': photo})
 
-#-----------------策略交易機器人--------------------------
-def robotnormal(request):
-    if 'username' in request.session:
-        ok ='yes'
-        username = request.session['username']
-        photo = request.session['photo']
-    else:
-        ok = ''
-    return render(request,"robot-normal.html",locals())
 
-
-#-----------------智能交易機器人--------------------------
-def robotintelligent(request):
-    if 'username' in request.session:
-        ok ='yes'
-        username = request.session['username']
-        photo = request.session['photo']
-    else:
-        ok = ''
-    return render(request,"robot-intelligent.html",locals())
 
 
 

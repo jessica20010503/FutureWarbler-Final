@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from myapp.views import index,login,register,personal,classes,classcontent,indexclass,indexclasscontent,robotnormal,robotintelligent,news,news1,newscontent,newssearch,forum,forumwrite,forumcontent,trade,transactionRecord,strategy,logout,personal_unlogin
+from myapp.views import index,login,register,personal,classes,classcontent,indexclass,indexclasscontent,robotnormal,robotintelligent,news,news1,newscontent,newssearch,forum,forumwrite,forumcontent,trade,transactionRecord,strategy,logout,personal_unlogin,update
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -42,4 +42,5 @@ urlpatterns = [
     path('forum-content/',forumcontent),
     path('trade/',trade),
     path('strategy/',strategy),
+    path('update/',update),
 ]
