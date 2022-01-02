@@ -10,15 +10,15 @@ $(document).ready(function () {
 
     //字體放大縮小
 	$('.font-s').click(function (e) { 
-		$('.news-content .article p').css('font-size','14px');
+	  $('.article p').css('font-size','14px');
 	  });
 	
 	  $('.font-m').click(function (e) { 
-		$('.news-content .article p').css('font-size','18px');
+		$('.article p').css('font-size','18px');
 	  });
 	
 	  $('.font-b').click(function (e) { 
-		$('.news-content .article p').css('font-size','20px');
+		$('.article p').css('font-size','20px');
 	  });	
 	});
 	
