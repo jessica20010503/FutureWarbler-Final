@@ -30,14 +30,16 @@ conn = pymysql.connect(**db_settings)
 
 # Create your views here.
 def index(request):
-    
+    news3 = News.objects.all()[:5]
     if 'username' in request.session:
         ok ='yes'
         username = request.session['username']
         photo = request.session['photo']
+        
     else:
         ok = ''
-    return render(request,"index.html",locals())
+        
+    return render(request,"index.html",{'News':news3,'ok': ok, 'username' : username,'photo': photo})
 #--------------登出----------------------
 def logout(request):
 
@@ -445,12 +447,13 @@ def news(request):
             category = int(request.GET['category'])
             news2 = News.objects.filter(news_category=category).filter(news_type=0)[:5]
             news3=News.objects.filter(news_category=category).filter(news_type=1)[:5]
-            return render(request, "news-1.html", {'News2': news2, 'News3': news3,"title":title, 'ok': ok, 'username' : username,'photo': photo})
+            return render(request, "news-1.html", {'News2': news2, 'News3': news3,"title":title, "category":str(category),'ok': ok, 'username' : username,'photo': photo})
     else:
 
+        category = int(request.GET['category'])
         news3 = News.objects.all()[:5]
         news2 = News.objects.all()[:5]
-        return render(request, "news-1.html", {'News2': news2, 'News3': news3, 'ok': ok, 'username' : username,'photo': photo})
+        return render(request, "news-1.html", {'News2': news2, 'News3': news3, "category":str(category),'ok': ok, 'username' : username,'photo': photo})
 
 
 

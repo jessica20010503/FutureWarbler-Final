@@ -89,7 +89,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="fl go_classroom--content  w-35 br-m  card-shadow pt-5">
+ <div class="fl go_classroom--content  w-35 br-m  card-shadow pt-5">
                     <h2 class="fz-l fwb mt-2 white ml-5 ">歡迎光臨<br>Futures Warbler<br><span class="fz-m">期貨模擬交易平台</span></h2>
                     <div class="d-flex jcsb aic ml-5 mr-5">
                         <div>
@@ -105,79 +105,34 @@
                         <h2 class="fz-xm fwbr"><i class="fas fa-newspaper mr-3"></i>最新新聞</h2>
                         <a class="more dark-gray fwb" href="/news/">查看更多</a>
                     </div>
+                    {% for news2 in News %}
                     <ul class="news--content">
                         <li><a href="" class="d-flex jcsb p-5 b-bottom b-top">
-                            <img src="https://udn.com/upf/2017_news/noimg_cid1001_4.jpg" alt="新聞圖片" class="w-20 mr-4">
+                            <img src="{{news2.news_photo}}" alt="新聞圖片" class="w-20 mr-4">
                             <div class="news--text">
-                                <h3 class="fz-s dark-gray fwb">英國跨年日氣溫達攝氏15度 創史上最溫暖紀錄</h3>
-                                <p class="fz-s dark-gray">英國氣象局表示，英國今天氣溫徘徊在攝氏15度，創下英國史上最溫暖跨年日紀錄。英國氣象局...</p>
+                                <h3 class="fz-s dark-gray fwb"> {{news2.news_title}}</h3>
+                                <p class="fz-s dark-gray">{{news2.news_content|truncatechars:100}}</p>
                             </div>
                         </a></li>
-                        <li><a href="" class="d-flex jcsb p-5 b-bottom">
-                            <img src="https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2021/12/31/realtime/14992084.jpg&s=Y&x=0&y=0&sw=1280&sh=852&sl=W&fw=300&exp=3600" alt="新聞圖片" class="w-20 mr-4">
-                            <div class="news--text">
-                                <h3 class="fz-s dark-gray fwb">英國衛生安全局：打完第三劑加強針 住院風險降88%</h3>
-                                <p class="fz-s dark-gray">根據英國衛生安全局（UKHSA）最新分析，新冠疫苗對新變種病毒Omicron的效果較差，但加強針...</p>
-                            </div>
-                        </a></li>
-                        <li><a href="" class="d-flex jcsb p-5 b-bottom">
-                            <img src="https://udn.com/upf/2017_news/noimg_cid1001_3.jpg" alt="新聞圖片" class="w-20 mr-4">
-                            <div class="news--text">
-                                <h3 class="fz-s dark-gray fwb">中國進口食品新制元旦上路 外企憂貿易限制再增</h3>
-                                <p class="fz-s dark-gray">中國進口食品新制元旦上路，外國企業要將食品飲料等產品輸入中國將面臨更多新障礙。換句話說...</p>
-                            </div>
-                        </a></li>
-                        <li><a href="" class="d-flex jcsb p-5 b-bottom">
-                            <img src="https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2021/12/31/realtime/14991922.jpeg&s=Y&x=84&y=0&sw=912&sh=608&sl=W&fw=300&exp=3600" alt="新聞圖片" class="w-20 mr-4">
-                            <div class="news--text">
-                                <h3 class="fz-s dark-gray fwb">年底官宣大動作 寧德時代砸逾1千億擴產四川電池項目</h3>
-                                <p class="fz-s dark-gray">全球動力電池龍頭寧德時代在年底宣布大手筆擴產。30日晚間，寧德時代發布公告指出，公司擬通過全...</p>
-                            </div>
-                        </a></li>
-                    </ul>
+           {% endfor %}
                 </div>
                 <dic class="fl white-bg w-35 br-m mt-6 card-shadow pb-4">
                     <div class=" p-5 d-flex jcsb aic">
                         <h2 class="fz-xm fwbr"><i class="fas fa-comment-alt mr-3"></i>最新貼文</h2>
                         <a class="more dark-gray fwb" href="/forum/">查看更多</a>
                     </div>
+                                {% for news2 in News %}
                     <ul class="discussing--content">
-                        <li><a href="" class="d-flex  p-5 pb-11 b-bottom b-top">
-                            <div class="Avatars">
-                                <img src="{% static 'img/大頭貼6.jpg' %}" alt="大頭貼1">
-                            </div>
-                            <div class="discussing--text">
-                                <h3 class="dark-gray fz-s fwb">懶得畫圖還想知道交易策略？ 神器TradingCentral來幫您| GKFXPrime</h3>
-                                <p class="fz-s dark-gray">-Brian | 2021.11.28 16:20 | <i class="fas fa-comment-alt"></i> 5</p>
-                            </div>
-                        </a></li>
-                        <li><a href="" class="d-flex  p-5 pb-11 b-bottom">
-                            <div class="Avatars">
-                                <img src="{% static 'img/大頭貼5.jpg' %}" alt="大頭貼2">
-                            </div>
-                            <div class="discussing--text">
-                                <h3 class="dark-gray fz-s fwb">【海期快訊】12月27日~12月31日國際金融焦點數據</h3>
-                                <p class="fz-s dark-gray">-Lora | 2021.11.25 11:30 | <i class="fas fa-comment-alt"></i> 10</p>
-                            </div>
-                        </a></li>
-                        <li><a href="" class="d-flex  p-5 pb-11 b-bottom">
-                            <div class="Avatars">
-                                <img src="{% static 'img/大頭貼7.jpg' %}" alt="大頭貼3">
-                            </div>
-                            <div class="discussing--text">
-                                <h3 class="dark-gray fz-s fwb">OPEC上調明年Q1石油需求預期 估Omicron影響不大</h3>
-                                <p class="fz-s dark-gray">-Alex | 2021.11.20 20:40 | <i class="fas fa-comment-alt"></i> 8</p>
-                            </div>
-                        </a></li>
                         <li><a href="" class="d-flex p-5 pb-11 b-bottom">
                             <div class="Avatars">
-                                <img src="{% static 'img/大頭貼2.jpg' %}" alt="大頭貼4">
+                                <img src="{% static 'img/大頭貼6.jpg' %}" alt="大頭貼4">
                             </div>
                             <div class="discussing--text">
                                 <h3 class="dark-gray fz-s fwb">當沖絕對不輸的方法</h3>
                                 <p class="fz-s dark-gray">-Linda | 2021.11.01 00:05 | <i class="fas fa-comment-alt"></i> 7</p>
                             </div>
                         </a></li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
