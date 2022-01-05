@@ -16,6 +16,7 @@ import pymysql.cursors
 from myapp.models import News,Class as study,IndexClass
 from pymysql import cursors
 from django.db import connection
+from urllib.parse import unquote 
 #連線至資料庫
 db_settings = {
 "host": "localhost", 
@@ -35,11 +36,12 @@ def index(request):
         ok ='yes'
         username = request.session['username']
         photo = request.session['photo']
-        
+        return render(request,"index.html",{'News':news3,'ok': ok, 'username' : username,'photo': photo})
     else:
         ok = ''
-        
-    return render(request,"index.html",{'News':news3,'ok': ok, 'username' : username,'photo': photo})
+        username = ''
+        photo = ''
+        return render(request,"index.html",{'News':news3,'ok': ok, 'username' : username,'photo': photo})
 #--------------登出----------------------
 def logout(request):
 
@@ -296,18 +298,7 @@ def robotintelligent(request):
 
 #-------------------期貨小教室----------------------------
 
-def classes(request):          
-    # if 'keyWord' in request.GET:
-    #     keyWord = request.GET['keyWord']
-    #     keyWord2 = '期貨'
-    #     results = study.objects.filter(class_title__contains=keyWord2)
-    #     import urllib.parse
-    #     urllib.parse.unquote(results)
-    #     print(keyWord)
-    #     print(results)
-    #     for i in results:
-    #         print(i)
-    #     return render(request, "class.html", {'results': results})
+def classes(request):    
     if 'username' in request.session:
         ok ='yes'
         username = request.session['username']
@@ -316,6 +307,18 @@ def classes(request):
         ok = ''
         username= 'no'
         photo ='no'
+    if 'keyWord' in request.GET:
+        keyWord = request.GET['keyWord']
+        #keyWord2 = '期貨'
+        keyWord = unquote(keyWord)
+        results = study.objects.filter(class_title__contains=keyWord)
+        # import urllib.parse
+        # urllib.parse.unquote(results)
+        # print(keyWord)
+        # print(results)
+        # for i in results:
+        #     print(i)
+        return render(request, "class.html", {'results': results, 'ok': ok, 'username' : username,'photo': photo})
     if 'page' in request.GET:
         try:
             page = int(request.GET['page'])*6
@@ -342,7 +345,7 @@ def classes(request):
 
 
 
-def classcontent(request, pk):
+def classcontent(request):
     if 'username' in request.session:
         ok ='yes'
         username = request.session['username']
@@ -351,7 +354,7 @@ def classcontent(request, pk):
         ok = ''
         username= 'no'
         photo ='no'
-
+    pk = request.GET["id"]
     cursor = conn.cursor()
     cursor.execute("select class_id,class_title,class_article,class_photo from class where class_id=%s" % (pk))
     class1 = study.objects.filter(pk=pk)
@@ -609,50 +612,12 @@ def newssearch(request):
         photo = request.session['photo']
     else:
         ok = ''
-#     cursor0 = connection.cursor()
-#     cursor0.execute("select newsid,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s",['1'])
-#     news0 = cursor0.fetchall()[:5]
-#     paginator=Paginator(news0,5)
-#     try:
-#         current_page=request.GET.get("page",1) #  http://127.0.0.1:8000/index/?page=20
-#         news=paginator.page(current_page)
-#     except (EmptyPage,PageNotAnInteger):
-#         news=paginator.page(1)
-
-#     return render(request,'news.html',{'News':news})
-
-# def doc_main(request):
-#     doc_all = News.objects.all().order_by("newsid")
-#     limit = 20
-#     page = request.GET.get('page', 1)
-#     paginator = Paginator(doc_all, limit)
-#     try:
-#         newsid = paginator.page(page)
-#     except PageNotAnInteger:
-#         newsid = paginator.page(1)
-#     except EmptyPage:
-#         newsid = paginator.page(paginator.num_pages)
-#     context = {
-#         'newsid': newsid,
-#     }
-#     return render(request, 'news.html', context)
-
-# def doc_user_list(request):
-#     user = request.user
-#     doc_filter = News.objects.filter(user_id=user.id).order_by("id")
-#     limit = 5
-#     page = request.GET.get('page', 1)
-#     paginator = Paginator(doc_filter, limit)
-#     try:
-#         newsid = paginator.page(page)
-#     except PageNotAnInteger:
-#         newsid = paginator.page(1)
-#     except EmptyPage:
-#         newsid = paginator.page(paginator.num_pages)
-#     context = {
-#         'newsid': newsid,
-#     }
-    return render(request, "news-search.html", locals())
+    if 'keyWord' in request.GET:
+        keyWord = request.GET['keyWord']
+        #keyWord2 = '期貨'
+        keyWord = unquote(keyWord)
+        results = News.objects.filter(news_title__contains=keyWord)
+    return render(request, "news-search.html",{'results':results,'ok': ok, 'username' : username,'photo': photo})
 
 
 #--------------------討論版---------------------------

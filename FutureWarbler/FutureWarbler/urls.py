@@ -28,7 +28,7 @@ urlpatterns = [
     path('personal-unlogin/',personal_unlogin),
     path('transactionRecord/',transactionRecord),
     path('class/',classes), 
-    path('class-content/<int:pk>/',classcontent),
+    path('class-content/',classcontent),
     path('index-class/',indexclass),
     path('index-class-content/<int:pk>/',indexclasscontent),
     path('robot-normal/',robotnormal),
