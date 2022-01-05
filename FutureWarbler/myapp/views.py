@@ -419,7 +419,7 @@ def news(request):
     else:
         ok = ''
         username = 'no'
-        photp = 'no'
+        photo = 'no'
     if 'category' in request.GET:
         category = int(request.GET['category'])
         news3=News.objects.filter(news_category=category).filter(news_type=1)[:4]
