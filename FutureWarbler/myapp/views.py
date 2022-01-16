@@ -429,12 +429,10 @@ def news(request):
         category = int(request.GET['category'])
         news3=News.objects.filter(news_category=category).filter(news_type=1)[:4]
         titleWord = {
-            "0":"財經",
-            "1":"期貨",
-            "2":"兩岸",
-            "3":"國際",
-            "4":"產業",
-            "5":"理財"
+            "0":"財經總覽",
+            "1":"期貨相關",
+            "2":"兩岸財經",
+            "3":"國際財經"
         }
         title = titleWord[str(category)]
         if 'page' in request.GET:
