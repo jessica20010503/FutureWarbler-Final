@@ -647,3 +647,11 @@ def forumcontent (request):
     else:
         ok = ''
     return render(request,"forum-content.html",locals())
+
+#-------------------未平倉契約頁面-------------------------
+def contract (request):
+    return render(request,"contract.html",locals())
+
+#------------------我的訂單頁面---------------------------
+def order (request):
+    return render(request,"order.html",locals())

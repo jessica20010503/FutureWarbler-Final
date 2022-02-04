@@ -77,7 +77,6 @@
         position: absolute;
         bottom: -5px;
         left: 20px;
-        z-index: 3;
     }
     .trade--table{
         th,td{
@@ -87,6 +86,42 @@
             &:hover{
                 background: #f3f2f2;
             }
+        }
+    }
+    .strategyList{
+        background: url(https://cdn.pixabay.com/photo/2017/07/13/12/51/puzzle-2500328__340.jpg);
+        background-position: center;
+        background-size: cover;
+        &:hover{
+            background-color: rgba(0, 0, 0, 0.404);
+            background-blend-mode: multiply;
+        }
+    }
+    .tradeRecord{
+        background: url(https://cdn.pixabay.com/photo/2016/11/27/21/42/stock-1863880_960_720.jpg);
+        background-position: center;
+        background-size: cover;
+        &:hover{
+            background-color: rgba(0, 0, 0, 0.404);
+            background-blend-mode: multiply;
+        }
+    }
+    .contract{
+        background: url(https://cdn.pixabay.com/photo/2016/06/18/12/27/contract-1464917__340.jpg);
+        background-position: center;
+        background-size: cover;
+        &:hover{
+            background-color: rgba(0, 0, 0, 0.404);
+            background-blend-mode: multiply;
+        }
+    }
+    .order{
+        background: url(https://cdn.pixabay.com/photo/2020/02/14/18/05/ecommerce-4849055__340.jpg);
+        background-position: center;
+        background-size: cover;
+        &:hover{
+            background-color: rgba(0, 0, 0, 0.404);
+            background-blend-mode: multiply;
         }
     }
     .unlogin{
@@ -103,9 +138,15 @@
         top:0%;
         z-index: 101;
     }
-    
-    
+    .modal{
+        .modal-dialog{
+            
+                z-index: 2000;
+            
+        }
+    }
 }
+
 
 
 

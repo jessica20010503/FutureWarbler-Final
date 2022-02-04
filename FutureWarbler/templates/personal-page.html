@@ -195,157 +195,23 @@
                     <div class="clearfix"></div>
                    </div>
                 </div>
-                <div class="fl white-bg w-100 br-m mr-3pct card-shadow mt-6 pb-4">
-                    <div class="d-flex jcsb aic b-bottom p-4 pl-5 pr-5">
-                        <h2><i class="fas fa-bookmark mr-3"></i>策略清單</h2>
-                        <a href="/strategy/"  class="fr personal__btn dark-gray b-n fwb">查看更多</a>
-                    </div>
-                    <table class="w-100 tac mt-5 trade--table ">
-                        <tr class="fwb">
-                            <th>序號</th>
-                            <th>策略<br>類型</th>
-                            <th>商品<br>代號</th>
-                            <th>商品<br>名稱</th>
-                            <th>資料<br>週期</th>
-                            <th>開始<br>時間</th>
-                            <th>結束<br>時間</th>
-                            <th>技術<br>指標一</th>
-                            <th>技術<br>指標二</th>
-                            <th>進場<br>策略</th>
-                            <th>出場<br>策略</th>
-                            <th>演算法</th>
-                        </tr>
-                        <tr class="trade--table__item">
-                            <td>1</td>
-                            <td>一般交易</td>
-                            <td>MNQ</td>
-                            <td>小那斯達克</td>
-                            <td>1分鐘</td>
-                            <td>2020/10/11</td>
-                            <td>2021/5/31</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>均線策略</td>
-                            <td>均線策略</td>
-                            <td>-</td>
-                        </tr>
-                        <tr class="trade--table__item">
-                            <td>2</td>
-                            <td>智能交易</td>
-                            <td>MES</td>
-                            <td>小S&P</td>
-                            <td>5 分鐘</td>
-                            <td>2001/03/11</td>
-                            <td>2008/09/25</td>
-                            <td>MACD指標</td>
-                            <td>DMI趨向指標</td>
-                            <td>MA快線向上突破慢線</td>
-                            <td>空單K值向上跌破D值</td>
-                            <td>隨機森林</td>
-                        </tr>
-                        <tr class="trade--table__item">
-                            <td>3</td>
-                            <td>智能交易</td>
-                            <td>TY</td>
-                            <td>十年美國債劵</td>
-                            <td>3 週</td>
-                            <td>2005/09/01</td>
-                            <td>2011/05/03</td>
-                            <td>威廉指標</td>
-                            <td>BIAS乖離率</td>
-                            <td>RSI < 50及MA向下跌破</td>
-                            <td>停損RSI < 30</td>
-                            <td>SVM支援向量機</td>
-                        </tr>
-                        <tr class="trade--table__item">
-                            <td>4</td>
-                            <td>一般交易</td>
-                            <td>C</td>
-                            <td>玉米</td>
-                            <td>1 個月</td>
-                            <td>2018/06/24</td>
-                            <td>2021/08/23</td>
-                            <td>BIAS乖離率</td>
-                            <td>EMA指數平均數指標</td>
-                            <td>ORB策略</td>
-                            <td>ORB策略</td>
-                            <td>Ada Boost</td>
-                        </tr>
-                    </table>
-                </div>
-               <div class="fl white-bg w-100 br-m mr-3pct card-shadow mt-6 pb-4">
-                    <div class="d-flex jcsb aic b-bottom p-4 pl-5 pr-5">
-                        <h2><i class="fas fa-exchange-alt mr-3"></i>交易紀錄</h2>
-                        <a href="/transactionRecord/"  class="fr personal__btn dark-gray b-n fwb">查看更多</a>
-                    </div>
-                    <table class="w-100 tac mt-5 trade--table">
-                        <tr class="fwb">
-                            <th>序號</th>
-                            <th>商品代號</th>
-                            <th>商品名稱</th>
-                            <th>狀態</th>
-                            <th>持倉價格</th>
-                            <th>持倉時間</th>
-                            <th>持倉數量(口)</th>
-                            <th>平倉價格</th>
-                            <th>平倉時間</th>
-                            <th>平倉數量(口)</th>
-                            <th>投資報酬率</th>
-                        </tr>
-                        <tr class="trade--table__item">
-                            <td>1</td>
-                            <td>MNQ</td>
-                            <td>小那斯達克</td>
-                            <td>未平倉</td>
-                            <td>30,000</td>
-                            <td>2021/12/11 07:12</td>
-                            <td>5</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                        </tr>
-                        <tr class="trade--table__item ">
-                            <td>2</td>
-                            <td>TX</td>
-                            <td>大台指期</td>
-                            <td>平倉</td>
-                            <td>30,000</td>
-                            <td>2021/12/01 07:12</td>
-                            <td>3</td>
-                            <td>32,000</td>
-                            <td>2021/12/08 10:22</td>
-                            <td>2</td>
-                            <td class="light-green fwb">+ 1.98</td>
-                        </tr>
-                        <tr class="trade--table__item  ">
-                            <td>3</td>
-                            <td>MNQ</td>
-                            <td>小那斯達克</td>
-                            <td>平倉</td>
-                            <td>130,000</td>
-                            <td>2021//12/01 11:15</td>
-                            <td>6</td>
-                            <td>80,000</td>
-                            <td>2021//09/28 17:26</td>
-                            <td>6</td>
-                            <td class="dark-red fwb">- 2.55</td>
-                        </tr>
-                        <tr class="trade--table__item ">
-                            <td>4</td>
-                            <td>MX</td>
-                            <td>小台指期</td>
-                            <td>未平倉</td>
-                            <td>120,000</td>
-                            <td>2021/09/10 08:34</td>
-                            <td>4</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                        </tr>
-                    </table>
-                </div>
+                <div class="clearfix"></div>
+                <a href="/strategy" class="fl  w-23 d-flex jcsb aic br-m mr-6 card-shadow mt-6 p-4 pb-21 strategyList white">
+                    <h2 class="fz-xm fwb"><i class="fas fa-chess-knight mr-3"></i>策略清單</h2>  
+                    <i class="fas fa-chevron-right white"></i>
+                </a>
+               <a href="/transactionRecord" class="fl w-23 d-flex jcsb aic br-m mr-6 card-shadow mt-6 p-4 pb-21 tradeRecord white">
+                    <h2 class="fz-xm fwb"><i class="fas fa-exchange-alt mr-3"></i>交易紀錄</h2>  
+                   <i class="fas fa-chevron-right white"></i>
+               </a>
+                <a href="/contract" class="fl  w-23 d-flex jcsb aic br-m mr-6 card-shadow mt-6 p-4 pb-21 contract white">
+                    <h2 class="fz-xm fwb"><i class="fas fa-file-signature mr-3"></i>未平倉契約</h2>  
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+                <a href="/order" class="fl  w-23 d-flex jcsb aic br-m  card-shadow mt-6 p-4 pb-21 order white">
+                    <h2 class="fz-xm fwb"><i class="fas fa-clipboard-list mr-3"></i>我的訂單</h2>  
+                    <i class="fas fa-chevron-right"></i>
+                </a>
         </div>
     </div>
 </div>
