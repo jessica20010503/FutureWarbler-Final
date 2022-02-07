@@ -33,6 +33,9 @@
             <div class="circle2"></div>
             <div class="circle3"></div>
         </div>
+
+       
+
         <div class="container pb-4">
             {% include 'login-nav.html' %}
             <div class="robot-intelligent mt-7 w-100 pl-12 pr-10 b-4">
@@ -40,7 +43,7 @@
                     <h2 class="mb-6"><i class="fas fa-list mr-3"></i>設定計算項目</h2>
                     <form action="#" method="#" class="time-table">
                         <div class="d-flex jcsb">
-                            <div class="w-10">
+                            <div class="w-30">
                                 <h2 class="mb-4 fwb primary b-bottom pb-2">商品設定</h2>
                                 <label for="product">期貨商品：
                                 <select name="product" id="product">
@@ -57,11 +60,9 @@
                                     <option value="W">小麥</option>
                                     <option value="C">玉米</option>
                                 </select>
-                            </div>
-                            <div class="w-20">
-                                <h2 class="mb-4 fwb primary b-bottom pb-2">時間設定</h2>
-                                <label for="cycle">資料周期：<br>
-                                    <input type="number" name="number" id="cycle" class="number">
+                                <h2 class="mt-6 mb-4 fwb primary b-bottom pb-2">時間設定</h2>
+                                <label for="cycle">資料周期：
+                                    <input type="number" name="number" id="cycle" class="number w-30">
                                     <select id="cycle" name="cycle" class="mb-5">
                                         <option value="min">分鐘</option>
                                         <option value="hr">小時</option>
@@ -73,71 +74,87 @@
                                 <br>
                                 <label for="end-time">結束時間：</label>
                                 <input id="end-time" name="end-time" type="date" class="mb-5">
-                            </div>
-                            <div class="w-30">
-                                <h2 class="mb-4 fwb primary b-bottom pb-2">機器人訓練指標</h2>
-                                <label for="index1">技術指標：<br>
-                                    <div class="d-flex">
-                                        <select id="index1" name="index" class="mb-5 mr-5">
-                                            <option value="KD">KD指標</option>
-                                            <option value="BIAS">BIAS乖離率</option>
-                                            <option value="MACD">MACD指標</option>
-                                            <option value="Bollinger">布林通道</option>
-                                            <option value="WR">威廉指標</option>
-                                            <option value="WVAD">WVAD指標</option>
-                                            <option value="MA">MA指標</option>
-                                            <option value="DMI">DMI趨向指標</option>
-                                            <option value="EMA">EMA指數平均數指標</option>
-                                        </select>
-                                        <select id="index1" name="index" class="mb-5">
-                                            <option value="KD">KD指標</option>
-                                            <option value="BIAS">BIAS乖離率</option>
-                                            <option value="MACD">MACD指標</option>
-                                            <option value="Bollinger">布林通道</option>
-                                            <option value="WR">威廉指標</option>
-                                            <option value="WVAD">WVAD指標</option>
-                                            <option value="MA">MA指標</option>
-                                            <option value="DMI">DMI趨向指標</option>
-                                            <option value="EMA">EMA指數平均數指標</option>
-                                        </select>
-                                    </div>
-                                    
+
+                                <h2 class="mt-6 mb-4 fwb primary b-bottom pb-2">機器人訓練指標</h2>
                                 <label for="index3">演算法：<br>
-                                    <select id="index3" name="index3" class="mb-5">
-                                        <option value="SVM">SVM支援向量機</option>
-                                        <option value="RF">隨機森林</option>
+                                    <select id="index3" name="index3" class="mb-5 w-50">
+                                        <option value="default">系統推薦</option>
+                                        <option value="SVM">SVM</option>
+                                        <option value="RF">Random Forest</option>
                                         <option value="Ada">Ada Boost</option>
-                                        <option value="GEP">GEP基因表達規劃法</option>
+                                        <option value="GEP">GEP</option>
                                     </select>
                             </div>
-                            <div class="w-20">
-                                <h2 class="mb-4 fwb primary b-bottom pb-2">進出場策略</h2>
-                                <label for="in">進場：<br>
-                                    <select id="in" name="in" class="mb-5">
-                                        <option value="">MA快線向上突破慢線</option>
-                                        <option value="">MA快線向下跌破慢線</option>
-                                        <option value="">RSI > 50及MA向上穿越</option>
-                                        <option value="">RSI < 50及MA向下跌破</option>
-                                        <option value="MA">均線策略</option>
-                                        <option value="Bollinger2">布林通道</option>
-                                        <option value="Turtle">海龜策略</option> 
-    s                                </select>
-                                <br>
-                                <label for="out">出場：<br>
-                                    <select id="out" name="out" class="mb-5">
-                                        <option value="">停利RSI > 80</option>
-                                        <option value="">停損RSI < 30</option>
-                                        <option value="">多單K值向下穿越D值</option>
-                                        <option value="">空單K值向上跌破D值</option>
-                                        <option value="MA">均線策略</option>
-                                        <option value="Bollinger2">布林通道</option>
-                                        <option value="Turtle">海龜策略</option>
-                                    </select>
+                            <div class="w-65">
+                                <h2 class="mb-4 fwb primary b-bottom pb-2">策略設定</h2>
+                                <div class="d-flex jcsa">
+                                    <div class="w-30">
+                                        <h4 class="mb-2 primary fz-s green">-進出場設定-</h4>
+                                        <label for="in">進場：
+                                            <select id="in" name="in" class="mb-5">
+                                                <option value="MA">MA</option>
+                                                <option value="OSC">MACD</option>
+                                                <option value="RSI">RSI</option>
+                                                <option value="K值">KD</option>
+                                                <option value="BIAS">乖離率</option>
+                                                <option value="Williams">威廉指標</option>
+                                            </select>
+                                        <br>
+                                        <label for="out">出場：
+                                            <select id="out" name="out" class="mb-5">
+                                                <option value="MA">MA</option>
+                                                <option value="RSI">RSI</option>
+                                                <option value="K值">KD</option>
+                                                <option value="BIAS">乖離率</option>
+                                                <option value="Williams">威廉指標</option>
+                                            </select>
+                                    </div>
+                                    <div class="w-40">
+                                        <h4 class="mb-2 primary fz-s green">-固定式 停損/停利設定-</h4>
+                                        <label for="stoploss">停損：
+                                            <input type="number" name="stoploss" id="stoploss" class="w-30 mb-5">
+                                            <select name="stoploss" id="stoploss">
+                                                <option value="1">元</option>
+                                                <option value="0">%</option>
+                                            </select>
+                                            <br>
+                                        <label for="stopcost">停利：
+                                            <input type="number" name="stopcost" id="stopcost" class="w-30 mb-5">
+                                            <select name="stopcost" id="stopcost">
+                                                <option value="1">元</option>
+                                                <option value="2">點</option>
+                                            </select>
+                                        <h4 class="mb-2 primary fz-s green">-移動式 停損/停利設定-</h4>
+                                            <label for="stoploss">停損：</label>
+                                            <br>
+                                                <span class="fwn">自高點回檔 </span><input type="number" name="stoploss" id="stoploss" class="w-30 mb-5"> 點
+                                            <br>
+                                            <label for="stopcost">停利：
+                                            <br>
+                                                <span class="fwn">啟用門檻：獲利 > </span><input type="number" name="stopcost" id="stopcost" class="w-30 mb-5"> 點
+                                            <br>
+                                                <span class="fwn">固定停損點數：虧損 </span><input type="number" name="stopcost" id="stopcost" class="w-25 mb-5"> 點
+                                            <br>
+                                                <span class="fwn">停利點數：自高點回檔 </span><input type="number" name="stopcost" id="stopcost" class="w-20 mb-5"> 點
+                                        <h4 class="mt-1 dark-red fz-s">*固定式、移動式 擇一即可*</h4>
+                                    </div>
+                                    <div class="w-30">
+                                        <h4 class="mb-2 primary fz-s green">-資金管理-</h4>
+                                        <label for="fix">設定：
+                                            <span class="fwn">固定 </span>
+                                            <input type="number" name="fix" id="fix" class="w-25 mb-5">
+                                            <select name="fix" id="fix">
+                                                <option value="1">元</option>
+                                                <option value="2">口</option>
+                                                <option value="2">％</option>
+                                            </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <input type="button" value="確認送出" class="d-inline-block fr robot__btn dark-gray b-n fwb w-10"></input>
+                        <input type="button" value="確認送出" class="d-inline-block fr robot__btn dark-gray b-n fwb w-10">
                     </form>
-                </div>
+                 </div>
 
                 <div class="fl white-bg w-100 br-m card-shadow mt-6 mr-4pct pt-6 pb-6 pl-8 pr-8">
                     <h2><i class="fas fa-chart-line mr-2 mb-6"></i>分析結果</h2>
