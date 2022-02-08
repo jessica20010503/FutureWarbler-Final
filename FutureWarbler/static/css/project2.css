@@ -9,8 +9,7 @@ a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
+dl, dt, dd, ol, ul, li, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
@@ -2148,7 +2147,7 @@ img {
 }
 
 .trade__content .trade--productList {
-  height: 450px;
+  height: 625px;
   overflow-y: auto;
 }
 
@@ -2254,6 +2253,10 @@ img {
   background: #991313;
   -webkit-transition: 0.1s;
   transition: 0.1s;
+}
+
+.trade__content .fieldset {
+  border: 1px solid #000;
 }
 
 .robot-normal table th {

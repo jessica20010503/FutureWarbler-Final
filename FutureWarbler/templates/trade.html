@@ -36,7 +36,7 @@
     <div class="container pb-4">
         {% include 'login-nav.html' %}
         <ul class="trade__content w-100 mt-7  pl-12 pr-10 b-4 ">
-                <li class="fl white-bg w-70 mr-4pct br-m  card-shadow ">
+                <li class="fl white-bg w-65 mr-4pct br-m  card-shadow ">
                     <div class="d-flex jcsb aic p-4 pl-8 pr-8 b-bottom ">
                         <h2 class="fz-xm fwbr"><i class="fas fa-list mr-3"></i>商品行情表</h2>
                     </div>
@@ -163,14 +163,27 @@
 
                     </div>
                 </li>
-            <li class="fl white-bg w-25  br-m  card-shadow p-2">
+            <li class="fl white-bg w-30  br-m  card-shadow p-2">
                     <div class="d-flex jcsb aic p-4  pr-8 b-bottom ">
                         <h2 class="fz-xm fwbr"><i class="fas fa-cash-register mr-3 "></i>下單機</h2>
                     </div>
-                    <form action="" class="w-100 p-2 pl-5 pr-3 pb-5">
-                        <div class="d-block mt-2">
-                            <label for="product">期貨商品：
-                                <select name="product" id="product" class=" p-1 br-s w-48">
+                    <!--需解決form問題-->
+                    <!--  <form action=""  class="w-100 p-2 pl-5 pr-3 pb-5">  -->
+                    <div action=""  class="w-100 p-2 pl-5 pr-3 pb-5">
+                        <fieldset class="p-3 br-s">
+                            <legend class="fwb ">組合設定</legend>
+                            <div>
+                                <input type="radio" name="question"  value="1" onclick="setgroup()"  checked>選項一 : 我的策略清單
+                                <select name="product" class=" p-1 br-s w-48 mt-2" id="setgroup">
+                                   <option value="">TX_001</option>
+                                   <option value="">TE_001</option>
+                                </select>
+                              
+                              </div>
+                              <input type="radio" name="question" id="question" value="2" onclick="setgroup2()" class="mt-2">選項二 : 
+                              <div class="d-block mt-2">
+                                <label for="product">期貨商品：
+                                  <select name="" id="setgroup2" class=" p-1 br-s w-48">
                                     <option value="">台指期</option>
                                     <option value="">小台指</option>
                                     <option value="5hr">電子期</option>
@@ -183,86 +196,90 @@
                                     <option value="3month">黃豆</option>
                                     <option value="3month">小麥</option>
                                     <option value="3month">玉米</option>
+                                  </select>
+                              </div>
+                              <div class="mt-2">
+                                <label for="in">進場策略：</label>
+                                <select name="" id="setgroup3" class=" p-1 br-s w-48">
+                                  <option value="">MA快線向上突破慢線</option>
+                                  <option value="">MA快線向下跌破慢線</option>
+                                  <option value="">RSI > 50及MA向上穿越</option>
+                                  <option value="">RSI < 50及MA向下跌破</option>
+                                  <option value="MA">均線策略</option>
+                                  <option value="Bollinger2">布林通道</option>
+                                  <option value="Turtle">海龜策略</option>
                                 </select>
-                        </div>
-                        <p class="mt-2">單口價格 :&nbsp;&nbsp;<span class="fwbr fz-xm">18,0000</span>  / 口</p>
-                        <div class="mt-2">
-                            <label for="in">進場策略：</label>
-                            <select id="in" name="in"  class=" p-1 br-s w-60">
-                                <option value="">MA快線向上突破慢線</option>
-                                <option value="">MA快線向下跌破慢線</option>
-                                <option value="">RSI > 50及MA向上穿越</option>
-                                <option value="">RSI < 50及MA向下跌破</option>
-                                <option value="MA">均線策略</option>
-                                <option value="Bollinger2">布林通道</option>
-                                <option value="Turtle">海龜策略</option>
-s                               </select>
-                        </div>
-                        <div class="mt-2">
-                            <label for="out">出場策略：</label>
-                                <select id="out" name="out" class=" p-1 br-s w-60">
-                                    <option value="">停利RSI > 80</option>
-                                    <option value="">停損RSI < 30</option>
-                                    <option value="">多單K值向下穿越D值</option>
-                                    <option value="">空單K值向上跌破D值</option>
-                                    <option value="MA">均線策略</option>
-                                    <option value="Bollinger2">布林通道</option>
-                                    <option value="Turtle">海龜策略</option>
+                              </div>
+                              <div class="mt-2">
+                                <label for="out">出場策略：</label>
+                                <select name="" id="setgroup4" class=" p-1 br-s w-48">
+                                  <option value="">停利RSI > 80</option>
+                                  <option value="">停損RSI < 30</option>
+                                  <option value="">多單K值向下穿越D值</option>
+                                  <option value="">空單K值向上跌破D值</option>
+                                  <option value="MA">均線策略</option>
+                                  <option value="Bollinger2">布林通道</option>
+                                  <option value="Turtle">海龜策略</option>
                                 </select>
-                        </div>
-                        <div class="d-block mt-2">
-                            <label for="bullbearchoice">多空設定：</label>
-                            <input type="radio" name="bullbearchoice" id="bullbearchoice"  checked>做多
-                            <input type="radio" name="bullbearchoice" id="bullbearchoice" >做空
-                        </div>
-                        <div class="d-block mt-2">
-                            <label for="buysell">買賣設定：</label>
-                            <input type="radio" name="buysell" id="buysell"  checked>買進
-                            <input type="radio" name="buysell" id="buysell" >賣出
-                        </div>
-                        <div class="d-block mt-2">
-                            <label for="amount">數量設定：</label>
-                            <input type="number" name="amount" id="amount" class=" p-1 br-s w-20">
-                        </div>
-                        <div class="d-block mt-2">
-                            <label for="stoploss">停損條件：
-                                <input type="number" name="stoploss" id="stoploss" class=" p-1 br-s w-20">
-                                <select name="stoploss" id="stoploss" class=" p-1 br-s w-25">
+                              </div>
+                              <div class="d-block mt-2">
+                                <label for="bullbearchoice">多空設定：</label>
+                                <input type="radio" name="bullbearchoice" id="bullbearchoice" checked>做多
+                                <input type="radio" name="bullbearchoice" id="bullbearchoice2">做空
+                              </div>
+                              <div class="d-block mt-2">
+                                <label for="stoploss">停損條件：
+                                  <input type="number" name="stoploss" id="stoploss" class=" p-1 br-s w-20">
+                                  <select name="stoploss" class=" p-1 br-s w-25" id="stoplossgroup">
                                     <option value="0">%</option>
                                     <option value="1">元</option>
-                                </select>
-                        </div>
-                        <div class="d-block mt-2">
-                            <label for="stopcost">停利條件：
-                                <input type="number" name="stopcost" id="stopcost" class=" p-1 br-s w-20">
-                                <select name="stopcost" id="stopcost" class=" p-1 br-s w-25">
+                                  </select>
+                              </div>
+                              <div class="d-block mt-2">
+                                <label for="stopcost">停利條件：
+                                  <input type="number" name="stopcost" id="stopcost" class=" p-1 br-s w-20">
+                                  <select name="stopcost" id="stopcostgroup" class=" p-1 br-s w-25">
                                     <option value="0">%</option>
                                     <option value="1">元</option>
-                                </select>
-                        </div>
-                        <!-- Button trigger modal -->
-                        <input type="button" value="下單" class="fr submit__btn dark-gray b-n mt-7 fwb" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header p-3">
-                                    <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-cash-register mr-3  ml-5"></i>下單機</h5>
-                                    <button type="button" class="b-n close__btn" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times fz-s"></i></button>
-                                    </div>
-                                    <form action="">
-                                        <div class="modal-body  p-4  gray-bg">
-                                            <div class=" w-80 m0-a tac">
-                                                    <h2>已成功新增一筆持倉資料<br>請前往個人頁面查看</h2>
-                                                    <a href="/personal/"  class="personal__btn dark-gray b-n fwb mt-3 d-inline-block">前往查看</a>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                  </select>
+                              </div>
+                        </fieldset>
+                        <div class="ml-4">
+                            <p class="mt-2">單口價格 :&nbsp;&nbsp;<span class="fwbr fz-xm">18,0000</span> / 口</p>
+                            <div class="d-block mt-2">
+                              <label for="amount">數量設定：</label>
+                              <input type="number" name="amount" id="amount" class=" p-1 br-s w-20">
+                            </div>
+                            <div class="d-block mt-2">
+                              <label for="buysell">買賣設定：</label>
+                              <input type="radio" name="buysell" id="buysell" checked>買進
+                              <input type="radio" name="buysell" id="buysell">賣出
                             </div>
                         </div>
-                        <div class="clearfix"></div>
-                    </form>
+                    <!-- Button trigger modal -->
+                    <input type="button" value="下單" class="fr submit__btn dark-gray b-n mt-7 fwb" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header p-3">
+                                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-cash-register mr-3  ml-5"></i>下單機</h5>
+                                <button type="button" class="b-n close__btn" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times fz-s"></i></button>
+                                </div>
+                                <form action="">
+                                    <div class="modal-body  p-4  gray-bg">
+                                        <div class=" w-80 m0-a tac">
+                                                <h2>已成功新增一筆持倉資料<br>請前往個人頁面查看</h2>
+                                                <a href="/personal/"  class="personal__btn dark-gray b-n fwb mt-3 d-inline-block">前往查看</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--需解決form問題-->
                 </li>
                 <li class="fl white-bg w-100 br-m  card-shadow mt-6 mr-4pct pb-6 ">
                     <h2 class="fz-xm fwbr  p-4 pl-8 pr-8 b-bottom"><i class="fas fa-list mr-3"></i>看盤</h2>

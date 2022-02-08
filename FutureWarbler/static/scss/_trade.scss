@@ -1,6 +1,6 @@
 .trade__content{
     .trade--productList{
-        height: 450px;
+        height: 625px;
         overflow-y: auto;
     }
     .trade--table{
@@ -92,5 +92,8 @@
             background: rgb(153, 19, 19);
            transition: 0.1s;
         }
+    }
+    .fieldset{
+        border: 1px solid #000;
     }
 }
