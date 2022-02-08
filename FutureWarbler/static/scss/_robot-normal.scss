@@ -1,6 +1,11 @@
 .robot-normal{
-    table td{
-        padding: 15px 10px;
+    table{
+        th{
+            padding: 15px 10px;
+        }
+        td{
+            padding: 10px;
+        }
     }
     .robot__btn{
         background: $primary_color;
@@ -15,7 +20,13 @@
            transition: 0.1s;
         }
     }
+    .conclusin-table th{
+        background-color: rgb(214, 237, 252);
+    }
     .number{
         width: 50px;
+    }
+    .bg-lightgray{
+        background-color: #f9f9f9;
     }
 }

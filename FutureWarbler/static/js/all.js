@@ -29,6 +29,8 @@ $(document).ready(function () {
 			$(this).parent().find('.menu--drop').slideToggle();
 			$(this).parent().siblings().find('.menu--drop').slideUp();
 	});
+
+	
 });
 function copyFn() {
 	var val = document.getElementById('copyMy');
@@ -36,5 +38,3 @@ function copyFn() {
 	document.execCommand("Copy");
 	alert("已成功複製！");
 }
-
- 

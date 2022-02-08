@@ -57,11 +57,9 @@
                                     <option value="W">小麥</option>
                                     <option value="C">玉米</option>
                                 </select>
-                            </div>
-                            <div class="w-30">
-                                <h2 class="mb-4 fwb primary b-bottom pb-2">時間設定</h2>
+                                <h2 class="mt-6 mb-4 fwb primary b-bottom pb-2">時間設定</h2>
                                 <label for="cycle">資料周期：
-                                    <input type="number" name="number" id="cycle" class="number">
+                                    <input type="number" name="number" id="cycle" class="number w-30">
                                     <select id="cycle" name="cycle" class="mb-5">
                                         <option value="min">分鐘</option>
                                         <option value="hr">小時</option>
@@ -74,32 +72,74 @@
                                 <label for="end-time">結束時間：</label>
                                 <input id="end-time" name="end-time" type="date" class="mb-5">
                             </div>
-                            <div class="w-30">
-                                <h2 class="mb-4 fwb primary b-bottom pb-2">進出場策略</h2>
-                                <label for="in">進場：
-                                    <select id="in" name="in" class="mb-5">
-                                        <option value="">MA快線向上突破慢線</option>
-                                        <option value="">MA快線向下跌破慢線</option>
-                                        <option value="">RSI > 50及MA向上穿越</option>
-                                        <option value="">RSI < 50及MA向下跌破</option>
-                                        <option value="MA">均線策略</option>
-                                        <option value="Bollinger2">布林通道</option>
-                                        <option value="Turtle">海龜策略</option> 
-    s                                </select>
-                                <br>
-                                <label for="out">出場：
-                                    <select id="out" name="out" class="mb-5">
-                                        <option value="">停利RSI > 80</option>
-                                        <option value="">停損RSI < 30</option>
-                                        <option value="">多單K值向下穿越D值</option>
-                                        <option value="">空單K值向上跌破D值</option>
-                                        <option value="MA">均線策略</option>
-                                        <option value="Bollinger2">布林通道</option>
-                                        <option value="Turtle">海龜策略</option>
-                                    </select>
+                            <div class="w-65">
+                                <h2 class="mb-4 fwb primary b-bottom pb-2">策略設定</h2>
+                                <div class="d-flex jcsa">
+                                    <div class="w-30">
+                                        <h4 class="mb-2 primary fz-s green">-進出場設定-</h4>
+                                        <label for="in">進場：
+                                            <select id="in" name="in" class="mb-5">
+                                                <option value="MA">MA</option>
+                                                <option value="OSC">MACD</option>
+                                                <option value="RSI">RSI</option>
+                                                <option value="K值">KD</option>
+                                                <option value="BIAS">乖離率</option>
+                                                <option value="Williams">威廉指標</option>
+                                            </select>
+                                        <br>
+                                        <label for="out">出場：
+                                            <select id="out" name="out" class="mb-5">
+                                                <option value="MA">MA</option>
+                                                <option value="RSI">RSI</option>
+                                                <option value="K值">KD</option>
+                                                <option value="BIAS">乖離率</option>
+                                                <option value="Williams">威廉指標</option>
+                                            </select>
+                                    </div>
+                                    <div class="w-40">
+                                        <h4 class="mb-2 primary fz-s green">-固定式 停損/停利設定-</h4>
+                                        <label for="stoploss">停損：
+                                            <input type="number" name="stoploss" id="stoploss" class="w-30 mb-5">
+                                            <select name="stoploss" id="stoploss">
+                                                <option value="1">元</option>
+                                                <option value="0">%</option>
+                                            </select>
+                                            <br>
+                                        <label for="stopcost">停利：
+                                            <input type="number" name="stopcost" id="stopcost" class="w-30 mb-5">
+                                            <select name="stopcost" id="stopcost">
+                                                <option value="1">元</option>
+                                                <option value="2">點</option>
+                                            </select>
+                                        <h4 class="mb-2 primary fz-s green">-移動式 停損/停利設定-</h4>
+                                            <label for="stoploss">停損：</label>
+                                            <br>
+                                                <span class="fwn">自高點回檔 </span><input type="number" name="stoploss" id="stoploss" class="w-30 mb-5"> 點
+                                            <br>
+                                            <label for="stopcost">停利：
+                                            <br>
+                                                <span class="fwn">啟用門檻：獲利 > </span><input type="number" name="stopcost" id="stopcost" class="w-30 mb-5"> 點
+                                            <br>
+                                                <span class="fwn">固定停損點數：虧損 </span><input type="number" name="stopcost" id="stopcost" class="w-25 mb-5"> 點
+                                            <br>
+                                                <span class="fwn">停利點數：自高點回檔 </span><input type="number" name="stopcost" id="stopcost" class="w-20 mb-5"> 點
+                                        <h4 class="mt-1 dark-red fz-s">*固定式、移動式 擇一即可*</h4>
+                                    </div>
+                                    <div class="w-30">
+                                        <h4 class="mb-2 primary fz-s green">-資金管理-</h4>
+                                        <label for="fix">設定：
+                                            <span class="fwn">固定 </span>
+                                            <input type="number" name="fix" id="fix" class="w-25 mb-5">
+                                            <select name="fix" id="fix">
+                                                <option value="1">元</option>
+                                                <option value="2">口</option>
+                                                <option value="2">％</option>
+                                            </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <input type="button" value="確認送出" class="d-inline-block fr robot__btn dark-gray b-n fwb w-10"></input>
+                        <input type="button" value="確認送出" class="d-inline-block fr robot__btn dark-gray b-n fwb w-10">
                     </form>
                 </div>
                 
@@ -154,8 +194,56 @@
                         </script>
                     </div>
                     <!-- TradingView Widget END -->
-                    <h2 class="mb-4 fwb primary b-bottom pb-2 tac mt-6">交易建議</h2>
-                    <p>本系統分析功能使用均線策略來未使用者分析台指期的進出場時機及停損停利點，使用者可參考此分析結果決定何時買進或賣出商品，本預測數值僅供使用者參考，切勿當真！</p>
+                    <table class="conclusin-table br-m m0-a w-80 tac mt-6">
+                        <tr class="border-bottom">
+                            <th class="w-40">項目</th>
+                            <th>所有交易</th>
+                        </tr>
+                        <tr class="bg-lightgray">
+                            <td>勝率</td>
+                            <td>49.61%</td>
+                        </tr>
+                        <tr>
+                            <td>總報酬率</td>
+                            <td>21.70%</td>
+                        </tr>
+                        <tr class="bg-lightgray">
+                            <td>總交易次數</td>
+                            <td>2026</td>
+                        </tr>
+                        <tr>
+                            <td>獲利次數</td>
+                            <td>1005</td>
+                        </tr>
+                        <tr class="bg-lightgray">
+                            <td>虧損次數</td>
+                            <td>1021</td>
+                        </tr>
+                        <tr>
+                            <td>獲利因子</td>
+                            <td>1.45</td>
+                        </tr>
+                        <tr class="bg-lightgray">
+                            <td>年化報酬率</td>
+                            <td>7.23%</td>
+                        </tr>
+                        <tr>
+                            <td>最大獲利次數</td>
+                            <td>25</td>
+                        </tr>
+                        <tr class="bg-lightgray">
+                            <td>最大虧損次數</td>
+                            <td>45</td>
+                        </tr>
+                        <tr>
+                            <td>最大連續獲利(%)</td>
+                            <td>2.13%</td>
+                        </tr>
+                        <tr class="bg-lightgray">
+                            <td>最大連續虧損(%)</td>
+                            <td>-2.63%</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
