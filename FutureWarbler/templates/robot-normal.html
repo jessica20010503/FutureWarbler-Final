@@ -40,7 +40,7 @@
                     <h2 class="mb-6"><i class="fas fa-list mr-3"></i>設定計算項目</h2>
                     <form action="#" method="#" class="time-table">
                         <div class="d-flex jcsb">
-                            <div class="w-30">
+                            <div class="w-10">
                                 <h2 class="mb-4 fwb primary b-bottom pb-2">商品設定</h2>
                                 <label for="product">期貨商品：
                                 <select name="product" id="product">
@@ -57,7 +57,9 @@
                                     <option value="W">小麥</option>
                                     <option value="C">玉米</option>
                                 </select>
-                                <h2 class="mt-6 mb-4 fwb primary b-bottom pb-2">時間設定</h2>
+                            </div>
+                            <div class="w-30">
+                                <h2 class="mb-4 fwb primary b-bottom pb-2">時間設定</h2>
                                 <label for="cycle">資料周期：
                                     <input type="number" name="number" id="cycle" class="number w-30">
                                     <select id="cycle" name="cycle" class="mb-5">
@@ -71,14 +73,15 @@
                                 <br>
                                 <label for="end-time">結束時間：</label>
                                 <input id="end-time" name="end-time" type="date" class="mb-5">
+
                             </div>
-                            <div class="w-65">
+                            <div class="w-40">
                                 <h2 class="mb-4 fwb primary b-bottom pb-2">策略設定</h2>
-                                <div class="d-flex jcsa">
-                                    <div class="w-30">
+                                <div class="d-flex jcsb">
+                                    <div class="w-50">
                                         <h4 class="mb-2 primary fz-s green">-進出場設定-</h4>
                                         <label for="in">進場：
-                                            <select id="in" name="in" class="mb-5">
+                                            <select id="in" name="in" class="mb-5 w-50">
                                                 <option value="MA">MA</option>
                                                 <option value="OSC">MACD</option>
                                                 <option value="RSI">RSI</option>
@@ -88,53 +91,47 @@
                                             </select>
                                         <br>
                                         <label for="out">出場：
-                                            <select id="out" name="out" class="mb-5">
+                                            <select id="out" name="out" class="mb-8 w-50">
                                                 <option value="MA">MA</option>
                                                 <option value="RSI">RSI</option>
                                                 <option value="K值">KD</option>
                                                 <option value="BIAS">乖離率</option>
                                                 <option value="Williams">威廉指標</option>
                                             </select>
-                                    </div>
-                                    <div class="w-40">
-                                        <h4 class="mb-2 primary fz-s green">-固定式 停損/停利設定-</h4>
-                                        <label for="stoploss">停損：
-                                            <input type="number" name="stoploss" id="stoploss" class="w-30 mb-5">
-                                            <select name="stoploss" id="stoploss">
-                                                <option value="1">元</option>
-                                                <option value="0">%</option>
-                                            </select>
-                                            <br>
-                                        <label for="stopcost">停利：
-                                            <input type="number" name="stopcost" id="stopcost" class="w-30 mb-5">
-                                            <select name="stopcost" id="stopcost">
-                                                <option value="1">元</option>
-                                                <option value="2">點</option>
-                                            </select>
-                                        <h4 class="mb-2 primary fz-s green">-移動式 停損/停利設定-</h4>
-                                            <label for="stoploss">停損：</label>
-                                            <br>
-                                                <span class="fwn">自高點回檔 </span><input type="number" name="stoploss" id="stoploss" class="w-30 mb-5"> 點
-                                            <br>
-                                            <label for="stopcost">停利：
-                                            <br>
-                                                <span class="fwn">啟用門檻：獲利 > </span><input type="number" name="stopcost" id="stopcost" class="w-30 mb-5"> 點
-                                            <br>
-                                                <span class="fwn">固定停損點數：虧損 </span><input type="number" name="stopcost" id="stopcost" class="w-25 mb-5"> 點
-                                            <br>
-                                                <span class="fwn">停利點數：自高點回檔 </span><input type="number" name="stopcost" id="stopcost" class="w-20 mb-5"> 點
-                                        <h4 class="mt-1 dark-red fz-s">*固定式、移動式 擇一即可*</h4>
-                                    </div>
-                                    <div class="w-30">
+
                                         <h4 class="mb-2 primary fz-s green">-資金管理-</h4>
                                         <label for="fix">設定：
                                             <span class="fwn">固定 </span>
                                             <input type="number" name="fix" id="fix" class="w-25 mb-5">
                                             <select name="fix" id="fix">
-                                                <option value="1">元</option>
-                                                <option value="2">口</option>
-                                                <option value="2">％</option>
+                                                <option value="4">元</option>
+                                                <option value="5">口</option>
+                                                <option value="6">％</option>
                                             </select>
+                                    </div>
+                                    <div class="w-50">
+                                        <h4 class="mb-2 primary fz-s green">-停損/停利設定-</h4>
+                                        <select name="stop" id="stop" class="mb-5 w-70">
+                                            <option value="0">請選擇</option>
+                                            <option value="1">百分比</option>
+                                            <option value="2">固定式</option>
+                                            <option value="3">移動式</option>
+                                        </select>
+                                        <div class="stop-content">
+                                            <div class="b1 d-none">
+                                                <label for="stop1">停損：</label><input type="number" class="w-30 mb-5" id="stop1"> %
+                                                <br>
+                                                <label for="stop2">停利：</label><input type="number" class="w-30" id="stop2"> %
+                                            </div>
+                                            <div class="b2 d-none">
+                                                <label for="stop1">停損：</label><input type="number" class="w-30 mb-5" id="stop1"> 點
+                                                <br>
+                                                <label for="stop2">停利：</label><input type="number" class="w-30" id="stop2"> 點
+                                            </div>
+                                            <div class="b3 d-none">
+                                                <label for="stop1">停損：</label><input type="number" class="w-30 mb-5" id="stop1"> 點
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -248,4 +245,33 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(function () {
+        $("select").on("change", function () {
+        console.log($(this).val());
+        switch ($(this).val()) {
+        case "1": // 介面1
+        $(".stop-content .b1").addClass("active");
+        $(".stop-content .b2").removeClass('active');
+        $(".stop-content .b3").removeClass('active');
+        break;
+        case "2": // 介面2
+        $(".stop-content .b2").addClass("active");
+        $(".stop-content .b1").removeClass('active');
+        $(".stop-content .b3").removeClass('active');
+        break;
+        case "3": // 介面3
+        $(".stop-content .b3").addClass("active");
+        $(".stop-content .b1").removeClass('active');
+        $(".stop-content .b2").removeClass('active');
+        break;
+        default:
+        $(".stop-content .b1").removeClass('active');
+        $(".stop-content .b2").removeClass('active');
+        $(".stop-content .b3").removeClass('active');
+        break;
+        }
+        });
+        });
+    </script>
 {% endblock %}
