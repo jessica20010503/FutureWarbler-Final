@@ -2295,6 +2295,10 @@ img {
   background-color: #f9f9f9;
 }
 
+.robot-normal .active {
+  display: block;
+}
+
 .robot-intelligent table th {
   padding: 15px 10px;
 }
@@ -2333,5 +2337,9 @@ img {
 
 .robot-intelligent .bg-lightgray {
   background-color: #f9f9f9;
+}
+
+.robot-intelligent .active {
+  display: block;
 }
 /*# sourceMappingURL=all.css.map */
