@@ -19,10 +19,10 @@ from django.db import connection
 from urllib.parse import unquote 
 #連線至資料庫
 db_settings = {
-"host": "192.168.64.2", 
+"host": "localhost", 
 "port": 3306,
 "user": "root",
-"password": "", 
+"password": "12345678", 
 "db": "futurewarbler",
 "charset": "utf8",
 "cursorclass": pymysql.cursors.DictCursor
