@@ -647,7 +647,7 @@ def test (request):
             elif in_strategy == '4':
                 in_strategy = "long-in-bias"
             else:
-                in_strategy = "long-out-william"
+                in_strategy = "long-in-william"
             
             if out_strategy =="0":
                 out_strategy ="long-out-ma"
@@ -705,4 +705,4 @@ def test (request):
             cursor.execute(sql)
             conn.commit()
             conn.close()
-    return render(request,"test.html",locals())
+    return redirect ('/robot-normal/')
