@@ -618,36 +618,6 @@ def newssearch(request):
     return render(request, "news-search.html",{'results':results,'ok': ok, 'username' : username,'photo': photo})
 
 
-#--------------------討論版---------------------------
-def forum(request):
-    if 'username' in request.session:
-        ok ='yes'
-        username = request.session['username']
-        photo = request.session['photo']
-    else:
-        ok = ''
-    return render(request,"forum.html",locals())
-
-#--------------------討論版撰寫---------------------------
-def forumwrite (request):
-    if 'username' in request.session:
-        ok ='yes'
-        username = request.session['username']
-        photo = request.session['photo']
-    else:
-        ok = ''
-    return render(request,"forum-write.html",locals())
-
-#--------------------討論版內容---------------------------
-def forumcontent (request):
-    if 'username' in request.session:
-        ok ='yes'
-        username = request.session['username']
-        photo = request.session['photo']
-    else:
-        ok = ''
-    return render(request,"forum-content.html",locals())
-
 #-------------------未平倉契約頁面-------------------------
 def contract (request):
     return render(request,"contract.html",locals())
@@ -655,3 +625,84 @@ def contract (request):
 #------------------我的訂單頁面---------------------------
 def order (request):
     return render(request,"order.html",locals())
+
+#------------策略清單測試-----------------------
+def test (request):
+    if request.method == 'POST':
+        product = request.POST['product']
+        stop = request.POST['stop']
+        long_short =request.POST['long_short']
+        in_strategy = request.POST['in_strategy']
+        out_strategy = request.POST['out_strategy']
+        account = request.session['userid']
+        if long_short =="0":
+            if in_strategy == '0':
+                in_strategy = "long-in-ma"
+            elif in_strategy == '1':
+                in_strategy = "long-in-osc"
+            elif in_strategy == '2':
+                in_strategy = "long-in-rsi"
+            elif in_strategy == '3':
+                in_strategy = "long-in-kd"
+            elif in_strategy == '4':
+                in_strategy = "long-in-bias"
+            else:
+                in_strategy = "long-in-william"
+            
+            if out_strategy =="0":
+                out_strategy ="long-out-ma"
+            elif out_strategy =="1":
+                out_strategy ="long-out-rsi"
+            elif out_strategy =="2":
+                out_strategy ="long-out-kd"
+            elif out_strategy =="3":
+                out_strategy ="long-out-bias"
+            else:
+                out_strategy ="long-out-william"
+        else:
+            if in_strategy == '0':
+                in_strategy = "short-in-ma"
+            elif in_strategy == '1':
+                in_strategy = "short-in-osc"
+            elif in_strategy == '2':
+                in_strategy = "short-in-rsi"
+            elif in_strategy == '3':
+                in_strategy = "short-in-kd"
+            elif in_strategy == '4':
+                in_strategy = "short-in-bias"
+            else:
+                in_strategy = "short-in-william"
+            
+            if out_strategy =="0":
+                out_strategy ="short-out-ma"
+            elif out_strategy =="1":
+                out_strategy ="short-out-rsi"
+            elif out_strategy =="2":
+                out_strategy ="short-out-kd"
+            elif out_strategy =="3":
+                out_strategy ="short-out-bias"
+            else:
+                out_strategy ="short-out-william"
+            
+
+        if stop  == "1":
+            stop_name ="percentage"
+            stop1 = request.POST['stop1-1']
+            stop2 = request.POST['stop1-2']
+            stop_name= stop_name+"/"+stop1+"/"+stop2
+        elif stop =="2":
+            stop_name = "point"
+            stop1 = request.POST['stop2-1']
+            stop2 = request.POST['stop2-2']
+            stop_name= stop_name+"/"+stop1+"/"+stop2
+        else:
+            stop_name = "move"
+            stop1 = request.POST['stop3']
+            stop_name= stop_name+"/"+stop1
+        
+        with conn.cursor() as cursor:
+            sql = "INSERT INTO `technical_strategry`( `futures_id`, `member_id`,`technical_strategry_enter`, `technical_strategry_exit`, `technical_strategy_long_short`, `technical_strategy_stop_pl`) VALUES ('%s', '%s', '%s','%s', '%s', '%s')"%(product,account,in_strategy,out_strategy,long_short,stop_name)
+            cursor.execute(sql)
+            conn.commit()
+            conn.close()
+    return redirect ('/robot-normal/')

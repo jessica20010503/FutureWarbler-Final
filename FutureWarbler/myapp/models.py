@@ -413,10 +413,11 @@ class TechnicalStrategry(models.Model):
     technical_strategry_period = models.CharField(max_length=10)
     technical_strategry_start = models.DateField()
     technical_strategry_end = models.DateField()
-    technical_strategry_index1 = models.IntegerField()
-    technical_strategry_index2 = models.IntegerField()
-    technical_strategry_enter = models.IntegerField()
-    technical_strategry_exit = models.IntegerField()
+    technical_strategry_long_short = models.CharField(max_length=11)
+    technical_strategry_stop_lp = models.CharField(max_length=11)
+    technical_strategry_money_manage = models.CharField(max_length=11)
+    technical_strategry_enter = models.CharField(max_length=11)
+    technical_strategry_exit = models.CharField(max_length=11)
 
     class Meta:
 
