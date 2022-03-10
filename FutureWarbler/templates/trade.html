@@ -173,17 +173,19 @@
                         <fieldset class="p-3 br-s">
                             <legend class="fwb ">組合設定</legend>
                             <div>
-                                <input type="radio" name="question"  value="1" onclick="setgroup()"  checked>選項一 : 我的策略清單
-                                <select name="product" class=" p-1 br-s w-48 mt-2" id="setgroup">
-                                   <option value="">TX_001</option>
-                                   <option value="">TE_001</option>
-                                </select>
-                              
+                                <input type="radio" name="question"  value="1" onclick="setgroup()"  checked>選項一 :
+                                <div class="d-block mt-2">
+                                    <label for="setgroup">我的策略清單 : </label>
+                                    <select name="product" class=" p-1 br-s w-48 mt-2" id="setgroup">
+                                       <option value="">TX_001</option>
+                                       <option value="">TE_001</option>
+                                    </select>
+                                </div>
                               </div>
                               <input type="radio" name="question" id="question" value="2" onclick="setgroup2()" class="mt-2">選項二 : 
                               <div class="d-block mt-2">
-                                <label for="product">期貨商品：
-                                  <select name="" id="setgroup2" class=" p-1 br-s w-48">
+                                <label for="product">期貨商品：</label>
+                                  <select name="product" id="setgroup2" class=" p-1 br-s w-48">
                                     <option value="">台指期</option>
                                     <option value="">小台指</option>
                                     <option value="5hr">電子期</option>
