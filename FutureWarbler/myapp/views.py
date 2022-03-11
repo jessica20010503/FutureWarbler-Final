@@ -627,14 +627,23 @@ def order (request):
     return render(request,"order.html",locals())
 
 #------------策略清單測試-----------------------
-def test (request):
+def strategy_normal (request):
     if request.method == 'POST':
         product = request.POST['product']
         stop = request.POST['stop']
         long_short =request.POST['long_short']
         in_strategy = request.POST['in_strategy']
         out_strategy = request.POST['out_strategy']
+        fix = request.POST['fix']
         account = request.session['userid']
+
+        if fix =="4":
+            fix ="fix_lot"
+        elif fix =="5":
+            fix ="fix_money"
+        else:
+            fix ="fix_rate"
+
         if long_short =="0":
             if in_strategy == '0':
                 in_strategy = "long-in-ma"
@@ -701,7 +710,7 @@ def test (request):
             stop_name= stop_name+"/"+stop1
         
         with conn.cursor() as cursor:
-            sql = "INSERT INTO `technical_strategry`( `futures_id`, `member_id`,`technical_strategry_enter`, `technical_strategry_exit`, `technical_strategy_long_short`, `technical_strategy_stop_pl`) VALUES ('%s', '%s', '%s','%s', '%s', '%s')"%(product,account,in_strategy,out_strategy,long_short,stop_name)
+            sql = "INSERT INTO `technical_strategry`( `futures_id`, `member_id`,`technical_strategry_enter`, `technical_strategry_exit`, `technical_strategy_long_short`, `technical_strategy_stop_pl`, `technical_strategy_money_manage`) VALUES ('%s', '%s', '%s','%s', '%s', '%s', '%s')"%(product,account,in_strategy,out_strategy,long_short,stop_name,fix)
             cursor.execute(sql)
             conn.commit()
             conn.close()
