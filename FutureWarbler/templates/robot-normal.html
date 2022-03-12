@@ -38,7 +38,7 @@
             <div class="robot-normal mt-7 w-100 pl-12 pr-10 b-4">
                 <div class="fl white-bg w-100 br-m mr-3pct card-shadow pt-6 pb-6 pl-8 pr-8">
                     <h2 class="mb-6"><i class="fas fa-list mr-3"></i>設定計算項目</h2>
-                    <form action="/test/" method="post" class="time-table">
+                    <form action="/strategy_normal/" method="post" class="time-table">
                         {% csrf_token %} 
                         <div class="d-flex jcsb">
                             <div class="w-10">
@@ -109,15 +109,15 @@
                                             <div class="b1 d-none">
                                                 <label for="stop1">停損：</label><input name="stop1-1" type="number" class="w-30 mb-5" id="stop1"> %
                                                 <br>
-                                                <label for="stop2">停利：</label><input name="stop1-2"  type="number" class="w-30" id="stop2"> %
+                                                <label for="stop1">停利：</label><input name="stop1-2"  type="number" class="w-30" id="stop2"> %
                                             </div>
                                             <div class="b2 d-none">
-                                                <label for="stop1">停損：</label><input name="stop2-1" type="number" class="w-30 mb-5" id="stop1"> 點
+                                                <label for="stop2">停損：</label><input name="stop2-1" type="number" class="w-30 mb-5" id="stop1"> 點
                                                 <br>
                                                 <label for="stop2">停利：</label><input name="stop2-2"  type="number" class="w-30" id="stop2"> 點
                                             </div>
                                             <div class="b3 d-none">
-                                                <label for="stop1">停損：</label><input name="stop3" type="number" class="w-30 mb-5" id="stop1"> 點
+                                                <label for="stop3">停損：</label><input name="stop3" type="number" class="w-30 mb-5" id="stop1"> 點
                                             </div>
                                         </div>
                                     </div>
