@@ -2159,6 +2159,14 @@ img {
   background: #f3f3f2;
 }
 
+.trade__content .orderMachine {
+  height: 669px;
+}
+
+.trade__content .orderMachine_fieldset {
+  height: 359.2px;
+}
+
 .trade__content .drop--menu li a {
   color: #4F4E4B;
 }
