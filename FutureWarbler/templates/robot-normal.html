@@ -37,7 +37,7 @@
             {% include 'login-nav.html' %}
             <div class="robot-normal mt-7 w-100 pl-12 pr-10 b-4">
                 <div class="fl white-bg w-100 br-m mr-3pct card-shadow pt-6 pb-6 pl-8 pr-8">
-                    <h2 class="mb-6"><i class="fas fa-list mr-3"></i>設定計算項目</h2>
+                    <h2 class="mb-6"><i class="fas fa-list mr-3"></i>設定計算項目{{message}}</h2>
                     <form action="/strategy_normal/" method="post" class="time-table">
                         {% csrf_token %} 
                         <div class="d-flex jcsb">
@@ -62,7 +62,8 @@
                             <div class="w-25">
                                 <h2 class="mb-4 fwb primary b-bottom pb-2">時間設定</h2>
                                 <label for="cycle">資料周期：
-                                    <input type="number" name="number" id="cycle" class="number w-30">
+
+                                    <input type="number" name="cycle_number" id="cycle" class="number w-30">
                                     <select id="cycle" name="cycle" class="mb-5">
                                         <option value="min">分鐘</option>
                                         <option value="hr">小時</option>
@@ -132,13 +133,16 @@
                     
                     <div class="d-flex jcsb aic w-100 br-m drop-shadow">
                         <h2><i class="fas fa-chart-line mr-2 mb-6"></i>分析結果</h2>
-                        <form action="#" class="w-40">
+                        <form action="/send_strategy_sql/" method="post" class="w-40">
                             <div class="d-flex jcsb mb-6 aic">
+                                 {% csrf_token %} 
                                 <div>
                                     <label for="name">請為此策略命名：</label>
-                                    <input type="text" id="name" class="w-40 p-1 mr-5" maxlength="10">
+                                    <input type="text" name="strategy_name" id="name" class="w-40 p-1 mr-5" maxlength="10" required>
                                 </div>
-                                <input type="button" value="保存策略" class="fr submit__btn robot__btn dark-gray b-n fwb" data-bs-toggle="modal" data-bs-target="#exampleModalCenter1">
+                                <input type="submit" value="保存策略" class="d-inline-block fr robot__btn dark-gray b-n fwb w-10">
+                           
+                           
                             <!-- Modal -->
                                 <div class="modal fade" id="exampleModalCenter1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">

@@ -259,6 +259,7 @@ def strategy (request):
         ok ='yes'
         username = request.session['username']
         photo = request.session['photo']
+
     else:
         return redirect ('/personal-unlogin/')
     return render(request,"personal-strategyList.html",locals())
@@ -280,10 +281,67 @@ def robotnormal(request):
         ok ='yes'
         username = request.session['username']
         photo = request.session['photo']
+                #如果成功傳送策略包
+        if 'strategy_pack' in request.session :
+            #把存在session中的策略包內容物全部用變數接出來
+            strategy = request.session['strategy_pack']
+            long_short = strategy["long_short"] #做空做多
+            money_manage = strategy["money_manage"] #資金管理
+            period= strategy["period"] #資料集時間週期
+            start = strategy["start"] #資料集開始時間
+            end= strategy["end"] #資料集結束時間
+            enter =strategy["enter"] #進場策略
+            exit = strategy["exit"] #出場策略
+            futures = strategy["futures"] #期貨
+            stop_pl = strategy['stop_pl'].split("/") #停損停利/停損範圍/停利範圍
+            stop = stop_pl[0] #停損停利代號
+            if stop_pl[0] =="point": #固定式
+                stop_loss = float(stop_pl[1])
+                stop_profit =float(stop_pl[2])
+
+            elif stop_pl[0] =="percentage": #百分比
+                stop_loss = float(stop_pl[1])
+                stop_profit = float(stop_pl[2])
+            else: #移動停損
+                stop_loss = float(stop_pl[1])
+
+            message = ("我們session是有東西的",futures,"停損:",stop_loss)
+            
+
+            """
+               把回測功能寫在這邊
+            """
+            request.session['strategy_pack_backup'] =strategy  #先把策略包備份到看不到的地方
+            del request.session['strategy_pack']  #刪除回測用策略包，以免每次近來都要先回測一次降低效能
+        else:
+            message = "沒東西"
     else:
          return redirect ('/personal-unlogin/')
     return render(request,"robot-normal.html",locals())
 
+#----------------策略機器人傳送至資料庫---------------------
+def send_strategy_sql(request):
+    member_id = request.session['userid']
+    strategy = request.session['strategy_pack_backup']
+    strategy_name  = request.POST['strategy_name']
+    stop_pl = strategy['stop_pl']
+    long_short = strategy["long_short"] #做空做多
+    money_manage = strategy["money_manage"] #資金管理
+    period= strategy["period"] #資料集時間週期
+    start = strategy["start"] #資料集開始時間
+    end= strategy["end"] #資料集結束時間
+    enter =strategy["enter"] #進場策略
+    exit = strategy["exit"] #出場策略
+    futures = strategy["futures"] #期貨商品
+    
+    with conn.cursor() as cursor:
+            sql = "INSERT INTO `technical_strategry`(`technical_strategry_period`, `technical_strategry_start`, `technical_strategry_end`, `technical_strategry_enter`, `technical_strategry_exit`, `futures_id`, `member_id`, `technical_strategy_long_short`, `technical_strategy_stop_pl`, `technical_strategy_money_manage`, `technical_strategy_id`) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')"%(period, start, end, enter, exit,futures, member_id, long_short, stop_pl, money_manage,strategy_name)
+            cursor.execute(sql)
+            conn.commit()
+            
+    
+    
+    return redirect ('/robot-normal/')
 
 #-----------------智能交易機器人--------------------------
 def robotintelligent(request):
@@ -636,6 +694,14 @@ def strategy_normal (request):
         out_strategy = request.POST['out_strategy']
         fix = request.POST['fix']
         account = request.session['userid']
+        cycle_number = request.POST['cycle_number']
+        cycle = request.POST['cycle']
+        start = request.POST['start-time']
+        end = request.POST['end-time']
+
+
+        #時間週期   
+        period = cycle_number + '/' + cycle
 
         if fix =="4":
             fix ="fix_lot"
@@ -709,9 +775,20 @@ def strategy_normal (request):
             stop1 = request.POST['stop3']
             stop_name= stop_name+"/"+stop1
         
-        with conn.cursor() as cursor:
-            sql = "INSERT INTO `technical_strategry`( `futures_id`, `member_id`,`technical_strategry_enter`, `technical_strategry_exit`, `technical_strategy_long_short`, `technical_strategy_stop_pl`, `technical_strategy_money_manage`) VALUES ('%s', '%s', '%s','%s', '%s', '%s', '%s')"%(product,account,in_strategy,out_strategy,long_short,stop_name,fix)
-            cursor.execute(sql)
-            conn.commit()
-            conn.close()
+        
+        strategy_pack =  {
+            "member_id": account,
+            "long_short":long_short ,
+            "stop_pl":stop_name,
+            "money_manage": fix,
+            "period": period,
+            "start": start,
+            "end": end,
+            "enter":  in_strategy,
+            "exit": out_strategy,
+            "futures": product,
+            }
+        request.session['strategy_pack'] = strategy_pack
+        
+
     return redirect ('/robot-normal/')
