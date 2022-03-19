@@ -17,6 +17,7 @@ from myapp.models import News,Class as study,IndexClass
 from pymysql import cursors
 from django.db import connection
 from urllib.parse import unquote 
+from myapp.mods import futuresDateTime as fdt
 #連線至資料庫
 db_settings = {
 "host": "localhost", 
@@ -685,6 +686,7 @@ def order (request):
     return render(request,"order.html",locals())
 
 #------------策略清單測試-----------------------
+
 def strategy_normal (request):
     if request.method == 'POST':
         product = request.POST['product']
@@ -698,10 +700,9 @@ def strategy_normal (request):
         cycle = request.POST['cycle']
         start = request.POST['start-time']
         end = request.POST['end-time']
-
-
+        
         #時間週期   
-        period = cycle_number + '/' + cycle
+        period = cycle_number + cycle
 
         if fix =="4":
             fix ="fix_lot"
@@ -792,3 +793,13 @@ def strategy_normal (request):
         
 
     return redirect ('/robot-normal/')
+
+def test(request):
+    strategy = request.session['strategy_pack_backup']
+    futures = strategy['futures']
+    start = strategy['start']
+    end = strategy['end']
+    freq = strategy['period']
+    dataframe = fdt.futuresDateTime(futures,start,end,freq)
+    
+    return render(request,"test.html",locals())
