@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from myapp.views import index,login,register,personal,classes,classcontent,indexclass,indexclasscontent,robotnormal,robotintelligent,news,news1,newscontent,newssearch,trade,transactionRecord,strategy,logout,personal_unlogin,update,contract,order,strategy_normal
+from myapp.views import index,login,register,personal,classes,classcontent,indexclass,indexclasscontent,robotnormal,robotintelligent,news,news1,newscontent,newssearch,trade,transactionRecord,strategy,logout,personal_unlogin,update,contract,order,strategy_normal,send_strategy_sql
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -42,6 +42,6 @@ urlpatterns = [
     path('update/',update),
     path('contract/',contract),
     path('order/',order),
-    path('strategy_normal/',strategy_normal)
-    #path('test/',test),
+    path('strategy_normal/',strategy_normal),
+    path('send_strategy_sql/',send_strategy_sql),
 ]
