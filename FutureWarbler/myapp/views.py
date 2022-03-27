@@ -13,113 +13,128 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import random
 import math
 import pymysql.cursors
-from myapp.models import News,Class as study,IndexClass
+from myapp.models import News, Class as study, IndexClass
 from pymysql import cursors
 from django.db import connection
-from urllib.parse import unquote 
+from urllib.parse import unquote
 from myapp.mods import futuresDateTime as fdt
-#連線至資料庫
+import backtrader as bt
+# 載入指定檔案路徑相關的模組
+import os
+from pathlib import Path
+import datetime
+from pandas import Period
+from myapp.strategy_Function import MA_1, MA_2
+# 連線至資料庫
 db_settings = {
-"host": "localhost", 
-"port": 3306,
-"user": "root",
-"password": "12345678", 
-"db": "futurewarbler",
-"charset": "utf8",
-"cursorclass": pymysql.cursors.DictCursor
+    "host": "localhost",
+    "port": 3306,
+    "user": "root",
+    "password": "12345678",
+    "db": "futurewarbler",
+    "charset": "utf8",
+    "cursorclass": pymysql.cursors.DictCursor
 }
 conn = pymysql.connect(**db_settings)
 
 # Create your views here.
+
+
 def index(request):
     news3 = News.objects.all()[:5]
     if 'username' in request.session:
-        ok ='yes'
+        ok = 'yes'
         username = request.session['username']
         photo = request.session['photo']
-        return render(request,"index.html",{'News':news3,'ok': ok, 'username' : username,'photo': photo})
+        return render(request, "index.html", {'News': news3, 'ok': ok, 'username': username, 'photo': photo})
     else:
         ok = ''
         username = ''
         photo = ''
-        return render(request,"index.html",{'News':news3,'ok': ok, 'username' : username,'photo': photo})
-#--------------登出----------------------
+        return render(request, "index.html", {'News': news3, 'ok': ok, 'username': username, 'photo': photo})
+# --------------登出----------------------
+
+
 def logout(request):
 
-    if request.method == 'POST': 
-        if request.POST['logout'] =="logout":
+    if request.method == 'POST':
+        if request.POST['logout'] == "logout":
             request.session.flush()
     return redirect('/index/')
-#--------------登入功能------------------
+# --------------登入功能------------------
+
 
 def login(request):
     if 'username' in request.session:
-        return  redirect('/index/') #如果處於登入狀態，只要人為方式回到login，就會自動跳轉到index
+        return redirect('/index/')  # 如果處於登入狀態，只要人為方式回到login，就會自動跳轉到index
     if request.method == 'POST':
         account = request.POST['account']
         password = request.POST['password']
         cursor = connection.cursor()
 
-        sql = "SELECT * FROM `member` WHERE `member_id` ='%s'"%(account)
+        sql = "SELECT * FROM `member` WHERE `member_id` ='%s'" % (account)
         cursor.execute(sql)
         data = cursor.fetchone()
-        if data == None: #這個帳號沒人註冊
+        if data == None:  # 這個帳號沒人註冊
             message = '此帳號尚未註冊，請再次確認'
         else:
-            if password != data[1]: #帳號密碼錯誤
-                message ='帳號密碼錯誤，請再次確認'
+            if password != data[1]:  # 帳號密碼錯誤
+                message = '帳號密碼錯誤，請再次確認'
             else:
                 request.session['userid'] = account
                 request.session['password'] = password
                 request.session['username'] = data[2]
                 request.session['gender'] = data[3]
-                request.session['birth'] = data[4].strftime("%Y-%m-%d") #type=datetime.date
+                request.session['birth'] = data[4].strftime(
+                    "%Y-%m-%d")  # type=datetime.date
                 request.session['photo'] = data[5]
                 request.session['phone'] = data[6]
                 request.session['mail'] = data[7]
-                
-                return redirect('/index/') 
-    return render(request,"login.html",locals())
+
+                return redirect('/index/')
+    return render(request, "login.html", locals())
 
 
-#--------------註冊功能------------------
+# --------------註冊功能------------------
 def register(request):
     if request.method == 'POST':
         account = request.POST['account']
         password = request.POST['password']
-        photopath = request.FILES.get('photo',False)
+        photopath = request.FILES.get('photo', False)
         name = request.POST['name']
         gender = request.POST['gender']
         birth = request.POST['birth']
         phone = request.POST['phone']
         mail = request.POST['mail']
-        if account== "" or password == ""  or name== "" or photopath==False or gender =="" or birth == "" or phone =="" or mail=="":
-            lostSomething ="lostSomething"
-            checkLost= "您少填了部分資料請先再次檢查"
-            return render(request,"register.html",locals())
+        if account == "" or password == "" or name == "" or photopath == False or gender == "" or birth == "" or phone == "" or mail == "":
+            lostSomething = "lostSomething"
+            checkLost = "您少填了部分資料請先再次檢查"
+            return render(request, "register.html", locals())
         else:
             if gender == 0:
                 sex = 'M'
             else:
-                sex = 'F' 
+                sex = 'F'
             with conn.cursor() as cursor:
-                sql = "SELECT * FROM `member` WHERE `member_id` LIKE ('%s')"%(account)
+                sql = "SELECT * FROM `member` WHERE `member_id` LIKE ('%s')" % (
+                    account)
                 cursor.execute(sql)
                 row = cursor.fetchone()
                 if row != None:
                     check = 'no'
                     message = '您輸入的帳戶有人使用，請重新輸入帳戶:'
-                    return render(request,"register.html",locals())
+                    return render(request, "register.html", locals())
                 else:
-                    #照片上傳部分
+                    # 照片上傳部分
                     photo = request.FILES['photo']
                     photoname = request.FILES['photo'].name
-                    uploadphoto  = account+'_'+photoname
+                    uploadphoto = account+'_'+photoname
                     with open('static/userimg/'+uploadphoto, 'wb+') as destination:
                         for chunk in photo.chunks():
                             destination.write(chunk)
-                    #-----------
-                    sql = "INSERT INTO `member`(`member_id`, `member_password`, `member_name`, `member_photo`, `member_gender`, `member_birth`, `member_phone`, `member_email`) VALUES ('%s', '%s', '%s','%s', '%s', '%s', '%s', '%s')"%(account, password, name, uploadphoto, sex, birth, phone, mail)
+                    # -----------
+                    sql = "INSERT INTO `member`(`member_id`, `member_password`, `member_name`, `member_photo`, `member_gender`, `member_birth`, `member_phone`, `member_email`) VALUES ('%s', '%s', '%s','%s', '%s', '%s', '%s', '%s')" % (
+                        account, password, name, uploadphoto, sex, birth, phone, mail)
                     cursor.execute(sql)
                     conn.commit()
                     conn.close()
@@ -127,18 +142,22 @@ def register(request):
                     request.session['photo'] = uploadphoto
                     photo = request.session['photo']
                     username = request.session['username']
-                    return render(request,'index.html',locals())
-            
-    return render(request,"register.html",locals())
-#------------未登入狀態下的個人頁面-----------------
+                    return render(request, 'index.html', locals())
+
+    return render(request, "register.html", locals())
+# ------------未登入狀態下的個人頁面-----------------
+
+
 def personal_unlogin(request):
     if 'username' in request.session:
-         return  redirect('/personal/')
-    return render(request,"personal-page(unlogin).html",locals())
+        return redirect('/personal/')
+    return render(request, "personal-page(unlogin).html", locals())
 
-#------------登入狀態下的個人頁面-----------------
+# ------------登入狀態下的個人頁面-----------------
+
+
 def personal(request):
-    
+
     if 'username' in request.session:
         ok = "yes"
         userid = request.session['userid']
@@ -148,7 +167,7 @@ def personal(request):
         gender = request.session['gender']
         phone = request.session['phone']
         mail = request.session['mail']
-        if gender =='F':
+        if gender == 'F':
             gender = '女'
         else:
             gender = '男'
@@ -156,56 +175,57 @@ def personal(request):
         mail = request.session['mail']
         birth = request.session['birth']
     else:
-       return redirect('/personal-unlogin/')
-    
-    return render(request,"personal-page.html",locals())
+        return redirect('/personal-unlogin/')
 
-#------------個人介面個人資料修改--------------------
+    return render(request, "personal-page.html", locals())
+
+# ------------個人介面個人資料修改--------------------
+
+
 def update(request):
     account = request.session['userid']
     cursor = connection.cursor()
     if request.method == 'POST':
-       
-        if request.POST['update'] == 'password': #表示要修密碼
+
+        if request.POST['update'] == 'password':  # 表示要修密碼
             if request.POST['password'] == request.POST['password2']:
-               
-                message ='個人資料修改完成!^^'
-                password =request.POST['password']
+
+                message = '個人資料修改完成!^^'
+                password = request.POST['password']
                 password2 = request.POST['password2']
-                sql = "UPDATE `member` SET `member_password`='%s' WHERE `member_id` ='%s'"%(password,account)
+                sql = "UPDATE `member` SET `member_password`='%s' WHERE `member_id` ='%s'" % (
+                    password, account)
                 cursor.execute(sql)
 
             else:
-              
-                message ='兩個密碼不一樣啦!'
-                return redirect('/personal/',alertmessage=message)
 
-        else: #表示要修其他個人資訊
+                message = '兩個密碼不一樣啦!'
+                return redirect('/personal/', alertmessage=message)
+
+        else:  # 表示要修其他個人資訊
 
             if 'username' in request.POST:
                 username = request.POST['username']
                 request.session['usrname'] = username
-            
+
             if 'gender' in request.POST:
                 gender = request.POST['gender']
                 request.session['gender'] = gender
 
-
-            photopath = request.FILES.get('photo',False)
+            photopath = request.FILES.get('photo', False)
             if photopath == False:
                 photo = request.session['photo']
             else:
                 photo = request.FILES['photo']
-                photoname = request.session['photo'] #因為要蓋掉之前的照片，所以名子要一樣
+                photoname = request.session['photo']  # 因為要蓋掉之前的照片，所以名子要一樣
                 with open('static/userimg/'+photoname, 'wb+') as destination:
-                            for chunk in photo.chunks():
-                                destination.write(chunk)
+                    for chunk in photo.chunks():
+                        destination.write(chunk)
                 request.session['photo'] = photoname
-               
 
-            #因為birth是必填選項，所以不用判斷
+            # 因為birth是必填選項，所以不用判斷
             birth = request.POST['birth']
-            
+
             if 'phone' in request.POST:
                 phone = request.POST['phone']
                 if len(phone) < 9:
@@ -213,11 +233,10 @@ def update(request):
                 else:
                     phone = request.POST['phone']
 
-            if 'mail'  in request.POST:
+            if 'mail' in request.POST:
                 mail = request.session['mail']
                 request.session['mail'] = mail
-           
-           
+
             mail = request.session['mail']
             username = request.session['username']
             photo = request.session['photo']
@@ -225,147 +244,150 @@ def update(request):
             if gender == "0":
                 gender = 'M'
             else:
-                 gender = 'F'
-            
-            sql = "UPDATE `member` SET `member_name`='%s', `member_gender`='%s',`member_birth`='%s',`member_photo`='%s',`member_phone`='%s',`member_email`='%s' WHERE `member_id` ='%s'"%(username,gender,birth,photo,phone,mail,account)
+                gender = 'F'
+
+            sql = "UPDATE `member` SET `member_name`='%s', `member_gender`='%s',`member_birth`='%s',`member_photo`='%s',`member_phone`='%s',`member_email`='%s' WHERE `member_id` ='%s'" % (
+                username, gender, birth, photo, phone, mail, account)
             try:
-               
-                message= "成功更改資料!>.-"
+
+                message = "成功更改資料!>.-"
                 cursor.execute(sql)
-               
+
             except:
-               
-                message= "出錯嚕>.-"
-                return redirect('/personal/',alertmessage=message)
 
+                message = "出錯嚕>.-"
+                return redirect('/personal/', alertmessage=message)
 
-    return redirect('/personal/',alertmessage=message)
-
+    return redirect('/personal/', alertmessage=message)
 
 
 # ------------個人介面交易紀錄-----------------------
-def transactionRecord (request):
+def transactionRecord(request):
     if 'username' in request.session:
-        ok ='yes'
+        ok = 'yes'
         username = request.session['username']
         photo = request.session['photo']
     else:
-        return redirect ('/personal-unlogin/')
-    return render(request,"personal-transactionRecord.html",locals())
+        return redirect('/personal-unlogin/')
+    return render(request, "personal-transactionRecord.html", locals())
 
 
 # ------------個人介面策略清單-----------------------
-def strategy (request):
+def strategy(request):
     if 'username' in request.session:
-        ok ='yes'
+        ok = 'yes'
         username = request.session['username']
         photo = request.session['photo']
 
     else:
-        return redirect ('/personal-unlogin/')
-    return render(request,"personal-strategyList.html",locals())
+        return redirect('/personal-unlogin/')
+    return render(request, "personal-strategyList.html", locals())
 
-#-------------模擬交易所---------------------
-def trade (request):
+# -------------模擬交易所---------------------
+
+
+def trade(request):
     if 'username' in request.session:
-        ok ='yes'
+        ok = 'yes'
         username = request.session['username']
         photo = request.session['photo']
     else:
-        return redirect ('/personal-unlogin/')
-    return render(request,"trade.html",locals())
+        return redirect('/personal-unlogin/')
+    return render(request, "trade.html", locals())
 
 
-#-----------------策略交易機器人--------------------------
+# -----------------策略交易機器人--------------------------
 def robotnormal(request):
     if 'username' in request.session:
-        ok ='yes'
+        ok = 'yes'
         username = request.session['username']
         photo = request.session['photo']
-                #如果成功傳送策略包
-        if 'strategy_pack' in request.session :
-            #把存在session中的策略包內容物全部用變數接出來
+        # 如果成功傳送策略包
+        if 'strategy_pack' in request.session:
+            # 把存在session中的策略包內容物全部用變數接出來
             strategy = request.session['strategy_pack']
-            long_short = strategy["long_short"] #做空做多
-            money_manage = strategy["money_manage"] #資金管理
-            period= strategy["period"] #資料集時間週期
-            start = strategy["start"] #資料集開始時間
-            end= strategy["end"] #資料集結束時間
-            enter =strategy["enter"] #進場策略
-            exit = strategy["exit"] #出場策略
-            futures = strategy["futures"] #期貨
-            stop_pl = strategy['stop_pl'].split("/") #停損停利/停損範圍/停利範圍
-            stop = stop_pl[0] #停損停利代號
-            if stop_pl[0] =="point": #固定式
-                stop_loss = float(stop_pl[1])
-                stop_profit =float(stop_pl[2])
-
-            elif stop_pl[0] =="percentage": #百分比
+            long_short = strategy["long_short"]  # 做空做多
+            money_manage = strategy["money_manage"]  # 資金管理
+            period = strategy["period"]  # 資料集時間週期
+            start = strategy["start"]  # 資料集開始時間
+            end = strategy["end"]  # 資料集結束時間
+            enter = strategy["enter"]  # 進場策略
+            exit = strategy["exit"]  # 出場策略
+            futures = strategy["futures"]  # 期貨
+            stop_pl = strategy['stop_pl'].split("/")  # 停損停利/停損範圍/停利範圍
+            stop = stop_pl[0]  # 停損停利代號
+            if stop_pl[0] == "point":  # 固定式
                 stop_loss = float(stop_pl[1])
                 stop_profit = float(stop_pl[2])
-            else: #移動停損
+
+            elif stop_pl[0] == "percentage":  # 百分比
+                stop_loss = float(stop_pl[1])
+                stop_profit = float(stop_pl[2])
+            else:  # 移動停損
                 stop_loss = float(stop_pl[1])
 
-            message = ("我們session是有東西的",futures,"停損:",stop_loss)
-            
+            message = ("我們session是有東西的", futures, "停損:", stop_loss)
 
             """
                把回測功能寫在這邊
             """
-            request.session['strategy_pack_backup'] =strategy  #先把策略包備份到看不到的地方
-            del request.session['strategy_pack']  #刪除回測用策略包，以免每次近來都要先回測一次降低效能
+            request.session['strategy_pack_backup'] = strategy  # 先把策略包備份到看不到的地方
+            del request.session['strategy_pack']  # 刪除回測用策略包，以免每次近來都要先回測一次降低效能
         else:
             message = "沒東西"
     else:
-         return redirect ('/personal-unlogin/')
-    return render(request,"robot-normal.html",locals())
+        return redirect('/personal-unlogin/')
+    return render(request, "robot-normal.html", locals())
 
-#----------------策略機器人傳送至資料庫---------------------
+# ----------------策略機器人傳送至資料庫---------------------
+
+
 def send_strategy_sql(request):
     member_id = request.session['userid']
     strategy = request.session['strategy_pack_backup']
-    strategy_name  = request.POST['strategy_name']
+    strategy_name = request.POST['strategy_name']
     stop_pl = strategy['stop_pl']
-    long_short = strategy["long_short"] #做空做多
-    money_manage = strategy["money_manage"] #資金管理
-    period= strategy["period"] #資料集時間週期
-    start = strategy["start"] #資料集開始時間
-    end= strategy["end"] #資料集結束時間
-    enter =strategy["enter"] #進場策略
-    exit = strategy["exit"] #出場策略
-    futures = strategy["futures"] #期貨商品
-    
-    with conn.cursor() as cursor:
-            sql = "INSERT INTO `technical_strategry`(`technical_strategry_period`, `technical_strategry_start`, `technical_strategry_end`, `technical_strategry_enter`, `technical_strategry_exit`, `futures_id`, `member_id`, `technical_strategy_long_short`, `technical_strategy_stop_pl`, `technical_strategy_money_manage`, `technical_strategy_id`) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')"%(period, start, end, enter, exit,futures, member_id, long_short, stop_pl, money_manage,strategy_name)
-            cursor.execute(sql)
-            conn.commit()
-            
-    
-    
-    return redirect ('/robot-normal/')
+    long_short = strategy["long_short"]  # 做空做多
+    money_manage = strategy["money_manage"]  # 資金管理
+    period = strategy["period"]  # 資料集時間週期
+    start = strategy["start"]  # 資料集開始時間
+    end = strategy["end"]  # 資料集結束時間
+    enter = strategy["enter"]  # 進場策略
+    exit = strategy["exit"]  # 出場策略
+    futures = strategy["futures"]  # 期貨商品
 
-#-----------------智能交易機器人--------------------------
+    with conn.cursor() as cursor:
+        sql = "INSERT INTO `technical_strategry`(`technical_strategry_period`, `technical_strategry_start`, `technical_strategry_end`, `technical_strategry_enter`, `technical_strategry_exit`, `futures_id`, `member_id`, `technical_strategy_long_short`, `technical_strategy_stop_pl`, `technical_strategy_money_manage`, `technical_strategy_id`) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')" % (
+            period, start, end, enter, exit, futures, member_id, long_short, stop_pl, money_manage, strategy_name)
+        cursor.execute(sql)
+        conn.commit()
+
+    return redirect('/robot-normal/')
+
+# -----------------智能交易機器人--------------------------
+
+
 def robotintelligent(request):
     if 'username' in request.session:
-        ok ='yes'
+        ok = 'yes'
         username = request.session['username']
         photo = request.session['photo']
     else:
-         return redirect ('/personal-unlogin/')
-    return render(request,"robot-intelligent.html",locals())
+        return redirect('/personal-unlogin/')
+    return render(request, "robot-intelligent.html", locals())
 
 
-#-------------------期貨小教室----------------------------
+# -------------------期貨小教室----------------------------
 
-def classes(request):    
+def classes(request):
     if 'username' in request.session:
-        ok ='yes'
+        ok = 'yes'
         username = request.session['username']
         photo = request.session['photo']
     else:
         ok = ''
-        username= 'no'
-        photo ='no'
+        username = 'no'
+        photo = 'no'
     if 'keyWord' in request.GET:
         keyWord = request.GET['keyWord']
         #keyWord2 = '期貨'
@@ -377,25 +399,25 @@ def classes(request):
         # print(results)
         # for i in results:
         #     print(i)
-        return render(request, "class.html", {'results': results, 'ok': ok, 'username' : username,'photo': photo})
+        return render(request, "class.html", {'results': results, 'ok': ok, 'username': username, 'photo': photo})
     if 'page' in request.GET:
         try:
             page = int(request.GET['page'])*6
-            results = study.objects.all()[page-6:page] # Class as study  # [page-6:page]代表一頁資料數量
-            return render(request, "class.html", {'results': results, 'ok': ok, 'username' : username,'photo': photo} )
+            # Class as study  # [page-6:page]代表一頁資料數量
+            results = study.objects.all()[page-6:page]
+            return render(request, "class.html", {'results': results, 'ok': ok, 'username': username, 'photo': photo})
         except:
             results = study.objects.all()[:6]
-            return render(request, "class.html", {'results': results, 'ok': ok, 'username' : username,'photo': photo})
+            return render(request, "class.html", {'results': results, 'ok': ok, 'username': username, 'photo': photo})
     else:
         results = study.objects.all()[:6]
-        return render(request, "class.html",{'results': results, 'ok': ok, 'username' : username,'photo': photo})     
-
+        return render(request, "class.html", {'results': results, 'ok': ok, 'username': username, 'photo': photo})
 
     # results = {}
     # sql = "SELECT `class_id`,`class_title`,`class_article`,`class_photo` FROM `class`"
     # with conn.cursor() as cursor:
     #     cursor.execute(sql)
-    #     results['articles'] = cursor.fetchall() 
+    #     results['articles'] = cursor.fetchall()
 
     # cursor23 = conn.cursor()
     # cursor23.execute("SELECT `class_id`,`class_title`,`class_article`,`class_photo` FROM `class`")
@@ -403,43 +425,45 @@ def classes(request):
     # return render(request,"class.html", articles)
 
 
-
 def classcontent(request):
     if 'username' in request.session:
-        ok ='yes'
+        ok = 'yes'
         username = request.session['username']
         photo = request.session['photo']
     else:
         ok = ''
-        username= 'no'
-        photo ='no'
+        username = 'no'
+        photo = 'no'
     pk = request.GET["id"]
     cursor = conn.cursor()
-    cursor.execute("select class_id,class_title,class_article,class_photo from class where class_id=%s" % (pk))
+    cursor.execute(
+        "select class_id,class_title,class_article,class_photo from class where class_id=%s" % (pk))
     class1 = study.objects.filter(pk=pk)
     class1 = cursor.fetchall()
-    return render(request,"class-content.html", {'Class1': class1, 'ok': ok, 'username' : username,'photo': photo})
+    return render(request, "class-content.html", {'Class1': class1, 'ok': ok, 'username': username, 'photo': photo})
+
 
 def indexclass(request):
     if 'username' in request.session:
-        ok ='yes'
+        ok = 'yes'
         username = request.session['username']
         photo = request.session['photo']
     else:
         ok = ''
-        username= 'no'
-        photo ='no'
+        username = 'no'
+        photo = 'no'
     if 'page' in request.GET:
         try:
             page = int(request.GET['page'])*6
-            results = IndexClass.objects.all()[page-6:page] # [page-6:page]代表一頁資料數量
-            return render(request, "index-class.html", {'results': results, 'ok': ok, 'username' : username,'photo': photo})
+            # [page-6:page]代表一頁資料數量
+            results = IndexClass.objects.all()[page-6:page]
+            return render(request, "index-class.html", {'results': results, 'ok': ok, 'username': username, 'photo': photo})
         except:
             results = IndexClass.objects.all()[:6]
-            return render(request, "index-class.html", {'results': results, 'ok': ok, 'username' : username,'photo': photo})
+            return render(request, "index-class.html", {'results': results, 'ok': ok, 'username': username, 'photo': photo})
     else:
         results = IndexClass.objects.all()[:6]
-        return render(request, "index-class.html",{'results': results, 'ok': ok, 'username' : username,'photo': photo})
+        return render(request, "index-class.html", {'results': results, 'ok': ok, 'username': username, 'photo': photo})
 
     # results = {}
     # sql = "SELECT `index_class_id`,`index_class_title`,`index_class_article`,`index_class_photo` FROM `index_class`"
@@ -448,36 +472,34 @@ def indexclass(request):
     #     results['articles'] = cursor.fetchall()
     # return render(request,"index-class.html",results)
 
-def indexclasscontent(request,pk):
+
+def indexclasscontent(request, pk):
     if 'username' in request.session:
-        ok ='yes'
+        ok = 'yes'
         username = request.session['username']
         photo = request.session['photo']
     else:
         ok = ''
-        username= 'no'
-        photo ='no'
+        username = 'no'
+        photo = 'no'
     cursor = conn.cursor()
-    cursor.execute("select index_class_id,index_class_title,index_class_article,index_class_photo from index_class where index_class_id=%s" % (pk))
+    cursor.execute(
+        "select index_class_id,index_class_title,index_class_article,index_class_photo from index_class where index_class_id=%s" % (pk))
     indexclass1 = IndexClass.objects.filter(pk=pk)
     indexclass1 = cursor.fetchall()
-    return render(request,"index-class-content.html",{'Indexclass1': indexclass1, 'ok': ok, 'username' : username,'photo': photo})
-
-
-
-
+    return render(request, "index-class-content.html", {'Indexclass1': indexclass1, 'ok': ok, 'username': username, 'photo': photo})
 
 
 def news(request):
-#new2 最新 news3熱門
-#如果html 裡 category=category ，判斷是category 0 財經 1 期貨 2 兩岸 3  國際 4產業 5理財
-#news3裡 抓category 裡的type最新與熱門
-#如果try 裡抓page一頁有幾個，下一頁
-#except 防止報錯
-#else 防止報錯
-# print(request.GET['page'])
+    # new2 最新 news3熱門
+    # 如果html 裡 category=category ，判斷是category 0 財經 1 期貨 2 兩岸 3  國際 4產業 5理財
+    # news3裡 抓category 裡的type最新與熱門
+    # 如果try 裡抓page一頁有幾個，下一頁
+    # except 防止報錯
+    # else 防止報錯
+    # print(request.GET['page'])
     if 'username' in request.session:
-        ok ='yes'
+        ok = 'yes'
         username = request.session['username']
         photo = request.session['photo']
     else:
@@ -486,41 +508,42 @@ def news(request):
         photo = 'no'
     if 'category' in request.GET:
         category = int(request.GET['category'])
-        news3=News.objects.filter(news_category=category).filter(news_type=1)[:4]
+        news3 = News.objects.filter(
+            news_category=category).filter(news_type=1)[:4]
         titleWord = {
-            "0":"財經總覽",
-            "1":"期貨相關",
-            "2":"兩岸財經",
-            "3":"國際財經"
+            "0": "財經總覽",
+            "1": "期貨相關",
+            "2": "兩岸財經",
+            "3": "國際財經"
         }
         title = titleWord[str(category)]
         if 'page' in request.GET:
-            try:   
+            try:
                 page = int(request.GET['page'])*5
                 news2 = News.objects.all()[page-4:page]
-                return render(request, "news-1.html", {'News2': news2, 'News3': news3,"title":title,"category":str(category), 'ok': ok, 'username' : username,'photo': photo})
+                return render(request, "news-1.html", {'News2': news2, 'News3': news3, "title": title, "category": str(category), 'ok': ok, 'username': username, 'photo': photo})
             except:
                 page = request.GET['page']
                 news2 = News.objects.all()[:5]
-                return render(request, "news-1.html", {'News2': news2, 'News3': news3,"title":title,"category":str(category), 'ok': ok, 'username' : username,'photo': photo})
+                return render(request, "news-1.html", {'News2': news2, 'News3': news3, "title": title, "category": str(category), 'ok': ok, 'username': username, 'photo': photo})
         else:
             category = int(request.GET['category'])
-            news2 = News.objects.filter(news_category=category).filter(news_type=0)[:5]
-            news3=News.objects.filter(news_category=category).filter(news_type=1)[:5]
-            return render(request, "news-1.html", {'News2': news2, 'News3': news3,"title":title, "category":str(category),'ok': ok, 'username' : username,'photo': photo})
+            news2 = News.objects.filter(
+                news_category=category).filter(news_type=0)[:5]
+            news3 = News.objects.filter(
+                news_category=category).filter(news_type=1)[:5]
+            return render(request, "news-1.html", {'News2': news2, 'News3': news3, "title": title, "category": str(category), 'ok': ok, 'username': username, 'photo': photo})
     else:
 
         category = int(request.GET['category'])
         news3 = News.objects.all()[:5]
         news2 = News.objects.all()[:5]
-        return render(request, "news-1.html", {'News2': news2, 'News3': news3, "category":str(category),'ok': ok, 'username' : username,'photo': photo})
-
-
+        return render(request, "news-1.html", {'News2': news2, 'News3': news3, "category": str(category), 'ok': ok, 'username': username, 'photo': photo})
 
 
 def newscontent(request, pk):
     if 'username' in request.session:
-        ok ='yes'
+        ok = 'yes'
         username = request.session['username']
         photo = request.session['photo']
     else:
@@ -643,12 +666,12 @@ def newscontent(request, pk):
     news20 = cursor20.fetchall()
     news21 = cursor21.fetchall()
 
-    return render(request, "news-content.html", {'News0': news0, 'News1': news1,'News2': news2, 'News3': news3, 'News4': news4, 'News5': news5, 'News6': news6, 'News7': news7, 'News8': news8, 'News9': news9, 'News10': news10, 'News11': news11, 'News12': news12, 'News13': news13, 'News14': news14, 'News15': news15, 'News16': news16, 'News17': news17, 'News18': news18, 'News19': news19, 'News20': news20, 'News21': news21, 'ok': ok, 'username' : username,'photo': photo})
+    return render(request, "news-content.html", {'News0': news0, 'News1': news1, 'News2': news2, 'News3': news3, 'News4': news4, 'News5': news5, 'News6': news6, 'News7': news7, 'News8': news8, 'News9': news9, 'News10': news10, 'News11': news11, 'News12': news12, 'News13': news13, 'News14': news14, 'News15': news15, 'News16': news16, 'News17': news17, 'News18': news18, 'News19': news19, 'News20': news20, 'News21': news21, 'ok': ok, 'username': username, 'photo': photo})
 
 
 def news1(request):
     if 'username' in request.session:
-        ok ='yes'
+        ok = 'yes'
         username = request.session['username']
         photo = request.session['photo']
     else:
@@ -660,11 +683,12 @@ def news1(request):
         "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_area=%s", ['2'])
     news2 = cursor2.fetchall()[:5]
     # 期貨
-    return render(request, "index.html", {'News2': news2, 'ok': ok, 'username' : username,'photo': photo})
- 
+    return render(request, "index.html", {'News2': news2, 'ok': ok, 'username': username, 'photo': photo})
+
+
 def newssearch(request):
     if 'username' in request.session:
-        ok ='yes'
+        ok = 'yes'
         username = request.session['username']
         photo = request.session['photo']
     else:
@@ -674,24 +698,38 @@ def newssearch(request):
         #keyWord2 = '期貨'
         keyWord = unquote(keyWord)
         results = News.objects.filter(news_title__contains=keyWord)
-    return render(request, "news-search.html",{'results':results,'ok': ok, 'username' : username,'photo': photo})
+    return render(request, "news-search.html", {'results': results, 'ok': ok, 'username': username, 'photo': photo})
 
 
-#-------------------未平倉契約頁面-------------------------
-def contract (request):
-    return render(request,"contract.html",locals())
+# -------------------未平倉契約頁面-------------------------
+def contract(request):
+    if 'username' in request.session:
+        ok = 'yes'
+        username = request.session['username']
+        photo = request.session['photo']
+    else:
+        return redirect('/personal-unlogin/')
+    return render(request, "contract.html", locals())
 
-#------------------我的訂單頁面---------------------------
-def order (request):
-    return render(request,"order.html",locals())
 
-#------------策略清單測試-----------------------
+# ------------------我的訂單頁面---------------------------
+def order(request):
+    if 'username' in request.session:
+        ok = 'yes'
+        username = request.session['username']
+        photo = request.session['photo']
+    else:
+        return redirect('/personal-unlogin/')
+    return render(request, "order.html", locals())
 
-def strategy_normal (request):
+# ------------策略清單測試-----------------------
+
+
+def strategy_normal(request):
     if request.method == 'POST':
         product = request.POST['product']
         stop = request.POST['stop']
-        long_short =request.POST['long_short']
+        long_short = request.POST['long_short']
         in_strategy = request.POST['in_strategy']
         out_strategy = request.POST['out_strategy']
         fix = request.POST['fix']
@@ -700,18 +738,18 @@ def strategy_normal (request):
         cycle = request.POST['cycle']
         start = request.POST['start-time']
         end = request.POST['end-time']
-        
-        #時間週期   
+
+        # 時間週期
         period = cycle_number + cycle
 
-        if fix =="4":
-            fix ="fix_lot"
-        elif fix =="5":
-            fix ="fix_money"
+        if fix == "4":
+            fix = "fix_lot"
+        elif fix == "5":
+            fix = "fix_money"
         else:
-            fix ="fix_rate"
+            fix = "fix_rate"
 
-        if long_short =="0":
+        if long_short == "0":
             if in_strategy == '0':
                 in_strategy = "long-in-ma"
             elif in_strategy == '1':
@@ -724,17 +762,17 @@ def strategy_normal (request):
                 in_strategy = "long-in-bias"
             else:
                 in_strategy = "long-in-william"
-            
-            if out_strategy =="0":
-                out_strategy ="long-out-ma"
-            elif out_strategy =="1":
-                out_strategy ="long-out-rsi"
-            elif out_strategy =="2":
-                out_strategy ="long-out-kd"
-            elif out_strategy =="3":
-                out_strategy ="long-out-bias"
+
+            if out_strategy == "0":
+                out_strategy = "long-out-ma"
+            elif out_strategy == "1":
+                out_strategy = "long-out-rsi"
+            elif out_strategy == "2":
+                out_strategy = "long-out-kd"
+            elif out_strategy == "3":
+                out_strategy = "long-out-bias"
             else:
-                out_strategy ="long-out-william"
+                out_strategy = "long-out-william"
         else:
             if in_strategy == '0':
                 in_strategy = "short-in-ma"
@@ -748,39 +786,37 @@ def strategy_normal (request):
                 in_strategy = "short-in-bias"
             else:
                 in_strategy = "short-in-william"
-            
-            if out_strategy =="0":
-                out_strategy ="short-out-ma"
-            elif out_strategy =="1":
-                out_strategy ="short-out-rsi"
-            elif out_strategy =="2":
-                out_strategy ="short-out-kd"
-            elif out_strategy =="3":
-                out_strategy ="short-out-bias"
-            else:
-                out_strategy ="short-out-william"
-            
 
-        if stop  == "1":
-            stop_name ="percentage"
+            if out_strategy == "0":
+                out_strategy = "short-out-ma"
+            elif out_strategy == "1":
+                out_strategy = "short-out-rsi"
+            elif out_strategy == "2":
+                out_strategy = "short-out-kd"
+            elif out_strategy == "3":
+                out_strategy = "short-out-bias"
+            else:
+                out_strategy = "short-out-william"
+
+        if stop == "1":
+            stop_name = "percentage"
             stop1 = request.POST['stop1-1']
             stop2 = request.POST['stop1-2']
-            stop_name= stop_name+"/"+stop1+"/"+stop2
-        elif stop =="2":
+            stop_name = stop_name+"/"+stop1+"/"+stop2
+        elif stop == "2":
             stop_name = "point"
             stop1 = request.POST['stop2-1']
             stop2 = request.POST['stop2-2']
-            stop_name= stop_name+"/"+stop1+"/"+stop2
+            stop_name = stop_name+"/"+stop1+"/"+stop2
         else:
             stop_name = "move"
             stop1 = request.POST['stop3']
-            stop_name= stop_name+"/"+stop1
-        
-        
-        strategy_pack =  {
+            stop_name = stop_name+"/"+stop1
+
+        strategy_pack = {
             "member_id": account,
-            "long_short":long_short ,
-            "stop_pl":stop_name,
+            "long_short": long_short,
+            "stop_pl": stop_name,
             "money_manage": fix,
             "period": period,
             "start": start,
@@ -788,11 +824,11 @@ def strategy_normal (request):
             "enter":  in_strategy,
             "exit": out_strategy,
             "futures": product,
-            }
+        }
         request.session['strategy_pack'] = strategy_pack
-        
 
-    return redirect ('/robot-normal/')
+    return redirect('/robot-normal/')
+
 
 def test(request):
     strategy = request.session['strategy_pack_backup']
@@ -800,6 +836,8 @@ def test(request):
     start = strategy['start']
     end = strategy['end']
     freq = strategy['period']
-    dataframe = fdt.futuresDateTime(futures,start,end,freq)
-    
-    return render(request,"test.html",locals())
+    dataframe = fdt.futuresDateTime(futures, start, end, freq)
+
+    return render(request, "test.html", locals())
+
+# ---------------- backtrader test --------------------------

@@ -2,46 +2,51 @@
 {% load static %}
 {% block content %}
 <div class="wrap d-flex m0-a">
-        <div class="side">
-            <h1 class="fz-xl fwb">F<span class="bright">u</span>tures <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
-            <ul class="menu">
-                <li class=" main--menu pt-3 pr-5 pb-3 pl-9 "><a href="/index/"><i class="fas fa-home mr-2"></i>首頁</a></li>
-                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/trade"><i class="fas fa-university mr-2"></i>模擬交易所</a></li>
-                <li class="drop--menu">
-                    <a href="" class="main--menu pt-3 pb-3 pl-9  ">
-                        <i class="fas fa-chalkboard-teacher mr-2"></i>期貨小教室<i class="fas fa-chevron-down ml-7 fz-s"></i>
-                    </a>
-                    <ul class=" d-none">
-                        <li class="sub--menu"><a href="/class/">期貨基本介紹</a></li>
-                        <li class="sub--menu"><a href="/index-class/">期貨指標介紹</a></li>
-                    </ul>
-                </li>
-                <li class="drop--menu">
-                    <a href="" class="main--menu pt-3 pb-3 pl-9 ">
-                        <i class="fas fa-robot mr-2"></i>智能機器人顧問<i class="fas fa-chevron-down ml-1 fz-s"></i>
-                    </a>
-                    <ul class=" d-none">
-                        <li class="sub--menu"><a href="/robot-normal/">交易策略</a></li>
-                        <li class="sub--menu"><a href="/robot-intelligent/">智能交易策略</a></li>
-                    </ul>
-                </li>
-                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/news/?category=0"><i class="fas fa-newspaper mr-2"></i>新聞</a></li>
-                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/forum/"><i class="fas fa-comment-alt mr-2"></i>討論版</a></li>
-                <li class="main--menu pt-3 pr-5 pb-3 pl-9  chosed"><a href="/personal/"><i class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
-            </ul>
-            <div class="circle"></div>
-            <div class="circle2"></div>
-            <div class="circle3"></div>
-        </div>
-        <div class="container pb-4">
-            {% include 'login-nav.html' %}
-            <ul class="personal--transactionRecord__content mt-7 w-100 pl-12 pr-10 b-4">
-               <li class="fl white-bg w-100 br-m  card-shadow   ">
+    <div class="side">
+        <h1 class="fz-xl fwb">F<span class="bright">u</span>tures <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r
+        </h1>
+        <ul class="menu">
+            <li class=" main--menu pt-3 pr-5 pb-3 pl-9 "><a href="/index/"><i class="fas fa-home mr-2"></i>首頁</a></li>
+            <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/trade"><i
+                        class="fas fa-university mr-2"></i>模擬交易所</a></li>
+            <li class="drop--menu">
+                <a href="" class="main--menu pt-3 pb-3 pl-9  ">
+                    <i class="fas fa-chalkboard-teacher mr-2"></i>期貨小教室<i class="fas fa-chevron-down ml-7 fz-s"></i>
+                </a>
+                <ul class=" d-none">
+                    <li class="sub--menu"><a href="/class/">期貨基本介紹</a></li>
+                    <li class="sub--menu"><a href="/index-class/">期貨指標介紹</a></li>
+                </ul>
+            </li>
+            <li class="drop--menu">
+                <a href="" class="main--menu pt-3 pb-3 pl-9 ">
+                    <i class="fas fa-robot mr-2"></i>智能機器人顧問<i class="fas fa-chevron-down ml-1 fz-s"></i>
+                </a>
+                <ul class=" d-none">
+                    <li class="sub--menu"><a href="/robot-normal/">交易策略</a></li>
+                    <li class="sub--menu"><a href="/robot-intelligent/">智能交易策略</a></li>
+                </ul>
+            </li>
+            <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/news/?category=0"><i
+                        class="fas fa-newspaper mr-2"></i>新聞</a></li>
+            <li class="main--menu pt-3 pr-5 pb-3 pl-9  chosed"><a href="/personal/"><i
+                        class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
+        </ul>
+        <div class="circle"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+    </div>
+    <div class="container pb-4">
+        {% include 'login-nav.html' %}
+        <ul class="personal--transactionRecord__content mt-7 w-100 pl-12 pr-10 b-4">
+            <li class="fl white-bg w-100 br-m  card-shadow   ">
                 <div class="d-flex jcsb aic b-bottom p-4 pl-5 pr-5">
                     <h2><i class="fas fa-bookmark mr-3"></i>策略清單</h2>
                     <form action="#" class="d-flex">
-                        <input type="search" name="record" id="record" placeholder="search here..." class="search_input b-n pt-2 pb-2 pl-4 pr-3  box-shadow">
-                        <button class="search_btn b-n pt-2 pb-2 pl-3 pr-3  box-shadow"><i class="fas fa-search fz-s"></i></button>
+                        <input type="search" name="record" id="record" placeholder="search here..."
+                            class="search_input b-n pt-2 pb-2 pl-4 pr-3  box-shadow">
+                        <button class="search_btn b-n pt-2 pb-2 pl-3 pr-3  box-shadow"><i
+                                class="fas fa-search fz-s"></i></button>
                     </form>
                 </div>
                 <div class="pb-4 ">
@@ -54,11 +59,13 @@
                             <th>資料<br>週期</th>
                             <th>開始<br>時間</th>
                             <th>結束<br>時間</th>
-                            <th>技術<br>指標一</th>
-                            <th>技術<br>指標二</th>
+                            <th>多空<br>設定</th>
                             <th>進場<br>策略</th>
                             <th>出場<br>策略</th>
                             <th>演算法</th>
+                            <th>資金<br>管理</th>
+                            <th>停損<br>設定</th>
+                            <th>停損<br>設定</th>
                         </tr>
                         <tr class="trade--table__item">
                             <td>1</td>
@@ -68,11 +75,13 @@
                             <td>1分鐘</td>
                             <td>2020/10/11</td>
                             <td>2021/5/31</td>
+                            <td>做多</td>
+                            <td>RSI > 50</td>
+                            <td>K值向下跌破D值</td>
                             <td>-</td>
-                            <td>-</td>
-                            <td>均線策略</td>
-                            <td>均線策略</td>
-                            <td>-</td>
+                            <td>固定金額推薦</td>
+                            <td>停損1%</td>
+                            <td>停利2%</td>
                         </tr>
                         <tr class="trade--table__item">
                             <td>2</td>
@@ -82,11 +91,13 @@
                             <td>5 分鐘</td>
                             <td>2001/03/11</td>
                             <td>2008/09/25</td>
-                            <td>MACD指標</td>
-                            <td>DMI趨向指標</td>
+                            <td>做空</td>
                             <td>MA快線向上突破慢線</td>
-                            <td>空單K值向上跌破D值</td>
+                            <td>-</td>
                             <td>隨機森林</td>
+                            <td>固定比例推薦</td>
+                            <td>停損3點</td>
+                            <td>停利2點</td>
                         </tr>
                         <tr class="trade--table__item">
                             <td>3</td>
@@ -177,14 +188,14 @@
                         <li><a href="#" class="prev--buttom mr-2"><i class='fas fa-angle-double-left'></i></a></li>
                         <li><a href="#" class="active mr-2">1</a></li>
                         <li><a href="#" class="mr-2">2</a></li>
-                        <li><a href="#"  class="mr-2">3</a></li>
-                        <li><a href="#"  class="mr-2">4</a></li>
-                        <li><a href="#"  class="mr-2">5</a></li>
+                        <li><a href="#" class="mr-2">3</a></li>
+                        <li><a href="#" class="mr-2">4</a></li>
+                        <li><a href="#" class="mr-2">5</a></li>
                         <li><a href="#" class="next--buttom mr-2"><i class='fas fa-angle-double-right'></i></a></li>
                     </ul>
                 </div>
-               </li>
-            </ul>
-        </div>
+            </li>
+        </ul>
     </div>
+</div>
 {% endblock %}
