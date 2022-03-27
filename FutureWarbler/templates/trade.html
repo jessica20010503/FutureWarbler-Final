@@ -29,8 +29,6 @@
             </li>
             <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/news/?category=0"><i
                         class="fas fa-newspaper mr-2"></i>新聞</a></li>
-            <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/forum/"><i
-                        class="fas fa-comment-alt mr-2"></i>討論版</a></li>
             <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/personal/"><i
                         class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
         </ul>
@@ -173,102 +171,87 @@
                     <h2 class="fz-xm fwbr"><i class="fas fa-cash-register mr-3 "></i>下單機</h2>
                 </div>
                 <form action="" class="w-100 p-2 pl-5 pr-3 pb-5">
-                    <fieldset class="p-3 br-s  orderMachine_fieldset">
+                    <fieldset class="p-3 br-s">
                         <legend class="fwb ">組合設定</legend>
-                        <div class="d-block mt-2">
-                            <label for="tradegroupChoice">組合選項：</label>
-                            <select name="tradegroupChoice" class=" p-1 br-s w-48 mt-2" id="tradegroupChoice">
-                                <option value="0">請選擇</option>
-                                <option value="1">我的策略清單</option>
-                                <option value="2">自訂選項</option>
-                            </select>
-                        </div>
-                        <div class="trade_set_content">
-                            <div class="a1 d-none mt-2">
-                                <label for="setgroup">清單序號：</label>
-                                <select name="setgroup" class=" p-1 br-s w-48 mt-2" id="setgroup">
-                                    <option value="">TX_001</option>
-                                    <option value="">TE_002</option>
+                        <div>
+                            <input type="radio" name="question"  value="1" onclick="setgroup()"  checked>選項一 :
+                            <div class="d-block ">
+                                <label for="setgroup">我的策略清單 : </label>
+                                <select name="product" class="w-48" id="setgroup">
+                                   <option value="">TX_001</option>
+                                   <option value="">TE_001</option>
                                 </select>
                             </div>
-                            <div class="a2 d-none">
-                                <div class="d-block mt-2">
-                                    <label for="product">期貨商品：</label>
-                                    <select name="product" id="setgroup2" class=" p-1 br-s w-48">
-                                        <option value="">台指期</option>
-                                        <option value="">小台指</option>
-                                        <option value="5hr">電子期</option>
-                                        <option value="1day">金融期</option>
-                                        <option value="1week">小道瓊</option>
-                                        <option value="1month">小那斯達克</option>
-                                        <option value="3month">小S&P</option>
-                                        <option value="3month">小羅素2000</option>
-                                        <option value="3month">美國十年公債</option>
-                                        <option value="3month">黃豆</option>
-                                        <option value="3month">小麥</option>
-                                        <option value="3month">玉米</option>
-                                    </select>
+                          </div>
+                          <input type="radio" name="question" id="question" value="2" onclick="setgroup2()" class="mt-3">選項二 : 
+                          <div class="d-block">
+                            <label for="product">期貨商品：</label>
+                              <select name="product" id="setgroup2" class="w-50">
+                                <option value="TX">台指期</option>
+                                <option value="MTX">小台指</option>
+                                <option value="TE">電子期</option>
+                                <option value="TF">金融期</option>
+                                <option value="UDF">小道瓊</option>
+                                <option value="NAS">小那斯達克</option>
+                                <option value="S&P">小S&P</option>
+                                <option value="RUT">小羅素2000</option>
+                                <option value="US10">美國十年公債</option>
+                                <option value="S">黃豆</option>
+                                <option value="W">小麥</option>
+                                <option value="C">玉米</option>
+                              </select>
+                          </div>
+                          <div class="mt-2">
+                            <label for="list1">多空設定：</label>
+                            <select id="list1" class="w-30"></select>
+                            <br>
+                            <label for="list2">進場設定：</label>
+                            <select id="list2" class="w-60 mt-3"></select>
+                            <br>
+                            <label for="list3">出場設定：</label>
+                            <select id="list3" class="w-60 mt-3"></select>
+                            <label for="fix">固定設定：
+                                <select name="fix" id="fix" class="mt-3">
+                                    <option value="4">固定購買一口</option>
+                                    <option value="5">固定金額推薦</option>
+                                    <option value="6">固定比例推薦</option>
+                                </select>
+                            <br>
+                            <label for="stop">停損停利：</label>
+                                <select name="stop" id="stop" class="mt-3 w-60">
+                                    <option value="0">請選擇</option>
+                                    <option value="1">百分比</option>
+                                    <option value="2">固定式</option>
+                                    <option value="3">移動式</option>
+                                </select>
+                                <div class="stop-content">
+                                    <div class="b1 d-none">
+                                        <label for="stop1">停損：</label><input type="number" class="w-30 mt-3" id="stop1"> %
+                                        <br>
+                                        <label for="stop2">停利：</label><input type="number" class="w-30 mt-3" id="stop2"> %
+                                    </div>
+                                    <div class="b2 d-none">
+                                        <label for="stop1">停損：</label><input type="number" class="w-30 mt-3" id="stop1"> 點
+                                        <br>
+                                        <label for="stop2">停利：</label><input type="number" class="w-30 mt-3" id="stop2"> 點
+                                    </div>
+                                    <div class="b3 d-none">
+                                        <label for="stop1">停損：</label><input type="number" class="w-30 mt-3" id="stop1"> 點
+                                    </div>
                                 </div>
-                                <div class="mt-2">
-                                    <label for="in">進場策略：</label>
-                                    <select name="" id="setgroup3" class=" p-1 br-s w-48">
-                                        <option value="">MA快線向上突破慢線</option>
-                                        <option value="">MA快線向下跌破慢線</option>
-                                        <option value="">RSI > 50及MA向上穿越</option>
-                                        <option value="">RSI < 50及MA向下跌破</option>
-                                        <option value="MA">均線策略</option>
-                                        <option value="Bollinger2">布林通道</option>
-                                        <option value="Turtle">海龜策略</option>
-                                    </select>
-                                </div>
-                                <div class="mt-2">
-                                    <label for="out">出場策略：</label>
-                                    <select name="" id="setgroup4" class=" p-1 br-s w-48">
-                                        <option value="">停利RSI > 80</option>
-                                        <option value="">停損RSI < 30</option>
-                                        <option value="">多單K值向下穿越D值</option>
-                                        <option value="">空單K值向上跌破D值</option>
-                                        <option value="MA">均線策略</option>
-                                        <option value="Bollinger2">布林通道</option>
-                                        <option value="Turtle">海龜策略</option>
-                                    </select>
-                                </div>
-                                <div class="d-block mt-2">
-                                    <label for="bullbearchoice">多空設定：</label>
-                                    <input type="radio" name="bullbearchoice" id="bullbearchoice" checked>做多
-                                    <input type="radio" name="bullbearchoice" id="bullbearchoice2">做空
-                                </div>
-                                <div class="d-block mt-2">
-                                    <label for="stoploss">停損條件：
-                                        <input type="number" name="stoploss" id="stoploss" class=" p-1 br-s w-20">
-                                        <select name="stoploss" class=" p-1 br-s w-25" id="stoplossgroup">
-                                            <option value="0">%</option>
-                                            <option value="1">元</option>
-                                        </select>
-                                </div>
-                                <div class="d-block mt-2">
-                                    <label for="stopcost">停利條件：
-                                        <input type="number" name="stopcost" id="stopcost" class=" p-1 br-s w-20">
-                                        <select name="stopcost" id="stopcostgroup" class=" p-1 br-s w-25">
-                                            <option value="0">%</option>
-                                            <option value="1">元</option>
-                                        </select>
-                                </div>
-                            </div>
-                        </div>
-
                     </fieldset>
                     <div class="ml-4">
                         <p class="mt-2">單口價格 :&nbsp;&nbsp;<span class="fwbr fz-xm">18,0000</span> / 口</p>
                         <div class="d-block mt-2">
+                          <label for="buysell">買賣設定：</label>
+                          <input type="radio" name="buysell" id="buysell" checked>買進
+                          <input type="radio" name="buysell" id="buysell">賣出
+                        </div>
+                        <div class="d-block mt-2">
                             <label for="amount">數量設定：</label>
                             <input type="number" name="amount" id="amount" class=" p-1 br-s w-20">
                         </div>
-                        <div class="d-block mt-2">
-                            <label for="buysell">買賣設定：</label>
-                            <input type="radio" name="buysell" id="buysell" checked>買進
-                            <input type="radio" name="buysell" id="buysell">賣出
-                        </div>
+                        
                     </div>
                     <!-- Button trigger modal -->
                     <input type="button" value="下單" class="fr submit__btn dark-gray b-n mt-7 fwb" data-bs-toggle="modal"
@@ -427,5 +410,114 @@
         </ul>
     </div>
 </div>
+<!-- 停損停利 -->
+<script type="text/javascript">
+    $(function () {
+    $("select").on("change", function () {
+    console.log($(this).val());
+    switch ($(this).val()) {
+    case "1": // 介面1
+    $(".stop-content .b1").addClass("active");
+    $(".stop-content .b2").removeClass('active');
+    $(".stop-content .b3").removeClass('active');
+    break;
+    case "2": // 介面2
+    $(".stop-content .b2").addClass("active");
+    $(".stop-content .b1").removeClass('active');
+    $(".stop-content .b3").removeClass('active');
+    break;
+    case "3": // 介面3
+    $(".stop-content .b3").addClass("active");
+    $(".stop-content .b1").removeClass('active');
+    $(".stop-content .b2").removeClass('active');
+    break;
+    default:
+    $(".stop-content .b1").removeClass('active');
+    $(".stop-content .b2").removeClass('active');
+    $(".stop-content .b3").removeClass('active');
+    break;
+    }
+    });
+    });
+</script>
+<!-- 進出場策略 -->
+<script>
+var colleges=['做多','做空'];
+var inner="";
+for(var i=0;i<colleges.length;i++){
+    inner+=`<option value=i>${colleges[i]}</option>`;
+}
+$("#list1").html(inner);//寫入
+var noIndex;//第二層的index
 
+//選擇第一層後，產出第二層（進場）
+var sectors=new Array();
+var sectorsValue = new Array();
+//多
+sectors[0]=['MA快線向上突破慢線','OSC值向上突破0','RSI>50','K值向上突破D值','乖離率<0.001','威廉指標從-80反彈'];
+//空
+sectors[1]=['MA快線向下跌破慢線','OSC值向下跌破0','RSI<50','K值向下跌破D值','乖離率>0.001','威廉指標從-20回落'];	
+
+sectorsValue=['MA','OSC','Rsi','K','Bias','Will']
+
+$("#list1").change(function(){
+    index=this.selectedIndex;//第一層的index
+    noIndex =index;
+    console.log('no1',this.selectedIndex);
+    console.log('第二層的長度',sectors[index].length);//第二層的長度
+    console.log('第二層選擇的陣列',sectors[index]);//第二層選擇的陣列
+    var Sinner="";
+    for(var i=0;i<sectors[index].length;i++){
+    // Sinner=Sinner+'<option value=i>'+sectors[index][i]+'</option>';
+    Sinner=Sinner+'<option value='+sectorsValue[i]+'>'+sectors[index][i]+'</option>';
+}
+$("#list2").html(Sinner);
+
+// 第三層（出場）
+var sectorss=new Array();
+var sectorssValue = new Array();
+// 多
+sectorss[0]=['MA快線向上突破慢線','OSC值向上突破0','RSI>50','K值向上突破D值','乖離率<0.001','威廉指標從-80反彈']; 
+// 空
+sectorss[1]=['MA快線向下跌破慢線','OSC值向下跌破0','RSI<50','K值向下跌破D值','乖離率>0.001','威廉指標從-20回落'];	
+
+// 多
+sectorss[0][0]=['MA慢線追過快線','RSI<30或RSI>80','K值向下跌破D值','正乖離率過大並回落特定界線','威廉指標從上界值回落'];
+sectorss[0][1]=['MA慢線追過快線','RSI<30或RSI>80','K值向下跌破D值','正乖離率過大並回落特定界線','威廉指標從上界值回落'];
+sectorss[0][2]=['MA慢線追過快線','RSI<30或RSI>80','K值向下跌破D值','正乖離率過大並回落特定界線','威廉指標從上界值回落'];
+sectorss[0][4]=['MA慢線追過快線','RSI<30或RSI>80','K值向下跌破D值','正乖離率過大並回落特定界線','威廉指標從上界值回落'];
+sectorss[0][5]=['MA慢線追過快線','RSI<30或RSI>80','K值向下跌破D值','正乖離率過大並回落特定界線','威廉指標從上界值回落'];
+sectorss[0][6]=['MA慢線追過快線','RSI<30或RSI>80','K值向下跌破D值','正乖離率過大並回落特定界線','威廉指標從上界值回落'];
+
+// 空
+sectorss[1][0]=['MA慢線追過快線','RSI<20或RSI>70','K值向上突破D值','負乖離率過大並回落特定界線','威廉指標從下界值回落'];
+sectorss[1][1]=['MA慢線追過快線','RSI<20或RSI>70','K值向上突破D值','負乖離率過大並回落特定界線','威廉指標從下界值回落'];
+sectorss[1][2]=['MA慢線追過快線','RSI<20或RSI>70','K值向上突破D值','負乖離率過大並回落特定界線','威廉指標從下界值回落'];
+sectorss[1][3]=['MA慢線追過快線','RSI<20或RSI>70','K值向上突破D值','負乖離率過大並回落特定界線','威廉指標從下界值回落'];
+sectorss[1][4]=['MA慢線追過快線','RSI<20或RSI>70','K值向上突破D值','負乖離率過大並回落特定界線','威廉指標從下界值回落'];
+sectorss[1][5]=['MA慢線追過快線','RSI<20或RSI>70','K值向上突破D值','負乖離率過大並回落特定界線','威廉指標從下界值回落'];
+sectorss[1][6]=['MA慢線追過快線','RSI<20或RSI>70','K值向上突破D值','負乖離率過大並回落特定界線','威廉指標從下界值回落'];
+
+sectorssValue = ['MA','Rsi','K','Bias','Will']
+
+console.log(sectorss);
+
+$("#list2").change(function(){
+    index=this.selectedIndex;
+    console.log('no2',this.selectedIndex);
+    var Sinner3="";
+    console.log('0000',sectorss[noIndex]);
+    for(var i=0;i<sectorss[noIndex][index].length;i++){
+        // console.log(i)
+        console.log(sectorss[noIndex][index][i])
+
+        Sinner3=Sinner3+'<option value='+sectorssValue[i]+'>'+sectorss[noIndex][index][i]+'</option>';
+    }
+    $("#list3").html(Sinner3);
+});
+
+$("#list2").change();
+});
+$("#list1").change();
+</script>
 {% endblock %}
