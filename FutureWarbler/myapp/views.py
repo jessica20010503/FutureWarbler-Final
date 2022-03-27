@@ -20,10 +20,10 @@ from urllib.parse import unquote
 from myapp.mods import futuresDateTime as fdt
 #連線至資料庫
 db_settings = {
-"host": "localhost", 
+"host": "192.168.64.2", 
 "port": 3306,
 "user": "root",
-"password": "12345678", 
+"password": "", 
 "db": "futurewarbler",
 "charset": "utf8",
 "cursorclass": pymysql.cursors.DictCursor
