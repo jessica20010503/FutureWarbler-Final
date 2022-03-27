@@ -1,6 +1,7 @@
 {% extends 'layout.html'%}
 {% load static %}
 {% block content %}
+<<<<<<< HEAD
 <div class="wrap d-flex m0-a">
     <div class="side">
         <h1 class="fz-xl fwb">F<span class="bright">u</span>tures <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r
@@ -49,6 +50,50 @@
                         <div class="w-10">
                             <h2 class="mb-4 fwb primary b-bottom pb-2">商品設定</h2>
                             <label for="product">期貨商品：
+=======
+    <div class="wrap d-flex m0-a">
+        <div class="side">
+            <h1 class="fz-xl fwb">F<span class="bright">u</span>tures <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
+            <ul class="menu">
+                <li class=" main--menu pt-3 pr-5 pb-3 pl-9 "><a href="/index/"><i class="fas fa-home mr-2"></i>首頁</a></li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/trade"><i class="fas fa-university mr-2"></i>模擬交易所</a></li>
+                <li class="drop--menu">
+                    <a href="" class="main--menu pt-3 pb-3 pl-9  ">
+                        <i class="fas fa-chalkboard-teacher mr-2"></i>期貨小教室<i class="fas fa-chevron-down ml-7 fz-s"></i>
+                    </a>
+                    <ul class=" d-none">
+                        <li class="sub--menu"><a href="/class/">期貨基本介紹</a></li>
+                        <li class="sub--menu"><a href="/index-class/">期貨指標介紹</a></li>
+                    </ul>
+                </li>
+                <li class="drop--menu">
+                    <a href="" class="main--menu pt-3 pb-3 pl-9 chosed">
+                        <i class="fas fa-robot mr-2"></i>智能機器人顧問<i class="fas fa-chevron-down ml-1 fz-s"></i>
+                    </a>
+                    <ul class=" d-none">
+                        <li class="sub--menu"><a href="/robot-normal/">交易策略</a></li>
+                        <li class="sub--menu"><a href="/robot-intelligent/">智能交易策略</a></li>
+                    </ul>
+                </li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/news/?category=0"><i class="fas fa-newspaper mr-2"></i>新聞</a></li>
+                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/personal/"><i class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
+            </ul>
+            <div class="circle"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+        </div>
+        <div class="container pb-4">
+            {% include 'login-nav.html' %}
+            <div class="robot-normal mt-7 w-100 pl-12 pr-10 b-4">
+                <div class="fl white-bg w-100 br-m mr-3pct card-shadow pt-6 pb-6 pl-8 pr-8">
+                    <h2 class="mb-6"><i class="fas fa-list mr-3"></i>設定計算項目{{message}}</h2>
+                    <form action="/strategy_normal/" method="post" class="time-table">
+                        {% csrf_token %} 
+                        <div class="d-flex jcsb">
+                            <div class="w-10">
+                                <h2 class="mb-4 fwb primary b-bottom pb-2">商品設定</h2>
+                                <label for="product">期貨商品：
+>>>>>>> a35c917dab4126925524ff96f47aacb2a153b308
                                 <select name="product" id="product">
                                     <option value="tx">台指期</option>
                                     <option value="mtx">小台指</option>

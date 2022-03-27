@@ -80,8 +80,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'futurewarbler',
         'USER': 'root',
-        'PASSWORD': '12345678',
-        'HOST': 'localhost',
+        'PASSWORD': '',
+        'HOST': '192.168.64.2',
         'PORT': '3306',
         'cursorclass': pymysql.cursors.DictCursor,
        'OPTIONS': {

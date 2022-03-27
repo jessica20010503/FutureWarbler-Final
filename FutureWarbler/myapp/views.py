@@ -27,6 +27,7 @@ from pandas import Period
 from myapp.strategy_Function import MA_1, MA_2
 # 連線至資料庫
 db_settings = {
+<<<<<<< HEAD
     "host": "localhost",
     "port": 3306,
     "user": "root",
@@ -34,6 +35,15 @@ db_settings = {
     "db": "futurewarbler",
     "charset": "utf8",
     "cursorclass": pymysql.cursors.DictCursor
+=======
+"host": "192.168.64.2", 
+"port": 3306,
+"user": "root",
+"password": "", 
+"db": "futurewarbler",
+"charset": "utf8",
+"cursorclass": pymysql.cursors.DictCursor
+>>>>>>> a35c917dab4126925524ff96f47aacb2a153b308
 }
 conn = pymysql.connect(**db_settings)
 
