@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!%0fko=fm1xfl#!s93pku3!=@u)k9=9mge#8_!z&gtu#@e3c%k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  #上線部屬時要改 False
+DEBUG = True  # 上線部屬時要改 False
 
 ALLOWED_HOSTS = []
 
@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myapp', #新增的 app
-    
+    'myapp',  # 新增的 app
+
 ]
 
 MIDDLEWARE = [
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'FutureWarbler.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR/'templates'], #加上 template 路徑
+        'DIRS': [BASE_DIR/'templates'],  # 加上 template 路徑
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,13 +80,13 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'futurewarbler',
         'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '192.168.64.2',
+        'PASSWORD': '12345678',
+        'HOST': 'localhost',
         'PORT': '3306',
         'cursorclass': pymysql.cursors.DictCursor,
-       'OPTIONS': {
-        'init_command': "SET sql_mode='STRICT_TRANS_TABLES'", #防止migrate時出現報錯
-    },
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",  # 防止migrate時出現報錯
+        },
     }
 }
 
@@ -113,9 +113,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'zh-hant' #改為繁體中文
+LANGUAGE_CODE = 'zh-hant'  # 改為繁體中文
 
-TIME_ZONE = 'Asia/Taipei' #改為台北時區
+TIME_ZONE = 'Asia/Taipei'  # 改為台北時區
 
 USE_I18N = True
 

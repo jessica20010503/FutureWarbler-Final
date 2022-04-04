@@ -25,29 +25,6 @@ from pathlib import Path
 import datetime
 from pandas import Period
 from myapp.strategy_Function import MA_1, MA_2
-# 連線至資料庫
-db_settings = {
-<<<<<<< HEAD
-    "host": "localhost",
-    "port": 3306,
-    "user": "root",
-    "password": "12345678",
-    "db": "futurewarbler",
-    "charset": "utf8",
-    "cursorclass": pymysql.cursors.DictCursor
-=======
-"host": "192.168.64.2", 
-"port": 3306,
-"user": "root",
-"password": "", 
-"db": "futurewarbler",
-"charset": "utf8",
-"cursorclass": pymysql.cursors.DictCursor
->>>>>>> a35c917dab4126925524ff96f47aacb2a153b308
-}
-conn = pymysql.connect(**db_settings)
-
-# Create your views here.
 
 
 def index(request):
@@ -703,15 +680,33 @@ def newssearch(request):
         photo = request.session['photo']
     else:
         ok = ''
+        username = 'no'
+        photo = 'no'
     if 'keyWord' in request.GET:
         keyWord = request.GET['keyWord']
         #keyWord2 = '期貨'
         keyWord = unquote(keyWord)
-        results = News.objects.filter(news_title__contains=keyWord)
-    return render(request, "news-search.html", {'results': results, 'ok': ok, 'username': username, 'photo': photo})
+        # results = News.objects.filter(news_title__contains=keyWord)
+        if 'page' in request.GET:
+            try:
+                page = int(request.GET['page'])*6
+                # Class as study  # [page-6:page]代表一頁資料數量
+                results = News.objects.filter(
+                    news_title__contains=keyWord)[page-6:page]
+                return render(request, "news-search.html", {'results': results, 'ok': ok, 'username': username, 'photo': photo, 'keyWord': keyWord})
+            except:
+                results = News.objects.filter(
+                    news_title__contains=keyWord)[page-6:page]
+                return render(request, "news-search.html", {'results': results, 'ok': ok, 'username': username, 'photo': photo, 'keyWord': keyWord})
+        else:
+            results = News.objects.filter(news_title__contains=keyWord)[0:6]
+            return render(request, "news-search.html", {'results': results, 'ok': ok, 'username': username, 'photo': photo, 'keyWord': keyWord})
 
+    # return render(request, "news-search.html", {'results': results, 'ok': ok, 'username': username, 'photo': photo,'keyWord':keyWord})
 
 # -------------------未平倉契約頁面-------------------------
+
+
 def contract(request):
     if 'username' in request.session:
         ok = 'yes'

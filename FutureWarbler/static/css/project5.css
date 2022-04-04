@@ -84,6 +84,10 @@ table {
   width: 40%;
 }
 
+.w-45 {
+  width: 45%;
+}
+
 .w-48 {
   width: 48%;
 }
@@ -2025,12 +2029,94 @@ img {
   z-index: 2000;
 }
 
-.personal--transactionRecord__content .trade--table th, .personal--transactionRecord__content .trade--table td {
+.personal--transactionRecord__content .trade--table th {
   padding: 15px 13px;
 }
 
 .personal--transactionRecord__content .trade--table .trade--table__item:hover {
   background: #f3f2f2;
+}
+
+.personal--transactionRecord__content .trade--table td {
+  padding: 10px 8px;
+}
+
+.personal--transactionRecord__content .edit__btn {
+  background: #FFDD00;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+.personal--transactionRecord__content .edit__btn:hover {
+  color: #FAFAFA;
+  background: #1C383E;
+}
+
+.personal--transactionRecord__content .renew__btn {
+  background: #FFDD00;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 16px;
+}
+
+.personal--transactionRecord__content .renew__btn:hover {
+  color: #FAFAFA;
+  background: #1C383E;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+
+.personal--transactionRecord__content .close__btn {
+  background: #db2a2a;
+  color: #FAFAFA;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 16px;
+}
+
+.personal--transactionRecord__content .close__btn:hover {
+  color: #FAFAFA;
+  background: #991313;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+
+.personal--transactionRecord__content .delete__btn {
+  background: #db2a2a;
+  color: #FAFAFA;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+.personal--transactionRecord__content .delete__btn:hover {
+  color: #FAFAFA;
+  background: #991313;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+
+.personal--transactionRecord__content .info_btn {
+  background: #6cccc3;
+  color: #FAFAFA;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+.personal--transactionRecord__content .info_btn:hover {
+  color: #FAFAFA;
+  background: #287c74;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
 }
 
 .contract__content .trade--table th, .contract__content .trade--table td {

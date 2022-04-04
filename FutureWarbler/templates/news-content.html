@@ -14,9 +14,7 @@
       </li>
       <li class="drop--menu">
         <a href="" class="main--menu pt-3 pb-3 pl-9">
-          <i class="fas fa-chalkboard-teacher mr-2"></i>期貨小教室<i
-            class="fas fa-chevron-down ml-1 fz-s"
-          ></i>
+          <i class="fas fa-chalkboard-teacher mr-2"></i>期貨小教室<i class="fas fa-chevron-down ml-1 fz-s"></i>
         </a>
         <ul class="d-none">
           <li class="sub--menu"><a href="/class/">期貨基本介紹</a></li>
@@ -25,9 +23,7 @@
       </li>
       <li class="drop--menu">
         <a href="" class="main--menu pt-3 pb-3 pl-9">
-          <i class="fas fa-robot mr-2"></i>智能機器人顧問<i
-            class="fas fa-chevron-down ml-1 fz-s"
-          ></i>
+          <i class="fas fa-robot mr-2"></i>智能機器人顧問<i class="fas fa-chevron-down ml-1 fz-s"></i>
         </a>
         <ul class="d-none">
           <li class="sub--menu"><a href="/robot-normal/">交易策略</a></li>
@@ -37,14 +33,10 @@
         </ul>
       </li>
       <li class="main--menu pt-3 pr-5 pb-3 pl-9 chosed">
-        <a href="/news/?category=0"
-          ><i class="fas fa-newspaper mr-2"></i>新聞</a
-        >
+        <a href="/news/?category=0"><i class="fas fa-newspaper mr-2"></i>新聞</a>
       </li>
       <li class="main--menu pt-3 pr-5 pb-3 pl-9">
-        <a href="/personal-page/"
-          ><i class="fas fa-user-alt mr-2"></i>個人頁面</a
-        >
+        <a href="/personal/"><i class="fas fa-user-alt mr-2"></i>個人頁面</a>
       </li>
     </ul>
     <div class="circle"></div>
@@ -57,42 +49,21 @@
       <div class="topnav d-flex jcsb aic pr-4 card-shadow">
         <ul class="d-flex fwb">
           <li>
-            <a
-              href="/news/?category=0"
-              class="d-inline-block pt-3 pb-3 pl-4 pr-4 mr-2 second-white"
-              >財經總覽</a
-            >
+            <a href="/news/?category=0" class="d-inline-block pt-3 pb-3 pl-4 pr-4 mr-2 second-white">財經總覽</a>
           </li>
           <li>
-            <a
-              href="/news/?category=1"
-              class="d-inline-block pt-3 pb-3 pl-4 pr-4 mr-2 second-white"
-              >期貨相關</a
-            >
+            <a href="/news/?category=1" class="d-inline-block pt-3 pb-3 pl-4 pr-4 mr-2 second-white">期貨相關</a>
           </li>
           <li>
-            <a
-              href="/news/?category=2"
-              class="d-inline-block pt-3 pb-3 pl-4 pr-4 mr-2 second-white"
-              >兩岸財經</a
-            >
+            <a href="/news/?category=2" class="d-inline-block pt-3 pb-3 pl-4 pr-4 mr-2 second-white">兩岸財經</a>
           </li>
           <li>
-            <a
-              href="/news/?category=3"
-              class="d-inline-block pt-3 pb-3 pl-4 pr-4 mr-2 second-white"
-              >國際財經</a
-            >
+            <a href="/news/?category=3" class="d-inline-block pt-3 pb-3 pl-4 pr-4 mr-2 second-white">國際財經</a>
           </li>
         </ul>
         <form action="/news-search/" class="d-flex jcfe">
-          <input
-            type="search"
-            name="keyWord"
-            id="keyWord"
-            placeholder="search here..."
-            class="search_input b-n pt-2 pb-2 pl-4 pr-3 box-shadow"
-          />
+          <input type="search" name="keyWord" id="keyWord" placeholder="search here..."
+            class="search_input b-n pt-2 pb-2 pl-4 pr-3 box-shadow" />
           <button class="search_btn b-n pt-2 pb-2 pl-3 pr-3 box-shadow">
             <i class="fas fa-search fz-s"></i>
           </button>
@@ -116,12 +87,7 @@
               </ul>
             </div>
           </div>
-          <img
-            src="{{ news12.4}}"
-            alt="新聞圖片"
-            style="width: 600px; height: 400px"
-            class="mr-4"
-          />
+          <img src="{{ news12.4}}" alt="新聞圖片" style="width: 600px; height: 400px" class="mr-4" />
           <div class="article">
             <p>{{ news12.5}}</p>
             {% endfor %} {% endif %}
@@ -145,10 +111,7 @@
 
             {% endfor %} {% elif News2 %} {% for news2 in News2 %}
             <li class="b-bottom b-top">
-              <a
-                href="/news-content/{{news2.news_id}}"
-                class="d-flex p-5 dark-gray"
-              >
+              <a href="/news-content/{{news2.news_id}}" class="d-flex p-5 dark-gray">
                 <div class="content d-flex">
                   <img src="{{ news6.4 }}" alt="新聞圖片" class="mr-4" />
                   <div>
