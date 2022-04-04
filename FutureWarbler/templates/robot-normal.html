@@ -1,7 +1,6 @@
 {% extends 'layout.html'%}
 {% load static %}
 {% block content %}
-<<<<<<< HEAD
 <div class="wrap d-flex m0-a">
     <div class="side">
         <h1 class="fz-xl fwb">F<span class="bright">u</span>tures <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r
@@ -50,50 +49,6 @@
                         <div class="w-10">
                             <h2 class="mb-4 fwb primary b-bottom pb-2">商品設定</h2>
                             <label for="product">期貨商品：
-=======
-    <div class="wrap d-flex m0-a">
-        <div class="side">
-            <h1 class="fz-xl fwb">F<span class="bright">u</span>tures <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r </h1>
-            <ul class="menu">
-                <li class=" main--menu pt-3 pr-5 pb-3 pl-9 "><a href="/index/"><i class="fas fa-home mr-2"></i>首頁</a></li>
-                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/trade"><i class="fas fa-university mr-2"></i>模擬交易所</a></li>
-                <li class="drop--menu">
-                    <a href="" class="main--menu pt-3 pb-3 pl-9  ">
-                        <i class="fas fa-chalkboard-teacher mr-2"></i>期貨小教室<i class="fas fa-chevron-down ml-7 fz-s"></i>
-                    </a>
-                    <ul class=" d-none">
-                        <li class="sub--menu"><a href="/class/">期貨基本介紹</a></li>
-                        <li class="sub--menu"><a href="/index-class/">期貨指標介紹</a></li>
-                    </ul>
-                </li>
-                <li class="drop--menu">
-                    <a href="" class="main--menu pt-3 pb-3 pl-9 chosed">
-                        <i class="fas fa-robot mr-2"></i>智能機器人顧問<i class="fas fa-chevron-down ml-1 fz-s"></i>
-                    </a>
-                    <ul class=" d-none">
-                        <li class="sub--menu"><a href="/robot-normal/">交易策略</a></li>
-                        <li class="sub--menu"><a href="/robot-intelligent/">智能交易策略</a></li>
-                    </ul>
-                </li>
-                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/news/?category=0"><i class="fas fa-newspaper mr-2"></i>新聞</a></li>
-                <li class="main--menu pt-3 pr-5 pb-3 pl-9  "><a href="/personal/"><i class="fas fa-user-alt mr-2"></i>個人頁面</a></li>
-            </ul>
-            <div class="circle"></div>
-            <div class="circle2"></div>
-            <div class="circle3"></div>
-        </div>
-        <div class="container pb-4">
-            {% include 'login-nav.html' %}
-            <div class="robot-normal mt-7 w-100 pl-12 pr-10 b-4">
-                <div class="fl white-bg w-100 br-m mr-3pct card-shadow pt-6 pb-6 pl-8 pr-8">
-                    <h2 class="mb-6"><i class="fas fa-list mr-3"></i>設定計算項目{{message}}</h2>
-                    <form action="/strategy_normal/" method="post" class="time-table">
-                        {% csrf_token %} 
-                        <div class="d-flex jcsb">
-                            <div class="w-10">
-                                <h2 class="mb-4 fwb primary b-bottom pb-2">商品設定</h2>
-                                <label for="product">期貨商品：
->>>>>>> a35c917dab4126925524ff96f47aacb2a153b308
                                 <select name="product" id="product">
                                     <option value="tx">台指期</option>
                                     <option value="mtx">小台指</option>
@@ -151,7 +106,7 @@
                                 </div>
                                 <div class="w-40">
                                     <h4 class="mb-2 primary fz-s green">-停損/停利設定-</h4>
-                                    <select name="stop" id="stop" class="mb-5 w-70">
+                                    <select name="stop" id="stop" class="mb-5 w-70 stop">
                                         <option value="0">請選擇</option>
                                         <option value="1">百分比</option>
                                         <option value="2">固定式</option>
@@ -309,7 +264,7 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        $("select").on("change", function () {
+        $(".stop").on("change", function () {
             console.log($(this).val());
             switch ($(this).val()) {
                 case "1": // 介面1
@@ -337,75 +292,73 @@
     });
 </script>
 <!-- 進出場策略 -->
-<script>
-    var colleges = ['做多', '做空'];
-    var inner = "";
-    for (var i = 0; i < colleges.length; i++) {
-        inner += '<option value=' + i + '>' + colleges[i] + '</option>';
+<script type="text/javascript">
+   // 產出第一層
+var colleges = ["做多", "做空"];
+
+var inner = "";
+for (var i = 0; i < colleges.length; i++) {
+  inner += `<option value=i>${colleges[i]}</option>`;
+}
+$("#list1").html(inner); //寫入
+var noIndex; //第二層的index
+//選擇第一層後，產出第二層
+var sectors = new Array();
+sectors[0] = ['MA快線向上突破慢線', 'OSC值向上突破0', 'RSI>50', 'K值向上突破D值', '乖離率<0.001', '威廉指標從-80反彈'];
+sectors[1] = ['MA快線向下跌破慢線', 'OSC值向下跌破0', 'RSI<50', 'K值向下跌破D值', '乖離率>0.001', '威廉指標從-20回落'];
+
+$("#list1").change(function () {
+  index = this.selectedIndex; //第一層的index
+  noIndex = index;
+  console.log("no1", this.selectedIndex);
+  console.log("第二層的長度", sectors[index].length); //第二層的長度
+  console.log("第二層選擇的陣列", sectors[index]); //第二層選擇的陣列
+  var Sinner = "";
+  for (var i = 0; i < sectors[index].length; i++) {
+    // Sinner=Sinner+'<option value=i>'+sectors[index][i]+'</option>';
+    Sinner += `<option value=i>${sectors[index][i]}</option>`;
+  }
+  $("#list2").html(Sinner);
+
+  // 第三層
+  var sectorss = new Array();
+  sectorss[0] = ['MA快線向上突破慢線', 'OSC值向上突破0', 'RSI>50', 'K值向上突破D值', '乖離率<0.001', '威廉指標從-80反彈'];
+  sectorss[1] = ['MA快線向下跌破慢線', 'OSC值向下跌破0', 'RSI<50', 'K值向下跌破D值', '乖離率>0.001', '威廉指標從-20回落'];
+
+  sectorss[0][0] = ['MA慢線追過快線', 'RSI<30或RSI>80', 'K值向下跌破D值', '正乖離率過大並回落特定界線', '威廉指標從上界值回落'];
+  sectorss[0][1] = ['MA慢線追過快線', 'RSI<30或RSI>80', 'K值向下跌破D值', '正乖離率過大並回落特定界線', '威廉指標從上界值回落'];
+  sectorss[0][2] = ['MA慢線追過快線', 'RSI<30或RSI>80', 'K值向下跌破D值', '正乖離率過大並回落特定界線', '威廉指標從上界值回落'];
+  sectorss[0][3] = ['MA慢線追過快線', 'RSI<30或RSI>80', 'K值向下跌破D值', '正乖離率過大並回落特定界線', '威廉指標從上界值回落'];
+  sectorss[0][4] = ['MA慢線追過快線', 'RSI<30或RSI>80', 'K值向下跌破D值', '正乖離率過大並回落特定界線', '威廉指標從上界值回落'];
+  sectorss[0][5] = ['MA慢線追過快線', 'RSI<30或RSI>80', 'K值向下跌破D值', '正乖離率過大並回落特定界線', '威廉指標從上界值回落'];
+  sectorss[0][6] = ['MA慢線追過快線', 'RSI<30或RSI>80', 'K值向下跌破D值', '正乖離率過大並回落特定界線', '威廉指標從上界值回落'];
+  sectorss[1][0] = ['MA慢線追過快線', 'RSI<20或RSI>70', 'K值向上突破D值', '負乖離率過大並回落特定界線', '威廉指標從下界值回落'];
+  sectorss[1][1] = ['MA慢線追過快線', 'RSI<20或RSI>70', 'K值向上突破D值', '負乖離率過大並回落特定界線', '威廉指標從下界值回落'];
+  sectorss[1][2] = ['MA慢線追過快線', 'RSI<20或RSI>70', 'K值向上突破D值', '負乖離率過大並回落特定界線', '威廉指標從下界值回落'];
+  sectorss[1][3] = ['MA慢線追過快線', 'RSI<20或RSI>70', 'K值向上突破D值', '負乖離率過大並回落特定界線', '威廉指標從下界值回落'];
+  sectorss[1][4] = ['MA慢線追過快線', 'RSI<20或RSI>70', 'K值向上突破D值', '負乖離率過大並回落特定界線', '威廉指標從下界值回落'];
+  sectorss[1][5] = ['MA慢線追過快線', 'RSI<20或RSI>70', 'K值向上突破D值', '負乖離率過大並回落特定界線', '威廉指標從下界值回落'];
+  sectorss[1][6] = ['MA慢線追過快線', 'RSI<20或RSI>70', 'K值向上突破D值', '負乖離率過大並回落特定界線', '威廉指標從下界值回落'];
+
+  console.log(sectorss);
+
+  $("#list2").change(function () {
+    index = this.selectedIndex;
+    console.log("no2", this.selectedIndex);
+    var Sinner3 = "";
+    console.log("0000", sectorss[noIndex]);
+    for (var i = 0; i < sectorss[noIndex][index].length; i++) {
+      Sinner3 =
+        Sinner3 +
+        "<option value=i>" +
+        sectorss[noIndex][index][i] +
+        "</option>";
     }
-    $("#list1").html(inner);//寫入
-    var noIndex;//第二層的index
+    $("#list3").html(Sinner3);
+  });
 
-    //選擇第一層後，產出第二層（進場）
-    var sectors = new Array();
-    //多
-    sectors[0] = ['MA快線向上突破慢線', 'OSC值向上突破0', 'RSI>50', 'K值向上突破D值', '乖離率<0.001', '威廉指標從-80反彈'];
-    //空
-    sectors[1] = ['MA快線向下跌破慢線', 'OSC值向下跌破0', 'RSI<50', 'K值向下跌破D值', '乖離率>0.001', '威廉指標從-20回落'];
-
-    $("#list1").change(function () {
-        index = this.selectedIndex;//第一層的index
-        noIndex = index;
-        console.log('no1', this.selectedIndex);
-        console.log('第二層的長度', sectors[index].length);//第二層的長度
-        console.log('第二層選擇的陣列', sectors[index]);//第二層選擇的陣列
-        var Sinner = "";
-        for (var i = 0; i < sectors[index].length; i++) {
-            // Sinner=Sinner+'<option value=i>'+sectors[index][i]+'</option>';
-            Sinner += '<option value=' + i + '>' + sectors[index][i] + '</option>';
-
-        }
-        $("#list2").html(Sinner);
-
-        // 第三層（出場）
-        var sectorss = new Array();
-        // 多
-        sectorss[0] = ['MA快線向上突破慢線', 'OSC值向上突破0', 'RSI>50', 'K值向上突破D值', '乖離率<0.001', '威廉指標從-80反彈'];
-        // 空
-        sectorss[1] = ['MA快線向下跌破慢線', 'OSC值向下跌破0', 'RSI<50', 'K值向下跌破D值', '乖離率>0.001', '威廉指標從-20回落'];
-
-        // 多
-        sectorss[0][0] = ['MA慢線追過快線', 'RSI<30或RSI>80', 'K值向下跌破D值', '正乖離率過大並回落特定界線', '威廉指標從上界值回落'];
-        sectorss[0][1] = ['MA慢線追過快線', 'RSI<30或RSI>80', 'K值向下跌破D值', '正乖離率過大並回落特定界線', '威廉指標從上界值回落'];
-        sectorss[0][2] = ['MA慢線追過快線', 'RSI<30或RSI>80', 'K值向下跌破D值', '正乖離率過大並回落特定界線', '威廉指標從上界值回落'];
-        sectorss[0][4] = ['MA慢線追過快線', 'RSI<30或RSI>80', 'K值向下跌破D值', '正乖離率過大並回落特定界線', '威廉指標從上界值回落'];
-        sectorss[0][5] = ['MA慢線追過快線', 'RSI<30或RSI>80', 'K值向下跌破D值', '正乖離率過大並回落特定界線', '威廉指標從上界值回落'];
-        sectorss[0][6] = ['MA慢線追過快線', 'RSI<30或RSI>80', 'K值向下跌破D值', '正乖離率過大並回落特定界線', '威廉指標從上界值回落'];
-
-        // 空
-        sectorss[1][0] = ['MA慢線追過快線', 'RSI<20或RSI>70', 'K值向上突破D值', '負乖離率過大並回落特定界線', '威廉指標從下界值回落'];
-        sectorss[1][1] = ['MA慢線追過快線', 'RSI<20或RSI>70', 'K值向上突破D值', '負乖離率過大並回落特定界線', '威廉指標從下界值回落'];
-        sectorss[1][2] = ['MA慢線追過快線', 'RSI<20或RSI>70', 'K值向上突破D值', '負乖離率過大並回落特定界線', '威廉指標從下界值回落'];
-        sectorss[1][3] = ['MA慢線追過快線', 'RSI<20或RSI>70', 'K值向上突破D值', '負乖離率過大並回落特定界線', '威廉指標從下界值回落'];
-        sectorss[1][4] = ['MA慢線追過快線', 'RSI<20或RSI>70', 'K值向上突破D值', '負乖離率過大並回落特定界線', '威廉指標從下界值回落'];
-        sectorss[1][5] = ['MA慢線追過快線', 'RSI<20或RSI>70', 'K值向上突破D值', '負乖離率過大並回落特定界線', '威廉指標從下界值回落'];
-        sectorss[1][6] = ['MA慢線追過快線', 'RSI<20或RSI>70', 'K值向上突破D值', '負乖離率過大並回落特定界線', '威廉指標從下界值回落'];
-
-        console.log(sectorss);
-
-        $("#list2").change(function () {
-            index = this.selectedIndex;
-            console.log('no2', this.selectedIndex);
-            var Sinner3 = "";
-            console.log('0000', sectorss[noIndex]);
-            for (var i = 0; i < sectorss[noIndex][index].length; i++) {
-                Sinner3 = Sinner3 + '<option value=' + i + '>' + sectorss[noIndex][index][i] + '</option>';
-            }
-            $("#list3").html(Sinner3);
-        });
-
-        $("#list2").change();
-    });
-    $("#list1").change();
+  $("#list2").change();
+});
+$("#list1").change();
 </script>
 {% endblock %}
