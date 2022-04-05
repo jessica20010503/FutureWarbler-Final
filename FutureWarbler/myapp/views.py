@@ -26,6 +26,20 @@ import datetime
 from pandas import Period
 from myapp.strategy_Function import MA_1, MA_2
 
+# 連線至資料庫
+db_settings = {
+    "host": "localhost",
+    "port": 3306,
+    "user": "root",
+    "password": "12345678",
+    "db": "futurewarbler",
+    "charset": "utf8",
+    "cursorclass": pymysql.cursors.DictCursor
+}
+conn = pymysql.connect(**db_settings)
+
+# Create your views here.
+
 
 def index(request):
     news3 = News.objects.all()[:5]
