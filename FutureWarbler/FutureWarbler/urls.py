@@ -30,7 +30,7 @@ urlpatterns = [
     path('class/', classes),
     path('class-content/', classcontent),
     path('index-class/', indexclass),
-    path('index-class-content/<int:pk>/', indexclasscontent),
+    path('index-class-content/', indexclasscontent),
     path('robot-normal/', robotnormal),
     path('robot-intelligent/', robotintelligent),
     path('news/', news),

@@ -51,7 +51,7 @@
             <ul class="main d-flex jcsb mt-4">
                 {% for indexclass in results %}
                 <li class="fl white-bg w-33 br-m  card-shadow  pb-2 class-card">
-                    <a href="/index-class-content/{{ indexclass.index_class_id }}/">
+                    <a href="/index-class-content/?id={{ indexclass.index_class_id }}">
                         <img src="{{ indexclass.index_class_photo }}" alt="課程圖片" class="w-100">
                         <div class="content p-5">
                             <h3 class="fz-l fwb dark-gray mb-2">{{ indexclass.index_class_title }}</h3>
