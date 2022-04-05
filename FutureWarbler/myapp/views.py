@@ -394,12 +394,7 @@ def classes(request):
         #keyWord2 = '期貨'
         keyWord = unquote(keyWord)
         results = study.objects.filter(class_title__contains=keyWord)
-        # import urllib.parse
-        # urllib.parse.unquote(results)
-        # print(keyWord)
-        # print(results)
-        # for i in results:
-        #     print(i)
+        
         return render(request, "class.html", {'results': results, 'ok': ok, 'username': username, 'photo': photo})
     if 'page' in request.GET:
         try:
@@ -413,17 +408,6 @@ def classes(request):
     else:
         results = study.objects.all()[:6]
         return render(request, "class.html", {'results': results, 'ok': ok, 'username': username, 'photo': photo})
-
-    # results = {}
-    # sql = "SELECT `class_id`,`class_title`,`class_article`,`class_photo` FROM `class`"
-    # with conn.cursor() as cursor:
-    #     cursor.execute(sql)
-    #     results['articles'] = cursor.fetchall()
-
-    # cursor23 = conn.cursor()
-    # cursor23.execute("SELECT `class_id`,`class_title`,`class_article`,`class_photo` FROM `class`")
-    # articles = cursor23.fetchall()
-    # return render(request,"class.html", articles)
 
 
 def classcontent(request):
@@ -466,15 +450,8 @@ def indexclass(request):
         results = IndexClass.objects.all()[:6]
         return render(request, "index-class.html", {'results': results, 'ok': ok, 'username': username, 'photo': photo})
 
-    # results = {}
-    # sql = "SELECT `index_class_id`,`index_class_title`,`index_class_article`,`index_class_photo` FROM `index_class`"
-    # with conn.cursor() as cursor:
-    #     cursor.execute(sql)
-    #     results['articles'] = cursor.fetchall()
-    # return render(request,"index-class.html",results)
 
-
-def indexclasscontent(request, pk):
+def indexclasscontent(request):
     if 'username' in request.session:
         ok = 'yes'
         username = request.session['username']
@@ -483,6 +460,7 @@ def indexclasscontent(request, pk):
         ok = ''
         username = 'no'
         photo = 'no'
+    pk = request.GET["id"]
     cursor = conn.cursor()
     cursor.execute(
         "select index_class_id,index_class_title,index_class_article,index_class_photo from index_class where index_class_id=%s" % (pk))
