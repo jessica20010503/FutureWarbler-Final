@@ -61,13 +61,86 @@
                 </li>
                 {% endfor %}
             </ul>
-            <ul class="pagination d-flex jcc tac m0-a">
-                <li><a href="?page=1" class="prev--buttom mr-2"><i class='fas fa-angle-double-left'></i></a></li>
-                <li><a href="?page=1" class="mr-2">1</a></li>
-                <li><a href="?page=2" class="mr-2">2</a></li>
-                <li><a href="?page=2" class="next--buttom mr-2"><i class='fas fa-angle-double-right'></i></a></li>
-            </ul>
+            <div id="app">
+                <ul class="pagination d-flex jcc tac m0-a">
+                    <li><a href="?page=1" class="prev--buttom mr-2"><i class='fas fa-angle-double-left'></i></a></li>
+    
+                    <li v-if="page1"><a href="?page=1" class="active mr-2">1</a></li>
+                    <li v-else><a href="?page=1" class="mr-2">1</a></li>
+    
+                    <li v-if="page2"><a href="?page=2" class="active mr-2">2</a></li>
+                    <li v-else><a href="?page=2" class="mr-2">2</a></li>
+    
+                    <li><a href="?page=2" class="next--buttom mr-2"><i class='fas fa-angle-double-right'></i></a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- Vue 分頁 active -->
+<!--使用vue-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.9/vue.min.js"></script>
+<!--使用axios-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script>
+  new Vue({
+    el: "#app",
+    data() {
+      return {
+        list: [],
+        inputData: "",
+        page1: false,
+        page2: false,
+      };
+    },
+    created() {
+      // 假裝打 api
+      this.getItems();
+      this.getPage();
+    },
+    methods: {
+      postApi() {
+        // 假裝打 api
+        setTimeout(() => {
+          const res = [{
+              id: "0001",
+              name: "id = 0001, 01",
+            },
+          ];
+          this.list = res;
+        }, 500);
+        console.log(this.list)
+      },
+      getItems() {
+        axios.get('127.0.0.1:8000/api/GetTechnicalType')
+          .then((resp) => {
+            this.list = resp.data['data']
+            //const respItems = resp.data['data']
+            //console.log(respItems)
+            // for( item in respItems){
+            //     //console.log(respItems[item].TypeName)
+            //     //console.log(item)
+            //     this.allItems.push(respItems[item])
+            // }
+          });
+        console.log(this.allItems)
+      },
+      getPage() {
+        let searchData = new URLSearchParams(window.location.search);
+        // var searchData = window.location.search; // For Safari
+        if (searchData.has('page') == true) {
+          if (searchData.get('page') == 2) {
+            this.page2 = true
+          } else {
+            this.page1 = true
+          }
+        }
+        else{
+          this.page1 = true
+        }
+      }
+    },
+  });
+</script>
 {% endblock %}
