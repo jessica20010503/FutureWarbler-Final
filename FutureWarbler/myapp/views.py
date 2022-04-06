@@ -527,7 +527,7 @@ def news(request):
         return render(request, "news-1.html", {'News2': news2, 'News3': news3, "category": str(category), 'ok': ok, 'username': username, 'photo': photo})
 
 
-def newscontent(request, pk):
+def newscontent(request):
     if 'username' in request.session:
         ok = 'yes'
         username = request.session['username']
@@ -535,7 +535,8 @@ def newscontent(request, pk):
     else:
         ok = ''
         username = 'no'
-        photp = 'no'
+        photo = 'no'
+    pk = request.GET["id"]
     cursor0 = connection.cursor()
     cursor1 = connection.cursor()
     cursor2 = connection.cursor()
@@ -606,7 +607,7 @@ def newscontent(request, pk):
         "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_id=%s" % (pk))
     cursor22.execute(
         "select news_id,news_title,news_time,news_author,news_photo,news_content,news_area from news where news_id=%s" % (pk))
-
+    
     news1 = News.objects.filter(pk=pk)
     news2 = News.objects.filter(pk=pk)
     news3 = News.objects.filter(pk=pk)

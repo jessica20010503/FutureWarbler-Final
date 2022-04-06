@@ -98,7 +98,7 @@
           <ul>
             {% if News6 %} {% for news6 in News6 %}
             <li class="b-bottom b-top">
-              <a href="/news-content/{{news6.0}}/" class="d-flex p-5 dark-gray">
+              <a href="/news-content/?id={{news6.0}}/" class="d-flex p-5 dark-gray">
                 <div class="content d-flex">
                   <img src="{{ news6.4 }}" alt="新聞圖片" class="mr-4" />
                   <div>
@@ -111,7 +111,7 @@
 
             {% endfor %} {% elif News2 %} {% for news2 in News2 %}
             <li class="b-bottom b-top">
-              <a href="/news-content/{{news2.news_id}}" class="d-flex p-5 dark-gray">
+              <a href="/news-content/?id={{news2.news_id}}" class="d-flex p-5 dark-gray">
                 <div class="content d-flex">
                   <img src="{{ news6.4 }}" alt="新聞圖片" class="mr-4" />
                   <div>

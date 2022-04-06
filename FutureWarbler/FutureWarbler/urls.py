@@ -36,7 +36,7 @@ urlpatterns = [
     path('robot-intelligent/', robotintelligent),
     path('news/', news),
     path('news1/', news1),
-    path('news-content/<int:pk>/', newscontent),
+    path('news-content/', newscontent),
     path('news-search/', newssearch),
     path('trade/', trade),
     path('strategy/', strategy),
