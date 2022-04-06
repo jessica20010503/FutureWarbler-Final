@@ -75,9 +75,9 @@
             {{title}} 最新排行
           </h3>
           <ul>
-            {% for news2 in News2 %}
+            {% for news2 in News2 %}s
             <li class="b-bottom b-top">
-              <a href="/news-content/{{news2.news_id}}/" class="d-flex p-5 aic dark-gray">
+              <a href="/news-content/?id={{news2.news_id}}/" class="d-flex p-5 aic dark-gray">
                 <img src="{{ news2.news_photo  }}" alt="新聞圖片" class="mr-4" />
                 <div>
                   <h3 class="fwb mb-1 fz-xm">{{ news2.news_title }}</h3>
@@ -109,7 +109,7 @@
           <ul>
             {% for news3 in News3 %}
             <li class="b-bottom b-top">
-              <a href="/news-content/{{news3.news_id}}/" class="d-flex p-5 dark-gray">
+              <a href="/news-content/?id={{news3.news_id}}/" class="d-flex p-5 dark-gray">
                 <div class="content d-flex">
                   <img src="{{ news3.news_photo}}" alt="新聞圖片" class="mr-4" />
                   <div>
