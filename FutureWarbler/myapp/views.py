@@ -25,6 +25,13 @@ from pathlib import Path
 import datetime
 from pandas import Period
 from myapp.strategy_Function import MA_1, MA_2
+import json
+from rest_framework.views import APIView
+from rest_framework import viewsets
+from django.http import JsonResponse
+# from Facade import TechnicalIndicatorsImgFacade
+from myapp.models import Soy, Tx, Mtx, Te, Tf, MiniDow, MiniNastaq, MiniSp, MiniRussell, ADebt, Wheat, Corn
+
 
 # 連線至資料庫
 db_settings = {
@@ -838,3 +845,32 @@ def test(request):
     return render(request, "test.html", locals())
 
 # ---------------- backtrader test --------------------------
+
+# class GetTechnicalImgHeml(APIView): # 畫圖
+#     def post(self, request, *args, **kwargs):
+#         fileName  = "2021-2022-wheat-1min"
+#         doType = []
+#         chart_data = ""
+#         df = []
+#         technicalImgFacade = TechnicalIndicatorsImgFacade(fileName,doType,chart_data,df)
+#         technicalImgFacade.chart_data = technicalImgFacade.get_data()
+#         technicalImgFacade.doType = request.data
+#         hemlName = technicalImgFacade.draw_charts()
+#         ret = {'code': 200, 'msg': '成功',"hemlName" : hemlName}
+#         print(ret)
+#         return JsonResponse(ret)
+    
+class GetTechnicalType(APIView):
+    def get(self, request, *args, **kwargs):
+        #TechnicalType = [{"TypeName":"MA"},{"TypeName":"RSI"},{"TypeName":"BIAS"},{"TypeName":"Real"},{"TypeName":"KD"},{"TypeName":"MACD"}]
+        data = []
+        TechnicalType = ["MA","RSI","BIAS","Real","KD","MACD"]
+        #data = TechnicalType
+        for i in TechnicalType:
+            list = {
+                "TypeName": i
+            }
+            data.append(list)
+        ret = {'code': 200, 'msg': '成功',"data" : data}
+        #print(ret)
+        return JsonResponse(ret)
