@@ -25,12 +25,12 @@ from pathlib import Path
 import datetime
 from pandas import Period
 from myapp.strategy_Function import MA_1, MA_2
-import json
-from rest_framework.views import APIView
-from rest_framework import viewsets
-from django.http import JsonResponse
+# import json
+# from rest_framework.views import APIView
+# from rest_framework import viewsets
+# from django.http import JsonResponse
 # from Facade import TechnicalIndicatorsImgFacade
-from myapp.models import Soy, Tx, Mtx, Te, Tf, MiniDow, MiniNastaq, MiniSp, MiniRussell, ADebt, Wheat, Corn
+# from myapp.models import Soy, Tx, Mtx, Te, Tf, MiniDow, MiniNastaq, MiniSp, MiniRussell, ADebt, Wheat, Corn
 
 
 # 連線至資料庫
@@ -527,7 +527,7 @@ def news(request):
         return render(request, "news-1.html", {'News2': news2, 'News3': news3, "category": str(category), 'ok': ok, 'username': username, 'photo': photo})
 
 
-def newscontent(request, pk):
+def newscontent(request):
     if 'username' in request.session:
         ok = 'yes'
         username = request.session['username']
@@ -535,7 +535,8 @@ def newscontent(request, pk):
     else:
         ok = ''
         username = 'no'
-        photp = 'no'
+        photo = 'no'
+    pk = request.GET["id"]
     cursor0 = connection.cursor()
     cursor1 = connection.cursor()
     cursor2 = connection.cursor()
@@ -860,20 +861,17 @@ def test(request):
 #         print(ret)
 #         return JsonResponse(ret)
 
-
-"""
-class GetTechnicalType(APIView):
-    def get(self, request, *args, **kwargs):
-        #TechnicalType = [{"TypeName":"MA"},{"TypeName":"RSI"},{"TypeName":"BIAS"},{"TypeName":"Real"},{"TypeName":"KD"},{"TypeName":"MACD"}]
-        data = []
-        TechnicalType = ["MA", "RSI", "BIAS", "Real", "KD", "MACD"]
-        #data = TechnicalType
-        for i in TechnicalType:
-            list = {
-                "TypeName": i
-            }
-            data.append(list)
-        ret = {'code': 200, 'msg': '成功', "data": data}
-        # print(ret)
-        return JsonResponse(ret)
-"""
+# class GetTechnicalType(APIView):
+#     def get(self, request, *args, **kwargs):
+#         #TechnicalType = [{"TypeName":"MA"},{"TypeName":"RSI"},{"TypeName":"BIAS"},{"TypeName":"Real"},{"TypeName":"KD"},{"TypeName":"MACD"}]
+#         data = []
+#         TechnicalType = ["MA","RSI","BIAS","Real","KD","MACD"]
+#         #data = TechnicalType
+#         for i in TechnicalType:
+#             list = {
+#                 "TypeName": i
+#             }
+#             data.append(list)
+#         ret = {'code': 200, 'msg': '成功',"data" : data}
+#         #print(ret)
+#         return JsonResponse(ret)

@@ -36,7 +36,7 @@ urlpatterns = [
     path('robot-intelligent/', robotintelligent),
     path('news/', news),
     path('news1/', news1),
-    path('news-content/<int:pk>/', newscontent),
+    path('news-content/', newscontent),
     path('news-search/', newssearch),
     path('trade/', trade),
     path('strategy/', strategy),
@@ -47,5 +47,5 @@ urlpatterns = [
     path('send_strategy_sql/', send_strategy_sql),
     path('test/', test),
     # path('api/GetTechnicalImgHeml', views.GetTechnicalImgHeml.as_view()),
-    path('api/GetTechnicalType', views.GetTechnicalType.as_view()),
+    # path('api/GetTechnicalType', views.GetTechnicalType.as_view()),
 ]
