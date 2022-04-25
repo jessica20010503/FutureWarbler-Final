@@ -401,7 +401,7 @@ def classes(request):
         #keyWord2 = '期貨'
         keyWord = unquote(keyWord)
         results = study.objects.filter(class_title__contains=keyWord)
-        
+
         return render(request, "class.html", {'results': results, 'ok': ok, 'username': username, 'photo': photo})
     if 'page' in request.GET:
         try:
@@ -859,18 +859,21 @@ def test(request):
 #         ret = {'code': 200, 'msg': '成功',"hemlName" : hemlName}
 #         print(ret)
 #         return JsonResponse(ret)
-    
+
+
+"""
 class GetTechnicalType(APIView):
     def get(self, request, *args, **kwargs):
         #TechnicalType = [{"TypeName":"MA"},{"TypeName":"RSI"},{"TypeName":"BIAS"},{"TypeName":"Real"},{"TypeName":"KD"},{"TypeName":"MACD"}]
         data = []
-        TechnicalType = ["MA","RSI","BIAS","Real","KD","MACD"]
+        TechnicalType = ["MA", "RSI", "BIAS", "Real", "KD", "MACD"]
         #data = TechnicalType
         for i in TechnicalType:
             list = {
                 "TypeName": i
             }
             data.append(list)
-        ret = {'code': 200, 'msg': '成功',"data" : data}
-        #print(ret)
+        ret = {'code': 200, 'msg': '成功', "data": data}
+        # print(ret)
         return JsonResponse(ret)
+"""
