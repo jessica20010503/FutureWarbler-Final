@@ -47,5 +47,5 @@ urlpatterns = [
     path('send_strategy_sql/', send_strategy_sql),
     path('test/', test),
     # path('api/GetTechnicalImgHeml', views.GetTechnicalImgHeml.as_view()),
-    path('api/GetTechnicalType', views.GetTechnicalType.as_view()),
+    # path('api/GetTechnicalType', views.GetTechnicalType.as_view()),
 ]
