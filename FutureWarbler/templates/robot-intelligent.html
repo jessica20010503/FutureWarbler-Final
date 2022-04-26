@@ -43,31 +43,32 @@
         {% include 'login-nav.html' %}
         <div class="robot-intelligent mt-7 w-100 pl-12 pr-10 b-4">
             <div class="fl white-bg w-100 br-m mr-3pct card-shadow pt-6 pb-6 pl-8 pr-8">
-                <h2 class="mb-6"><i class="fas fa-list mr-3"></i>設定計算項目</h2>
-                <form action="#" method="#" class="time-table">
+                <h2 class="mb-6"><i class="fas fa-list mr-3"></i>設定計算項目{{message}}</h2>
+                <form action="/strategy_ai/" method="post" class="time-table">
+                    {% csrf_token %}
                     <div class="d-flex jcsb">
                         <div class="w-10">
                             <h2 class="mb-4 fwb primary b-bottom pb-2">商品設定</h2>
                             <label for="product">期貨商品：
                                 <select name="product" id="product">
-                                    <option value="TX">台指期</option>
-                                    <option value="MTX">小台指</option>
-                                    <option value="TE">電子期</option>
-                                    <option value="TF">金融期</option>
-                                    <option value="UDF">小道瓊</option>
-                                    <option value="NAS">小那斯達克</option>
-                                    <option value="S&P">小S&P</option>
-                                    <option value="RUT">小羅素2000</option>
-                                    <option value="US10">美國十年公債</option>
-                                    <option value="S">黃豆</option>
-                                    <option value="W">小麥</option>
-                                    <option value="C">玉米</option>
+                                    <option value="tx">台指期</option>
+                                    <option value="mtx">小台指</option>
+                                    <option value="te">電子期</option>
+                                    <option value="tf">金融期</option>
+                                    <option value="mini_dow">小道瓊</option>
+                                    <option value="mini_nasdaq">小那斯達克</option>
+                                    <option value="mini_sp">小S&P</option>
+                                    <option value="mini_russell">小羅素2000</option>
+                                    <option value="a_debt">美國十年公債</option>
+                                    <option value="soy">黃豆</option>
+                                    <option value="wheat">小麥</option>
+                                    <option value="corn">玉米</option>
                                 </select>
                         </div>
                         <div class="w-25">
                             <h2 class="mb-4 fwb primary b-bottom pb-2">機器人訓練指標</h2>
-                            <label for="index3">演算法：
-                                <select id="index3" name="index3" class="mb-5 w-50">
+                            <label for="algorithm">演算法：
+                                <select id="algorithm" name="algorithm" class="mb-5 w-50">
                                     <option value="default">系統推薦</option>
                                     <option value="SVM">SVM</option>
                                     <option value="RF">Random Forest</option>
@@ -79,6 +80,10 @@
                             <h2 class="mb-4 fwb primary b-bottom pb-2">策略設定</h2>
                             <div class="d-flex jcsb">
                                 <div class="w-60">
+                                    <h4 class="mb-2 primary fz-s green">-進出場設定-</h4>
+                                    <label for="list1">多空設定：</label>
+                                    <select name="long_short" id="list1" class="w-30 mb-5"></select>
+                                    <br>
                                     <h4 class="mb-2 primary fz-s green">-資金管理-</h4>
                                     <label for="fix">固定設定：
                                         <select name="fix" id="fix">
@@ -97,21 +102,21 @@
                                     </select>
                                     <div class="stop-content">
                                         <div class="b1 d-none">
-                                            <label for="stop1">停損：</label><input type="number" class="w-30 mb-5"
+                                            <label for="stop1">停損：</label><input name="stop1-1" type="number" class="w-30 mb-5"
                                                 id="stop1"> %
                                             <br>
-                                            <label for="stop2">停利：</label><input type="number" class="w-30" id="stop2">
+                                            <label for="stop1">停利：</label><input name="stop1-2" type="number" class="w-30" id="stop2">
                                             %
                                         </div>
                                         <div class="b2 d-none">
-                                            <label for="stop1">停損：</label><input type="number" class="w-30 mb-5"
+                                            <label for="stop2">停損：</label><input name="stop2-1" type="number" class="w-30 mb-5"
                                                 id="stop1"> 點
                                             <br>
-                                            <label for="stop2">停利：</label><input type="number" class="w-30" id="stop2">
+                                            <label for="stop2">停利：</label><input name="stop2-2" type="number" class="w-30" id="stop2">
                                             點
                                         </div>
                                         <div class="b3 d-none">
-                                            <label for="stop1">停損：</label><input type="number" class="w-30 mb-5"
+                                            <label for="stop3">停損：</label><input name="stop3" type="number" class="w-30 mb-5"
                                                 id="stop1"> 點
                                         </div>
                                     </div>
@@ -119,7 +124,7 @@
                             </div>
                         </div>
                     </div>
-                    <input type="button" value="確認送出" class="d-inline-block fr robot__btn dark-gray b-n fwb w-10 mt-7">
+                    <input type="submit" value="確認送出" class="d-inline-block fr robot__btn dark-gray b-n fwb w-10 mt-7">
                 </form>
             </div>
 
@@ -127,15 +132,16 @@
                 <h2><i class="fas fa-chart-line mr-2 mb-6"></i>分析結果</h2>
                 <div class="d-flex jcsb aic w-100 br-m drop-shadow">
                     <h2 class="data mb-6">此次計算結果為 準確率：<span class="fwb">88%</span></h2>
-                    <form action="#">
+                    <form action="/send_ai_strategy_sql/" method="post">
                         <div class="d-flex jcsb mb-6 aic">
+                            {% csrf_token %}
                             <div>
                                 <label for="name">請為此策略命名：</label>
-                                <input type="text" id="name" class="w-40 p-1 " maxlength="10">
+                                <input type="text" name="ai_strategy_name" id="ai_strategy_name" class="w-40 p-1 " maxlength="10">
                             </div>
-                            <input type="button" value="保存策略" class="fr submit__btn robot__btn dark-gray b-n fwb mr-5"
-                                data-bs-toggle="modal" data-bs-target="#exampleModalCenter1">
-                            <input type="button" value="重新計算" class="d-inline-block fr robot__btn dark-gray b-n fwb">
+                            <input type="submit" value="保存策略"
+                                class="d-inline-block fr robot__btn dark-gray b-n fwb w-10">
+                                
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModalCenter1" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">

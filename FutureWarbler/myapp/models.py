@@ -238,26 +238,20 @@ class IndexClass(models.Model):
         managed = True
         db_table = 'index_class'
 
-
 class IntelligentStrategy(models.Model):
-    intelligent_strategy_name = models.CharField(primary_key=True, max_length=50)
-    member = models.ForeignKey('Member', models.DO_NOTHING)
+    intelligent_strategy_id = models.CharField(primary_key=True, max_length=50)
     futures = models.ForeignKey(Futures, models.DO_NOTHING)
-    intelligent_strategy_start = models.DateField()
-    intelligent_strategy_end = models.DateField()
-    intelligent_strategy_index1 = models.IntegerField()
-    intelligent_strategy_index2 = models.IntegerField()
-    intelligent_strategy_algorithm = models.IntegerField()
-    intelligent_strategy_enter = models.IntegerField()
-    intelligent_strategy_exit = models.IntegerField()
+    member = models.ForeignKey('Member', models.DO_NOTHING)
+    intelligent_strategy_algorithm = models.CharField(max_length=10)
+    intelligent_strategy_long_short = models.CharField(max_length=11, default='')
+    intelligent_strategy_money_manage = models.CharField(max_length=11, default='')
+    intelligent_strategy_stop_pl = models.CharField(max_length=11, default='')
 
     class Meta:
-
         managed = True
         db_table = 'intelligent_strategy'
-        unique_together = (('intelligent_strategy_name', 'member'),)
-
-
+        unique_together = (('intelligent_strategy_id', 'member_id'),)
+        
 class Member(models.Model):
     member_id = models.CharField(primary_key=True, max_length=50)
     member_password = models.CharField(max_length=50)
@@ -358,15 +352,15 @@ class Mtx(models.Model):
 
 
 class News(models.Model):
-    news_id = models.CharField(primary_key=True, max_length=50)
-    news_title = models.CharField(max_length=50)
-    news_time = models.DateField()
-    news_content = models.CharField(max_length=100)
-    news_author = models.CharField(max_length=50)
-    news_area = models.IntegerField()
-    news_photo = models.CharField(max_length=100)
-    news_type = models.CharField(max_length=100)
-    news_category = models.CharField(max_length=100)
+    news_id = models.IntegerField(primary_key=True)
+    news_title = models.TextField(blank=True, null=True)
+    news_content = models.TextField(blank=True, null=True)
+    news_time = models.TextField(blank=True, null=True)
+    news_author = models.TextField(blank=True, null=True)
+    news_photo = models.TextField(blank=True, null=True)
+    news_area = models.BigIntegerField(blank=True, null=True)
+    news_type = models.BigIntegerField(blank=True, null=True)
+    news_category = models.BigIntegerField(blank=True, null=True)
 
     class Meta:
 
@@ -407,23 +401,23 @@ class Te(models.Model):
 
 
 class TechnicalStrategry(models.Model):
-    technical_strategry_id = models.CharField(primary_key=True, max_length=50)
+    technical_strategy_id = models.CharField(primary_key=True, max_length=50)
     member = models.ForeignKey(Member, models.DO_NOTHING)
     futures = models.ForeignKey(Futures, models.DO_NOTHING)
     technical_strategry_period = models.CharField(max_length=10)
     technical_strategry_start = models.DateField()
     technical_strategry_end = models.DateField()
-    technical_strategry_long_short = models.CharField(max_length=11)
-    technical_strategry_stop_lp = models.CharField(max_length=11)
-    technical_strategry_money_manage = models.CharField(max_length=11)
-    technical_strategry_enter = models.CharField(max_length=11)
-    technical_strategry_exit = models.CharField(max_length=11)
+    technical_strategy_long_short = models.CharField(max_length=11, default='')
+    technical_strategy_stop_lp = models.CharField(max_length=11, default='')
+    technical_strategy_money_manage = models.CharField(max_length=11, default='')
+    technical_strategry_enter = models.CharField(max_length=11, default='')
+    technical_strategry_exit = models.CharField(max_length=11, default='')
 
     class Meta:
 
         managed = True
         db_table = 'technical_strategry'
-        unique_together = (('technical_strategry_id', 'member'),)
+        unique_together = (('technical_strategy_id', 'member'),)
 
 
 class Tf(models.Model):
@@ -487,4 +481,4 @@ class Newscontent(models.Model):
     class Meta:
 
         managed = True
-        db_table = 'news_content'        
+        db_table = 'news_content' 
