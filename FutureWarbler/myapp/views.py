@@ -317,7 +317,7 @@ def robotnormal(request):
             strategy = request.session['strategy_pack']
             long_short = strategy["long_short"]  # 做空做多
             money_manage = strategy["money_manage"]  # 資金管理
-            period = strategy["period"]  # 資料集時間週期
+            freq = strategy['period'] # 資料集時間週期
             start = strategy["start"]  # 資料集開始時間
             end = strategy["end"]  # 資料集結束時間
             enter = strategy["enter"]  # 進場策略
@@ -325,6 +325,7 @@ def robotnormal(request):
             futures = strategy["futures"]  # 期貨
             stop_pl = strategy['stop_pl'].split("/")  # 停損停利/停損範圍/停利範圍
             stop = stop_pl[0]  # 停損停利代號
+            
             if stop_pl[0] == "point":  # 固定式
                 stop_loss = float(stop_pl[1])
                 stop_profit = float(stop_pl[2])
@@ -374,6 +375,7 @@ def robotnormal(request):
             cerebro.addstrategy(Strategy,longshort=long_short, instrategy=enter, outstrategy=exit, stopstrategy=stop, losspoint=stop_loss, profitpoint=stop_profit, tmp=value)
 
             # 載入資料集
+            '''
             data_path = Path(os.getcwd())/'myapp\\mods\\MXF1-2年-1小時.csv'
             data = bt.feeds.GenericCSVData(dataname=data_path,
                                         fromdate=datetime.datetime(2019, 1, 1),
@@ -389,7 +391,9 @@ def robotnormal(request):
                                         close=5,
                                         volume=6,
                                         openinterest=-1)
-
+            '''
+            dataframe = fdt.futuresDateTime(futures, start, end, freq)
+            data = bt.feeds.PandasData(dataname=dataframe,datetime=None, open=0, close=1, low=2, high=3, volume=4, openinterest=None)
             cerebro.adddata(data)
             cerebro.run()
             cerebro.plot()

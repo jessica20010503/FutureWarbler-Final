@@ -29,8 +29,6 @@ class Strategy(bt.Strategy):
         # KD
         ('K_period', 14),
         ('D_period', 3),
-        # 移動停損點數，這邊先寫死，之後需接使用者填入的
-        ('Trailing_stop', 20),
         # osc
         ('p1', 12),
         ('p2', 26),
@@ -53,7 +51,7 @@ class Strategy(bt.Strategy):
             self.datas[0], period=self.params.wperiod)
         self.sma10 = bt.indicators.SimpleMovingAverage(
             self.datas[0], period=self.params.smaperiod)
-        self.bias = (self.datas[0]-self.sma10)/self.sma10 * 100
+        #self.bias = (self.datas[0]-self.sma10)/self.sma10 * 100
         # MA
         self.ma1 = bt.indicators.SimpleMovingAverage(
             self.datas[0], period=self.params.MA_period_fast)
@@ -65,9 +63,9 @@ class Strategy(bt.Strategy):
             self.datas[0], period=self.params.RSI_period)
         # KD
         self.k = bt.indicators.StochasticSlow(
-            self.datas[0], period=self.params.K_period)
+            self.datas[0], safediv = True, period=self.params.K_period)
         self.d = bt.indicators.StochasticSlow(
-            self.datas[0], period=self.params.D_period)
+            self.datas[0], safediv = True, period=self.params.D_period)
         self.crossover_KD = bt.indicators.CrossOver(self.k, self.d)
 
         self.sellprice = 0
