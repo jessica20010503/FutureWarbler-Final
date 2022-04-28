@@ -31,7 +31,7 @@ from myapp.strategy_Function import MA_1, MA_2
 # from rest_framework import viewsets
 # from django.http import JsonResponse
 # from Facade import TechnicalIndicatorsImgFacade
-# from myapp.models import Soy, Tx, Mtx, Te, Tf, MiniDow, MiniNastaq, MiniSp, MiniRussell, ADebt, Wheat, Corn
+from myapp.models import Soy, Tx, Mtx, Te, Tf, MiniDow, MiniNastaq, MiniSp, MiniRussell, ADebt, Wheat, Corn
 
 
 # 連線至資料庫
@@ -301,8 +301,27 @@ def trade(request):
         username = request.session['username']
         photo = request.session['photo']
     else:
+        ok = ''
+        username = 'no'
+        photo = 'no'
         return redirect('/personal-unlogin/')
-    return render(request, "trade.html", locals())
+    TXData = Tx.objects.all().order_by("-id")[:1]
+    MTXData = Mtx.objects.all().order_by("-id")[:1]
+    TEData = Te.objects.all().order_by("-id")[:1]
+    TFData = Tf.objects.all().order_by("-id")[:1]
+    YMData = MiniDow.objects.all().order_by("-id")[:1]
+    NQData = MiniNastaq.objects.all().order_by("-id")[:1]
+    ESData = MiniSp.objects.all().order_by("-id")[:1]
+    RTYData = MiniRussell.objects.all().order_by("-id")[:1]
+    TYData = ADebt.objects.all().order_by("-id")[:1]
+    soyData = Soy.objects.all().order_by("-id")[:1]
+    wheatData = Wheat.objects.all().order_by("-id")[:1]
+    cornData = Corn.objects.all().order_by("-id")[:1]
+    # for item in soy1[:1]:
+    #     print(item.id)
+    #     print("結束")
+    return render(request, "trade.html", {"Tx": TXData, "Mtx": MTXData, "Te": TEData, "Tf": TFData, "MiniDow": YMData, "MiniNastaq": NQData, "MiniSp": ESData, "MiniRussell": RTYData, "ADebt": TYData, "Soy": soyData, "Wheat": wheatData, "Corn": cornData})
+
 
 
 # -----------------策略交易機器人--------------------------

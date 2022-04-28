@@ -1,8 +1,11 @@
 from django.db import models
 
 # Create your models here.
+
+
 class ADebt(models.Model):
-    a_debt_time = models.TimeField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
+    a_debt_time = models.TimeField()
     a_debt_date = models.DateField()
     a_debt_open = models.CharField(max_length=8)
     a_debt_close = models.CharField(max_length=8)
@@ -11,7 +14,7 @@ class ADebt(models.Model):
     a_debt_volume = models.CharField(max_length=8)
 
     class Meta:
-        
+
         managed = False
         db_table = 'a_debt'
         unique_together = (('a_debt_time', 'a_debt_date'),)
@@ -105,7 +108,8 @@ class Class(models.Model):
 
 
 class Corn(models.Model):
-    corn_time = models.TimeField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
+    corn_time = models.TimeField()
     corn_date = models.DateField()
     corn_open = models.CharField(max_length=8)
     corn_close = models.CharField(max_length=8)
@@ -142,11 +146,12 @@ class DjangoAdminLog(models.Model):
     object_repr = models.CharField(max_length=200)
     action_flag = models.PositiveSmallIntegerField()
     change_message = models.TextField()
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
+    content_type = models.ForeignKey(
+        'DjangoContentType', models.DO_NOTHING, blank=True, null=True)
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
 
     class Meta:
-        
+
         managed = False
         db_table = 'django_admin_log'
 
@@ -210,7 +215,8 @@ class Futures(models.Model):
 
 
 class History(models.Model):
-    member = models.OneToOneField('Member', models.DO_NOTHING, primary_key=True)
+    member = models.OneToOneField(
+        'Member', models.DO_NOTHING, primary_key=True)
     futures = models.ForeignKey(Futures, models.DO_NOTHING)
     buy_qty = models.IntegerField()
     buy_mon = models.IntegerField()
@@ -238,20 +244,27 @@ class IndexClass(models.Model):
         managed = True
         db_table = 'index_class'
 
+
 class IntelligentStrategy(models.Model):
-    intelligent_strategy_id = models.CharField(primary_key=True, max_length=50)
-    futures = models.ForeignKey(Futures, models.DO_NOTHING)
+    intelligent_strategy_name = models.CharField(
+        primary_key=True, max_length=50)
     member = models.ForeignKey('Member', models.DO_NOTHING)
-    intelligent_strategy_algorithm = models.CharField(max_length=10)
-    intelligent_strategy_long_short = models.CharField(max_length=11, default='')
-    intelligent_strategy_money_manage = models.CharField(max_length=11, default='')
-    intelligent_strategy_stop_pl = models.CharField(max_length=11, default='')
+    futures = models.ForeignKey(Futures, models.DO_NOTHING)
+    intelligent_strategy_start = models.DateField()
+    intelligent_strategy_end = models.DateField()
+    intelligent_strategy_index1 = models.IntegerField()
+    intelligent_strategy_index2 = models.IntegerField()
+    intelligent_strategy_algorithm = models.IntegerField()
+    intelligent_strategy_enter = models.IntegerField()
+    intelligent_strategy_exit = models.IntegerField()
 
     class Meta:
+
         managed = True
         db_table = 'intelligent_strategy'
-        unique_together = (('intelligent_strategy_id', 'member_id'),)
-        
+        unique_together = (('intelligent_strategy_name', 'member'),)
+
+
 class Member(models.Model):
     member_id = models.CharField(primary_key=True, max_length=50)
     member_password = models.CharField(max_length=50)
@@ -271,7 +284,8 @@ class Member(models.Model):
 
 
 class MiniDow(models.Model):
-    mini_dow_time = models.TimeField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
+    mini_dow_time = models.TimeField()
     mini_dow_date = models.DateField()
     mini_dow_open = models.CharField(max_length=8)
     mini_dow_close = models.CharField(max_length=8)
@@ -287,7 +301,8 @@ class MiniDow(models.Model):
 
 
 class MiniNastaq(models.Model):
-    mini_nastaq_time = models.TimeField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
+    mini_nastaq_time = models.TimeField()
     mini_nastaq_date = models.DateField()
     mini_nastaq_open = models.CharField(max_length=8)
     mini_nastaq_close = models.CharField(max_length=8)
@@ -303,14 +318,14 @@ class MiniNastaq(models.Model):
 
 
 class MiniRussell(models.Model):
-    mini_russell_time = models.TimeField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
+    mini_russell_time = models.TimeField()
     mini_russell_date = models.DateField()
     mini_russell_open = models.CharField(max_length=8)
     mini_russell_close = models.CharField(max_length=8)
     mini_russell_high = models.CharField(max_length=8)
     mini_russell_low = models.CharField(max_length=8)
     mini_russell_volume = models.CharField(max_length=8)
-
 
     class Meta:
 
@@ -320,7 +335,8 @@ class MiniRussell(models.Model):
 
 
 class MiniSp(models.Model):
-    mini_sp_time = models.TimeField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
+    mini_sp_time = models.TimeField()
     mini_sp_date = models.DateField()
     mini_sp_open = models.CharField(max_length=8)
     mini_sp_close = models.CharField(max_length=8)
@@ -336,7 +352,8 @@ class MiniSp(models.Model):
 
 
 class Mtx(models.Model):
-    mtx_time = models.TimeField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
+    mtx_time = models.TimeField()
     mtx_date = models.DateField()
     mtx_open = models.CharField(max_length=8)
     mtx_close = models.CharField(max_length=8)
@@ -352,15 +369,15 @@ class Mtx(models.Model):
 
 
 class News(models.Model):
-    news_id = models.IntegerField(primary_key=True)
-    news_title = models.TextField(blank=True, null=True)
-    news_content = models.TextField(blank=True, null=True)
-    news_time = models.TextField(blank=True, null=True)
-    news_author = models.TextField(blank=True, null=True)
-    news_photo = models.TextField(blank=True, null=True)
-    news_area = models.BigIntegerField(blank=True, null=True)
-    news_type = models.BigIntegerField(blank=True, null=True)
-    news_category = models.BigIntegerField(blank=True, null=True)
+    news_id = models.CharField(primary_key=True, max_length=50)
+    news_title = models.CharField(max_length=50)
+    news_time = models.DateField()
+    news_content = models.CharField(max_length=100)
+    news_author = models.CharField(max_length=50)
+    news_area = models.IntegerField()
+    news_photo = models.CharField(max_length=100)
+    news_type = models.CharField(max_length=100)
+    news_category = models.CharField(max_length=100)
 
     class Meta:
 
@@ -369,7 +386,8 @@ class News(models.Model):
 
 
 class Soy(models.Model):
-    soy_time = models.TimeField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
+    soy_time = models.TimeField()
     soy_date = models.DateField()
     soy_open = models.CharField(max_length=8)
     soy_close = models.CharField(max_length=8)
@@ -385,7 +403,8 @@ class Soy(models.Model):
 
 
 class Te(models.Model):
-    te_time = models.TimeField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
+    te_time = models.TimeField()
     te_date = models.DateField()
     te_open = models.CharField(max_length=8)
     te_close = models.CharField(max_length=8)
@@ -401,27 +420,27 @@ class Te(models.Model):
 
 
 class TechnicalStrategry(models.Model):
-    technical_strategy_id = models.CharField(primary_key=True, max_length=50)
+    technical_strategry_id = models.CharField(primary_key=True, max_length=50)
     member = models.ForeignKey(Member, models.DO_NOTHING)
     futures = models.ForeignKey(Futures, models.DO_NOTHING)
     technical_strategry_period = models.CharField(max_length=10)
     technical_strategry_start = models.DateField()
     technical_strategry_end = models.DateField()
-    technical_strategy_long_short = models.CharField(max_length=11, default='')
-    technical_strategy_stop_lp = models.CharField(max_length=11, default='')
-    technical_strategy_money_manage = models.CharField(max_length=11, default='')
-    technical_strategry_enter = models.CharField(max_length=11, default='')
-    technical_strategry_exit = models.CharField(max_length=11, default='')
+    technical_strategry_index1 = models.IntegerField()
+    technical_strategry_index2 = models.IntegerField()
+    technical_strategry_enter = models.IntegerField()
+    technical_strategry_exit = models.IntegerField()
 
     class Meta:
 
         managed = True
         db_table = 'technical_strategry'
-        unique_together = (('technical_strategy_id', 'member'),)
+        unique_together = (('technical_strategry_id', 'member'),)
 
 
 class Tf(models.Model):
-    tf_time = models.TimeField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
+    tf_time = models.TimeField()
     tf_date = models.DateField()
     tf_open = models.CharField(max_length=8)
     tf_close = models.CharField(max_length=8)
@@ -437,7 +456,8 @@ class Tf(models.Model):
 
 
 class Tx(models.Model):
-    tx_time = models.TimeField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
+    tx_time = models.TimeField()
     tx_date = models.DateField()
     tx_open = models.CharField(max_length=8)
     tx_close = models.CharField(max_length=8)
@@ -453,7 +473,8 @@ class Tx(models.Model):
 
 
 class Wheat(models.Model):
-    wheat_time = models.TimeField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
+    wheat_time = models.TimeField()
     wheat_date = models.DateField()
     wheat_open = models.CharField(max_length=8)
     wheat_close = models.CharField(max_length=8)
@@ -481,4 +502,22 @@ class Newscontent(models.Model):
     class Meta:
 
         managed = True
-        db_table = 'news_content' 
+        db_table = 'news_content'
+
+class Transactionrecord(models.Model):
+    member_id = models.CharField(max_length=50, blank=True, null=True)
+    futeres_id = models.CharField(max_length=10, blank=True, null=True)
+    futures_name = models.CharField(max_length=10, blank=True, null=True)
+    record = models.IntegerField(blank=True, null=True)
+    buy_qty = models.IntegerField(blank=True, null=True)
+    buy_mon = models.IntegerField(blank=True, null=True)
+    buy_time = models.DateTimeField(blank=True, null=True)
+    sell_qty = models.IntegerField(blank=True, null=True)
+    sell_mon = models.IntegerField(blank=True, null=True)
+    sell_time = models.DateTimeField(blank=True, null=True)
+    return_rate = models.CharField(max_length=10, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'transactionRecord'
+
