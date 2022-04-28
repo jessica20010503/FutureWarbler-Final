@@ -18,6 +18,7 @@ from pymysql import cursors
 from django.db import connection
 from urllib.parse import unquote
 from myapp.mods import futuresDateTime as fdt
+from myapp.mods.bt_frame import Strategy
 import backtrader as bt
 # 載入指定檔案路徑相關的模組
 import os
@@ -316,7 +317,7 @@ def robotnormal(request):
             strategy = request.session['strategy_pack']
             long_short = strategy["long_short"]  # 做空做多
             money_manage = strategy["money_manage"]  # 資金管理
-            period = strategy["period"]  # 資料集時間週期
+            freq = strategy['period'] # 資料集時間週期
             start = strategy["start"]  # 資料集開始時間
             end = strategy["end"]  # 資料集結束時間
             enter = strategy["enter"]  # 進場策略
@@ -324,6 +325,7 @@ def robotnormal(request):
             futures = strategy["futures"]  # 期貨
             stop_pl = strategy['stop_pl'].split("/")  # 停損停利/停損範圍/停利範圍
             stop = stop_pl[0]  # 停損停利代號
+            
             if stop_pl[0] == "point":  # 固定式
                 stop_loss = float(stop_pl[1])
                 stop_profit = float(stop_pl[2])
@@ -334,11 +336,69 @@ def robotnormal(request):
             else:  # 移動停損
                 stop_loss = float(stop_pl[1])
 
-            message = ("我們session是有東西的", futures, "停損:", stop_loss)
+            message = ("我們session是有東西的", futures, "停損:", stop_loss,"資料開始時間:",start,stop_pl)
 
             """
                把回測功能寫在這邊
             """
+            if futures == 'tx':
+                margin = 18400
+            elif futures == 'mtx':
+                margin = 46000
+            elif futures == 'te':
+                margin = 180000
+            elif futures == 'tf':
+                margin = 79000
+            elif futures == 'mini_dow':
+                margin = 9350
+            elif futures == 'mini_nasdaq':
+                margin = 18700
+            elif futures == 'mini_sp':
+                margin = 12650
+            elif futures == 'mini_russell':
+                margin = 6600
+            elif futures == 'soy':
+                margin = 2915
+            elif futures == 'wheat':
+                margin = 2063
+            elif futures == 'corn':
+                margin = 1678
+            
+
+            #=========backtrader==================
+            #還沒接資料集
+            
+            cerebro = bt.Cerebro()
+            cerebro.broker.setcash(10000000)
+            cerebro.broker.setcommission(commission=0.001, margin=margin)
+            value = cerebro.broker.getvalue()
+            cerebro.addstrategy(Strategy,longshort=long_short, instrategy=enter, outstrategy=exit, stopstrategy=stop, losspoint=stop_loss, profitpoint=stop_profit, tmp=value)
+
+            # 載入資料集
+            '''
+            data_path = Path(os.getcwd())/'myapp\\mods\\MXF1-2年-1小時.csv'
+            data = bt.feeds.GenericCSVData(dataname=data_path,
+                                        fromdate=datetime.datetime(2019, 1, 1),
+                                        todate=datetime.datetime(2019, 12, 31),
+                                        nullvalue=0.0,
+                                        dtformat=('%Y-%m-%d'),
+                                        tmformat=('%H:%M:%S'),
+                                        date=0,
+                                        time=1,
+                                        high=3,
+                                        low=4,
+                                        open=2,
+                                        close=5,
+                                        volume=6,
+                                        openinterest=-1)
+            '''
+            dataframe = fdt.futuresDateTime(futures, start, end, freq)
+            data = bt.feeds.PandasData(dataname=dataframe,datetime=None, open=0, close=1, low=2, high=3, volume=4, openinterest=None)
+            cerebro.adddata(data)
+            cerebro.run()
+            cerebro.plot()
+            
+            #=========backtrader==================
             request.session['strategy_pack_backup'] = strategy  # 先把策略包備份到看不到的地方
             del request.session['strategy_pack']  # 刪除回測用策略包，以免每次近來都要先回測一次降低效能
         else:
@@ -373,17 +433,66 @@ def send_strategy_sql(request):
     return redirect('/robot-normal/')
 
 # -----------------智能交易機器人--------------------------
-
-
 def robotintelligent(request):
     if 'username' in request.session:
         ok = 'yes'
         username = request.session['username']
         photo = request.session['photo']
+        # 如果成功傳送策略包
+        if 'ai_strategy_pack' in request.session:
+            # 把存在session中的策略包內容物全部用變數接出來
+            ai_strategy = request.session['ai_strategy_pack']
+            ai_long_short = ai_strategy["long_short"]  # 做空做多
+            ai_money_manage = ai_strategy["money_manage"]  # 資金管理
+            ai_algorithm = ai_strategy["algorithm"]# 演算法
+            ai_futures = ai_strategy["futures"]  # 期貨
+            ai_stop_pl = ai_strategy['stop_pl'].split("/")  # 停損停利/停損範圍/停利範圍
+            ai_stop = ai_stop_pl[0]  # 停損停利代號
+            if ai_stop_pl[0] == "point":  # 固定式
+                ai_stop_loss = float(ai_stop_pl[1])
+                ai_stop_profit = float(ai_stop_pl[2])
+
+            elif ai_stop_pl[0] == "percentage":  # 百分比
+                ai_stop_loss = float(ai_stop_pl[1])
+                ai_stop_profit = float(ai_stop_pl[2])
+            else:  # 移動停損
+                ai_stop_loss = float(ai_stop_pl[1])
+
+            message = ("我們session是有東西的", ai_futures, ai_money_manage, ai_algorithm, ai_stop_pl, ai_stop_loss, ai_stop_profit)
+
+            """
+               把回測功能寫在這邊
+            """
+            
+            request.session['ai_strategy_pack_backup'] = ai_strategy  # 先把策略包備份到看不到的地方
+            del request.session['ai_strategy_pack']  # 刪除回測用策略包，以免每次近來都要先回測一次降低效能
+        else:
+            message = "沒東西"
     else:
         return redirect('/personal-unlogin/')
     return render(request, "robot-intelligent.html", locals())
 
+
+# ----------------智能機器人傳送至資料庫---------------------
+
+def send_ai_strategy_sql(request):
+    member_id = request.session['userid']
+    ai_strategy = request.session['ai_strategy_pack_backup']
+    ai_strategy_name = request.POST['ai_strategy_name']
+    ai_strategy_algorithm = ai_strategy["algorithm"]
+    ai_stop_pl = ai_strategy["stop_pl"]
+    ai_long_short = ai_strategy["long_short"]  # 做空做多
+    ai_money_manage = ai_strategy["money_manage"]  # 資金管理
+    ai_futures = ai_strategy["futures"]  # 期貨商品
+
+    with conn.cursor() as cursor:
+        sql = "INSERT INTO `intelligent_strategy`(`intelligent_strategy_id`, `futures_id`, `member_id`, `intelligent_strategy_long_short`, `intelligent_strategy_algorithm`, `intelligent_strategy_money_manage`, `intelligent_strategy_stop_pl`) VALUES ('%s','%s','%s','%s','%s','%s','%s')" % (
+            ai_strategy_name, ai_futures, member_id, ai_long_short, ai_strategy_algorithm, ai_money_manage, ai_stop_pl)
+        cursor.execute(sql)
+        conn.commit()
+        conn.close()
+
+    return redirect('/robot-intelligent/')
 
 # -------------------期貨小教室----------------------------
 
@@ -728,8 +837,6 @@ def order(request):
     return render(request, "order.html", locals())
 
 # ------------策略清單測試-----------------------
-
-
 def strategy_normal(request):
     if request.method == 'POST':
         product = request.POST['product']
@@ -755,6 +862,7 @@ def strategy_normal(request):
             fix = "fix_rate"
 
         if long_short == "0":
+            long_short = "long"
             if in_strategy == '0':
                 in_strategy = "long-in-ma"
             elif in_strategy == '1':
@@ -779,6 +887,7 @@ def strategy_normal(request):
             else:
                 out_strategy = "long-out-william"
         else:
+            long_short = "short"
             if in_strategy == '0':
                 in_strategy = "short-in-ma"
             elif in_strategy == '1':
@@ -844,6 +953,69 @@ def test(request):
     dataframe = fdt.futuresDateTime(futures, start, end, freq)
 
     return render(request, "test.html", locals())
+
+
+# ------------智能策略清單測試-----------------------
+def strategy_ai(request):
+    if request.method == 'POST':
+        product = request.POST['product']
+        stop = request.POST['stop']
+        long_short = request.POST['long_short']
+        fix = request.POST['fix']
+        account = request.session['userid']
+        algorithm = request.POST['algorithm']
+
+        #演算法
+        if algorithm == '1':
+            algorithm = 'SVM'
+        elif algorithm == '2':
+            algorithm = 'RF'
+        elif algorithm == '3':
+            algorithm = 'Ada'
+        else:
+            algorithm = 'GEP'
+
+        #資金管理
+        if fix == "4":
+            fix = "fix_lot"
+        elif fix == "5":
+            fix = "fix_money"
+        else:
+            fix = "fix_rate"
+        #多空
+        if long_short == "0":
+            long_short = "long"
+        else:
+            long_short = "short"
+
+        #停損停利
+        if stop == "1":
+            stop_name = "percentage"
+            stop1 = request.POST['stop1-1']
+            stop2 = request.POST['stop1-2']
+            stop_name = stop_name+"/"+stop1+"/"+stop2
+        elif stop == "2":
+            stop_name = "point"
+            stop1 = request.POST['stop2-1']
+            stop2 = request.POST['stop2-2']
+            stop_name = stop_name+"/"+stop1+"/"+stop2
+        else:
+            stop_name = "move"
+            stop1 = request.POST['stop3']
+            stop_name = stop_name+"/"+stop1
+
+        ai_strategy_pack = {
+            "member_id": account,
+            "long_short": long_short,
+            "stop_pl": stop_name,
+            "algorithm": algorithm,
+            "money_manage": fix,
+            "futures": product,
+        }
+        request.session['ai_strategy_pack'] = ai_strategy_pack
+
+    return redirect('/robot-intelligent/')
+
 
 # ---------------- backtrader test --------------------------
 
