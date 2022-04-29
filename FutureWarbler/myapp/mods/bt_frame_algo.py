@@ -6,8 +6,8 @@ import datetime
 from matplotlib.pyplot import margins
 from pandas import Period
 from sklearn.metrics import log_loss, pair_confusion_matrix
-
-from myapp.mods import bt_strategy 
+from backtrader.feeds import GenericCSVData #導入的原因是:要修改用成有predict的data
+from myapp.mods import bt_strategy_algo 
 
 
 '''
@@ -19,7 +19,8 @@ profit停利數字
 loss停損數字
 '''
 
-class Strategy(bt.Strategy):
+class Strategy_algo(bt.Strategy):
+    #停損停利會要用到的東西
     params = (
         # MA
         ('MA_period_fast', 5),
@@ -29,6 +30,8 @@ class Strategy(bt.Strategy):
         # KD
         ('K_period', 14),
         ('D_period', 3),
+        # 移動停損點數，這邊先寫死，之後需接使用者填入的
+        ('Trailing_stop', 20),
         # osc
         ('p1', 12),
         ('p2', 26),
@@ -40,15 +43,21 @@ class Strategy(bt.Strategy):
     )
 
 
-    def __init__(self, longshort, instrategy, outstrategy, stopstrategy, losspoint, profitpoint, tmp):
+    def __init__(self, longshort, algostrategy, stopstrategy, losspoint, profitpoint, tmp):
+        #初始化
         self.dataclose = self.datas[0].close
         self.datahigh = self.datas[0].high
         self.datalow = self.datas[0].low
+        #我們自己的predict 
+        self.datapredict = self.datas[0].predict
+        #一開始是沒有單子的
         self.order = None
+
+        #以下為指標
         self.macdhist = bt.ind.MACDHisto(
             self.datas[0], period_me1=self.params.p1, period_me2=self.params.p2, period_signal=self.params.p3)
         self.williams = bt.ind.WilliamsR(
-            self.datas[0], period=self.params.wperiod)
+            self.datas[0],period=self.params.wperiod)
         self.sma10 = bt.indicators.SimpleMovingAverage(
             self.datas[0], period=self.params.smaperiod)
         #self.bias = (self.datas[0]-self.sma10)/self.sma10 * 100
@@ -72,8 +81,7 @@ class Strategy(bt.Strategy):
         self.buyprice = 0
 
         self.long_short = longshort
-        self.in_strategy = instrategy
-        self.out_strategy = outstrategy
+        self.algo_strategy = algostrategy
         self.stopstrategy = stopstrategy
         self.loss = losspoint
         self.profit = profitpoint
@@ -102,87 +110,45 @@ class Strategy(bt.Strategy):
         if self.order:
             return
 
+        #若是做多
         if self.long_short == 0:
+            #且目前沒有提交買單
             if not self.position:
-                if self.in_strategy == 0:
-                    bt_strategy.long_in_ma(
-                        self=self, crossover_MA=self.crossover_MA)
-                elif self.in_strategy == 1:
-                    bt_strategy.long_in_osc(self=self, macdhist=self.macdhist)
-                elif self.in_strategy == 2:
-                    bt_strategy.long_in_rsi(self=self, rsi=self.rsi)
-                elif self.in_strategy == 3:
-                    bt_strategy.long_in_kd(
-                        self=self, crossover_KD=self.crossover_KD)
-                elif self.in_strategy == 4:
-                    bt_strategy.long_in_bias(self=self, bias=self.bias)
-                else:
-                    bt_strategy.long_in_william(
-                        self=self, williams=self.williams)
+                
+                #則判斷是否符合演算法進場邏輯
+                if self.algo_strategy == 0:
+                   bt_strategy_algo.long_in_algo(self)
             else:
-                if self.out_strategy == 0:
-                    bt_strategy.long_out_ma(
-                        self=self, crossover_MA=self.crossover_MA)
-                elif self.out_strategy == 1:
-                    bt_strategy.long_out_rsi(self=self, rsi=self.rsi)
-                elif self.out_strategy == 2:
-                    bt_strategy.long_out_kd(
-                        self=self, crossover_KD=self.crossover_KD)
-                elif self.out_strategy == 3:
-                    bt_strategy.long_out_bias(self=self, bias=self.bias)
-                else:
-                    bt_strategy.long_out_william(
-                        self=self, williams=self.williams)
-
+            #若目前有商品在手中了    
+            #則判斷停損停利
                 if self.stopstrategy == 1:
-                    bt_strategy.long_percentage(
+                    bt_strategy_algo.long_percentage(
                         self=self, loss=self.loss, profit=self.profit)
                 elif self.stopstrategy == 2:
-                    bt_strategy.long_point(
+                    bt_strategy_algo.long_point(
                         self=self, loss=self.loss, profit=self.profit)
                 else:
-                    bt_strategy.long_trailing(
+                    bt_strategy_algo.long_trailing(
                         self=self, tmpHigh=self.tmp, loss=self.loss)
-        else:
-            if not self.position:
-                if self.in_strategy == 0:
-                    bt_strategy.short_in_ma(
-                        self=self, crossover_MA=self.crossover_MA)
-                elif self.in_strategy == 1:
-                    bt_strategy.short_in_osc(self=self, macdhist=self.macdhist)
-                elif self.in_strategy == 2:
-                    bt_strategy.short_in_rsi(self=self, rsi=self.rsi)
-                elif self.in_strategy == 3:
-                    bt_strategy.short_in_kd(
-                        self=self, crossover_KD=self.crossover_KD)
-                elif self.in_strategy == 4:
-                    bt_strategy.short_in_bias(self=self, bias=self.bias)
-                else:
-                    bt_strategy.short_in_william(
-                        self=self, williams=self.williams)
-            else:
-                if self.out_strategy == 0:
-                    bt_strategy.short_out_ma(
-                        self=self, crossover_MA=self.crossover_MA)
-                elif self.out_strategy == 1:
-                    bt_strategy.short_out_rsi(self=self, rsi=self.rsi)
-                elif self.out_strategy == 2:
-                    bt_strategy.short_out_kd(
-                        self=self, crossover_KD=self.crossover_KD)
-                elif self.out_strategy == 3:
-                    bt_strategy.short_out_bias(self=self, bias=self.bias)
-                else:
-                    bt_strategy.short_out_william(
-                        self=self, williams=self.williams)
 
+        #若是做空
+        else:
+            #且手上無任何單子
+            if not self.position:
+                #則使用演算法進場策略
+                if self.algo_strategy == 0:
+                    bt_strategy_algo.short_in_algo(self)
+            else:
+            #若手上已商品在手上
+            # 則判斷停損停利
                 if self.stopstrategy == 1:
-                    bt_strategy.short_percentage(
+                    bt_strategy_algo.short_percentage(
                         self=self, loss=self.loss, profit=self.profit)
                 elif self.stopstrategy == 2:
-                    bt_strategy.short_point(
+                    bt_strategy_algo.short_point(
                         self=self, loss=self.loss, profit=self.profit)
                 #else:
-                #    bt_strategy.short_trailing(
+                #    bt_strategy_algo.short_trailing(
                 #        self=self, tmpLow=self.tmp, loss=self.loss)
 
     def log(self, txt):
@@ -190,5 +156,8 @@ class Strategy(bt.Strategy):
         print("{} {}".format(dt.isoformat(), txt))
 
 
-
-    
+#因為我們的回測這次需要用到predict這個欄位，然而GenericCSVData裡面沒有這個參數，所以我們要自己去重做一個可以包含predict的feeder
+#參考文章:https://blog.csdn.net/m0_46603114/article/details/105937213
+class GenericCSVData_Predict(GenericCSVData):
+    lines = ('predict',)
+    params = (('predict', 8),)
