@@ -19,7 +19,10 @@ from django.db import connection
 from urllib.parse import unquote
 from myapp.mods import futuresDateTime as fdt
 from myapp.mods.bt_frame import Strategy
+from myapp.mods.bt_frame_algo import Strategy_algo, GenericCSVData_Predict
+from myapp.mods.bt_dataframe import bt_dataframe
 import backtrader as bt
+import pandas as pd
 # 載入指定檔案路徑相關的模組
 import os
 from pathlib import Path
@@ -412,10 +415,10 @@ def robotnormal(request):
                                            close=5,
                                            volume=6,
                                            openinterest=-1)
+
             '''
             dataframe = fdt.futuresDateTime(futures, start, end, freq)
-            data = bt.feeds.PandasData(dataname=dataframe, datetime=None,
-                                       open=0, close=1, low=2, high=3, volume=4, openinterest=None)
+            data = bt.feeds.PandasData(dataname=dataframe,datetime=None, open=0, close=1, low=2, high=3, volume=4, openinterest=None)
             '''
             cerebro.adddata(data)
             # 抓最初資產
@@ -429,7 +432,8 @@ def robotnormal(request):
             cerebro.addanalyzer(bt.analyzers.SQN, _name='SQN')
             cerebro.addanalyzer(bt.analyzers.TradeAnalyzer,
                                 _name='TradeAnalyzer')
-            cerebro.run()
+
+            cerebro.run(runonce=False)
             cerebro.plot()
             results = cerebro.run()
             start = results[0]
@@ -514,6 +518,62 @@ def robotintelligent(request):
             """
                把回測功能寫在這邊
             """
+            if ai_futures == 'tx':
+                margin = 18400
+            elif ai_futures == 'mtx':
+                margin = 46000
+            elif ai_futures == 'te':
+                margin = 180000
+            elif ai_futures == 'tf':
+                margin = 79000
+            elif ai_futures == 'mini_dow':
+                margin = 9350
+            elif ai_futures == 'mini_nasdaq':
+                margin = 18700
+            elif ai_futures == 'mini_sp':
+                margin = 12650
+            elif ai_futures == 'mini_russell':
+                margin = 6600
+            elif ai_futures == 'soy':
+                margin = 2915
+            elif ai_futures == 'wheat':
+                margin = 2063
+            elif ai_futures == 'corn':
+                margin = 1678
+
+            cerebro = bt.Cerebro()
+            cerebro.broker.setcash(10000000)
+            # 券商保證金以及手續費設定
+            cerebro.broker.setcommission(commission=0.001, margin=margin)
+            value = cerebro.broker.getvalue()
+
+            cerebro.addstrategy(Strategy_algo, longshort=ai_long_short, algostrategy=ai_algorithm,
+                                stopstrategy=ai_stop, losspoint=ai_stop_loss, profitpoint=ai_stop_profit, tmp=value)
+
+            # 加入資料集 先用mtx並且先假裝做"多"
+            filename = bt_dataframe(ai_futures, ai_long_short, ai_algorithm)
+            # 載入資料集
+            data = GenericCSVData_Predict(dataname=filename,
+                                          fromdate=datetime.datetime(
+                                              2018, 1, 1),
+                                          todate=datetime.datetime(2020, 1, 1),
+                                          nullvalue=0.0,
+                                          dtformat=('%Y-%m-%d'),
+                                          tmformat=('%H:%M:%S'),
+                                          date=0,
+                                          time=1,
+                                          high=3,
+                                          low=5,
+                                          open=2,
+                                          close=4,
+                                          volume=6,
+                                          predict=7,
+                                          openinterest=-1)
+
+            cerebro.adddata(data)
+            print("start profolio {}".format(cerebro.broker.getvalue()))
+            cerebro.run()
+            print("final profolio {}".format(cerebro.broker.getvalue()))
 
             # 先把策略包備份到看不到的地方
             request.session['ai_strategy_pack_backup'] = ai_strategy
@@ -1023,13 +1083,13 @@ def strategy_ai(request):
 
         # 演算法
         if algorithm == '1':
-            algorithm = 'SVM'
+            algorithm = 'svm'
         elif algorithm == '2':
-            algorithm = 'RF'
+            algorithm = 'rf'
         elif algorithm == '3':
-            algorithm = 'Ada'
+            algorithm = 'ada'
         else:
-            algorithm = 'GEP'
+            algorithm = 'gep'
 
         # 資金管理
         if fix == "4":
