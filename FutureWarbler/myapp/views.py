@@ -530,6 +530,11 @@ def robotintelligent(request):
 
             message = ("我們session是有東西的", ai_futures, ai_money_manage,
                        ai_algorithm, ai_stop_pl, ai_stop_loss, ai_stop_profit)
+            """
+            演算法窗個顯示
+            """
+            result_df = pd.read_csv(
+                r'mods/algodata_result/SVM_tf_fall_result.csv')
 
             """
                把回測功能寫在這邊
@@ -587,10 +592,49 @@ def robotintelligent(request):
                                           openinterest=-1)
 
             cerebro.adddata(data)
-            print("start profolio {}".format(cerebro.broker.getvalue()))
-            cerebro.run()
-            print("final profolio {}".format(cerebro.broker.getvalue()))
-            cerebro.plot()
+            # 抓最初資產
+            start_value = cerebro.broker.getvalue()
+            # 加入績效分析
+            cerebro.addanalyzer(bt.analyzers.AnnualReturn,
+                                _name='AnnualReturn')
+            cerebro.addanalyzer(bt.analyzers.DrawDown, _name='DW')
+            cerebro.addanalyzer(bt.analyzers.SharpeRatio, _name='SR')
+            cerebro.addanalyzer(bt.analyzers.Returns, _name='RS')
+            cerebro.addanalyzer(bt.analyzers.SQN, _name='SQN')
+            cerebro.addanalyzer(bt.analyzers.TradeAnalyzer,
+                                _name='TradeAnalyzer')
+            #print("start profolio {}".format(cerebro.broker.getvalue()))
+            cerebro.run(runonce=False)
+            #print("final profolio {}".format(cerebro.broker.getvalue()))
+
+            results = cerebro.run()
+            start = results[0]
+            # 抓最終資產
+            end_value = cerebro.broker.getvalue()
+            """
+            print("Final Portfolio {}".format(cerebro.broker.getvalue()))
+            print('收益:{:,.2f}'.format(end_value-start_value))
+            print('年利潤:', start.analyzers.AnnualReturn.get_analysis())
+            print('最大策略虧損:', start.analyzers.DW.get_analysis()["max"]["drawdown"])
+            print('夏普指數:', start.analyzers.SR.get_analysis()["sharperatio"])
+            print('總收益率:', start.analyzers.RS.get_analysis()["rtot"])
+            """
+            finalPortfolio = cerebro.broker.getvalue()
+            earning = end_value-start_value
+            overallYield = start.analyzers.RS.get_analysis()["rtot"]
+            MDD = start.analyzers.DW.get_analysis()["max"]["drawdown"]
+            sharpeRatio = start.analyzers.SR.get_analysis()["sharperatio"]
+            SQN = start.analyzers.SQN.get_analysis()["sqn"]
+            """
+            earnLossRatio = start.analyzers.TradeAnalyzer.get_analysis()['won']['pnl']['average'] / (-1 * start.analyzers.TradeAnalyzer.get_analysis()['lost']['pnl']['average'])
+            profitFactor = start.analyzers.TradeAnalyzer.get_analysis()['won']['pnl']['total'] / (-1 * start.analyzers.TradeAnalyzer.get_analysis()['lost']['pnl']['total'])
+            transactionsCount = start.analyzers.TradeAnalyzer.get_analysis()['total']['total']
+            profitCount = start.analyzers.TradeAnalyzer.get_analysis()['won']['total']
+            lossCount = start.analyzers.TradeAnalyzer.get_analysis()['lost']['total']
+            winRate = start.analyzers.TradeAnalyzer.get_analysis()['won']['total'] / start.analyzers.TradeAnalyzer.get_analysis()['total']['total']
+
+            """
+
             # 先把策略包備份到看不到的地方
             request.session['ai_strategy_pack_backup'] = ai_strategy
             # 刪除回測用策略包，以免每次近來都要先回測一次降低效能

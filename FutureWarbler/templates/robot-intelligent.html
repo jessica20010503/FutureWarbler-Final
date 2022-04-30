@@ -102,22 +102,24 @@
                                     </select>
                                     <div class="stop-content">
                                         <div class="b1 d-none">
-                                            <label for="stop1">停損：</label><input name="stop1-1" type="number" class="w-30 mb-5"
-                                                id="stop1"> %
+                                            <label for="stop1">停損：</label><input name="stop1-1" type="number"
+                                                class="w-30 mb-5" id="stop1"> %
                                             <br>
-                                            <label for="stop1">停利：</label><input name="stop1-2" type="number" class="w-30" id="stop2">
+                                            <label for="stop1">停利：</label><input name="stop1-2" type="number"
+                                                class="w-30" id="stop2">
                                             %
                                         </div>
                                         <div class="b2 d-none">
-                                            <label for="stop2">停損：</label><input name="stop2-1" type="number" class="w-30 mb-5"
-                                                id="stop1"> 點
+                                            <label for="stop2">停損：</label><input name="stop2-1" type="number"
+                                                class="w-30 mb-5" id="stop1"> 點
                                             <br>
-                                            <label for="stop2">停利：</label><input name="stop2-2" type="number" class="w-30" id="stop2">
+                                            <label for="stop2">停利：</label><input name="stop2-2" type="number"
+                                                class="w-30" id="stop2">
                                             點
                                         </div>
                                         <div class="b3 d-none">
-                                            <label for="stop3">停損：</label><input name="stop3" type="number" class="w-30 mb-5"
-                                                id="stop1"> 點
+                                            <label for="stop3">停損：</label><input name="stop3" type="number"
+                                                class="w-30 mb-5" id="stop1"> 點
                                         </div>
                                     </div>
                                 </div>
@@ -137,11 +139,12 @@
                             {% csrf_token %}
                             <div>
                                 <label for="name">請為此策略命名：</label>
-                                <input type="text" name="ai_strategy_name" id="ai_strategy_name" class="w-40 p-1 " maxlength="10">
+                                <input type="text" name="ai_strategy_name" id="ai_strategy_name" class="w-40 p-1 "
+                                    maxlength="10">
                             </div>
                             <input type="submit" value="保存策略"
                                 class="d-inline-block fr robot__btn dark-gray b-n fwb w-10">
-                                
+
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModalCenter1" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -168,79 +171,147 @@
                     <div class="clearfix"></div>
                 </div>
             </div>
-            <!-- TradingView Widget BEGIN -->
-            <div class="tradingview-widget-container w-100 mt-3">
-                <div id="tradingview_f719f"></div>
-                <div class="tradingview-widget-copyright"><a href="https://tw.tradingview.com/symbols/CME_MINI-NQ1!/"
-                        rel="noopener" target="_blank"><span class="blue-text">NQ1! 圖表</span></a>由TradingView提供</div>
-                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                <script type="text/javascript">
-                    new TradingView.widget(
-                        {
-                            "height": 400,
-                            "symbol": "CME_MINI:NQ1!",
-                            "interval": "D",
-                            "timezone": "Etc/UTC",
-                            "theme": "light",
-                            "style": "1",
-                            "locale": "zh_TW",
-                            "toolbar_bg": "#f1f3f6",
-                            "enable_publishing": false,
-                            "allow_symbol_change": true,
-                            "container_id": "tradingview_f719f"
-                        }
-                    );
-                </script>
-            </div>
-            <!-- TradingView Widget END -->
+            <!--18 個窗格之表格-->
+            <table class="conclusin-table br-m m0-a w-80 tac mt-6">
+                <tr class="border-bottom">
+                    <th class="w-40" colspan="21">窗格移動法結果顯示</th>
+                </tr>
+                <!-- finalPortfolio 最終資產-->
+                <tr class="bg-lightgray">
+                    <td></td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td>
+                    <td>16</td>
+                    <td>17</td>
+                    <td>18</td>
+                    <td>平均</td>
+                    <td>標準差</td>
+                </tr>
+                <!--收益  earning-->
+                <tr>
+                    <td>準確率</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td>
+                    <td>16</td>
+                    <td>17</td>
+                    <td>18</td>
+                    <td>平均</td>
+                    <td>標準差</td>
+                </tr>
+                <td>f1-macro</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>13</td>
+                <td>14</td>
+                <td>15</td>
+                <td>16</td>
+                <td>17</td>
+                <td>18</td>
+                <td>平均</td>
+                <td>標準差</td>
+            </table>
+            <!--18 END-->
             <table class="conclusin-table br-m m0-a w-80 tac mt-6">
                 <tr class="border-bottom">
                     <th class="w-40">項目</th>
                     <th>所有交易</th>
                 </tr>
+                <!-- finalPortfolio 最終資產-->
                 <tr class="bg-lightgray">
-                    <td>勝率</td>
-                    <td>49.61%</td>
+                    <td>最終資產</td>
+                    <td>{{finalPortfolio}}</td>
                 </tr>
+                <!--收益  earning-->
                 <tr>
-                    <td>總報酬率</td>
-                    <td>21.70%</td>
+                    <td>收益</td>
+                    <td>{{earning}}</td>
                 </tr>
+                <!--總收益率 overallYield-->
                 <tr class="bg-lightgray">
-                    <td>總交易次數</td>
-                    <td>2026</td>
+                    <td>總收益率</td>
+                    <td>{{overallYield}}</td>
                 </tr>
+                <!-- 最大策略虧損 MDD-->
                 <tr>
-                    <td>獲利次數</td>
-                    <td>1005</td>
+                    <td>最大策略虧損</td>
+                    <td>{{MDD}}</td>
                 </tr>
+                <!-- 夏普指數 sharpeRatio-->
                 <tr class="bg-lightgray">
-                    <td>虧損次數</td>
-                    <td>1021</td>
+                    <td>夏普指數</td>
+                    <td>{{sharpeRatio}}</td>
                 </tr>
+                <!-- SQN -->
+                <tr>
+                    <td>SQN</td>
+                    <td>{{SQN}}</td>
+                </tr>
+                <!-- 以下不確定是否做多做空都能用，所以先放在下半部-->
+                <!--賺賠比 earnLossRatio-->
+                <tr class="bg-lightgray">
+                    <td>賺賠比</td>
+                    <td>{{earnLossRatio}}</td>
+                </tr>
+                <!--獲利因子 profitFactor-->
                 <tr>
                     <td>獲利因子</td>
-                    <td>1.45</td>
+                    <td>{{profitFactor}}</td>
                 </tr>
+                <!--總交易次數 transactionsCount-->
                 <tr class="bg-lightgray">
-                    <td>年化報酬率</td>
-                    <td>7.23%</td>
+                    <td>總交易次數</td>
+                    <td>{{transactionsCount}}</td>
                 </tr>
+                <!--盈利次數 profitCount-->
                 <tr>
-                    <td>最大獲利次數</td>
-                    <td>25</td>
+                    <td>盈利次數</td>
+                    <td>{{profitCount}}</td>
                 </tr>
+                <!--虧損次數 lossCount-->
                 <tr class="bg-lightgray">
-                    <td>最大虧損次數</td>
-                    <td>45</td>
+                    <td>虧損次數</td>
+                    <td>{{lossCount}}</td>
                 </tr>
+                <!--勝率 winRate-->
                 <tr>
-                    <td>最大連續獲利(%)</td>
-                    <td>2.13%</td>
-                </tr>
-                <tr class="bg-lightgray">
-                    <td>最大連續虧損(%)</td>
-                    <td>-2.63%</td>
+                    <td>勝率</td>
+                    <td>{{winRate}}</td>
                 </tr>
             </table>
         </div>
