@@ -447,8 +447,24 @@ def robotnormal(request):
             print('夏普指數:', start.analyzers.SR.get_analysis()["sharperatio"])
             print('總收益率:', start.analyzers.RS.get_analysis()["rtot"])
             """
+            finalPortfolio = cerebro.broker.getvalue()
+            earning = end_value-start_value
+            overallYield = start.analyzers.RS.get_analysis()["rtot"]
+            MDD = start.analyzers.DW.get_analysis()["max"]["drawdown"]
             sharpeRatio = start.analyzers.SR.get_analysis()["sharperatio"]
-
+            SQN = start.analyzers.SQN.get_analysis()["sqn"]
+            earnLossRatio = start.analyzers.TradeAnalyzer.get_analysis()[
+                'won']['pnl']['average'] / (-1 * start.analyzers.TradeAnalyzer.get_analysis()['lost']['pnl']['average'])
+            profitFactor = start.analyzers.TradeAnalyzer.get_analysis()[
+                'won']['pnl']['total'] / (-1 * start.analyzers.TradeAnalyzer.get_analysis()['lost']['pnl']['total'])
+            transactionsCount = start.analyzers.TradeAnalyzer.get_analysis()[
+                'total']['total']
+            profitCount = start.analyzers.TradeAnalyzer.get_analysis()[
+                'won']['total']
+            lossCount = start.analyzers.TradeAnalyzer.get_analysis()[
+                'lost']['total']
+            winRate = start.analyzers.TradeAnalyzer.get_analysis(
+            )['won']['total'] / start.analyzers.TradeAnalyzer.get_analysis()['total']['total']
             # =========backtrader==================
             # 先把策略包備份到看不到的地方
             request.session['strategy_pack_backup'] = strategy
