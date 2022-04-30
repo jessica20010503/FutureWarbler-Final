@@ -28,7 +28,7 @@ import os
 from pathlib import Path
 import datetime
 from pandas import Period
-from myapp.strategy_Function import MA_1, MA_2
+#from myapp.strategy_Function import MA_1, MA_2
 # import json
 # from rest_framework.views import APIView
 # from rest_framework import viewsets
@@ -590,7 +590,7 @@ def robotintelligent(request):
             print("start profolio {}".format(cerebro.broker.getvalue()))
             cerebro.run()
             print("final profolio {}".format(cerebro.broker.getvalue()))
-
+            cerebro.plot()
             # 先把策略包備份到看不到的地方
             request.session['ai_strategy_pack_backup'] = ai_strategy
             # 刪除回測用策略包，以免每次近來都要先回測一次降低效能
