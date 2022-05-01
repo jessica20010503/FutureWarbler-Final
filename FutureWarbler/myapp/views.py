@@ -20,7 +20,7 @@ from urllib.parse import unquote
 from myapp.mods import futuresDateTime as fdt
 from myapp.mods.bt_frame import Strategy
 from myapp.mods.bt_frame_algo import Strategy_algo, GenericCSVData_Predict
-from myapp.mods.bt_dataframe import bt_dataframe
+from myapp.mods.bt_dataframe import bt_dataframe, bt_result_dataframe
 import backtrader as bt
 import pandas as pd
 # 載入指定檔案路徑相關的模組
@@ -533,8 +533,19 @@ def robotintelligent(request):
             """
             演算法窗個顯示
             """
-            result_df = pd.read_csv(
-                r'mods/algodata_result/SVM_tf_fall_result.csv')
+            resultFilename = bt_result_dataframe(
+                ai_futures, ai_long_short, ai_algorithm)
+            result_df = pd.read_csv(resultFilename)
+
+            # 讀取 accuracy
+            accuracy_0, accuracy_1, accuracy_2, accuracy_3, accuracy_4, accuracy_5, accuracy_6, accuracy_7, accuracy_8, accuracy_9, accuracy_10, accuracy_11, accuracy_12, accuracy_13, accuracy_14, accuracy_15, accuracy_16, accuracy_17, accuracy_average, accuracy_dev = result_df['accuracy'][0], result_df['accuracy'][1], result_df['accuracy'][2], result_df['accuracy'][3], result_df['accuracy'][4], result_df['accuracy'][5], result_df['accuracy'][6], result_df['accuracy'][7], result_df['accuracy'][8], result_df[
+                'accuracy'][9], result_df['accuracy'][10], result_df['accuracy'][11], result_df['accuracy'][12], result_df['accuracy'][13], result_df['accuracy'][14], result_df['accuracy'][15], result_df[
+                'accuracy'][16], result_df['accuracy'][17], result_df['accuracy'][18], result_df['accuracy'][19]
+
+            # 讀取 f1-score
+            f1_0, f1_1, f1_2, f1_3, f1_4, f1_5, f1_6, f1_7, f1_8, f1_9, f1_10, f1_11, f1_12, f1_13, f1_14, f1_15, f1_16, f1_17, f1_average, f1_dev = result_df['f1_macro'][0], result_df['f1_macro'][1], result_df['f1_macro'][2], result_df['f1_macro'][3], result_df['f1_macro'][4], result_df['f1_macro'][5], result_df['f1_macro'][6], result_df['f1_macro'][7], result_df['f1_macro'][8], result_df[
+                'f1_macro'][9], result_df['f1_macro'][10], result_df['f1_macro'][11], result_df['f1_macro'][12], result_df['f1_macro'][13], result_df['f1_macro'][14], result_df['f1_macro'][15], result_df[
+                'f1_macro'][16], result_df['f1_macro'][17], result_df['f1_macro'][18], result_df['f1_macro'][19]
 
             """
                把回測功能寫在這邊
