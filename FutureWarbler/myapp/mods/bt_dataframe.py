@@ -12,12 +12,12 @@ Created on Thu Apr 28 22:32:46 2022
 
 
 def bt_dataframe(futures, longshort, algo):
-    # 如果是空
+    # 如果是多
     if longshort == 0:
         name = "myapp\\mods\\algodata\\"+algo+"_bt_"+futures+"_long.csv"
         #file= pd.read_csv('data/rf_bt_mtx_short.csv')
 
-    # 如果是多
+    # 如果是空
     else:
         name = "myapp\\mods\\algodata\\"+algo+"_bt_"+futures+"_short.csv"
 
@@ -28,12 +28,12 @@ def bt_dataframe(futures, longshort, algo):
 
 
 def bt_result_dataframe(futures, longshort, algo):
-    # 如果是空
+    # 如果是多
     if longshort == 0:
         name = "myapp\\mods\\algodata_result\\"+algo+"_"+futures+"_rise_result.csv"
         #file= pd.read_csv('myapp/mods/algodata_result/SVM_tf_fall_result.csv')
 
-    # 如果是多
+    # 如果是空
     else:
         name = "myapp\\mods\\algodata_result\\"+algo+"_"+futures+"_fall_result.csv"
 
