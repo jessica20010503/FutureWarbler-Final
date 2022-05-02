@@ -408,7 +408,7 @@ class TechnicalStrategry(models.Model):
     technical_strategry_start = models.DateField()
     technical_strategry_end = models.DateField()
     technical_strategy_long_short = models.CharField(max_length=11, default='')
-    technical_strategy_stop_lp = models.CharField(max_length=11, default='')
+    technical_strategy_stop_pl = models.CharField(max_length=11, default='')
     technical_strategy_money_manage = models.CharField(max_length=11, default='')
     technical_strategry_enter = models.CharField(max_length=11, default='')
     technical_strategry_exit = models.CharField(max_length=11, default='')

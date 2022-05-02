@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',  # 新增的 app
+    'rest_framework',
+    
 
 ]
 
