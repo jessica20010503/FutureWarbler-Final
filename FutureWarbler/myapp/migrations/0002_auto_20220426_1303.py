@@ -10,19 +10,19 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.DeleteModel(
-            name='Newscontent',
-        ),
-        migrations.RenameField(
-            model_name='intelligentstrategy',
-            old_name='intelligent_strategy_name',
-            new_name='intelligent_strategy_id',
-        ),
-        migrations.RenameField(
-            model_name='technicalstrategry',
-            old_name='technical_strategry_id',
-            new_name='technical_strategy_id',
-        ),
+        # migrations.DeleteModel(
+        #     name='Newscontent',
+        # ),
+        # migrations.RenameField(
+        #      model_name='intelligentstrategy',
+        #      old_name='intelligent_strategy_id',
+        #      new_name='intelligent_strategy_id',
+        #  ),
+        #migrations.RenameField(
+        #    model_name='technicalstrategry',
+        #    old_name='technical_strategry_name',
+        #    new_name='technical_strategy_id',
+        #),
         migrations.AddField(
             model_name='intelligentstrategy',
             name='intelligent_strategy_long_short',
@@ -38,11 +38,11 @@ class Migration(migrations.Migration):
             name='intelligent_strategy_stop_pl',
             field=models.CharField(default='', max_length=11),
         ),
-        migrations.AddField(
-            model_name='news',
-            name='news_category',
-            field=models.BigIntegerField(blank=True, null=True),
-        ),
+        # migrations.AddField(
+        #     model_name='news',
+        #     name='news_category',
+        #     field=models.BigIntegerField(blank=True, null=True),
+        # ),
         migrations.AddField(
             model_name='news',
             name='news_type',

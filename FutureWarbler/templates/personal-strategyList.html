@@ -58,17 +58,6 @@
                             <th>商品<br>代號</th>
                             <th>商品<br>名稱</th>
                             <th>說明</th>
-                            <!--
-                            <th>資料<br>週期</th>
-                            <th>開始時間 / 結束時間</th>
-                            <th>多空<br>設定</th>
-                            <th>進場<br>策略</th>
-                            <th>出場<br>策略</th>
-                            <th>演算法</th>
-                            <th>資金<br>管理</th>
-                            <th>停損<br>設定</th>
-                            <th>停利<br>設定</th>
-                            -->
                             <th>修改</th>
                             <th>刪除</th>
                         </tr>
@@ -78,17 +67,6 @@
                             <td>一般交易</td>
                             <td>MNQ</td>
                             <td>小那斯達克</td>
-                            <!--
-                            <td>1分鐘</td>
-                            <td>2020/10/11 ~ 2021/5/31</td>
-                            <td>做多</td>
-                            <td>RSI > 50</td>
-                            <td>K值向下跌破D值</td>
-                            <td>-</td>
-                            <td>固定金額推薦</td>
-                            <td>停損1%</td>
-                            <td>停利2%</td>
-                            -->
                             <td>
                                 <input type="button" value="查看詳細資訊" class="info_btn b-n" data-bs-toggle="modal"
                                     data-bs-target="#exampleModalCenter1">
@@ -193,7 +171,8 @@
                                                 <button type="button" class="b-n close__btn" data-bs-dismiss="modal"
                                                     aria-label="Close"><i class="fas fa-times fz-s"></i></button>
                                             </div>
-                                            <form action="">
+                                            <form action="" method="post">
+                                                {% csrf_token %}
                                                 <div class="modal-body  p-4  gray-bg">
                                                     <div class=" w-80 m0-a tal">
                                                         <!-- 3.修改資料 -->
@@ -204,14 +183,14 @@
                                                                 value="nasdaq_001">
                                                         </div>
                                                         <div class="w-100 fl">
-                                                            <label for="name" class=" fwbr">策略類型</label>
-                                                            <input type="text" name="name" id="name"
+                                                            <label for="strategyname" class=" fwbr">策略類型</label>
+                                                            <input type="text" name="strategyname" id="strategyname"
                                                                 class="d-block w-100 br-s mt-1 mb-2 p-1 b-n shallow-gray"
                                                                 value="一般交易" readonly="readonly">
                                                         </div>
                                                         <div class="w-48 fl">
-                                                            <label for="name" class=" fwbr">商品代號</label>
-                                                            <input type="text" name="name" id="name"
+                                                            <label for="goodname" class=" fwbr">商品代號</label>
+                                                            <input type="text" name="goodname" id="goodname"
                                                                 class="d-block w-100 br-s mt-1 mb-2 p-1 b-n shallow-gray"
                                                                 value="小那斯達克" readonly="readonly">
                                                         </div>
@@ -231,14 +210,14 @@
                                                         <div class="w-48 fl">
                                                             <label for="start-time"
                                                                 class="dark-gray fz-s fwbr">開始時間</label>
-                                                            <input id="start-time" name="start-time" type="date"
+                                                            <input id="starttime" name="start-time" type="date"
                                                                 class="mb-2 br-s p-1 b-n mt-1 mb-2 d-block w-100 "
                                                                 min="2017-01-05" max="2022-02-25">
                                                         </div>
                                                         <div class="w-48 fr">
                                                             <label for="end-time"
                                                                 class="dark-gray fz-s fwbr">結束時間</label>
-                                                            <input id="end-time" name="end-time" type="date"
+                                                            <input id="endtime" name="end-time" type="date"
                                                                 class="mb-2 br-s p-1 b-n mt-1 mb-2 d-block w-100 "
                                                                 min="2017-01-05" max="2022-02-25">
                                                         </div>
@@ -251,8 +230,8 @@
                                                             <input type="radio" name="bullbearchoice"
                                                                 id="bullbearchoice">做空
                                                         </div>
-                                                        <label for="in" class="dark-gray fz-s fwbr">進場策略</label>
-                                                        <select id="in" name="in"
+                                                        <label for="pin" class="dark-gray fz-s fwbr">進場策略</label>
+                                                        <select id="pin" name="pin"
                                                             class="mb-2 br-s p-1 b-n mt-1 mb-2 d-block w-100 ">
                                                             <option value="">MA快線向上突破慢線</option>
                                                             <option value="">MA快線向下跌破慢線</option>
@@ -280,14 +259,14 @@
                                                             <option value="">空單正乖離率過大並回落特定界線</option>
                                                         </select>
                                                         <div class="w-100 fl">
-                                                            <label for="name" class=" fwbr">演算法</label>
-                                                            <input type="text" name="name" id="name"
+                                                            <label for="alname" class=" fwbr">演算法</label>
+                                                            <input type="text" name="alname" id="alname"
                                                                 class="d-block w-100 br-s mt-1 mb-2 p-1 b-n shallow-gray"
                                                                 value="此欄位為空" readonly="readonly">
                                                         </div>
-                                                        <label for="moneyManagement"
+                                                        <label for="monout"
                                                             class="dark-gray fz-s fwbr">資金管理</label>
-                                                        <select id="moneyManagement" name="out"
+                                                        <select id="monout" name="monout"
                                                             class="mb-2 br-s p-1 b-n mt-1 mb-2 d-block w-100 ">
                                                             <option value="">固定口數</option>
                                                             <option value="">固定比例推薦</option>
@@ -338,7 +317,7 @@
                                                 <div class="modal-footer ">
                                                     <button type="button" class="close__btn dark-gray b-n "
                                                         data-bs-dismiss="modal">取消</button>
-                                                    <button type="button" class="renew__btn dark-gray b-n">確定</button>
+                                                    <button type="submit" class="renew__btn dark-gray b-n">確定T</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -709,7 +688,7 @@
                                 </div>
                             </td>
                             <td>
-                                <input type="button" value="修改" class="edit__btn b-n" data-bs-toggle="modal"
+                                <input type="button"  value="修改" class="edit__btn b-n" data-bs-toggle="modal"
                                     data-bs-target="#exampleModalCenter2">
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModalCenter2" tabindex="-1"
@@ -722,7 +701,7 @@
                                                 <button type="button" class="b-n close__btn" data-bs-dismiss="modal"
                                                     aria-label="Close"><i class="fas fa-times fz-s"></i></button>
                                             </div>
-                                            <form action="">
+                                            <form action="/strategy" method="post">
                                                 <div class="modal-body  p-4  gray-bg">
                                                     <div class=" w-80 m0-a tal">
                                                         <!-- 3.修改資料 -->
@@ -734,13 +713,13 @@
                                                         </div>
                                                         <div class="w-100 fl">
                                                             <label for="name" class=" fwbr">策略類型</label>
-                                                            <input type="text" name="name" id="name"
+                                                            <input type="text" name="name" id="strategyname"
                                                                 class="d-block w-100 br-s mt-1 mb-2 p-1 b-n shallow-gray"
                                                                 value="一般交易" readonly="readonly">
                                                         </div>
                                                         <div class="w-48 fl">
                                                             <label for="name" class=" fwbr">商品代號</label>
-                                                            <input type="text" name="name" id="name"
+                                                            <input type="text" name="name" id="goodname"
                                                                 class="d-block w-100 br-s mt-1 mb-2 p-1 b-n shallow-gray"
                                                                 value="小那斯達克" readonly="readonly">
                                                         </div>
@@ -780,8 +759,8 @@
                                                             <input type="radio" name="bullbearchoice"
                                                                 id="bullbearchoice">做空
                                                         </div>
-                                                        <label for="in" class="dark-gray fz-s fwbr">進場策略</label>
-                                                        <select id="in" name="in"
+                                                        <label for="pin" class="dark-gray fz-s fwbr">進場策略</label>
+                                                        <select id="pin" name="pin"
                                                             class="mb-2 br-s p-1 b-n mt-1 mb-2 d-block w-100 ">
                                                             <option value="">MA快線向上突破慢線</option>
                                                             <option value="">MA快線向下跌破慢線</option>
@@ -810,13 +789,13 @@
                                                         </select>
                                                         <div class="w-100 fl">
                                                             <label for="name" class=" fwbr">演算法</label>
-                                                            <input type="text" name="name" id="name"
+                                                            <input type="text" name="name" id="alname"
                                                                 class="d-block w-100 br-s mt-1 mb-2 p-1 b-n shallow-gray"
                                                                 value="此欄位為空" readonly="readonly">
                                                         </div>
                                                         <label for="moneyManagement"
                                                             class="dark-gray fz-s fwbr">資金管理</label>
-                                                        <select id="moneyManagement" name="out"
+                                                        <select id="moneyManagement" name="monout"
                                                             class="mb-2 br-s p-1 b-n mt-1 mb-2 d-block w-100 ">
                                                             <option value="">固定口數</option>
                                                             <option value="">固定比例推薦</option>
@@ -843,11 +822,11 @@
                                                             -->
                                                     </div>
                                                 </div>
-                                                <div class="modal-footer ">
+                                                {% comment %} <div class="modal-footer "> {% endcomment %}
                                                     <button type="button" class="close__btn dark-gray b-n "
                                                         data-bs-dismiss="modal">取消</button>
-                                                    <button type="button" class="renew__btn dark-gray b-n">確定</button>
-                                                </div>
+                                                        <input type="submit" value="登入" ></input>
+                                                {% comment %} </div> {% endcomment %}
                                             </form>
                                         </div>
                                     </div>
@@ -977,7 +956,7 @@
                                                 <button type="button" class="b-n close__btn" data-bs-dismiss="modal"
                                                     aria-label="Close"><i class="fas fa-times fz-s"></i></button>
                                             </div>
-                                            <form action="">
+                                            <form action="/strategy" method="post">
                                                 <div class="modal-body  p-4  gray-bg">
                                                     <div class=" w-80 m0-a tal">
                                                         <!-- 3.修改資料 -->
@@ -1101,7 +1080,7 @@
                                                 <div class="modal-footer ">
                                                     <button type="button" class="close__btn dark-gray b-n "
                                                         data-bs-dismiss="modal">取消</button>
-                                                    <button type="button" class="renew__btn dark-gray b-n">確定</button>
+                                                    <a href="/" class=" d-block w-48"><input type="submit" value="登入"< /a>
                                                 </div>
                                             </form>
                                         </div>
