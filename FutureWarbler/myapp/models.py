@@ -13,11 +13,6 @@ class ADebt(models.Model):
     a_debt_volume = models.CharField(max_length=8)
 
     class Meta:
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> dev
         managed = False
         db_table = 'a_debt'
         unique_together = (('a_debt_time', 'a_debt_date'),)
@@ -152,11 +147,6 @@ class DjangoAdminLog(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
 
     class Meta:
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> dev
         managed = False
         db_table = 'django_admin_log'
 
@@ -220,12 +210,7 @@ class Futures(models.Model):
 
 
 class History(models.Model):
-<<<<<<< HEAD
-    member = models.OneToOneField(
-        'Member', models.DO_NOTHING, primary_key=True)
-=======
     member = models.OneToOneField('Member', models.DO_NOTHING, primary_key=True)
->>>>>>> dev
     futures = models.ForeignKey(Futures, models.DO_NOTHING)
     buy_qty = models.IntegerField()
     buy_mon = models.IntegerField()
@@ -249,13 +234,6 @@ class IndexClass(models.Model):
     index_class_photo = models.CharField(max_length=100)
 
     class Meta:
-<<<<<<< HEAD
-
-        managed = True
-        db_table = 'index_class'
-=======
->>>>>>> dev
-
         managed = True
         db_table = 'index_class'
 
@@ -264,27 +242,15 @@ class IntelligentStrategy(models.Model):
     futures = models.ForeignKey(Futures, models.DO_NOTHING)
     member = models.ForeignKey('Member', models.DO_NOTHING)
     intelligent_strategy_algorithm = models.CharField(max_length=10)
-<<<<<<< HEAD
-    intelligent_strategy_long_short = models.CharField(
-        max_length=11, default='')
-    intelligent_strategy_money_manage = models.CharField(
-        max_length=11, default='')
-=======
     intelligent_strategy_long_short = models.CharField(max_length=11, default='')
     intelligent_strategy_money_manage = models.CharField(max_length=11, default='')
->>>>>>> dev
     intelligent_strategy_stop_pl = models.CharField(max_length=11, default='')
 
     class Meta:
         managed = True
         db_table = 'intelligent_strategy'
         unique_together = (('intelligent_strategy_id', 'member_id'),)
-<<<<<<< HEAD
 
-
-=======
-        
->>>>>>> dev
 class Member(models.Model):
     member_id = models.CharField(primary_key=True, max_length=50)
     member_password = models.CharField(max_length=50)
@@ -441,14 +407,8 @@ class TechnicalStrategry(models.Model):
     technical_strategry_start = models.DateField()
     technical_strategry_end = models.DateField()
     technical_strategy_long_short = models.CharField(max_length=11, default='')
-<<<<<<< HEAD
-    technical_strategy_stop_lp = models.CharField(max_length=11, default='')
-    technical_strategy_money_manage = models.CharField(
-        max_length=11, default='')
-=======
     technical_strategy_stop_pl = models.CharField(max_length=11, default='')
     technical_strategy_money_manage = models.CharField(max_length=11, default='')
->>>>>>> dev
     technical_strategry_enter = models.CharField(max_length=11, default='')
     technical_strategry_exit = models.CharField(max_length=11, default='')
 
@@ -507,10 +467,7 @@ class Wheat(models.Model):
         unique_together = (('wheat_time', 'wheat_date'),)
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
 class Newscontent(models.Model):
     news_id = models.IntegerField(primary_key=True)
     news_title = models.TextField(blank=True, null=True)
@@ -524,8 +481,5 @@ class Newscontent(models.Model):
     class Meta:
 
         managed = True
-<<<<<<< HEAD
-        db_table = 'news_content'
-=======
         db_table = 'news_content' 
->>>>>>> dev
+
