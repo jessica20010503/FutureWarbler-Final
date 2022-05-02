@@ -500,9 +500,7 @@ def send_strategy_sql(request):
 
     return redirect('/robot-normal/')
 
-# -----------------智能交易機器人--------------------------
-
-
+# -----------------智能交易機器人-----------------------------
 def robotintelligent(request):
     if 'username' in request.session:
         ok = 'yes'
