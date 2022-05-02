@@ -468,6 +468,7 @@ class Wheat(models.Model):
         unique_together = (('wheat_time', 'wheat_date'),)
 
 
+
 class Newscontent(models.Model):
     news_id = models.IntegerField(primary_key=True)
     news_title = models.TextField(blank=True, null=True)
