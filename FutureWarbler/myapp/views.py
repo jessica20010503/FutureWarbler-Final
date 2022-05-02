@@ -19,19 +19,22 @@ from django.db import connection
 from urllib.parse import unquote
 from myapp.mods import futuresDateTime as fdt
 from myapp.mods.bt_frame import Strategy
+from myapp.mods.bt_frame_algo import Strategy_algo, GenericCSVData_Predict
+from myapp.mods.bt_dataframe import bt_dataframe, bt_result_dataframe
 import backtrader as bt
+import pandas as pd
 # 載入指定檔案路徑相關的模組
 import os
 from pathlib import Path
 import datetime
 from pandas import Period
-from myapp.strategy_Function import MA_1, MA_2
+#from myapp.strategy_Function import MA_1, MA_2
 # import json
 # from rest_framework.views import APIView
 # from rest_framework import viewsets
 # from django.http import JsonResponse
 # from Facade import TechnicalIndicatorsImgFacade
-# from myapp.models import Soy, Tx, Mtx, Te, Tf, MiniDow, MiniNastaq, MiniSp, MiniRussell, ADebt, Wheat, Corn
+from myapp.models import Soy, Tx, Mtx, Te, Tf, MiniDow, MiniNastaq, MiniSp, MiniRussell, ADebt, Wheat, Corn
 
 
 # 連線至資料庫
@@ -301,8 +304,26 @@ def trade(request):
         username = request.session['username']
         photo = request.session['photo']
     else:
+        ok = ''
+        username = 'no'
+        photo = 'no'
         return redirect('/personal-unlogin/')
-    return render(request, "trade.html", locals())
+    TXData = Tx.objects.all().order_by("-id")[:1]
+    MTXData = Mtx.objects.all().order_by("-id")[:1]
+    TEData = Te.objects.all().order_by("-id")[:1]
+    TFData = Tf.objects.all().order_by("-id")[:1]
+    YMData = MiniDow.objects.all().order_by("-id")[:1]
+    NQData = MiniNastaq.objects.all().order_by("-id")[:1]
+    ESData = MiniSp.objects.all().order_by("-id")[:1]
+    RTYData = MiniRussell.objects.all().order_by("-id")[:1]
+    TYData = ADebt.objects.all().order_by("-id")[:1]
+    soyData = Soy.objects.all().order_by("-id")[:1]
+    wheatData = Wheat.objects.all().order_by("-id")[:1]
+    cornData = Corn.objects.all().order_by("-id")[:1]
+    # for item in soy1[:1]:
+    #     print(item.id)
+    #     print("結束")
+    return render(request, "trade.html", {"Tx": TXData, "Mtx": MTXData, "Te": TEData, "Tf": TFData, "MiniDow": YMData, "MiniNastaq": NQData, "MiniSp": ESData, "MiniRussell": RTYData, "ADebt": TYData, "Soy": soyData, "Wheat": wheatData, "Corn": cornData})
 
 
 # -----------------策略交易機器人--------------------------
@@ -317,7 +338,7 @@ def robotnormal(request):
             strategy = request.session['strategy_pack']
             long_short = strategy["long_short"]  # 做空做多
             money_manage = strategy["money_manage"]  # 資金管理
-            freq = strategy['period'] # 資料集時間週期
+            freq = strategy['period']  # 資料集時間週期
             start = strategy["start"]  # 資料集開始時間
             end = strategy["end"]  # 資料集結束時間
             enter = strategy["enter"]  # 進場策略
@@ -325,7 +346,7 @@ def robotnormal(request):
             futures = strategy["futures"]  # 期貨
             stop_pl = strategy['stop_pl'].split("/")  # 停損停利/停損範圍/停利範圍
             stop = stop_pl[0]  # 停損停利代號
-            
+
             if stop_pl[0] == "point":  # 固定式
                 stop_loss = float(stop_pl[1])
                 stop_profit = float(stop_pl[2])
@@ -336,7 +357,8 @@ def robotnormal(request):
             else:  # 移動停損
                 stop_loss = float(stop_pl[1])
 
-            message = ("我們session是有東西的", futures, "停損:", stop_loss,"資料開始時間:",start,stop_pl)
+            message = ("我們session是有東西的", futures, "停損:",
+                       stop_loss, "資料開始時間:", start, stop_pl)
 
             """
                把回測功能寫在這邊
@@ -363,43 +385,89 @@ def robotnormal(request):
                 margin = 2063
             elif futures == 'corn':
                 margin = 1678
-            
 
-            #=========backtrader==================
-            #還沒接資料集
-            
+            # =========backtrader==================
+            # 還沒接資料集
+
             cerebro = bt.Cerebro()
             cerebro.broker.setcash(10000000)
             cerebro.broker.setcommission(commission=0.001, margin=margin)
             value = cerebro.broker.getvalue()
-            cerebro.addstrategy(Strategy,longshort=long_short, instrategy=enter, outstrategy=exit, stopstrategy=stop, losspoint=stop_loss, profitpoint=stop_profit, tmp=value)
+            cerebro.addstrategy(Strategy, longshort=long_short, instrategy=enter, outstrategy=exit,
+                                stopstrategy=stop, losspoint=stop_loss, profitpoint=stop_profit, tmp=value)
 
             # 載入資料集
-            '''
+
             data_path = Path(os.getcwd())/'myapp\\mods\\MXF1-2年-1小時.csv'
             data = bt.feeds.GenericCSVData(dataname=data_path,
-                                        fromdate=datetime.datetime(2019, 1, 1),
-                                        todate=datetime.datetime(2019, 12, 31),
-                                        nullvalue=0.0,
-                                        dtformat=('%Y-%m-%d'),
-                                        tmformat=('%H:%M:%S'),
-                                        date=0,
-                                        time=1,
-                                        high=3,
-                                        low=4,
-                                        open=2,
-                                        close=5,
-                                        volume=6,
-                                        openinterest=-1)
+                                           fromdate=datetime.datetime(
+                                               2019, 1, 1),
+                                           todate=datetime.datetime(
+                                               2019, 12, 31),
+                                           nullvalue=0.0,
+                                           dtformat=('%Y-%m-%d'),
+                                           tmformat=('%H:%M:%S'),
+                                           date=0,
+                                           time=1,
+                                           high=3,
+                                           low=4,
+                                           open=2,
+                                           close=5,
+                                           volume=6,
+                                           openinterest=-1)
+
             '''
             dataframe = fdt.futuresDateTime(futures, start, end, freq)
             data = bt.feeds.PandasData(dataname=dataframe,datetime=None, open=0, close=1, low=2, high=3, volume=4, openinterest=None)
+            '''
             cerebro.adddata(data)
-            cerebro.run()
+            # 抓最初資產
+            start_value = cerebro.broker.getvalue()
+            # 加入績效分析
+            cerebro.addanalyzer(bt.analyzers.AnnualReturn,
+                                _name='AnnualReturn')
+            cerebro.addanalyzer(bt.analyzers.DrawDown, _name='DW')
+            cerebro.addanalyzer(bt.analyzers.SharpeRatio, _name='SR')
+            cerebro.addanalyzer(bt.analyzers.Returns, _name='RS')
+            cerebro.addanalyzer(bt.analyzers.SQN, _name='SQN')
+            cerebro.addanalyzer(bt.analyzers.TradeAnalyzer,
+                                _name='TradeAnalyzer')
+
+            cerebro.run(runonce=False)
             cerebro.plot()
-            
-            #=========backtrader==================
-            request.session['strategy_pack_backup'] = strategy  # 先把策略包備份到看不到的地方
+            results = cerebro.run()
+            start = results[0]
+            # 抓最終資產
+            end_value = cerebro.broker.getvalue()
+            """
+            print("Final Portfolio {}".format(cerebro.broker.getvalue()))
+            print('收益:{:,.2f}'.format(end_value-start_value))
+            print('年利潤:', start.analyzers.AnnualReturn.get_analysis())
+            print('最大策略虧損:', start.analyzers.DW.get_analysis()["max"]["drawdown"])
+            print('夏普指數:', start.analyzers.SR.get_analysis()["sharperatio"])
+            print('總收益率:', start.analyzers.RS.get_analysis()["rtot"])
+            """
+            finalPortfolio = cerebro.broker.getvalue()
+            earning = end_value-start_value
+            overallYield = start.analyzers.RS.get_analysis()["rtot"]
+            MDD = start.analyzers.DW.get_analysis()["max"]["drawdown"]
+            sharpeRatio = start.analyzers.SR.get_analysis()["sharperatio"]
+            SQN = start.analyzers.SQN.get_analysis()["sqn"]
+            earnLossRatio = start.analyzers.TradeAnalyzer.get_analysis()[
+                'won']['pnl']['average'] / (-1 * start.analyzers.TradeAnalyzer.get_analysis()['lost']['pnl']['average'])
+            profitFactor = start.analyzers.TradeAnalyzer.get_analysis()[
+                'won']['pnl']['total'] / (-1 * start.analyzers.TradeAnalyzer.get_analysis()['lost']['pnl']['total'])
+            transactionsCount = start.analyzers.TradeAnalyzer.get_analysis()[
+                'total']['total']
+            profitCount = start.analyzers.TradeAnalyzer.get_analysis()[
+                'won']['total']
+            lossCount = start.analyzers.TradeAnalyzer.get_analysis()[
+                'lost']['total']
+            winRate = start.analyzers.TradeAnalyzer.get_analysis(
+            )['won']['total'] / start.analyzers.TradeAnalyzer.get_analysis()['total']['total']
+            # =========backtrader==================
+            # 先把策略包備份到看不到的地方
+            request.session['strategy_pack_backup'] = strategy
             del request.session['strategy_pack']  # 刪除回測用策略包，以免每次近來都要先回測一次降低效能
         else:
             message = "沒東西"
@@ -433,6 +501,8 @@ def send_strategy_sql(request):
     return redirect('/robot-normal/')
 
 # -----------------智能交易機器人--------------------------
+
+
 def robotintelligent(request):
     if 'username' in request.session:
         ok = 'yes'
@@ -444,7 +514,7 @@ def robotintelligent(request):
             ai_strategy = request.session['ai_strategy_pack']
             ai_long_short = ai_strategy["long_short"]  # 做空做多
             ai_money_manage = ai_strategy["money_manage"]  # 資金管理
-            ai_algorithm = ai_strategy["algorithm"]# 演算法
+            ai_algorithm = ai_strategy["algorithm"]  # 演算法
             ai_futures = ai_strategy["futures"]  # 期貨
             ai_stop_pl = ai_strategy['stop_pl'].split("/")  # 停損停利/停損範圍/停利範圍
             ai_stop = ai_stop_pl[0]  # 停損停利代號
@@ -458,14 +528,128 @@ def robotintelligent(request):
             else:  # 移動停損
                 ai_stop_loss = float(ai_stop_pl[1])
 
-            message = ("我們session是有東西的", ai_futures, ai_money_manage, ai_algorithm, ai_stop_pl, ai_stop_loss, ai_stop_profit)
+            message = ("我們session是有東西的", ai_futures, ai_money_manage,
+                       ai_algorithm, ai_stop_pl, ai_stop_loss, ai_stop_profit)
+            """
+            演算法窗個顯示
+            """
+            resultFilename = bt_result_dataframe(
+                ai_futures, ai_long_short, ai_algorithm)
+            result_df = pd.read_csv(resultFilename)
+
+            # 讀取 accuracy
+            accuracy_0, accuracy_1, accuracy_2, accuracy_3, accuracy_4, accuracy_5, accuracy_6, accuracy_7, accuracy_8, accuracy_9, accuracy_10, accuracy_11, accuracy_12, accuracy_13, accuracy_14, accuracy_15, accuracy_16, accuracy_17, accuracy_average, accuracy_dev = result_df['accuracy'][0], result_df['accuracy'][1], result_df['accuracy'][2], result_df['accuracy'][3], result_df['accuracy'][4], result_df['accuracy'][5], result_df['accuracy'][6], result_df['accuracy'][7], result_df['accuracy'][8], result_df[
+                'accuracy'][9], result_df['accuracy'][10], result_df['accuracy'][11], result_df['accuracy'][12], result_df['accuracy'][13], result_df['accuracy'][14], result_df['accuracy'][15], result_df[
+                'accuracy'][16], result_df['accuracy'][17], result_df['accuracy'][18], result_df['accuracy'][19]
+
+            # 讀取 f1-score
+            f1_0, f1_1, f1_2, f1_3, f1_4, f1_5, f1_6, f1_7, f1_8, f1_9, f1_10, f1_11, f1_12, f1_13, f1_14, f1_15, f1_16, f1_17, f1_average, f1_dev = result_df['f1_macro'][0], result_df['f1_macro'][1], result_df['f1_macro'][2], result_df['f1_macro'][3], result_df['f1_macro'][4], result_df['f1_macro'][5], result_df['f1_macro'][6], result_df['f1_macro'][7], result_df['f1_macro'][8], result_df[
+                'f1_macro'][9], result_df['f1_macro'][10], result_df['f1_macro'][11], result_df['f1_macro'][12], result_df['f1_macro'][13], result_df['f1_macro'][14], result_df['f1_macro'][15], result_df[
+                'f1_macro'][16], result_df['f1_macro'][17], result_df['f1_macro'][18], result_df['f1_macro'][19]
 
             """
                把回測功能寫在這邊
             """
-            
-            request.session['ai_strategy_pack_backup'] = ai_strategy  # 先把策略包備份到看不到的地方
-            del request.session['ai_strategy_pack']  # 刪除回測用策略包，以免每次近來都要先回測一次降低效能
+            if ai_futures == 'tx':
+                margin = 18400
+            elif ai_futures == 'mtx':
+                margin = 46000
+            elif ai_futures == 'te':
+                margin = 180000
+            elif ai_futures == 'tf':
+                margin = 79000
+            elif ai_futures == 'mini_dow':
+                margin = 9350
+            elif ai_futures == 'mini_nasdaq':
+                margin = 18700
+            elif ai_futures == 'mini_sp':
+                margin = 12650
+            elif ai_futures == 'mini_russell':
+                margin = 6600
+            elif ai_futures == 'soy':
+                margin = 2915
+            elif ai_futures == 'wheat':
+                margin = 2063
+            elif ai_futures == 'corn':
+                margin = 1678
+
+            cerebro = bt.Cerebro()
+            cerebro.broker.setcash(10000000)
+            # 券商保證金以及手續費設定
+            cerebro.broker.setcommission(commission=0.001, margin=margin)
+            value = cerebro.broker.getvalue()
+
+            cerebro.addstrategy(Strategy_algo, longshort=ai_long_short, algostrategy=ai_algorithm,
+                                stopstrategy=ai_stop, losspoint=ai_stop_loss, profitpoint=ai_stop_profit, tmp=value)
+
+            # 加入資料集 先用mtx並且先假裝做"多"
+            filename = bt_dataframe(ai_futures, ai_long_short, ai_algorithm)
+            # 載入資料集
+            data = GenericCSVData_Predict(dataname=filename,
+                                          fromdate=datetime.datetime(
+                                              2018, 1, 1),
+                                          todate=datetime.datetime(2020, 1, 1),
+                                          nullvalue=0.0,
+                                          dtformat=('%Y-%m-%d'),
+                                          tmformat=('%H:%M:%S'),
+                                          date=0,
+                                          time=1,
+                                          high=3,
+                                          low=5,
+                                          open=2,
+                                          close=4,
+                                          volume=6,
+                                          predict=7,
+                                          openinterest=-1)
+
+            cerebro.adddata(data)
+            # 抓最初資產
+            start_value = cerebro.broker.getvalue()
+            # 加入績效分析
+            cerebro.addanalyzer(bt.analyzers.AnnualReturn,
+                                _name='AnnualReturn')
+            cerebro.addanalyzer(bt.analyzers.DrawDown, _name='DW')
+            cerebro.addanalyzer(bt.analyzers.SharpeRatio, _name='SR')
+            cerebro.addanalyzer(bt.analyzers.Returns, _name='RS')
+            cerebro.addanalyzer(bt.analyzers.SQN, _name='SQN')
+            cerebro.addanalyzer(bt.analyzers.TradeAnalyzer,
+                                _name='TradeAnalyzer')
+            #print("start profolio {}".format(cerebro.broker.getvalue()))
+            cerebro.run(runonce=False)
+            #print("final profolio {}".format(cerebro.broker.getvalue()))
+
+            results = cerebro.run()
+            start = results[0]
+            # 抓最終資產
+            end_value = cerebro.broker.getvalue()
+            """
+            print("Final Portfolio {}".format(cerebro.broker.getvalue()))
+            print('收益:{:,.2f}'.format(end_value-start_value))
+            print('年利潤:', start.analyzers.AnnualReturn.get_analysis())
+            print('最大策略虧損:', start.analyzers.DW.get_analysis()["max"]["drawdown"])
+            print('夏普指數:', start.analyzers.SR.get_analysis()["sharperatio"])
+            print('總收益率:', start.analyzers.RS.get_analysis()["rtot"])
+            """
+            finalPortfolio = cerebro.broker.getvalue()
+            earning = end_value-start_value
+            overallYield = start.analyzers.RS.get_analysis()["rtot"]
+            MDD = start.analyzers.DW.get_analysis()["max"]["drawdown"]
+            sharpeRatio = start.analyzers.SR.get_analysis()["sharperatio"]
+            SQN = start.analyzers.SQN.get_analysis()["sqn"]
+            """
+            earnLossRatio = start.analyzers.TradeAnalyzer.get_analysis()['won']['pnl']['average'] / (-1 * start.analyzers.TradeAnalyzer.get_analysis()['lost']['pnl']['average'])
+            profitFactor = start.analyzers.TradeAnalyzer.get_analysis()['won']['pnl']['total'] / (-1 * start.analyzers.TradeAnalyzer.get_analysis()['lost']['pnl']['total'])
+            transactionsCount = start.analyzers.TradeAnalyzer.get_analysis()['total']['total']
+            profitCount = start.analyzers.TradeAnalyzer.get_analysis()['won']['total']
+            lossCount = start.analyzers.TradeAnalyzer.get_analysis()['lost']['total']
+            winRate = start.analyzers.TradeAnalyzer.get_analysis()['won']['total'] / start.analyzers.TradeAnalyzer.get_analysis()['total']['total']
+
+            """
+
+            # 先把策略包備份到看不到的地方
+            request.session['ai_strategy_pack_backup'] = ai_strategy
+            # 刪除回測用策略包，以免每次近來都要先回測一次降低效能
+            del request.session['ai_strategy_pack']
         else:
             message = "沒東西"
     else:
@@ -495,6 +679,7 @@ def send_ai_strategy_sql(request):
     return redirect('/robot-intelligent/')
 
 # -------------------期貨小教室----------------------------
+
 
 def classes(request):
     if 'username' in request.session:
@@ -837,6 +1022,8 @@ def order(request):
     return render(request, "order.html", locals())
 
 # ------------策略清單測試-----------------------
+
+
 def strategy_normal(request):
     if request.method == 'POST':
         product = request.POST['product']
@@ -965,30 +1152,30 @@ def strategy_ai(request):
         account = request.session['userid']
         algorithm = request.POST['algorithm']
 
-        #演算法
+        # 演算法
         if algorithm == '1':
-            algorithm = 'SVM'
+            algorithm = 'svm'
         elif algorithm == '2':
-            algorithm = 'RF'
+            algorithm = 'rf'
         elif algorithm == '3':
-            algorithm = 'Ada'
+            algorithm = 'ada'
         else:
-            algorithm = 'GEP'
+            algorithm = 'gep'
 
-        #資金管理
+        # 資金管理
         if fix == "4":
             fix = "fix_lot"
         elif fix == "5":
             fix = "fix_money"
         else:
             fix = "fix_rate"
-        #多空
+        # 多空
         if long_short == "0":
             long_short = "long"
         else:
             long_short = "short"
 
-        #停損停利
+        # 停損停利
         if stop == "1":
             stop_name = "percentage"
             stop1 = request.POST['stop1-1']

@@ -1,8 +1,6 @@
 from django.db import models
 
 # Create your models here.
-
-
 class ADebt(models.Model):
     a_debt_time = models.TimeField(primary_key=True)
     a_debt_date = models.DateField()
@@ -13,7 +11,7 @@ class ADebt(models.Model):
     a_debt_volume = models.CharField(max_length=8)
 
     class Meta:
-
+        
         managed = False
         db_table = 'a_debt'
         unique_together = (('a_debt_time', 'a_debt_date'),)
@@ -144,12 +142,11 @@ class DjangoAdminLog(models.Model):
     object_repr = models.CharField(max_length=200)
     action_flag = models.PositiveSmallIntegerField()
     change_message = models.TextField()
-    content_type = models.ForeignKey(
-        'DjangoContentType', models.DO_NOTHING, blank=True, null=True)
+    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
 
     class Meta:
-
+        
         managed = False
         db_table = 'django_admin_log'
 
@@ -213,8 +210,7 @@ class Futures(models.Model):
 
 
 class History(models.Model):
-    member = models.OneToOneField(
-        'Member', models.DO_NOTHING, primary_key=True)
+    member = models.OneToOneField('Member', models.DO_NOTHING, primary_key=True)
     futures = models.ForeignKey(Futures, models.DO_NOTHING)
     buy_qty = models.IntegerField()
     buy_mon = models.IntegerField()
@@ -242,27 +238,20 @@ class IndexClass(models.Model):
         managed = True
         db_table = 'index_class'
 
-
 class IntelligentStrategy(models.Model):
-    intelligent_strategy_name = models.CharField(
-        primary_key=True, max_length=50)
-    member = models.ForeignKey('Member', models.DO_NOTHING)
+    intelligent_strategy_id = models.CharField(primary_key=True, max_length=50)
     futures = models.ForeignKey(Futures, models.DO_NOTHING)
-    intelligent_strategy_start = models.DateField()
-    intelligent_strategy_end = models.DateField()
-    intelligent_strategy_index1 = models.IntegerField()
-    intelligent_strategy_index2 = models.IntegerField()
-    intelligent_strategy_algorithm = models.IntegerField()
-    intelligent_strategy_enter = models.IntegerField()
-    intelligent_strategy_exit = models.IntegerField()
+    member = models.ForeignKey('Member', models.DO_NOTHING)
+    intelligent_strategy_algorithm = models.CharField(max_length=10)
+    intelligent_strategy_long_short = models.CharField(max_length=11, default='')
+    intelligent_strategy_money_manage = models.CharField(max_length=11, default='')
+    intelligent_strategy_stop_pl = models.CharField(max_length=11, default='')
 
     class Meta:
-
         managed = True
         db_table = 'intelligent_strategy'
-        unique_together = (('intelligent_strategy_name', 'member'),)
-
-
+        unique_together = (('intelligent_strategy_id', 'member_id'),)
+        
 class Member(models.Model):
     member_id = models.CharField(primary_key=True, max_length=50)
     member_password = models.CharField(max_length=50)
@@ -322,6 +311,7 @@ class MiniRussell(models.Model):
     mini_russell_low = models.CharField(max_length=8)
     mini_russell_volume = models.CharField(max_length=8)
 
+
     class Meta:
 
         managed = True
@@ -371,7 +361,7 @@ class News(models.Model):
     news_area = models.BigIntegerField(blank=True, null=True)
     news_type = models.BigIntegerField(blank=True, null=True)
     news_category = models.BigIntegerField(blank=True, null=True)
-    
+
     class Meta:
 
         managed = True
@@ -411,21 +401,23 @@ class Te(models.Model):
 
 
 class TechnicalStrategry(models.Model):
-    technical_strategry_id = models.CharField(primary_key=True, max_length=50)
+    technical_strategy_id = models.CharField(primary_key=True, max_length=50)
     member = models.ForeignKey(Member, models.DO_NOTHING)
     futures = models.ForeignKey(Futures, models.DO_NOTHING)
     technical_strategry_period = models.CharField(max_length=10)
     technical_strategry_start = models.DateField()
     technical_strategry_end = models.DateField()
-    technical_strategry_long_short = models.CharField(max_length=11)
-    technical_strategry_stop_lp = models.CharField(max_length=11)
-    technical_strategry_money_manage = models.CharField(max_length=11)
-    technical_strategry_enter = models.CharField(max_length=11)
-    technical_strategry_exit = models.CharField(max_length=11)
+    technical_strategy_long_short = models.CharField(max_length=11, default='')
+    technical_strategy_stop_lp = models.CharField(max_length=11, default='')
+    technical_strategy_money_manage = models.CharField(max_length=11, default='')
+    technical_strategry_enter = models.CharField(max_length=11, default='')
+    technical_strategry_exit = models.CharField(max_length=11, default='')
+
     class Meta:
+
         managed = True
         db_table = 'technical_strategry'
-        unique_together = (('technical_strategry_id', 'member'),)
+        unique_together = (('technical_strategy_id', 'member'),)
 
 
 class Tf(models.Model):
@@ -489,22 +481,4 @@ class Newscontent(models.Model):
     class Meta:
 
         managed = True
-        db_table = 'news_content'
-
-
-class Transactionrecord(models.Model):
-    member_id = models.CharField(max_length=50, blank=True, null=True)
-    futeres_id = models.CharField(max_length=10, blank=True, null=True)
-    futures_name = models.CharField(max_length=10, blank=True, null=True)
-    record = models.IntegerField(blank=True, null=True)
-    buy_qty = models.IntegerField(blank=True, null=True)
-    buy_mon = models.IntegerField(blank=True, null=True)
-    buy_time = models.DateTimeField(blank=True, null=True)
-    sell_qty = models.IntegerField(blank=True, null=True)
-    sell_mon = models.IntegerField(blank=True, null=True)
-    sell_time = models.DateTimeField(blank=True, null=True)
-    return_rate = models.CharField(max_length=10, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'transactionRecord'
+        db_table = 'news_content' 

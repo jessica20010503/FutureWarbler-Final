@@ -12,10 +12,10 @@ def long_point(self, loss, profit):
 def short_point(self, loss, profit):
     if self.dataclose[0] > self.buyprice + loss:
         self.log('STOP LOSS SELL CREATE,{}'.format(self.dataclose[0]))
-        self.order = self.sell()
+        self.order = self.buy()
     if self.dataclose[0] < self.buyprice - profit:
         self.log('STOP PROFIT SELL CREATE,{}'.format(self.dataclose[0]))
-        self.order = self.sell()
+        self.order = self.buy()
 
 #做多 固定比例停損停利
 def long_percentage(self, loss, profit):
@@ -30,10 +30,10 @@ def long_percentage(self, loss, profit):
 def short_percentage(self, loss, profit):
     if self.dataclose[0] - self.buyprice > 0 and (self.dataclose[0]-self.buyprice)/self.buyprice >loss:
         self.log('STOP LOSS SELL CREATE,{}'.format(self.dataclose[0]))
-        self.order = self.sell()
+        self.order = self.buy()
     if self.dataclose[0] - self.buyprice < 0 and (self.dataclose[0]-self.buyprice)/self.buyprice >profit:
         self.log('STOP PROFIT SELL CREATE,{}'.format(self.dataclose[0]))
-        self.order = self.sell()
+        self.order = self.buy()
 
 #做多 移動停損
 def long_trailing(self, tmpHigh, loss):
@@ -53,7 +53,7 @@ def short_trailing(self, tmpLow, loss):
         TrailingStop = tmpLow + loss
     elif self.datalow >= TrailingStop:
         self.log('STOP LOSS SELL CREATE,{}'.format(self.dataclose[0]))
-        self.order = self.sell()
+        self.order = self.buy()
 
 
 #------------------------------進出場策略-----------------------------------------
