@@ -6,7 +6,7 @@
     alert('{{alertmessage}}');
 </script>
 {% endif %}
-<div class="wrap d-flex m0-a">
+<div id="app" class="wrap d-flex m0-a">
     <div class="side">
         <h1 class="fz-xl fwb">F<span class="bright">u</span>tures <br> &nbsp;&nbsp;Warbl<span class="bright">e</span>r
         </h1>
@@ -244,7 +244,7 @@
                                         <div class="modal-footer ">
                                             <button type="button" class="close__btn dark-gray b-n "
                                                 data-bs-dismiss="modal">取消</button>
-                                            <button type="button" class="personal__btn dark-gray b-n">確認</button>
+                                            <button type="button" @click="Recharge" class="personal__btn dark-gray b-n">確認</button>
                                         </div>
                                     </form>
                                 </div>
@@ -268,5 +268,44 @@
             </div>
         </div>
     </div>
+    
 </div>
+
+
+
+<script>
+    new Vue({
+      el: "#app",
+      delimiters: ["[[", "]]"],
+      data() {
+        return {
+          isShow: false, //iframe
+        };
+      },
+      mounted: function () {},
+      components: {},
+      // 如果要一開始網頁就要出現的東西就要寫在這裡 created
+      created() {
+
+      },
+      // methods=function
+      methods: {
+        Recharge: function () {
+            console.log("進入Recharge");
+             var name = document.getElementById('account').value;
+             var usd = document.getElementById('USD').value;
+             var twd = document.getElementById("TWD").value;         
+              
+            console.log(name);
+            console.log(usd);
+            console.log(twd);
+            
+            axios.post("/api/Recharge?memberId="+name+"&member_twd="+twd+"&member_usd="+usd).then((resp) => {
+            alert("儲值成功");
+    
+            });
+            },          
+      },
+    });
+</script>
 {% endblock %}

@@ -75,7 +75,7 @@
           {% for results in results%}
           <ul>
             <li class="b-bottom b-top">
-              <a href="/news-content/{{results.news_id}}" class="d-flex p-5 dark-gray">
+              <a href="/news-content/?id={{results.news_id}}" class="d-flex p-5 dark-gray">
                 <img src="{{results.news_photo}}" alt="新聞圖片" class="mr-4" />
                 <div>
                   <h3 class="fwb mb-1">{{results.news_title}}</h3>

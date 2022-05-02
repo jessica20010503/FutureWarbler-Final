@@ -48,6 +48,11 @@ urlpatterns = [
     path('test/', test),
     path('strategy_ai/', strategy_ai),
     path('send_ai_strategy_sql/', send_ai_strategy_sql),
-    # path('api/GetTechnicalImgHeml', views.GetTechnicalImgHeml.as_view()),
-    # path('api/GetTechnicalType', views.GetTechnicalType.as_view()),
+    path('api/Recharge', views.Recharge.as_view()),
+    path('api/GetUserAccount', views.GetUserAccount.as_view()),
+    path('api/GetTechnicalStrategry', views.GetTechnicalStrategry.as_view()),
+    path('api/GetTechnicalImgHeml', views.GetTechnicalImgHeml.as_view()),
+    path('api/GetTechnicalType', views.GetTechnicalType.as_view()),
+    path('api/UserRecord', views.UserRecord.as_view()),
+    path('api/UserRecordFree', views.UserRecordFree.as_view()),
 ]
